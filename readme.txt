@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 3.5
 
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 
 License: GPLv2
 
@@ -54,6 +54,10 @@ For more information check out:
 
 
 == Changelog ==
+
+= 4.0.1 =
+
+* Fixes for WP 3.5. Thanks jibbius!
 
 = 4.0.0 =
 
