@@ -16,7 +16,7 @@ add_action( 'init', 'wds_bp_registration_options_member_requests');
 function wds_bp_registration_options_member_requests(){
 	if(is_admin()){
 		global $wpdb, $bp, $wds_bp_member_requests;
-		$rs = $wpdb->get_results( $wpdb->prepare( "Select ID from ".$wpdb->base_prefix."users where user_status in (2,69)" ) );
+		$rs = $wpdb->get_results( $wpdb->prepare( 'Select ID from '.$wpdb->base_prefix.'users where user_status in (2,69)' , '') );
 		$wds_bp_member_requests = count( $rs );
 	}
 }
@@ -79,10 +79,10 @@ function wds_bp_registration_options_form_actions(){
 						}
 						wp_delete_user( $user_id );	
 					} elseif ( $action == "Approve" ) {
-						$sql="update ".$wpdb->base_prefix."users set user_status=0 where ID=$user_id";
-						$wpdb->query($wpdb->prepare($sql));
-						$sql="update ".$wpdb->base_prefix."bp_activity set hide_sitewide=0 where user_id=$user_id";
-						$wpdb->query($wpdb->prepare($sql));
+						$sql='update '.$wpdb->base_prefix.'users set user_status=0 where ID=%d';
+						$wpdb->query($wpdb->prepare($sql, $user_id));
+						$sql='update ' .$wpdb->base_prefix.'bp_activity set hide_sitewide=0 where user_id=%d';
+						$wpdb->query($wpdb->prepare($sql, $user_id));
 					}
 					//only send out message if one exists
 					if ( $subject && $message ) {
@@ -95,7 +95,7 @@ function wds_bp_registration_options_form_actions(){
 				}
 			}
 			//reset global
-			$rs = $wpdb->get_results( $wpdb->prepare( "Select ID from ".$wpdb->base_prefix."users where user_status in (2,69)" ) );
+			$rs = $wpdb->get_results( $wpdb->prepare( 'Select ID from '.$wpdb->base_prefix.'users where user_status in (2,69)', '' ) );
 			$wds_bp_member_requests = count( $rs );
 		}
 	}
@@ -112,12 +112,12 @@ function wds_bp_registration_options_form_actions(){
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 function wds_bp_registration_options_admin_messages(){
 	global $wds_bp_member_requests;
-	if ( $wds_bp_member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' ) {
+	if ( $wds_bp_member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can('add_users')) {
 		$s = '';
 		if ( $wds_bp_member_requests != 1 ) {
 			$s = 's';
 		}
-		echo '<div class="error"><p>You have <a href="'.site_url().'/wp-admin/admin.php?page=bp_registration_options_member_requests"><strong>'.$wds_bp_member_requests.' new member request'.$s.'</strong></a> that need to be approved or denied. Please <a href="'.site_url().'/wp-admin/admin.php?page=bp_registration_options_member_requests">click here</a> to take action.</p></div>';
+		echo '<div class="error"><p>You have <a href="'.admin_url('/admin.php?page=bp_registration_options_member_requests').'"><strong>'.$wds_bp_member_requests.' new member request'.$s.'</strong></a> that need to be approved or denied. Please <a href="'.admin_url('/admin.php?page=bp_registration_options_member_requests').'">click here</a> to take action.</p></div>';
 	}
 }
 
@@ -203,15 +203,15 @@ function bp_registration_options_settings() {
         <table>
             <tr>
            		<td align="right" valign="top">Activate & Profile Alert Message:</td>
-            	<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo $activate_message;?></textarea></td>
+            	<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes($activate_message);?></textarea></td>
             </tr>
             <tr>
            		<td align="right" valign="top">Account Approved Email:</td>
-            	<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo $approved_message;?></textarea></td>
+            	<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes($approved_message);?></textarea></td>
             </tr>
             <tr>
            		<td align="right" valign="top">Account Denied Email:</td>
-            	<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo $denied_message;?></textarea></td>
+            	<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes($denied_message);?></textarea></td>
             </tr>
             <tr>
             	<td></td>
@@ -247,10 +247,10 @@ function bp_registration_options_member_requests() {
 		<?php wds_bp_registration_options_tab_menu('requests');
 		if ( $wds_bp_member_requests > 0 ) { 
 			if (isset($_GET["p"])) { $page  = $_GET["p"]; } else { $page=1; };
-			$start_from = ($page-1) * 20;
-			$sql = "select ID from ".$wpdb->base_prefix."users where user_status in (2,69) order by user_registered LIMIT $start_from, 20";
 			$total_pages = ceil($wds_bp_member_requests / 20);
-			$rs = $wpdb->get_results( $wpdb->prepare( $sql ) );?>
+			$start_from = ($page-1) * 20;
+			$sql = 'select ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
+			$rs = $wpdb->get_results( $wpdb->prepare( $sql , $start_from) );?>
             <form method="post" name="bprwg">
             <?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
             Please approve or deny the following new members:
@@ -392,4 +392,4 @@ function bp_registration_options_admin_footer(){
 	  </tr>
 	  </table>
 	  <?php
-}?>
+}

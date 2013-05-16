@@ -31,6 +31,7 @@ function wds_bp_registration_options_core_init(){
 			if ( $bp->current_component && $user_ID == 0 && $bp->current_component != 'register' && $bp->current_component != 'activate' ) {
 				if ( $bp->pages->register->slug ) {
 					wp_redirect( site_url().'/'.$bp->pages->register->slug );
+					exit();
 				} else {
 					exit();
 				}
@@ -39,6 +40,7 @@ function wds_bp_registration_options_core_init(){
 				$user = get_userdata($user_ID);
 				if ( $user->user_status == 69 ) {
 					wp_redirect( $bp->loggedin_user->domain );
+					exit;
 				}
 			}
 		}
@@ -184,8 +186,8 @@ add_action( 'bp_actions', 'wds_bp_registration_options_bp_actions', 50 );
 function wds_bp_registration_options_bp_actions(){
 	global $wpdb, $user_ID, $bp_moderate, $bp;
 	if ( $bp_moderate ) {
-		$sql = "update ".$wpdb->base_prefix."bp_activity set hide_sitewide=1 where user_id=$user_ID";
-		$wpdb->query( $wpdb->prepare( $sql ) );
+		$sql = 'update '.$wpdb->base_prefix.'bp_activity set hide_sitewide=1 where user_id=%d';
+		$wpdb->query( $wpdb->prepare( $sql, $user_ID) );
 	}
 }
 
@@ -205,7 +207,7 @@ function wds_bp_registration_options_bp_after_activate_content(){
 		switch_to_blog(1);
 	}
 	if ( $bp_moderate && isset( $_GET['key'] ) || $bp_moderate && $user_ID > 0 ) {
-		$activate_message = get_option('bprwg_activate_message');
+		$activate_message = stripslashes(get_option('bprwg_activate_message'));
 		echo '<div id="message" class="error"><p>'.$activate_message.'</p></div>';
 	}
 	if ( is_multisite() ) { 
@@ -223,25 +225,25 @@ function wds_bp_registration_options_bp_after_activate_content(){
 add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_activate_account');
 function wds_bp_registration_options_bp_core_activate_account($user_id){
 	global $wpdb, $bp_moderate;
-	if ( $bp_moderate ) {
+	if ( $bp_moderate &&  $user_id > 0) {
 		if ( isset( $_GET['key'] ) ) {
-			//Hide user created by new user on activation. 
-			$sql = "update ".$wpdb->base_prefix."users set user_status=69 where ID=$user_id";
-			$wpdb->query( $wpdb->prepare( $sql ) );
+			//Hide user created by new user on activation.
+			$sql = 'update '.$wpdb->base_prefix.'users set user_status=69 where ID=%d';
+			$wpdb->query( $wpdb->prepare( $sql, $user_id) );
 			//Hide activity created by new user
-			$sql = "update ".$wpdb->base_prefix."bp_activity set hide_sitewide=1 where user_id=$user_id";
-			$wpdb->query( $wpdb->prepare ($sql ) );
+			$sql = 'update '.$wpdb->base_prefix.'bp_activity set hide_sitewide=1 where user_id=%d';
+			$wpdb->query( $wpdb->prepare ($sql, $user_id) );
 			//save user ip address
 			update_user_meta($user_id, 'bprwg_ip_address', $_SERVER['REMOTE_ADDR']);
 			//email admin about new member request
 			$user = get_userdata( $user_id );
 			$user_name = $user->user_login;
 			$user_email = $user->user_email;
-			$mod_email = $user_name." (".$user_email.") would like to become a member of your website, to accept or reject their request please go to ".get_bloginfo("url")."/wp-admin/admin.php?page=bp-registration-options&view=members \n\n";
+			$mod_email = $user_name." (".$user_email.") would like to become a member of your website, to accept or reject their request please go to ".admin_url('/admin.php?page=bp_registration_options_member_requests')." \n\n";
 			$admin_email = get_bloginfo( 'admin_email' );
 			wp_mail( $admin_email, 'New Member Request', $mod_email );
 		}
 	}
 }
-
-?>
+function wds_bp_registration_options_bp_before_member_header(){
+}

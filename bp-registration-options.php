@@ -44,5 +44,3 @@ class BP_Registration_Options {
 		flush_rewrite_rules();
 	}
 }
-
-?>

@@ -1,6 +1,6 @@
 === BuddyPress Registration Options ===
 
-Contributors: Messenlehner, webdevstudios
+Contributors: webdevstudios, Messenlehner, jibbius
 
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 
