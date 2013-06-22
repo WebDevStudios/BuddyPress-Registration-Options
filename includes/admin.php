@@ -4,28 +4,22 @@
  *
  * @package BP-Registration-Options
  */
-  
+
 
 /**
  * set $bp_member_requests global
- *
- * 
- *	
  */
 add_action( 'init', 'wds_bp_registration_options_member_requests');
 function wds_bp_registration_options_member_requests(){
 	if(is_admin()){
 		global $wpdb, $bp, $wds_bp_member_requests;
-		$rs = $wpdb->get_results( $wpdb->prepare( 'Select ID from '.$wpdb->base_prefix.'users where user_status in (2,69)' , '') );
+		$rs = $wpdb->get_results( $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->base_prefix . 'users WHERE user_status IN (2,69)' , '') );
 		$wds_bp_member_requests = count( $rs );
 	}
 }
-  
+
 /**
  * form submissions
- *
- * 
- *	
  */
 add_action( 'admin_init', 'wds_bp_registration_options_form_actions');
 function wds_bp_registration_options_form_actions(){
@@ -35,27 +29,35 @@ function wds_bp_registration_options_form_actions(){
 		if ( isset( $_POST['Save'] ) ) {
 			check_admin_referer('bp_reg_options_check');//nonce WP security check
 			$bp_moderate = '';
-			if (isset( $_POST['bp_moderate'] ) )
-				$bp_moderate=$_POST['bp_moderate'];
+			if ( isset( $_POST['bp_moderate'] ) )
+				$bp_moderate = $_POST['bp_moderate'];
 			update_option('bprwg_moderate', $bp_moderate);
+
 			$privacy_network = '';
-			if (isset( $_POST['privacy_network'] ) )
+			if ( isset( $_POST['privacy_network'] ) )
 				$privacy_network = $_POST['privacy_network'];
 			update_option('bprwg_privacy_network', $privacy_network);
-			$activate_message=$_POST['activate_message'];
+
+			$activate_message = $_POST['activate_message'];
 			update_option('bprwg_activate_message', $activate_message);
-			$approved_message=$_POST['approved_message'];
+
+			$approved_message = $_POST['approved_message'];
 			update_option('bprwg_approved_message', $approved_message);
-			$denied_message=$_POST['denied_message'];
+
+			$denied_message = $_POST['denied_message'];
 			update_option('bprwg_denied_message', $denied_message);
-			do_action('bp_registration_options_general_settings_form_save');
+
+			do_action( 'bp_registration_options_general_settings_form_save' );
 		}
+
 		if ( isset( $_POST['reset_messages'] ) ) {
 			check_admin_referer('bp_reg_options_check');//nonce WP security check
+
 			delete_option('bprwg_activate_message');
 			delete_option('bprwg_approved_message');
 			delete_option('bprwg_denied_message');
 		}
+
 		//request submissions
 		if ( isset( $_POST['Moderate'] ) ) {
 			check_admin_referer('bp_reg_options_check');
@@ -71,22 +73,23 @@ function wds_bp_registration_options_form_actions(){
 					$message = get_option('bprwg_approved_message');
 				}
 				//loop all checked members
-				for ( $i = 0; $i < count( $checked_members ); ++$i ) {
+				$count = count( $checked_members );
+				for ( $i = 0; $i < $count; ++$i ) {
 					$user_id = (int)$checked_members[$i];
 					if ( $action == "Deny" || $action == "Ban") {
 						if ( is_multisite() ) {
 							wpmu_delete_user( $user_id );
 						}
-						wp_delete_user( $user_id );	
+						wp_delete_user( $user_id );
 					} elseif ( $action == "Approve" ) {
-						$sql='update '.$wpdb->base_prefix.'users set user_status=0 where ID=%d';
-						$wpdb->query($wpdb->prepare($sql, $user_id));
-						$sql='update ' .$wpdb->base_prefix.'bp_activity set hide_sitewide=0 where user_id=%d';
-						$wpdb->query($wpdb->prepare($sql, $user_id));
+						$sql = 'UPDATE ' . $wpdb->base_prefix . 'users SET user_status = 0 WHERE ID = %d';
+						$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
+						$sql = 'UPDATE ' .$wpdb->base_prefix.'bp_activity SET hide_sitewide = 0 WHERE user_id = %d';
+						$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
 					}
 					//only send out message if one exists
 					if ( $subject && $message ) {
-						$user = get_userdata($user_id);
+						$user = get_userdata( $user_id );
 						$user_name = $user->user_login;
 						$user_email = $user->user_email;
 						$email = str_replace( '[username]', $user_name, $message );
@@ -95,7 +98,7 @@ function wds_bp_registration_options_form_actions(){
 				}
 			}
 			//reset global
-			$rs = $wpdb->get_results( $wpdb->prepare( 'Select ID from '.$wpdb->base_prefix.'users where user_status in (2,69)', '' ) );
+			$rs = $wpdb->get_results( $wpdb->prepare( 'SELECT ID FROM '.$wpdb->base_prefix.'users WHERE user_status IN (2,69)', '' ) );
 			$wds_bp_member_requests = count( $rs );
 		}
 	}
@@ -106,8 +109,8 @@ function wds_bp_registration_options_form_actions(){
 /**
  * set admin message to show count of member requests.
  *
- * 
- *	
+ *
+ *
  */
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 function wds_bp_registration_options_admin_messages(){
@@ -121,13 +124,13 @@ function wds_bp_registration_options_admin_messages(){
 	}
 }
 
- 
+
 
 /**
  * Plugin Menu
  *
- * 
- *	
+ *
+ *
  */
 add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
 function wds_bp_registration_options_plugin_menu() {
@@ -135,21 +138,21 @@ function wds_bp_registration_options_plugin_menu() {
 	if ( $blog_id == 1 ) {
 	  $minimum_role = 'administrator';
 	  add_menu_page( 'BP Registration', 'BP Registration', $minimum_role, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
-	  
+
 	  $count = '<span class="update-plugins count-'.$wds_bp_member_requests.'"><span class="plugin-count">'.$wds_bp_member_requests.'</span></span>';
-	  
+
 	  add_submenu_page( 'bp_registration_options', 'Member Requests '.$count, 'Member Requests '.$count, $minimum_role, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
-	  
+
 	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_role, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
 	}
 }
 
 
 /**
- * Tabs on the top of each admin.php?page= 
+ * Tabs on the top of each admin.php?page=
  *
- * 
- *	
+ *
+ *
  */
 function wds_bp_registration_options_tab_menu($page = ''){
 	global $wds_bp_member_requests;
@@ -168,10 +171,10 @@ function wds_bp_registration_options_tab_menu($page = ''){
 
 
 /**
- * BP-Registration-Options main settings page output. 
+ * BP-Registration-Options main settings page output.
  *
- * 
- *	
+ *
+ *
  */
 function bp_registration_options_settings() {
 	//DEFAULT VALUES
@@ -235,17 +238,17 @@ function bp_registration_options_settings() {
 
 
 /**
- * New member requests ui. 
+ * New member requests ui.
  *
- * 
- *	
+ *
+ *
  */
 function bp_registration_options_member_requests() {
 	global $wpdb, $bp, $wds_bp_member_requests;
 	?>
     <div class="wrap" >
 		<?php wds_bp_registration_options_tab_menu('requests');
-		if ( $wds_bp_member_requests > 0 ) { 
+		if ( $wds_bp_member_requests > 0 ) {
 			if (isset($_GET["p"])) { $page  = $_GET["p"]; } else { $page=1; };
 			$total_pages = ceil($wds_bp_member_requests / 20);
 			$start_from = ($page-1) * 20;
@@ -282,7 +285,7 @@ function bp_registration_options_member_requests() {
             </tr>
 			<?php
 			$bgc = '';
-			foreach( $rs as $r ) {	
+			foreach( $rs as $r ) {
 				$user_id = $r->ID;
 				$author = new BP_Core_User( $user_id );
 				$userpic = $author->avatar_mini;
@@ -291,7 +294,7 @@ function bp_registration_options_member_requests() {
 				$user = get_userdata( $user_id );
 				$useremail = $user->user_email;
 				$userregistered = $user->user_registered;
-				$userip = get_user_meta( $user_id, 'bprwg_ip_address', true); 
+				$userip = get_user_meta( $user_id, 'bprwg_ip_address', true);
 				if ( $bgc == '' ) {
 					$bgc = '#eeeeee';
 				} else {
@@ -334,17 +337,17 @@ function bp_registration_options_member_requests() {
             <input type="submit" name="Moderate" value="Ban" onclick="return confirm('Are you sure you want to ban and delete the checked member(s)?');" />
 
             <p>*If you Ban a member they will not receive an email and will not be able to try to join again.</p>
-            
-            <?php if ( $total_pages > 1 ) { 
+
+            <?php if ( $total_pages > 1 ) {
 				echo '<h3>';
 				for ($i=1; $i<=$total_pages; $i++) {
     				echo "<a href='".add_query_arg( 'p', $i )."'>".$i."</a> ";
 				}
 				echo '</h3>';
 			}
-			
+
 			do_action('bp_registration_options_member_request_form');?>
-            
+
 			</form>
 		<?php }else{
 			echo "No new members to approve.";
