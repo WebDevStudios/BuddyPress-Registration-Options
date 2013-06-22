@@ -35,17 +35,17 @@ function wds_bp_registration_options_core_init(){
 				}
 			//if logged in and not approved then redirect to their profile page
 			} elseif ( $bp->current_component && $user_ID > 0 && ( $bp->displayed_user->userdata == '' || $bp->displayed_user->userdata != '' && $bp->displayed_user->id != $user_ID ) ) {
-				$user = get_userdata($user_ID);
-				if ( $user->user_status == 69 ) {
+				$user = get_userdata( $user_ID );
+				if ( 69 == $user->user_status ) {
 					wp_redirect( $bp->loggedin_user->domain );
-					exit;
+					exit();
 				}
 			}
 		}
 		//non approved members can still view bp pages
 		if ( $bp_moderate == 1 && $user_ID > 0 ) {
 			$user = get_userdata($user_ID);
-			if ( $user->user_status == 69 ) {
+			if ( 69 == $user->user_status ) {
 				//hide friend buttons
 				add_filter( 'bp_get_add_friend_button', '__return_false' );
 				add_filter( 'bp_get_send_public_message_button', '__return_false' );
