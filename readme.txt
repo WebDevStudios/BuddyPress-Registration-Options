@@ -1,6 +1,6 @@
 === BuddyPress Registration Options ===
 
-Contributors: webdevstudios, Messenlehner, jibbius
+Contributors: webdevstudios, Messenlehner, jibbius, tw2113
 
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 
@@ -14,7 +14,7 @@ Stable tag: 4.0.1
 
 License: GPLv2
 
-Moderate new BuddyPress members, fight BuddyPress spam, set BuddyPress Groups or Blogs/Sites new members can join on the registration page. 
+Moderate new BuddyPress members, fight BuddyPress spam, set BuddyPress Groups or Blogs/Sites new members can join on the registration page.
 
 
 == Description ==
@@ -106,7 +106,7 @@ For more information check out:
 
 2. Activate the plugin
 
-3. Click on the "BP Registation Options" link under Settings. 
+3. Click on the "BP Registation Options" link under Settings.
 
 4. Configure your BuddyPress registration options.
 
@@ -119,7 +119,7 @@ For more information check out:
 
 = Does this plugin work with WordPress Multi-Site? =
 
-Absolutely!  This plugin has been tested and verified to work on the most current version of WordPress with Multi-Site or with stand alone WordPress. 
+Absolutely!  This plugin has been tested and verified to work on the most current version of WordPress with Multi-Site or with stand alone WordPress.
 
 
 == Plugin Support ==
