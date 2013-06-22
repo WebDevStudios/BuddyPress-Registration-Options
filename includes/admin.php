@@ -248,6 +248,7 @@ function bp_registration_options_member_requests() {
 	?>
     <div class="wrap" >
 		<?php wds_bp_registration_options_tab_menu('requests');
+
 		if ( $wds_bp_member_requests > 0 ) {
 			if (isset($_GET["p"])) { $page  = $_GET["p"]; } else { $page=1; };
 			$total_pages = ceil($wds_bp_member_requests / 20);
@@ -257,7 +258,7 @@ function bp_registration_options_member_requests() {
             <form method="post" name="bprwg">
             <?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
             Please approve or deny the following new members:
-            <script LANGUAGE="JavaScript">
+            <script language="javascript">
 			function bprwg_checkall(field){
 				if(document.getElementById('bp_checkall').checked == true){
 					checkAll(field)
