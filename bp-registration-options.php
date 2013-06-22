@@ -3,7 +3,7 @@
 class BP_Registration_Options {
 	function __construct() {
 		// Define plugin constants
-		$this->version = BP_REGISTRATION_OPTIONS_VERSION; 
+		$this->version = BP_REGISTRATION_OPTIONS_VERSION;
 		$this->basename = plugin_basename( __FILE__ );
 		$this->directory_path = plugin_dir_path( __FILE__ );
 		$this->directory_url = plugins_url( 'bp-registration-options/' );
@@ -11,16 +11,12 @@ class BP_Registration_Options {
 		register_activation_hook( __FILE__, array( $this, 'activate' ) ); // plugin activation actions
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
 	}
-	
+
 	/**
 	 * Activation hook for the plugin.
-	 * 
-	 *
-	 *
 	 */
 	function activate() {
 		$this->includes();
@@ -35,9 +31,6 @@ class BP_Registration_Options {
 
 	/**
 	 * Deactivation hook for the plugin.
-	 * 
-	 * 
-	 *
 	 */
 	function deactivate() {
 		global $wp_rewrite;
