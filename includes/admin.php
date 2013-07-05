@@ -398,26 +398,3 @@ function bp_registration_options_admin_footer(){
 	  </table>
 	  <?php
 }
-
-add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
-/**
- * Hide members, who haven't been approved yet, on the frontend listings.
- * @param  object $args arguments that BuddyPress will use to query for members
- * @return object       amended arguments with IDs to exclude.
- */
-function bp_registration_hide_pending_members( $args ) {
-	global $wpdb;
-
-	$ids = array();
-	$sql = "SELECT ID FROM " . $wpdb->base_prefix . "users WHERE user_status IN (2,69)";
-	$rs = $wpdb->get_results( $wpdb->prepare( $sql, '' ), ARRAY_N );
-	//Grab the actual IDs
-	foreach( $rs as $key => $value) {
-		$ids[] = $value[0];
-	}
-
-	if ( $ids )
-		$args->query_vars['exclude'] = $ids;
-
-	return $args;
-}
