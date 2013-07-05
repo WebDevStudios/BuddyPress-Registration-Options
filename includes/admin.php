@@ -38,13 +38,13 @@ function wds_bp_registration_options_form_actions(){
 				$privacy_network = $_POST['privacy_network'];
 			update_option('bprwg_privacy_network', $privacy_network);
 
-			$activate_message = $_POST['activate_message'];
+			$activate_message = sanitize_text_field( $_POST['activate_message'] );
 			update_option('bprwg_activate_message', $activate_message);
 
-			$approved_message = $_POST['approved_message'];
+			$approved_message = sanitize_text_field( $_POST['approved_message'] );
 			update_option('bprwg_approved_message', $approved_message);
 
-			$denied_message = $_POST['denied_message'];
+			$denied_message = sanitize_text_field( $_POST['denied_message'] );
 			update_option('bprwg_denied_message', $denied_message);
 
 			do_action( 'bp_registration_options_general_settings_form_save' );
