@@ -116,7 +116,7 @@ function wds_bp_registration_options_form_actions(){
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 function wds_bp_registration_options_admin_messages(){
 	global $wds_bp_member_requests;
-	if ( $wds_bp_member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can('add_users')) {
+	if ( $wds_bp_member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can('add_users') ) {
 		$s = '';
 		if ( $wds_bp_member_requests != 1 ) {
 			$s = 's';
