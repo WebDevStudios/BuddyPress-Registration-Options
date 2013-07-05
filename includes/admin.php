@@ -201,8 +201,8 @@ function bp_registration_options_settings() {
 		<?php wds_bp_registration_options_tab_menu();?>
         <form method="post">
         <?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-        <p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php if($bp_moderate=="1"){?>checked<?php }?>/>&nbsp;<strong>Moderate New Members</strong> (Every new member will have to be approved by an administrator before they can interact with BuddyPress components.)</p>
-        <p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php if($privacy_network=="1"){?>checked<?php }?>/> Only registered or approved members can view BuddyPress pages (Private Network).</p>
+        <p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php if($bp_moderate=="1"){?>checked<?php }?>/>&nbsp;<label for="bp_moderate"><strong>Moderate New Members</strong> (Every new member will have to be approved by an administrator before they can interact with BuddyPress components.)</label></p>
+        <p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php if($privacy_network=="1"){?>checked<?php }?>/> <label for="privacy_network">Only registered or approved members can view BuddyPress pages (Private Network).</label></p>
         <table>
             <tr>
            		<td align="right" valign="top">Activate & Profile Alert Message:</td>
@@ -222,14 +222,14 @@ function bp_registration_options_settings() {
                 	<table width="100%">
                     <tr>
                     	<td>Short Code Key: [username]</td>
-                        <td align="right"><input type="submit" name="reset_messages" value="Reset Messages" onclick="return confirm('Are you sure you want to reset to the default messages?');" /></td>
+                        <td align="right"><input type="submit" name="reset_messages" class="button button-secondary" value="Reset Messages" onclick="return confirm('Are you sure you want to reset to the default messages?');" /></td>
                     </tr>
                     </table>
                 </td>
             </tr>
 		</table>
         <?php do_action('bp_registration_options_general_settings_form');?>
-        <input type="submit" name="Save" value="Save Options" />
+        <input type="submit" class="button button-primary" name="Save" value="Save Options" />
         </form>
 	</div>
     <?php bp_registration_options_admin_footer();
