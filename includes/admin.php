@@ -75,7 +75,9 @@ function wds_bp_registration_options_form_actions(){
 				//loop all checked members
 				$count = count( $checked_members );
 				for ( $i = 0; $i < $count; ++$i ) {
-					$user_id = (int)$checked_members[$i];
+					$user_id = (int) $checked_members[$i];
+					//Grab our userdata object while we still have a user.
+					$user = get_userdata( $user_id );
 					if ( $action == "Deny" || $action == "Ban") {
 						if ( is_multisite() ) {
 							wpmu_delete_user( $user_id );
@@ -89,7 +91,6 @@ function wds_bp_registration_options_form_actions(){
 					}
 					//only send out message if one exists
 					if ( $subject && $message ) {
-						$user = get_userdata( $user_id );
 						$user_name = $user->user_login;
 						$user_email = $user->user_email;
 						$email = str_replace( '[username]', $user_name, $message );
