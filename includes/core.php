@@ -232,6 +232,7 @@ add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members
  * Hide members, who haven't been approved yet, on the frontend listings.
  * @param  object $args arguments that BuddyPress will use to query for members
  * @return object       amended arguments with IDs to exclude.
+ * @since  4.1
  */
 function bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
