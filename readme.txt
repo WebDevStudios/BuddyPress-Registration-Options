@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 3.5
 
-Stable tag: 4.0.1
+Stable tag: 4.1
 
 License: GPLv2
 
@@ -54,6 +54,15 @@ For more information check out:
 
 
 == Changelog ==
+
+= 4.1 =
+
+* Added hiding of pending members from the members list on the frontend, until approved.
+* Fixed issue with where we were trying to grab user data after the user was deleted.
+* Labels around checkboxes for easier selection.
+* Unified button styling to familiar WordPress buttons.
+* Sanitize inputs to help with security.
+* Code cleanup
 
 = 4.0.1 =
 
