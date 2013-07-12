@@ -137,14 +137,14 @@ add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
 function wds_bp_registration_options_plugin_menu() {
 	global $wds_bp_member_requests,$blog_id;
 	if ( $blog_id == 1 ) {
-	  $minimum_role = 'administrator';
-	  add_menu_page( 'BP Registration', 'BP Registration', $minimum_role, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
+	  $minimum_cap = 'manage_options';
+	  add_menu_page( 'BP Registration', 'BP Registration', $minimum_cap, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
 
 	  $count = '<span class="update-plugins count-'.$wds_bp_member_requests.'"><span class="plugin-count">'.$wds_bp_member_requests.'</span></span>';
 
-	  add_submenu_page( 'bp_registration_options', 'Member Requests '.$count, 'Member Requests '.$count, $minimum_role, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
+	  add_submenu_page( 'bp_registration_options', 'Member Requests '.$count, 'Member Requests '.$count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
 
-	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_role, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
+	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
 	}
 }
 
