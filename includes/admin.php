@@ -11,7 +11,7 @@
  */
 add_action( 'init', 'wds_bp_registration_options_member_requests');
 function wds_bp_registration_options_member_requests(){
-	if(is_admin()){
+	if( is_admin() ) {
 		global $wpdb, $bp, $wds_bp_member_requests;
 		$rs = $wpdb->get_results( $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->base_prefix . 'users WHERE user_status IN (2,69)' , '') );
 		$wds_bp_member_requests = count( $rs );

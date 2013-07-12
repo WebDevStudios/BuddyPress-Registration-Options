@@ -7,8 +7,6 @@
 
 /**
  * set $bp_moderate & $bprwg_privacy_network globals and filter off bp buttons
- *
- *
  */
 add_action( 'init', 'wds_bp_registration_options_core_init' );
 function wds_bp_registration_options_core_init(){
@@ -28,7 +26,7 @@ function wds_bp_registration_options_core_init(){
 			//redirect non logged in users to registration page, if register page is not set then kill it
 			if ( $bp->current_component && $user_ID == 0 && $bp->current_component != 'register' && $bp->current_component != 'activate' ) {
 				if ( $bp->pages->register->slug ) {
-					wp_redirect( site_url().'/'.$bp->pages->register->slug );
+					wp_redirect( site_url() . '/' . $bp->pages->register->slug );
 					exit();
 				} else {
 					exit();
