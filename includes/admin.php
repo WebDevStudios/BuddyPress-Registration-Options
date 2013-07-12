@@ -76,6 +76,7 @@ function wds_bp_registration_options_form_actions(){
 				$count = count( $checked_members );
 				for ( $i = 0; $i < $count; ++$i ) {
 					$user_id = (int) $checked_members[$i];
+
 					//Grab our userdata object while we still have a user.
 					$user = get_userdata( $user_id );
 					if ( $action == "Deny" || $action == "Ban") {
@@ -109,9 +110,6 @@ function wds_bp_registration_options_form_actions(){
 
 /**
  * set admin message to show count of member requests.
- *
- *
- *
  */
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 function wds_bp_registration_options_admin_messages(){
@@ -129,9 +127,6 @@ function wds_bp_registration_options_admin_messages(){
 
 /**
  * Plugin Menu
- *
- *
- *
  */
 add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
 function wds_bp_registration_options_plugin_menu() {
@@ -151,9 +146,6 @@ function wds_bp_registration_options_plugin_menu() {
 
 /**
  * Tabs on the top of each admin.php?page=
- *
- *
- *
  */
 function wds_bp_registration_options_tab_menu($page = ''){
 	global $wds_bp_member_requests;
@@ -163,6 +155,7 @@ function wds_bp_registration_options_tab_menu($page = ''){
     BP Registration Options
     <a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options">General Settings</a>
     <a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests">Member Requests (<?php echo $wds_bp_member_requests;?>)</a>
+
     <!--<a class="nav-tab<?php if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
     </h2><br />
 <?php }
@@ -173,9 +166,6 @@ function wds_bp_registration_options_tab_menu($page = ''){
 
 /**
  * BP-Registration-Options main settings page output.
- *
- *
- *
  */
 function bp_registration_options_settings() {
 	//DEFAULT VALUES
@@ -240,9 +230,6 @@ function bp_registration_options_settings() {
 
 /**
  * New member requests ui.
- *
- *
- *
  */
 function bp_registration_options_member_requests() {
 	global $wpdb, $bp, $wds_bp_member_requests;
@@ -251,7 +238,7 @@ function bp_registration_options_member_requests() {
 		<?php wds_bp_registration_options_tab_menu('requests');
 
 		if ( $wds_bp_member_requests > 0 ) {
-			if (isset($_GET["p"])) { $page  = $_GET["p"]; } else { $page=1; };
+			$page = ( isset( $_GET["p"] ) ) ? $_GET["p"] : 1 ;
 			$total_pages = ceil($wds_bp_member_requests / 20);
 			$start_from = ($page-1) * 20;
 			$sql = 'select ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
@@ -334,30 +321,29 @@ function bp_registration_options_member_requests() {
 			<?php } ?>
 			</table>
 
-            <input type="submit" name="Moderate" value="Approve" />
-            <input type="submit" name="Moderate" value="Deny" onclick="return confirm('Are you sure you want to deny and delete the checked member(s)?');" />
-            <input type="submit" name="Moderate" value="Ban" onclick="return confirm('Are you sure you want to ban and delete the checked member(s)?');" />
+            <input type="submit" class="button button-primary" name="Moderate" value="Approve" />
+            <input type="submit" class="button button-secondary" name="Moderate" value="Deny" onclick="return confirm('Are you sure you want to deny and delete the checked member(s)?');" />
+            <input type="submit" class="button button-secondary" name="Moderate" value="Ban" onclick="return confirm('Are you sure you want to ban and delete the checked member(s)?');" />
 
             <p>*If you Ban a member they will not receive an email and will not be able to try to join again.</p>
 
             <?php if ( $total_pages > 1 ) {
 				echo '<h3>';
-				for ($i=1; $i<=$total_pages; $i++) {
-    				echo "<a href='".add_query_arg( 'p', $i )."'>".$i."</a> ";
+				for ( $i=1; $i<=$total_pages; $i++ ) {
+    				echo "<a href='" . add_query_arg( 'p', $i ) . "'>" . $i . "</a> ";
 				}
 				echo '</h3>';
 			}
 
-			do_action('bp_registration_options_member_request_form');?>
+			do_action( 'bp_registration_options_member_request_form' ); ?>
 
 			</form>
-		<?php }else{
+		<?php } else {
 			echo "No new members to approve.";
 		} ?>
     </div>
     <?php bp_registration_options_admin_footer();
 }
-
 
 function bp_registration_options_help_support(){ ?>
     <div class="wrap">
@@ -365,36 +351,40 @@ function bp_registration_options_help_support(){ ?>
     </div>
     <?php bp_registration_options_admin_footer();
 }
-function bp_registration_options_admin_footer(){
-	  ?>
-      <p>BuddyPress Registration Options plugin created by <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
-	  <table>
-	  <tr>
-	  <td>
-		  <table>
-		  <tr>
-			  <td><a target="_blank" href="http://webdevstudios.com"><img width="50" src="<?php echo plugins_url( 'bp-registration-options/images/WDS-150x150.png' );?>" /></a></td>
-			  <td><strong>Follow WebDevStudios!</strong><br />
-				  <a target="_blank" href="https://plus.google.com/108871619014334838112"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
-				  <a target="_blank" href="http://twitter.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
-				  <a target="_blank" href="http://facebook.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
-			  <td>
-		  </tr>
-		  </table>
-	  </td>
-	  <td>
-		  <table>
-		  <tr>
-			  <td><a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/"><img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" /></a></td>
-			  <td><strong>Follow Brian Messenlehner!</strong><br />
-				  <a target="_blank" href="https://plus.google.com/117578069784985312197"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
-				  <a target="_blank" href="http://twitter.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
-				  <a target="_blank" href="http://facebook.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
-			  </td>
-		  </tr>
-		  </table>
-	  </td>
-	  </tr>
-	  </table>
-	  <?php
+
+/**
+ * Display our footer content
+ * @return string html for the footer output
+ */
+function bp_registration_options_admin_footer() { ?>
+      <p style="margin-top: 50px;">BuddyPress Registration Options plugin created by <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
+		<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td><a target="_blank" href="http://webdevstudios.com"><img width="50" src="<?php echo plugins_url( 'bp-registration-options/images/WDS-150x150.png' );?>" /></a></td>
+							<td><strong>Follow WebDevStudios!</strong><br />
+							<a target="_blank" href="https://plus.google.com/108871619014334838112"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
+							<a target="_blank" href="http://twitter.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
+							<a target="_blank" href="http://facebook.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
+							<td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td><a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/"><img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" /></a></td>
+							<td><strong>Follow Brian Messenlehner!</strong><br />
+							<a target="_blank" href="https://plus.google.com/117578069784985312197"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
+							<a target="_blank" href="http://twitter.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
+							<a target="_blank" href="http://facebook.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+<?php
 }
