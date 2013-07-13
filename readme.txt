@@ -1,21 +1,13 @@
 === BuddyPress Registration Options ===
 
 Contributors: webdevstudios, Messenlehner, jibbius, tw2113
-
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
-
 Tags: buddypress, wpmu, wpms, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
-
 Requires at least: 3.0
-
 Tested up to: 3.5
-
 Stable tag: 4.1
-
 License: GPLv2
-
-Moderate new BuddyPress members, fight BuddyPress spam, set BuddyPress Groups or Blogs/Sites new members can join on the registration page.
-
+Moderate new BuddyPress members and fight BuddyPress spam.
 
 == Description ==
 
@@ -24,24 +16,15 @@ Great plugin for stopping spam bots from registering on your BuddyPress website!
 
 This WordPress BuddyPress plugin that allows for new member moderation, if moderation is turned on from the admin settings page, any new members will be blocked from interacting with any buddypress elements (except editing their own profile and uploading their avatar) and will not be listed in any directory until an administrator approves or denies their account. If moderation is turned on admins can create custom display messages and email alert messages for approved or denied accounts. When admin approves or denies, custom emails get sent out to new members telling them they were approved or denied.
 
-
-For more information check out:
-
-<a href=http://webdevstudios.com/support/wordpress-plugins/buddypress-registration-options/>BP-Registration-Options Page</a>
-
-<a href=http://webdevstudios.com/support/forum/buddypress-registration-options/>BP-Registration-Options Support Forum</a>
-
-
-
 == Screenshots ==
 
 
 
-1. Settings page:
+1. General Settings page:
 
 2. New member registration:
 
-3. New member activation:
+3. New member activation notices:
 
 4. New members can login but can only see/edit their profile and change their avatar. If an unapproved new member tries to go to any other BuddyPress pages they are redirected back to their profile page.
 
@@ -49,7 +32,7 @@ For more information check out:
 
 6. Admin Dashboard Alert:
 
-7. Approve or deny new members. Also approve, deny or ban any members to or from any private requested groups:
+7. Approve, deny or ban new members:
 
 
 
@@ -60,9 +43,10 @@ For more information check out:
 * Added hiding of pending members from the members list on the frontend, until approved.
 * Fixed issue with where we were trying to grab user data after the user was deleted.
 * Labels around checkboxes for easier selection.
-* Unified button styling to familiar WordPress buttons.
+* Updated UI to match latest WordPress visual style
 * Sanitize inputs to help with security.
 * Code cleanup
+* Screenshot updates.
 
 = 4.0.1 =
 
@@ -102,13 +86,19 @@ For more information check out:
 
 == Upgrade Notice ==
 
+= 4.1 =
+
+* Added hiding of pending members from the members list on the frontend, until approved.
+* Fixed issue with where we were trying to grab user data after the user was deleted.
+* Accessibility updates
+* Updated UI to match latest WordPress visual style
+
 = 4.0.0 =
 
 * Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
 
 
 == Installation ==
-
 
 
 1. Upload the bp-registration-options folder to the plugins directory in your WPMU installation
@@ -118,10 +108,6 @@ For more information check out:
 3. Click on the "BP Registation Options" link under Settings.
 
 4. Configure your BuddyPress registration options.
-
-
-
-
 
 == Frequently Asked Questions ==
 
