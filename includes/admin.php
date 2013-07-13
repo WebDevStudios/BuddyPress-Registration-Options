@@ -344,7 +344,7 @@ function bp_registration_options_member_requests() {
 
 			</form>
 		<?php } else {
-			echo "No new members to approve.";
+			echo '<p><strong>No new members to approve.</strong></p>';
 		} ?>
 	</div>
 	<?php bp_registration_options_admin_footer();
