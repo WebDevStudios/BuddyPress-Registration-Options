@@ -150,14 +150,14 @@ function wds_bp_registration_options_plugin_menu() {
 function wds_bp_registration_options_tab_menu($page = ''){
 	global $wds_bp_member_requests;
 	?>
-    <div id="icon-buddypress" class="icon32"></div>
-    <h2 class="nav-tab-wrapper">
-    BP Registration Options
-    <a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options">General Settings</a>
-    <a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests">Member Requests (<?php echo $wds_bp_member_requests;?>)</a>
+	<div id="icon-buddypress" class="icon32"></div>
+	<h2 class="nav-tab-wrapper">
+	BP Registration Options
+	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options">General Settings</a>
+	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests">Member Requests (<?php echo $wds_bp_member_requests;?>)</a>
 
-    <!--<a class="nav-tab<?php if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
-    </h2><br />
+	<!--<a class="nav-tab<?php if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
+	</h2><br />
 <?php }
 
 
@@ -188,42 +188,42 @@ function bp_registration_options_settings() {
 	}
 	//FORM
 	?>
-    <div class="wrap" >
+	<div class="wrap" >
 		<?php wds_bp_registration_options_tab_menu();?>
-        <form method="post">
-        <?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-        <p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php if($bp_moderate=="1"){?>checked<?php }?>/>&nbsp;<label for="bp_moderate"><strong>Moderate New Members</strong> (Every new member will have to be approved by an administrator before they can interact with BuddyPress components.)</label></p>
-        <p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php if($privacy_network=="1"){?>checked<?php }?>/> <label for="privacy_network">Only registered or approved members can view BuddyPress pages (Private Network).</label></p>
-        <table>
-            <tr>
-           		<td align="right" valign="top">Activate & Profile Alert Message:</td>
-            	<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes($activate_message);?></textarea></td>
-            </tr>
-            <tr>
-           		<td align="right" valign="top">Account Approved Email:</td>
-            	<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes($approved_message);?></textarea></td>
-            </tr>
-            <tr>
-           		<td align="right" valign="top">Account Denied Email:</td>
-            	<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes($denied_message);?></textarea></td>
-            </tr>
-            <tr>
-            	<td></td>
-                <td align="right">
-                	<table width="100%">
-                    <tr>
-                    	<td>Short Code Key: [username]</td>
-                        <td align="right"><input type="submit" name="reset_messages" class="button button-secondary" value="Reset Messages" onclick="return confirm('Are you sure you want to reset to the default messages?');" /></td>
-                    </tr>
-                    </table>
-                </td>
-            </tr>
+		<form method="post">
+		<?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
+		<p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php if($bp_moderate=="1"){?>checked<?php }?>/>&nbsp;<label for="bp_moderate"><strong>Moderate New Members</strong> (Every new member will have to be approved by an administrator before they can interact with BuddyPress components.)</label></p>
+		<p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php if($privacy_network=="1"){?>checked<?php }?>/> <label for="privacy_network">Only registered or approved members can view BuddyPress pages (Private Network).</label></p>
+		<table>
+			<tr>
+				<td align="right" valign="top">Activate & Profile Alert Message:</td>
+				<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes($activate_message);?></textarea></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top">Account Approved Email:</td>
+				<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes($approved_message);?></textarea></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top">Account Denied Email:</td>
+				<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes($denied_message);?></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="right">
+					<table width="100%">
+					<tr>
+						<td>Short Code Key: [username]</td>
+						<td align="right"><input type="submit" name="reset_messages" class="button button-secondary" value="Reset Messages" onclick="return confirm('Are you sure you want to reset to the default messages?');" /></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
-        <?php do_action('bp_registration_options_general_settings_form');?>
-        <input type="submit" class="button button-primary" name="Save" value="Save Options" />
-        </form>
+		<?php do_action('bp_registration_options_general_settings_form');?>
+		<input type="submit" class="button button-primary" name="Save" value="Save Options" />
+		</form>
 	</div>
-    <?php bp_registration_options_admin_footer();
+	<?php bp_registration_options_admin_footer();
 }
 
 
@@ -234,7 +234,7 @@ function bp_registration_options_settings() {
 function bp_registration_options_member_requests() {
 	global $wpdb, $bp, $wds_bp_member_requests;
 	?>
-    <div class="wrap" >
+	<div class="wrap">
 		<?php wds_bp_registration_options_tab_menu('requests');
 
 		if ( $wds_bp_member_requests > 0 ) {
@@ -243,37 +243,32 @@ function bp_registration_options_member_requests() {
 			$start_from = ($page-1) * 20;
 			$sql = 'select ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
 			$rs = $wpdb->get_results( $wpdb->prepare( $sql , $start_from) );?>
-            <form method="post" name="bprwg">
-            <?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-            Please approve or deny the following new members:
-            <script language="javascript">
-			function bprwg_checkall(field){
-				if(document.getElementById('bp_checkall').checked == true){
-					checkAll(field)
-				}else{
-					uncheckAll(field)
-				}
-			}
-			function checkAll(field){
-			for (i = 0; i < field.length; i++)
-				field[i].checked = true ;
-			}
-			function uncheckAll(field){
-			for (i = 0; i < field.length; i++)
-				field[i].checked = false ;
-			}
-			</script>
-            <table cellpadding="3" cellspacing="3">
-            <tr>
-            	<td><input type="checkbox" id="bp_checkall" onclick="bprwg_checkall(document.bprwg.bp_member_check);" name="checkall" /></td>
-                <td><strong>Photo</strong></td>
-                <td><strong>Name</strong></td>
-            	<td><strong>Email</strong></td>
-                <td><strong>Created</strong></td>
-                <td><strong>Additional Data</strong></td>
-            </tr>
+			<form method="post" name="bprwg">
+			<?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
+
 			<?php
-			$bgc = '';
+
+			$extra_fields = apply_filters( 'bpro_request_columns', array() );
+
+			?>
+
+			<p>Please approve or deny the following new members:</p>
+
+			<table class="widefat">
+			<thead>
+				<tr>
+					<th id="cb" class="manage-column column-cb check-column" scope="col">
+						<input type="checkbox" id="bp_checkall_top" name="checkall" />
+					</th>
+					<th>Photo</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Created</th>
+					<th>Additional Data</th>
+				</tr>
+			</thead>
+			<?php $odd = true;
+
 			foreach( $rs as $r ) {
 				$user_id = $r->ID;
 				$author = new BP_Core_User( $user_id );
@@ -284,53 +279,63 @@ function bp_registration_options_member_requests() {
 				$useremail = $user->user_email;
 				$userregistered = $user->user_registered;
 				$userip = get_user_meta( $user_id, 'bprwg_ip_address', true);
-				if ( $bgc == '' ) {
-					$bgc = '#eeeeee';
+				if ( $odd ) {
+					echo '<tr class="alternate">';
+					$odd = false;
 				} else {
-					$bgc = '';
-				}?>
-				<tr <?php if ( $bgc ) {?>style="background:<?php echo $bgc;?> !important;"<?php } ?>>
-					<td valign="top"><input type="checkbox" id="bp_member_check" name="bp_member_check[]" value="<?php echo $user_id; ?>"  /></td>
-                    <td valign="top"><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $userpic?></a></td>
-					<td valign="top"><strong><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $username?></a></strong></td>
-					<td valign="top"><a href="mailto:<?php echo $useremail;?>"><?php echo $useremail;?></a></td>
-					<td valign="top"><?php echo $userregistered;?></td>
-					<td valign="top">
-						<table>
-                        <tr>
-                        <td valign="top">
+					echo '<tr>';
+					$odd = true;
+				}
+				?>
+					<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_member_check[]" value="<?php echo $user_id; ?>"  /></th>
+					<td><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $userpic?></a></td>
+					<td><strong><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $username?></a></strong></td>
+					<td><a href="mailto:<?php echo $useremail;?>"><?php echo $useremail;?></a></td>
+					<td><?php echo $userregistered;?></td>
+					<td>
+						<div class="alignleft">
 						<?php echo '<img height="50" src="http://api.hostip.info/flag.php?ip=' . $userip . '" / >' ?>
-                        </td>
-                        <td valign="top">
+						</div>
+						<div class="alignright">
 							<?php
-                            $response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
-                            if(!is_wp_error( $response ) ) {
-                                 $data = $response['body'];
-								 $data = str_replace("City:","<br>City:",$data);
-								 $data = str_replace("IP:","<br>IP:",$data);
-								 echo $data;
-                            }else{
+							$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
+							if ( !is_wp_error( $response ) ) {
+								$data = $response['body'];
+								$data = str_replace("City:","<br>City:",$data);
+								$data = str_replace("IP:","<br>IP:",$data);
+								echo $data;
+							} else {
 								echo $userip;
 							}
-                            ?>
-                        </td>
-                        </tr>
-                        </table>
-                    </td>
+							?>
+						</div>
+					</td>
 				</tr>
 			<?php } ?>
+			<tfoot>
+				<tr>
+					<th class="manage-column column-cb check-column" scope="col"><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></th>
+					<th>Photo</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Created</th>
+					<th>Additional Data</th>
+				</tr>
+			</tfoot>
 			</table>
 
-            <input type="submit" class="button button-primary" name="Moderate" value="Approve" />
-            <input type="submit" class="button button-secondary" name="Moderate" value="Deny" onclick="return confirm('Are you sure you want to deny and delete the checked member(s)?');" />
-            <input type="submit" class="button button-secondary" name="Moderate" value="Ban" onclick="return confirm('Are you sure you want to ban and delete the checked member(s)?');" />
+			<p><input type="submit" class="button button-primary" name="Moderate" value="Approve" />
+			&nbsp;
+			<input type="submit" class="button button-secondary" name="Moderate" value="Deny" id="bpro_deny" />
+			&nbsp;
+			<input type="submit" class="button button-secondary" name="Moderate" value="Ban" id="bpro_ban" disabled /></p>
 
-            <p>*If you Ban a member they will not receive an email and will not be able to try to join again.</p>
+			<p>Coming soon: If you Ban a member they will not receive an email and will not be able to try to join again.</p>
 
-            <?php if ( $total_pages > 1 ) {
+			<?php if ( $total_pages > 1 ) {
 				echo '<h3>';
 				for ( $i=1; $i<=$total_pages; $i++ ) {
-    				echo "<a href='" . add_query_arg( 'p', $i ) . "'>" . $i . "</a> ";
+					echo "<a href='" . add_query_arg( 'p', $i ) . "'>" . $i . "</a> ";
 				}
 				echo '</h3>';
 			}
@@ -341,15 +346,15 @@ function bp_registration_options_member_requests() {
 		<?php } else {
 			echo "No new members to approve.";
 		} ?>
-    </div>
-    <?php bp_registration_options_admin_footer();
+	</div>
+	<?php bp_registration_options_admin_footer();
 }
 
 function bp_registration_options_help_support(){ ?>
-    <div class="wrap">
+	<div class="wrap">
 		<?php wds_bp_registration_options_tab_menu('help');?>
-    </div>
-    <?php bp_registration_options_admin_footer();
+	</div>
+	<?php bp_registration_options_admin_footer();
 }
 
 /**
@@ -357,7 +362,7 @@ function bp_registration_options_help_support(){ ?>
  * @return string html for the footer output
  */
 function bp_registration_options_admin_footer() { ?>
-      <p style="margin-top: 50px;">BuddyPress Registration Options plugin created by <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
+	<p style="margin-top: 50px;">BuddyPress Registration Options plugin created by <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
 		<table>
 			<tr>
 				<td>
@@ -386,5 +391,36 @@ function bp_registration_options_admin_footer() { ?>
 				</td>
 			</tr>
 		</table>
+<?php
+}
+
+add_action( 'admin_footer', 'bp_registration_options_js' );
+function bp_registration_options_js() { ?>
+	<script language="javascript">
+		(function($) {
+			//Handle our checkboxes
+			var checkboxes = $('.bpro_checkbox');
+			$('#bp_checkall_top,#bp_checkall_bottom').on('click',function(){
+				if ( $(this).attr('checked')) {
+					$(checkboxes).each(function(){
+						if ( $(this).prop('checked',false) ){
+							$(this).prop('checked',true);
+						}
+					});
+				} else {
+					$(checkboxes).each(function(){
+						$(this).prop('checked',false);
+					});
+				}
+			});
+			//Confirm/cancel on deny/ban.
+			$('#bpro_deny').on('click',function(){
+				return confirm('Are you sure you want to deny and delete the checked member(s)?');
+			});
+			$('#bpro_ban').on('click',function(){
+				return confirm('Are you sure you want to ban and delete the checked member(s)?');
+			});
+		})(jQuery);
+	</script>
 <?php
 }
