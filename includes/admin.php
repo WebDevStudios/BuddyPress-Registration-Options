@@ -248,8 +248,32 @@ function bp_registration_options_member_requests() {
 
 			<?php
 
-			$extra_fields = apply_filters( 'bpro_request_columns', array() );
+			/*
+			Developers. Please return a multidimensional array in the following format.
 
+			add_filter( 'bpro_request_columns', 'bpro_myfilter' );
+			function bpro_myfilter( $fields ) {
+				return $fields = array(
+					array(
+						'heading' => 'Column name 1',
+						'content' => 'Column content 1'
+					),
+					array(
+						'heading' => 'Column name 2',
+						'content' => 'Column content 2'
+					),
+					array(
+						'heading' => 'Column name 3',
+						'content' => 'Column content 3'
+					)
+				);
+			}
+			 */
+			$extra_fields = apply_filters( 'bpro_request_columns', array() );
+			if ( !empty( $extra_fields ) ) {
+				$headings = wp_list_pluck( $extra_fields, 'heading' );
+				$content = wp_list_pluck( $extra_fields, 'content' );
+			}
 			?>
 
 			<p>Please approve or deny the following new members:</p>
@@ -265,6 +289,13 @@ function bp_registration_options_member_requests() {
 					<th>Email</th>
 					<th>Created</th>
 					<th>Additional Data</th>
+					<?php
+					if ( !empty( $headings ) ) {
+						foreach( $headings as $heading ) {
+							echo '<th>' . $heading . '</th>';
+						}
+					}
+					?>
 				</tr>
 			</thead>
 			<?php $odd = true;
@@ -310,6 +341,13 @@ function bp_registration_options_member_requests() {
 							?>
 						</div>
 					</td>
+					<?php
+					if ( !empty( $content ) ) {
+						foreach( $content as $td ) {
+							echo '<td>' . $td . '</td>';
+						}
+					}
+					?>
 				</tr>
 			<?php } ?>
 			<tfoot>
@@ -320,6 +358,13 @@ function bp_registration_options_member_requests() {
 					<th>Email</th>
 					<th>Created</th>
 					<th>Additional Data</th>
+					<?php
+					if ( !empty( $headings ) ) {
+						foreach( $headings as $heading ) {
+							echo '<th>' . $heading . '</th>';
+						}
+					}
+					?>
 				</tr>
 			</tfoot>
 			</table>
