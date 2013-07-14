@@ -24,15 +24,13 @@ This WordPress BuddyPress plugin that allows for new member moderation, if moder
 
 2. New member registration:
 
-3. New member activation notices:
+3. New members can login but can only see/edit their profile and change their avatar. If an unapproved new member tries to go to any other BuddyPress pages they are redirected back to their profile page.
 
-4. New members can login but can only see/edit their profile and change their avatar. If an unapproved new member tries to go to any other BuddyPress pages they are redirected back to their profile page.
+4. Admin receives email notice of new member:
 
-5. Admin receives email notice of new member:
+5. Admin Dashboard Alert:
 
-6. Admin Dashboard Alert:
-
-7. Approve, deny or ban new members:
+6. Approve, deny or ban new members:
 
 
 
