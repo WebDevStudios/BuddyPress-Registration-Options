@@ -16,9 +16,9 @@ Great plugin for stopping spam bots from registering on your BuddyPress website!
 
 This WordPress BuddyPress plugin that allows for new member moderation, if moderation is turned on from the admin settings page, any new members will be blocked from interacting with any buddypress elements (except editing their own profile and uploading their avatar) and will not be listed in any directory until an administrator approves or denies their account. If moderation is turned on admins can create custom display messages and email alert messages for approved or denied accounts. When admin approves or denies, custom emails get sent out to new members telling them they were approved or denied.
 
+Presently does not block bbPress. Tentatively will be the main enhancement for version 4.2.
+
 == Screenshots ==
-
-
 
 1. General Settings page:
 
