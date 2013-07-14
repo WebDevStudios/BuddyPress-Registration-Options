@@ -66,10 +66,10 @@ function wds_bp_registration_options_form_actions(){
 			if ( is_array( $checked_members ) ) {
 				//grab message
 				if ( $action == "Deny" ) {
-					$subject = 'Membership Denied';
+					$subject = 'Membership Denied'; //Don't localize. Used in message that goes out to users
 					$message = get_option('bprwg_denied_message');
 				} elseif ( $action == "Approve" ) {
-					$subject = 'Membership Approved';
+					$subject = 'Membership Approved'; //Don't localize. Used in message that goes out to users
 					$message = get_option('bprwg_approved_message');
 				}
 				//loop all checked members
@@ -119,7 +119,12 @@ function wds_bp_registration_options_admin_messages(){
 		if ( $wds_bp_member_requests != 1 ) {
 			$s = 's';
 		}
-		echo '<div class="error"><p>You have <a href="'.admin_url('/admin.php?page=bp_registration_options_member_requests').'"><strong>'.$wds_bp_member_requests.' new member request'.$s.'</strong></a> that need to be approved or denied. Please <a href="'.admin_url('/admin.php?page=bp_registration_options_member_requests').'">click here</a> to take action.</p></div>';
+		echo '<div class="error"><p>' . sprintf( __( 'You have %s new member request%s that need to be approved or denied. Please %s click here%s to take action', 'bp-registration-options' ),
+			'<a href="' . admin_url( '/admin.php?page=bp_registration_options_member_requests' ) . '"><strong>' . $wds_bp_member_requests,
+			$s . '</strong></a>',
+			'<a href="' . admin_url('/admin.php?page=bp_registration_options_member_requests') . '">',
+			'</a>'
+			 ) . '</p></div>';
 	}
 }
 
@@ -133,16 +138,15 @@ function wds_bp_registration_options_plugin_menu() {
 	global $wds_bp_member_requests,$blog_id;
 	if ( $blog_id == 1 ) {
 	  $minimum_cap = 'manage_options';
-	  add_menu_page( 'BP Registration', 'BP Registration', $minimum_cap, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
+	  add_menu_page( __( 'BP Registration', 'bp-registration-options' ), __( 'BP Registration', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
 
 	  $count = '<span class="update-plugins count-'.$wds_bp_member_requests.'"><span class="plugin-count">'.$wds_bp_member_requests.'</span></span>';
 
-	  add_submenu_page( 'bp_registration_options', 'Member Requests '.$count, 'Member Requests '.$count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
+	  add_submenu_page( __( 'bp_registration_options', 'bp-registration-options' ), __( 'Member Requests ', 'bp-registration-options') . $count, __( 'Member Requests ', 'bp-registration-options' ) . $count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
 
 	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
 	}
 }
-
 
 /**
  * Tabs on the top of each admin.php?page=
@@ -152,17 +156,13 @@ function wds_bp_registration_options_tab_menu($page = ''){
 	?>
 	<div id="icon-buddypress" class="icon32"></div>
 	<h2 class="nav-tab-wrapper">
-	BP Registration Options
-	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options">General Settings</a>
-	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests">Member Requests (<?php echo $wds_bp_member_requests;?>)</a>
+	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
+	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $wds_bp_member_requests;?>)</a>
 
-	<!--<a class="nav-tab<?php if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
-	</h2><br />
+	<!--<a class="nav-tab<?php //if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
+	</h2>
 <?php }
-
-
-
-
 
 /**
  * BP-Registration-Options main settings page output.
@@ -173,17 +173,17 @@ function bp_registration_options_settings() {
 	$privacy_network = get_option('bprwg_privacy_network');
 	$activate_message = get_option('bprwg_activate_message');
 	if ( !$activate_message ) {
-		$activate_message = "Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.";
+		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
 		update_option('bprwg_activate_message', $activate_message);
 	}
 	$approved_message = get_option('bprwg_approved_message');
 	if ( !$approved_message ) {
-		$approved_message = "Hi [username],\n\nYour member account on ".get_bloginfo("url")." has been approved! You can now login and start interacting with the rest of the community...";
+		$approved_message = sprintf( __('Hi [username], your member account on %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ), get_bloginfo('url') );
 		update_option('bprwg_approved_message', $approved_message);
 	}
 	$denied_message = get_option('bprwg_denied_message');
 	if ( !$denied_message ) {
-		$denied_message = "Hi [username],\n\nWe regret to inform you that your member account on ".get_bloginfo("url")." has been denied...";
+		$denied_message = sprintf( __('Hi [username], we regret to inform you that your member account on %s has been denied...', 'bp-registration-options' ), get_bloginfo("url") );
 		update_option('bprwg_denied_message', $denied_message);
 	}
 	//FORM
@@ -192,19 +192,19 @@ function bp_registration_options_settings() {
 		<?php wds_bp_registration_options_tab_menu();?>
 		<form method="post">
 		<?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-		<p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php if($bp_moderate=="1"){?>checked<?php }?>/>&nbsp;<label for="bp_moderate"><strong>Moderate New Members</strong> (Every new member will have to be approved by an administrator before they can interact with BuddyPress components.)</label></p>
-		<p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php if($privacy_network=="1"){?>checked<?php }?>/> <label for="privacy_network">Only registered or approved members can view BuddyPress pages (Private Network).</label></p>
+		<p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>&nbsp;<label for="bp_moderate"><strong><?php _e( 'Moderate New Members', 'bp-registration-options' ); ?></strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress components.', 'bp-registration-options' ); ?>)</label></p>
+		<p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/> <label for="privacy_network"><?php _e( 'Only registered or approved members can view BuddyPress pages (Private Network).', 'bp-registration-options' ); ?></label></p>
 		<table>
 			<tr>
-				<td align="right" valign="top">Activate & Profile Alert Message:</td>
+				<td align="right" valign="top"><?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></td>
 				<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes($activate_message);?></textarea></td>
 			</tr>
 			<tr>
-				<td align="right" valign="top">Account Approved Email:</td>
+				<td align="right" valign="top"><?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?></td>
 				<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes($approved_message);?></textarea></td>
 			</tr>
 			<tr>
-				<td align="right" valign="top">Account Denied Email:</td>
+				<td align="right" valign="top"><?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?></td>
 				<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes($denied_message);?></textarea></td>
 			</tr>
 			<tr>
@@ -212,15 +212,15 @@ function bp_registration_options_settings() {
 				<td align="right">
 					<table width="100%">
 					<tr>
-						<td>Short Code Key: [username]</td>
-						<td align="right"><input type="submit" name="reset_messages" class="button button-secondary" value="Reset Messages" onclick="return confirm('Are you sure you want to reset to the default messages?');" /></td>
+						<td><?php _e( 'Short Code Key: [username]', 'bp-registration-options' ); ?></td>
+						<td align="right"><input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" /></td>
 					</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
 		<?php do_action('bp_registration_options_general_settings_form');?>
-		<input type="submit" class="button button-primary" name="Save" value="Save Options" />
+		<input type="submit" class="button button-primary" name="Save" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
 		</form>
 	</div>
 	<?php bp_registration_options_admin_footer();
@@ -276,7 +276,7 @@ function bp_registration_options_member_requests() {
 			}
 			?>
 
-			<p>Please approve or deny the following new members:</p>
+			<p><?php _e( 'Please approve or deny the following new members:', 'bp-registration-options' ); ?></p>
 
 			<table class="widefat">
 			<thead>
@@ -284,11 +284,11 @@ function bp_registration_options_member_requests() {
 					<th id="cb" class="manage-column column-cb check-column" scope="col">
 						<input type="checkbox" id="bp_checkall_top" name="checkall" />
 					</th>
-					<th>Photo</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Created</th>
-					<th>Additional Data</th>
+					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
 					<?php
 					if ( !empty( $headings ) ) {
 						foreach( $headings as $heading ) {
@@ -332,8 +332,8 @@ function bp_registration_options_member_requests() {
 							$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
 							if ( !is_wp_error( $response ) ) {
 								$data = $response['body'];
-								$data = str_replace("City:","<br>City:",$data);
-								$data = str_replace("IP:","<br>IP:",$data);
+								$data = str_replace('City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
+								$data = str_replace('IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
 								echo $data;
 							} else {
 								echo $userip;
@@ -353,11 +353,11 @@ function bp_registration_options_member_requests() {
 			<tfoot>
 				<tr>
 					<th class="manage-column column-cb check-column" scope="col"><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></th>
-					<th>Photo</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Created</th>
-					<th>Additional Data</th>
+					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
+					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
 					<?php
 					if ( !empty( $headings ) ) {
 						foreach( $headings as $heading ) {
@@ -369,12 +369,13 @@ function bp_registration_options_member_requests() {
 			</tfoot>
 			</table>
 
-			<p><input type="submit" class="button button-primary" name="Moderate" value="Approve" />
+			<p><input type="submit" class="button button-primary" name="Moderate" value="<?php esc_attr_e( 'Approve', 'bp-registration-options' ); ?>" />
 			&nbsp;
-			<input type="submit" class="button button-secondary" name="Moderate" value="Deny" id="bpro_deny" />
+			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Deny', 'bp-registration-options' ); ?>" id="bpro_deny" />
 			&nbsp;
-			<input type="submit" class="button button-secondary" name="Moderate" value="Ban" id="bpro_ban" disabled /></p>
+			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" disabled /></p>
 
+			<?php //Don't translate since it's only temporary ?>
 			<p>Coming soon: If you Ban a member they will not receive an email and will not be able to try to join again.</p>
 
 			<?php if ( $total_pages > 1 ) {
@@ -389,7 +390,7 @@ function bp_registration_options_member_requests() {
 
 			</form>
 		<?php } else {
-			echo '<p><strong>No new members to approve.</strong></p>';
+			echo '<p><strong>' . __( 'No new members to approve.', 'bp-registration-options' ) . '</strong></p>';
 		} ?>
 	</div>
 	<?php bp_registration_options_admin_footer();
@@ -407,14 +408,14 @@ function bp_registration_options_help_support(){ ?>
  * @return string html for the footer output
  */
 function bp_registration_options_admin_footer() { ?>
-	<p style="margin-top: 50px;">BuddyPress Registration Options plugin created by <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
+	<p style="margin-top: 50px;"><?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?> <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
 		<table>
 			<tr>
 				<td>
 					<table>
 						<tr>
 							<td><a target="_blank" href="http://webdevstudios.com"><img width="50" src="<?php echo plugins_url( 'bp-registration-options/images/WDS-150x150.png' );?>" /></a></td>
-							<td><strong>Follow WebDevStudios!</strong><br />
+							<td><strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios!</strong><br />
 							<a target="_blank" href="https://plus.google.com/108871619014334838112"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
 							<a target="_blank" href="http://twitter.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
 							<a target="_blank" href="http://facebook.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
@@ -426,7 +427,7 @@ function bp_registration_options_admin_footer() { ?>
 					<table>
 						<tr>
 							<td><a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/"><img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" /></a></td>
-							<td><strong>Follow Brian Messenlehner!</strong><br />
+							<td><strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
 							<a target="_blank" href="https://plus.google.com/117578069784985312197"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
 							<a target="_blank" href="http://twitter.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
 							<a target="_blank" href="http://facebook.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
@@ -460,10 +461,13 @@ function bp_registration_options_js() { ?>
 			});
 			//Confirm/cancel on deny/ban.
 			$('#bpro_deny').on('click',function(){
-				return confirm('Are you sure you want to deny and delete the checked member(s)?');
+				return confirm("<?php _e( 'Are you sure you want to deny and delete the checked member(s)?', 'bp-registration-options' ); ?>");
 			});
 			$('#bpro_ban').on('click',function(){
-				return confirm('Are you sure you want to ban and delete the checked member(s)?');
+				return confirm("<?php _e( 'Are you sure you want to ban and delete the checked member(s)?', 'bp-registration-options' ); ?>");
+			});
+			$('#reset_messages').on('click',function(){
+				return confirm("<?php _e( 'Are you sure you want to reset to the default messages?', 'bp-registration-options' ); ?>");
 			});
 		})(jQuery);
 	</script>
