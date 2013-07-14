@@ -13,6 +13,8 @@ class BP_Registration_Options {
 
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
+
+		add_action('plugins_loaded', 'load_textdomain');
 	}
 
 	/**
@@ -24,7 +26,7 @@ class BP_Registration_Options {
 		//verify user is running WP 3.0 or newer
 	    if ( version_compare( get_bloginfo( 'version' ), '3.0', '<' ) ) {
 	        deactivate_plugins( plugin_basename( __FILE__ ) ); // Deactivate our plugin
-	        wp_die( 'This plugin requires WordPress version 3.0 or higher.' );
+	        wp_die( __( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
 	    }
 		flush_rewrite_rules();
 	}
@@ -36,4 +38,9 @@ class BP_Registration_Options {
 		global $wp_rewrite;
 		flush_rewrite_rules();
 	}
+
+	function load_textdomain() {
+		load_plugin_textdomain( 'bp-registration-options', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
+
 }

@@ -7,6 +7,7 @@ Version: 4.1
 Author: Brian Messenlehner of WebDevStudios & Jibbius
 Author URI: http://webdevstudios.com/about/brian-messenlehner/
 Licence: GPLv3
+Text Domain: bp-registration-options
 */
 
 define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.1' );
