@@ -39,9 +39,10 @@ Presently does not block bbPress. Tentatively will be the main enhancement for v
 = 4.1 =
 
 * Added hiding of pending members from the members list on the frontend, until approved.
-* Fixed issue with where we were trying to grab user data after the user was deleted.
-* Labels around checkboxes for easier selection.
 * Updated UI to match latest WordPress visual style
+* Fixed issue with where we were trying to grab user data after the user was deleted.
+* Now translation ready
+* Accessibility updates
 * Sanitize inputs to help with security.
 * Code cleanup
 * Screenshot updates.
@@ -87,9 +88,11 @@ Presently does not block bbPress. Tentatively will be the main enhancement for v
 = 4.1 =
 
 * Added hiding of pending members from the members list on the frontend, until approved.
+* Updated UI to match latest WordPress visual style
 * Fixed issue with where we were trying to grab user data after the user was deleted.
 * Accessibility updates
-* Updated UI to match latest WordPress visual style
+* Now translation ready
+
 
 = 4.0.0 =
 
