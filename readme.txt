@@ -18,6 +18,8 @@ This WordPress BuddyPress plugin that allows for new member moderation, if moder
 
 Presently does not block bbPress. Tentatively will be the main enhancement for version 4.2.
 
+Follow along with development on GitHub at [BuddyPress-Registration-Options](https://github.com/WebDevStudios/BuddyPress-Registration-Options)
+
 == Screenshots ==
 
 1. General Settings page:
