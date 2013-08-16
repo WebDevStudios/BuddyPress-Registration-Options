@@ -5,14 +5,13 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, wpmu, wpms, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 4.1
+Stable tag: 4.1.1
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
 == Description ==
 
 Great plugin for stopping spam bots from registering on your BuddyPress website!
-
 
 This WordPress BuddyPress plugin that allows for new member moderation, if moderation is turned on from the admin settings page, any new members will be blocked from interacting with any buddypress elements (except editing their own profile and uploading their avatar) and will not be listed in any directory until an administrator approves or denies their account. If moderation is turned on admins can create custom display messages and email alert messages for approved or denied accounts. When admin approves or denies, custom emails get sent out to new members telling them they were approved or denied.
 
@@ -34,9 +33,11 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 6. Approve, deny or ban new members:
 
-
-
 == Changelog ==
+
+= 4.1.1 =
+* fix spacing issues with admin email notice
+* rename pot file to hopefully help with translators.
 
 = 4.1 =
 
@@ -86,6 +87,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 
 == Upgrade Notice ==
+
+= 4.1.1 =
+* fix spacing issues with admin email notice
+* rename pot file to hopefully help with translators.
 
 = 4.1 =
 
