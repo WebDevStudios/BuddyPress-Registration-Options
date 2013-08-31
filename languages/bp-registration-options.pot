@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2013-08-16 12:38-0600\n"
-"PO-Revision-Date: 2013-08-16 12:38-0600\n"
+"POT-Creation-Date: 2013-08-31 17:50-0600\n"
+"PO-Revision-Date: 2013-08-31 17:50-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;_n;_x;_nx;esc_html__;"
+"esc_html_x;esc_html_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../includes\n"
 "X-Poedit-SearchPath-1: ..\n"
@@ -99,6 +100,14 @@ msgstr ""
 msgid "Short Code Key: [username]"
 msgstr ""
 
+#: ../includes/admin.php:216
+msgid "Reset Messages"
+msgstr ""
+
+#: ../includes/admin.php:223
+msgid "Save Options"
+msgstr ""
+
 #: ../includes/admin.php:279
 msgid "Please approve or deny the following new members:"
 msgstr ""
@@ -131,6 +140,18 @@ msgstr ""
 msgid "IP:"
 msgstr ""
 
+#: ../includes/admin.php:372
+msgid "Approve"
+msgstr ""
+
+#: ../includes/admin.php:374
+msgid "Deny"
+msgstr ""
+
+#: ../includes/admin.php:376
+msgid "Ban"
+msgstr ""
+
 #: ../includes/admin.php:393
 msgid "No new members to approve."
 msgstr ""
@@ -155,13 +176,13 @@ msgstr ""
 msgid "Are you sure you want to reset to the default messages?"
 msgstr ""
 
-#: ../includes/core.php:221
+#: ../includes/core.php:254
 msgid ""
 "would like to become a member of your website, to accept or reject their "
 "request please go to "
 msgstr ""
 
-#: ../includes/core.php:223
+#: ../includes/core.php:256
 msgid "New Member Request"
 msgstr ""
 
