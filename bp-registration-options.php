@@ -8,13 +8,14 @@ class BP_Registration_Options {
 		$this->directory_path = plugin_dir_path( __FILE__ );
 		$this->directory_url = plugins_url( 'bp-registration-options/' );
 
-		register_activation_hook( __FILE__, array( $this, 'activate' ) ); // plugin activation actions
-		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
+		register_activation_hook( __FILE__, array( &$this, 'activate' ) ); // plugin activation actions
+		register_deactivation_hook( __FILE__, array( &$this, 'deactivate' ) );
 
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
 
-		add_action('plugins_loaded', 'load_textdomain');
+		add_action('plugins_loaded', array( &$this, 'load_textdomain' ) );
+
 	}
 
 	/**
