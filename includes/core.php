@@ -42,7 +42,7 @@ function wds_bp_registration_options_core_init(){
 		}
 		//non approved members can still view bp pages
 		if ( $bp_moderate == 1 && $user_ID > 0 ) {
-			$user = get_userdata($user_ID);
+			$user = get_userdata( $user_ID );
 			if ( 69 == $user->user_status ) {
 				//hide friend buttons
 				add_filter( 'bp_get_add_friend_button', '__return_false' );
@@ -248,3 +248,34 @@ function bp_registration_hide_pending_members( $args ) {
 
 	return $args;
 }
+
+/**
+ * Prevent viewing of forums for non-approved members
+ *
+ * @since  4.2
+ *
+ * @param  array  $caps     array of primitive capabilities matched to the provided meta $cap
+ * @param  string  $cap     The name of the meta capability to map to
+ * @param  int  $user_id 	Current user's ID
+ * @param  array  $args     array of extra arguments for the meta capability. Sometimes empty.
+ *
+ * @return array            array conditionally populated with do_not_allow.
+ */
+function wds_bp_registration_options_map_meta( $caps, $cap, $user_id, $args ) {
+	if ( is_admin() )
+		return $caps;
+
+	$slug = get_option( '_bbp_forum_slug' );
+    $user = get_userdata( $user_id );
+
+    $bbpcaps = bbp_get_caps_for_role( bbp_get_user_role( $user_id ) );
+
+	foreach( $bbpcaps as $key => $cap ) {
+		if ( 'spectate' == $cap && 69 == $user->user_status ) {
+			$caps[] = 'do_not_allow';
+			break;
+		}
+	}
+    return $caps;
+}
+add_filter( 'map_meta_cap', 'wds_bp_registration_options_map_meta', 10, 4 );
