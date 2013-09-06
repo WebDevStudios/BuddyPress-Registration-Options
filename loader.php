@@ -3,14 +3,14 @@
 Plugin Name: BP-Registration-Options
 Plugin URI: http://wordpress.org/extend/plugins/bp-registration-options/
 Description: BuddyPress plugin that allows for new member moderation, if moderation is switched on any new members will be blocked from interacting with any buddypress elements (except editing their own profile and uploading their avatar) and will not be listed in any directory until an admin approves or denies their account.
-Version: 4.1.1
+Version: 4.1.2
 Author: Brian Messenlehner of WebDevStudios & Jibbius
 Author URI: http://webdevstudios.com/about/brian-messenlehner/
 Licence: GPLv3
 Text Domain: bp-registration-options
 */
 
-define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.1' );
+define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.1.2' );
 
 /**
  * Loads BP Registration Options files only if BuddyPress is present
