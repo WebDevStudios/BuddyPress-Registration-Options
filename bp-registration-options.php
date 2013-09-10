@@ -14,8 +14,7 @@ class BP_Registration_Options {
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
 
-		add_action('plugins_loaded', array( &$this, 'load_textdomain' ) );
-
+		add_action( 'init', array( &$this, 'load_textdomain' ) );
 	}
 
 	/**
@@ -41,7 +40,6 @@ class BP_Registration_Options {
 	}
 
 	function load_textdomain() {
-		load_plugin_textdomain( 'bp-registration-options', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'bp-registration-options', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
-
 }

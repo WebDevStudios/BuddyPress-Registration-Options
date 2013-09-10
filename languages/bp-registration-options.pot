@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2013-08-31 17:50-0600\n"
-"PO-Revision-Date: 2013-08-31 17:50-0600\n"
+"POT-Creation-Date: 2013-09-10 00:19-0600\n"
+"PO-Revision-Date: 2013-09-10 00:19-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -176,13 +176,13 @@ msgstr ""
 msgid "Are you sure you want to reset to the default messages?"
 msgstr ""
 
-#: ../includes/core.php:254
+#: ../includes/core.php:221
 msgid ""
 "would like to become a member of your website, to accept or reject their "
 "request please go to "
 msgstr ""
 
-#: ../includes/core.php:256
+#: ../includes/core.php:223
 msgid "New Member Request"
 msgstr ""
 
