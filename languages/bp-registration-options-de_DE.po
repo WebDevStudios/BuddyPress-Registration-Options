@@ -1,0 +1,214 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BuddyPress Registration Options\n"
+"POT-Creation-Date: 2013-09-10 00:19-0600\n"
+"PO-Revision-Date: 2013-09-10 22:29+0100\n"
+"Last-Translator: Patloq <pblessauvages@mac.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ../includes\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../includes/admin.php:122
+#, php-format
+msgid ""
+"You have %s new member request%s that need to be approved or denied. Please "
+"%s click here%s to take action"
+msgstr ""
+"%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden müssen. "
+"Bitte %s hier klicken%s, um damit zu beginnen"
+
+#: ../includes/admin.php:141
+msgid "BP Registration"
+msgstr "BP Registrierung"
+
+#: ../includes/admin.php:145
+msgid "bp_registration_options"
+msgstr "bp_registration_options"
+
+#: ../includes/admin.php:145
+msgid "Member Requests "
+msgstr "Mitgliedschafts-Anfragen"
+
+#: ../includes/admin.php:159
+msgid "BP Registration Options"
+msgstr "BP Registrierungs-Optionen"
+
+#: ../includes/admin.php:160
+msgid "General Settings"
+msgstr "Einstellungen"
+
+#: ../includes/admin.php:161
+msgid "Member Requests"
+msgstr "Mitgliedschafts-Anfragen"
+
+#: ../includes/admin.php:176
+msgid ""
+"Your membership account is awaiting approval by the site administrator. You "
+"will not be able to fully interact with the social aspects of this website "
+"until your account is approved. Once approved or denied you will receive an "
+"email notice."
+msgstr ""
+"Ihr Mitgliedschaftskonto muss noch von einem Administrator freigeschaltet "
+"werden. Sie werden nicht in der Lage sein die Funktionen dieser Website voll "
+"auszunutzen, solange das Konto nicht freigeschaltet worden ist. Einmal "
+"freigeschaltet oder abgeleht werden Sie eine Email-Mitteilung erhalten. "
+
+#: ../includes/admin.php:181
+#, php-format
+msgid ""
+"Hi [username], your member account on %s has been approved! You can now "
+"login and start interacting with the rest of the community..."
+msgstr ""
+"Hallo [username], Ihr Konto auf %s ist freigeschaltet worden! Sie können "
+"sich jetzt einloggen und damit beginnen, mit den Mitgliedern der Community "
+"zu kommunizieren…"
+
+#: ../includes/admin.php:186
+#, php-format
+msgid ""
+"Hi [username], we regret to inform you that your member account on %s has "
+"been denied..."
+msgstr ""
+"Hallo [username], wir bedauern, Sie informieren zu müssen, dass Ihr Antrag "
+"auf Mitgliedschaft bei %s abgeleht worden ist…"
+
+#: ../includes/admin.php:195
+msgid "Moderate New Members"
+msgstr "Neue Mitglieder moderieren"
+
+#: ../includes/admin.php:195
+msgid ""
+"Every new member will have to be approved by an administrator before they "
+"can interact with BuddyPress components."
+msgstr ""
+"Jedes neue Mitglied muss von einem Administrator zugelassen worden sein, "
+"bevor es die Mitgliedschafts-Komponenten nutzen kann."
+
+#: ../includes/admin.php:196
+msgid ""
+"Only registered or approved members can view BuddyPress pages (Private "
+"Network)."
+msgstr ""
+"Nur registrierte und zugelassene Mitglieder können Mitglieschaftssteien-"
+"Seiten (privates Netzwerk) sehen."
+
+#: ../includes/admin.php:199
+msgid "Activate & Profile Alert Message:"
+msgstr "Mitteilung zur Aktivierung und zum Profil:"
+
+#: ../includes/admin.php:203
+msgid "Account Approved Email:"
+msgstr "Email zur Konto-Freischaltung:"
+
+#: ../includes/admin.php:207
+msgid "Account Denied Email:"
+msgstr "Email zur Konto-Zurückweisung:"
+
+#: ../includes/admin.php:215
+msgid "Short Code Key: [username]"
+msgstr "Short Code Key: [username]"
+
+#: ../includes/admin.php:216
+msgid "Reset Messages"
+msgstr "Zurücksetzen"
+
+#: ../includes/admin.php:223
+msgid "Save Options"
+msgstr "Einstellungen speichern"
+
+#: ../includes/admin.php:279
+msgid "Please approve or deny the following new members:"
+msgstr "Bitte die folgenden Member zulassen oder ablehnen:"
+
+#: ../includes/admin.php:287 ../includes/admin.php:356
+msgid "Photo"
+msgstr "Foto"
+
+#: ../includes/admin.php:288 ../includes/admin.php:357
+msgid "Name"
+msgstr "Name"
+
+#: ../includes/admin.php:289 ../includes/admin.php:358
+msgid "Email"
+msgstr "Email"
+
+#: ../includes/admin.php:290 ../includes/admin.php:359
+msgid "Created"
+msgstr "Erstellt"
+
+#: ../includes/admin.php:291 ../includes/admin.php:360
+msgid "Additional Data"
+msgstr "Zusatzinfos"
+
+#: ../includes/admin.php:335
+msgid "City:"
+msgstr "Ort:"
+
+#: ../includes/admin.php:336
+msgid "IP:"
+msgstr "IP:"
+
+#: ../includes/admin.php:372
+msgid "Approve"
+msgstr "Genehmigen"
+
+#: ../includes/admin.php:374
+msgid "Deny"
+msgstr "Ablehnen"
+
+#: ../includes/admin.php:376
+msgid "Ban"
+msgstr "Sperren"
+
+#: ../includes/admin.php:393
+msgid "No new members to approve."
+msgstr "Keine neuen Member zur Prüfung."
+
+#: ../includes/admin.php:411
+msgid "BuddyPress Registration Options plugin created by"
+msgstr "BuddyPress-Registrierungs-Optionen-Plugin entwickelt von"
+
+#: ../includes/admin.php:418 ../includes/admin.php:430
+msgid "Follow"
+msgstr "Folgen"
+
+#: ../includes/admin.php:464
+msgid "Are you sure you want to deny and delete the checked member(s)?"
+msgstr ""
+"Sind Sie sicher, dass die markierten Member abgelehnt und gelöscht werden "
+"sollen?"
+
+#: ../includes/admin.php:467
+msgid "Are you sure you want to ban and delete the checked member(s)?"
+msgstr ""
+"Sind Sie sicher, dass die markierten Member gebannt und gelöscht werden "
+"sollen?"
+
+#: ../includes/admin.php:470
+msgid "Are you sure you want to reset to the default messages?"
+msgstr ""
+"Sind sie sicher, dass die Standard-Mitteilungen wieder hergestellt werden "
+"sollen?"
+
+#: ../includes/core.php:221
+msgid ""
+"would like to become a member of your website, to accept or reject their "
+"request please go to "
+msgstr ""
+"möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
+"dem folgenden Link folgen"
+
+#: ../includes/core.php:223
+msgid "New Member Request"
+msgstr "Neue Mitgliedschafts-Anfrage"
+
+#: ../bp-registration-options.php:29
+msgid "This plugin requires WordPress version 3.0 or higher."
+msgstr "Dieses Plugin benötigt die WordPress Version 3.0 oder höher."
