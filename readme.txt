@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, wpmu, wpms, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 4.1.2
+Stable tag: 4.1.3
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -34,6 +34,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.1.3 =
+* Changed the hook that the load_plugin_textdomain loads on. Courtesy of http://geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
 
 = 4.1.2 =
 * properly hook our textdomain method, so that the plugin can be properly translated.
