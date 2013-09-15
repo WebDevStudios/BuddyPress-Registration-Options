@@ -86,9 +86,12 @@ function wds_bp_registration_options_form_actions(){
 						//Add our user to the IP ban option.
 						if ( "Ban" == $action ) {
 							$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+							$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 							$blockedIPs[] = get_user_meta( $user_id, 'bprwg_ip_address', true);
-							$success = update_option( 'bprwg_blocked_ips', $blockedIPs );
-						}
+							$blockedemails[] = $user->user_email;
+							$successIP = update_option( 'bprwg_blocked_ips', $blockedIPs );
+							$successEmail = update_option( 'bprwg_blocked_emails', $blockedemails );
+ 						}
 						if ( is_multisite() ) {
 							wpmu_delete_user( $user_id );
 						}
@@ -260,7 +263,7 @@ function bp_registration_options_member_requests() {
 			/*
 			Developers. Please return a multidimensional array in the following format.
 
-			add_filter( 'bpro_request_columns', 'bpro_myfilter' );
+			add_filter( 'bprwg_request_columns', 'bprwg_myfilter' );
 			function bpro_myfilter( $fields ) {
 				return $fields = array(
 					array(
@@ -278,7 +281,7 @@ function bp_registration_options_member_requests() {
 				);
 			}
 			 */
-			$extra_fields = apply_filters( 'bpro_request_columns', array() );
+			$extra_fields = apply_filters( 'bprwg_request_columns', array() );
 			if ( !empty( $extra_fields ) ) {
 				$headings = wp_list_pluck( $extra_fields, 'heading' );
 				$content = wp_list_pluck( $extra_fields, 'content' );
