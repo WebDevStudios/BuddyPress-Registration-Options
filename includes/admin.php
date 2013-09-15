@@ -60,15 +60,18 @@ function wds_bp_registration_options_form_actions(){
 
 		//request submissions
 		if ( isset( $_POST['Moderate'] ) ) {
+			//make sure we are coming from a safe place
 			check_admin_referer('bp_reg_options_check');
 			$action = $_POST['Moderate'];
+			//Grab all submitted checkboxes
 			$checked_members = $_POST['bp_member_check'];
 			if ( is_array( $checked_members ) ) {
 				//grab message
 				if ( $action == "Deny" ) {
 					$subject = 'Membership Denied'; //Don't localize. Used in message that goes out to users
 					$message = get_option('bprwg_denied_message');
-				} elseif ( $action == "Approve" ) {
+				}
+				if ( $action == "Approve" ) {
 					$subject = 'Membership Approved'; //Don't localize. Used in message that goes out to users
 					$message = get_option('bprwg_approved_message');
 				}
@@ -80,6 +83,12 @@ function wds_bp_registration_options_form_actions(){
 					//Grab our userdata object while we still have a user.
 					$user = get_userdata( $user_id );
 					if ( $action == "Deny" || $action == "Ban") {
+						//Add our user to the IP ban option.
+						if ( "Ban" == $action ) {
+							$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+							$blockedIPs[] = get_user_meta( $user_id, 'bprwg_ip_address', true);
+							$success = update_option( 'bprwg_blocked_ips', $blockedIPs );
+						}
 						if ( is_multisite() ) {
 							wpmu_delete_user( $user_id );
 						}
@@ -373,7 +382,7 @@ function bp_registration_options_member_requests() {
 			&nbsp;
 			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Deny', 'bp-registration-options' ); ?>" id="bpro_deny" />
 			&nbsp;
-			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" disabled /></p>
+			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
 
 			<?php //Don't translate since it's only temporary ?>
 			<p>Coming soon: If you Ban a member they will not receive an email and will not be able to try to join again.</p>
