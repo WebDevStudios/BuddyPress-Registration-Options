@@ -504,6 +504,7 @@ function bp_registration_options_banned() {
 		<?php } else {
 			echo '<p><strong>' . __( 'You have no blocked IP Addresses or Email Addresses at the moment', 'bp-registration-options' ) . '</strong></p>';
 		}
+		bp_registration_options_admin_footer();
 }
 
 function bp_registration_options_help_support(){ ?>
