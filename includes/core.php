@@ -210,9 +210,15 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 			//If their IP or email is blocked, don't proceed and exit silently.
 			$blockedIPs = get_option( 'bprwg_blocked_ips' );
 			$blockedemails = get_option( 'bprwg_blocked_emails' );
-			if ( is_array( $blockedIPs ) && ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) ) {
+			if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
 				$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
 				wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
+
+				//Delete their account thus far.
+				if ( is_multisite() ) {
+					wpmu_delete_user( $user_id );
+				}
+				wp_delete_user( $user_id );
 				return;
 			}
 
