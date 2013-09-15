@@ -152,9 +152,11 @@ function wds_bp_registration_options_plugin_menu() {
 	  $minimum_cap = 'manage_options';
 	  add_menu_page( __( 'BP Registration', 'bp-registration-options' ), __( 'BP Registration', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
 
-	  $count = '<span class="update-plugins count-'.$wds_bp_member_requests.'"><span class="plugin-count">'.$wds_bp_member_requests.'</span></span>';
+	  $count = '<span class="update-plugins count-' . $wds_bp_member_requests . '"><span class="plugin-count">' . $wds_bp_member_requests . '</span></span>';
 
-	  add_submenu_page( __( 'bp_registration_options', 'bp-registration-options' ), __( 'Member Requests ', 'bp-registration-options') . $count, __( 'Member Requests ', 'bp-registration-options' ) . $count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
+	  add_submenu_page( 'bp_registration_options', __( 'Member Requests ', 'bp-registration-options' ) . $count, __( 'Member Requests ', 'bp-registration-options' ) . $count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
+
+	  add_submenu_page( 'bp_registration_options', __( 'Banned Sources', 'bp-registration-options' ), __( 'Banned Sources', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options_banned', 'bp_registration_options_banned' );
 
 	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
 	}
@@ -164,13 +166,13 @@ function wds_bp_registration_options_plugin_menu() {
  * Tabs on the top of each admin.php?page=
  */
 function wds_bp_registration_options_tab_menu($page = ''){
-	global $wds_bp_member_requests;
-	?>
+	global $wds_bp_member_requests; ?>
 	<div id="icon-buddypress" class="icon32"></div>
 	<h2 class="nav-tab-wrapper">
 	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
 	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
 	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $wds_bp_member_requests;?>)</a>
+	<a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_banned"><?php _e( 'Banned', 'bp-registration-options' ); ?></a>
 
 	<!--<a class="nav-tab<?php //if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
 	</h2>
@@ -387,9 +389,6 @@ function bp_registration_options_member_requests() {
 			&nbsp;
 			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
 
-			<?php //Don't translate since it's only temporary ?>
-			<p>Coming soon: If you Ban a member they will not receive an email and will not be able to try to join again.</p>
-
 			<?php if ( $total_pages > 1 ) {
 				echo '<h3>';
 				for ( $i=1; $i<=$total_pages; $i++ ) {
@@ -406,6 +405,102 @@ function bp_registration_options_member_requests() {
 		} ?>
 	</div>
 	<?php bp_registration_options_admin_footer();
+}
+
+/**
+ * Render our page to display banned IP addresses and Email addresses
+ *
+ * @since  4.2
+ */
+function bp_registration_options_banned() {
+	?>
+	<div class="wrap">
+	<?php
+
+	wds_bp_registration_options_tab_menu( 'banned' );
+
+	$blockedIPs = get_option( 'bprwg_blocked_ips' );
+	$blockedemails = get_option( 'bprwg_blocked_emails' );
+	if ( !empty( $blockedIPs ) || !empty( $blockedemails ) ) { ?>
+
+		<h3><?php _e( 'The following IP addresses are currently banned.', 'bp-registration-options' ); ?></h3>
+		<table class="widefat">
+		<thead>
+			<tr>
+				<th id="cb" class="manage-column column-cb check-column" scope="col">
+					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+				</th>
+				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
+			</tr>
+		</thead>
+		<?php
+
+		$odd = true;
+
+		foreach( $blockedIPs as $IP ) {
+			if ( $odd ) {
+				echo '<tr class="alternate">';
+				$odd = false;
+			} else {
+				echo '<tr>';
+				$odd = true;
+			}
+
+			?>
+			<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo $IP; ?>"  /></th>
+			<td><?php echo $IP; ?></a></td>
+			</tr>
+		<?php } ?>
+		<tfoot>
+			<tr>
+				<th id="cb" class="manage-column column-cb check-column" scope="col">
+					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+				</th>
+				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
+			</tr>
+		</tfoot>
+		</table>
+
+		<h3><?php _e( 'The following Email addresses are currently banned.', 'bp-registration-options' ); ?></h3>
+
+		<table class="widefat">
+		<thead>
+			<tr>
+				<th id="cb" class="manage-column column-cb check-column" scope="col">
+					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+				</th>
+				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
+			</tr>
+		</thead>
+		<?php
+
+		$odd = true;
+
+		foreach( $blockedemails as $email ) {
+			if ( $odd ) {
+				echo '<tr class="alternate">';
+				$odd = false;
+			} else {
+				echo '<tr>';
+				$odd = true;
+			}
+			?>
+			<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_blockedemail_check[]" value=""  /></th>
+			<td><?php echo $email; ?></a></td>
+			</tr>
+		<?php } ?>
+		<tfoot>
+			<tr>
+				<th id="cb" class="manage-column column-cb check-column" scope="col">
+					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+				</th>
+				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
+			</tr>
+		</tfoot>
+		</table>
+		<?php } else {
+			echo '<p><strong>' . __( 'You have no blocked IP Addresses or Email Addresses at the moment', 'bp-registration-options' ) . '</strong></p>';
+		}
 }
 
 function bp_registration_options_help_support(){ ?>
