@@ -203,6 +203,19 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 	global $wpdb, $bp_moderate;
 	if ( $bp_moderate &&  $user_id > 0 ) {
 		if ( isset( $_GET['key'] ) ) {
+
+			$user = get_userdata( $user_id );
+			$admin_email = get_bloginfo( 'admin_email' );
+
+			//If their IP or email is blocked, don't proceed and exit silently.
+			$blockedIPs = get_option( 'bprwg_blocked_ips' );
+			$blockedemails = get_option( 'bprwg_blocked_emails' );
+			if ( is_array( $blockedIPs ) && ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) ) {
+				$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
+				wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
+				return;
+			}
+
 			//Hide user created by new user on activation.
 			$sql = 'UPDATE ' . $wpdb->base_prefix . 'users SET user_status = 69 WHERE ID = %d';
 			$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
@@ -215,11 +228,9 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 			update_user_meta( $user_id, 'bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
 			//email admin about new member request
-			$user = get_userdata( $user_id );
 			$user_name = $user->user_login;
 			$user_email = $user->user_email;
 			$mod_email = $user_name . ' ( ' . $user_email . ' ) ' . __( 'would like to become a member of your website, to accept or reject their request please go to ', 'bp-registration-options') . admin_url( '/admin.php?page=bp_registration_options_member_requests' );
-			$admin_email = get_bloginfo( 'admin_email' );
 			wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
 		}
 	}
