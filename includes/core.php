@@ -207,6 +207,9 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 			$user = get_userdata( $user_id );
 			$admin_email = get_bloginfo( 'admin_email' );
 
+			//add HTML capabilities temporarily
+			add_filter('wp_mail_content_type','bp_registration_options_set_content_type');
+
 			//If their IP or email is blocked, don't proceed and exit silently.
 			$blockedIPs = get_option( 'bprwg_blocked_ips' );
 			$blockedemails = get_option( 'bprwg_blocked_emails' );
@@ -241,6 +244,7 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 			//add our filter and provide the user name and user email for them to utilize.
 			$mod_email = apply_filters( 'bprwg_new_member_request_admin_email', $message, $user_name, $user_email );
 			wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
+			remove_filter('wp_mail_content_type','bp_registration_options_set_content_type');
 		}
 	}
 }

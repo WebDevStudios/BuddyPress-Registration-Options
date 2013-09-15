@@ -107,7 +107,10 @@ function wds_bp_registration_options_form_actions(){
 						$user_name = $user->user_login;
 						$user_email = $user->user_email;
 						$email = str_replace( '[username]', $user_name, $message );
+
+						add_filter('wp_mail_content_type','bp_registration_options_set_content_type');
 						wp_mail( $user_email, $subject, $email );
+						remove_filter('wp_mail_content_type','bp_registration_options_set_content_type');
 					}
 				}
 			}
@@ -579,4 +582,8 @@ function bp_registration_options_js() { ?>
 		})(jQuery);
 	</script>
 <?php
+}
+
+function bp_registration_options_set_content_type( $content_type ){
+	return 'text/html';
 }
