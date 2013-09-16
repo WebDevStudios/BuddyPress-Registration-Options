@@ -161,7 +161,7 @@ function wds_bp_registration_options_plugin_menu() {
 
 	  add_submenu_page( 'bp_registration_options', __( 'Banned Sources', 'bp-registration-options' ), __( 'Banned Sources', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options_banned', 'bp_registration_options_banned' );
 
-	  /*add_submenu_page( 'bp_registration_options', 'Help / Support', 'Help / Support', $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );*/
+	  add_submenu_page( 'bp_registration_options', __( 'Help / Support', 'bp-registration-options' ), __( 'Help / Support', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );
 	}
 }
 
@@ -176,8 +176,6 @@ function wds_bp_registration_options_tab_menu($page = ''){
 	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
 	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $wds_bp_member_requests;?>)</a>
 	<a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_banned"><?php _e( 'Banned', 'bp-registration-options' ); ?></a>
-
-	<!--<a class="nav-tab<?php //if ( $page == 'help' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_help_support">Help/Support</a>-->
 	</h2>
 <?php }
 
