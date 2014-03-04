@@ -274,32 +274,28 @@ function bp_registration_hide_pending_members( $args ) {
 }
 
 /**
- * Prevent viewing of forums for non-approved members
+ * Prevent viewing of bbPress forums for non-approved members
  *
  * @since  4.2
- *
- * @param  array  $caps     array of primitive capabilities matched to the provided meta $cap
- * @param  string  $cap     The name of the meta capability to map to
- * @param  int  $user_id 	Current user's ID
- * @param  array  $args     array of extra arguments for the meta capability. Sometimes empty.
- *
- * @return array            array conditionally populated with do_not_allow.
  */
-function wds_bp_registration_options_map_meta( $caps, $cap, $user_id, $args ) {
-	if ( is_admin() )
-		return $caps;
+function wds_bp_registration_deny_bbpress() {
+	$user = new WP_User( get_current_user_id() );
+	$deny = array( 2, 69 );
 
-	$slug = get_option( '_bbp_forum_slug' );
-    $user = get_userdata( $user_id );
+	if ( bbp_is_single_user_edit() ||
+	    bbp_is_single_user() ||
+	    bbp_is_user_home() ||
+	    bbp_is_user_home_edit()
+	) {
+		return;
+	}
 
-    $bbpcaps = bbp_get_caps_for_role( bbp_get_user_role( $user_id ) );
-
-	foreach( $bbpcaps as $key => $cap ) {
-		if ( 'spectate' == $cap && 69 == $user->user_status ) {
-			$caps[] = 'do_not_allow';
-			break;
+	if ( $user->ID > 0 ) {
+		if ( in_array( $user->data->user_status, $deny ) && is_bbpress() ) {
+			wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+			exit;
 		}
 	}
-    return $caps;
+
 }
-add_filter( 'map_meta_cap', 'wds_bp_registration_options_map_meta', 10, 4 );
+add_action( 'template_redirect', 'wds_bp_registration_deny_bbpress' );
