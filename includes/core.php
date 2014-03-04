@@ -299,3 +299,7 @@ function wds_bp_registration_deny_bbpress() {
 
 }
 add_action( 'template_redirect', 'wds_bp_registration_deny_bbpress' );
+
+function wds_bp_registration_get_user_status_values() {
+	return array( 2, 69 );
+}
