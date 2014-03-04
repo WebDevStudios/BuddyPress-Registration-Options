@@ -280,7 +280,7 @@ function bp_registration_hide_pending_members( $args ) {
  */
 function wds_bp_registration_deny_bbpress() {
 	$user = new WP_User( get_current_user_id() );
-	$deny = array( 2, 69 );
+	$deny = wds_bp_registration_get_user_status_values();
 
 	if ( bbp_is_single_user_edit() ||
 	    bbp_is_single_user() ||
