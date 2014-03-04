@@ -8,7 +8,6 @@
 /**
  * set $bp_moderate & $bprwg_privacy_network globals and filter off bp buttons
  */
-add_action( 'init', 'wds_bp_registration_options_core_init' );
 function wds_bp_registration_options_core_init(){
 	global $bp_moderate, $bprwg_privacy_network, $wpdb, $bp, $user_ID, $blog_id;
 	if ( !is_admin() ) {
@@ -69,11 +68,11 @@ function wds_bp_registration_options_core_init(){
 		}
 	}
 }
+add_action( 'init', 'wds_bp_registration_options_core_init' );
 
 /**
  * Hide any bp buttons & form via css because of no filters
  */
-add_action( 'wp_head', 'wds_bp_registration_options_wp_head' );
 function wds_bp_registration_options_wp_head(){
 	global $bp_moderate;
 	if ( $bp_moderate ) {
@@ -85,31 +84,32 @@ function wds_bp_registration_options_wp_head(){
         <?php
 	}
 }
-
+add_action( 'wp_head', 'wds_bp_registration_options_wp_head' );
 
 /**
  * Disables activity post form
  */
-add_action('bp_before_activity_post_form','wds_bp_before_activity_post_form', 0);
 function wds_bp_before_activity_post_form(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_start();
 }
-add_action('bp_after_activity_post_form','wds_bp_after_activity_post_form', 0);
+add_action('bp_before_activity_post_form','wds_bp_before_activity_post_form', 0);
+
 function wds_bp_after_activity_post_form(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_end_clean();
 }
+add_action('bp_after_activity_post_form','wds_bp_after_activity_post_form', 0);
 
 /**
  * Disables activity comment buttons/forms
  */
-add_action('bp_activity_entry_content','wds_bp_activity_entry_content', 0);
 function wds_bp_activity_entry_content(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_start();
 }
-add_action('bp_before_activity_entry_comments','wds_bp_before_activity_entry_comments', 0);
+add_action('bp_activity_entry_content','wds_bp_activity_entry_content', 0);
+
 function wds_bp_before_activity_entry_comments(){
 	global $bp_moderate;
 	if ( $bp_moderate ) {
@@ -117,54 +117,56 @@ function wds_bp_before_activity_entry_comments(){
 		echo '</div>';//needs this div from betweek the two hooks
 	}
 }
+add_action('bp_before_activity_entry_comments','wds_bp_before_activity_entry_comments', 0);
 
 /**
  * Disables forums new topic form (groups page)
  */
-add_action('bp_before_group_forum_post_new','wds_bp_before_group_forum_post_new', 0);
 function wds_bp_before_group_forum_post_new(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_start();
 }
-add_action('bp_after_group_forum_post_new','wds_bp_after_group_forum_post_new', 0);
+add_action('bp_before_group_forum_post_new','wds_bp_before_group_forum_post_new', 0);
+
 function wds_bp_after_group_forum_post_new(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_end_clean();
 }
+add_action('bp_after_group_forum_post_new','wds_bp_after_group_forum_post_new', 0);
 
 /**
  * Disables forums reply form
  */
-add_action('groups_forum_new_reply_before','wds_groups_forum_new_reply_before', 0);
 function wds_groups_forum_new_reply_before(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_start();
 }
-add_action('groups_forum_new_reply_after','wds_groups_forum_new_reply_after', 0);
+add_action('groups_forum_new_reply_before','wds_groups_forum_new_reply_before', 0);
+
 function wds_groups_forum_new_reply_after(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_end_clean();
 }
+add_action('groups_forum_new_reply_after','wds_groups_forum_new_reply_after', 0);
 
 /**
  * Disables forums new topic form (forums page)
  */
-add_action('groups_forum_new_topic_before','wds_groups_forum_new_topic_before', 0);
 function wds_groups_forum_new_topic_before(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_start();
 }
-add_action('groups_forum_new_topic_after','wds_groups_forum_new_topic_after', 0);
+add_action('groups_forum_new_topic_before','wds_groups_forum_new_topic_before', 0);
+
 function wds_groups_forum_new_topic_after(){
 	global $bp_moderate;
 	if ( $bp_moderate ) ob_end_clean();
 }
-
+add_action('groups_forum_new_topic_after','wds_groups_forum_new_topic_after', 0);
 
 /**
  * Hide any activity created by blocked user (if they somehow get around hidden form)
  */
-add_action( 'bp_actions', 'wds_bp_registration_options_bp_actions', 50 );
 function wds_bp_registration_options_bp_actions(){
 	global $wpdb, $user_ID, $bp_moderate, $bp;
 	if ( $bp_moderate ) {
@@ -172,13 +174,11 @@ function wds_bp_registration_options_bp_actions(){
 		$wpdb->query( $wpdb->prepare( $sql, $user_ID ) );
 	}
 }
-
+add_action( 'bp_actions', 'wds_bp_registration_options_bp_actions', 50 );
 
 /**
  * Show a custom message on the activation page and on users profile header.
  */
-add_filter( 'bp_after_activate_content', 'wds_bp_registration_options_bp_after_activate_content' );
-add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_activate_content' );
 function wds_bp_registration_options_bp_after_activate_content(){
 	global $bp_moderate, $user_ID, $blog_id;
 	if ( is_multisite() ) {
@@ -193,12 +193,12 @@ function wds_bp_registration_options_bp_after_activate_content(){
 		switch_to_blog( $blogid );
 	}
 }
-
+add_filter( 'bp_after_activate_content', 'wds_bp_registration_options_bp_after_activate_content' );
+add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_activate_content' );
 
 /**
  * Custom activation functionality
  */
-add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_activate_account');
 function wds_bp_registration_options_bp_core_activate_account($user_id){
 	global $wpdb, $bp_moderate;
 	if ( $bp_moderate &&  $user_id > 0 ) {
@@ -248,6 +248,7 @@ function wds_bp_registration_options_bp_core_activate_account($user_id){
 		}
 	}
 }
+add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_activate_account');
 
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
