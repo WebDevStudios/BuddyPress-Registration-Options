@@ -139,3 +139,35 @@ add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
 function wds_bp_registration_get_user_status_values() {
 	return array( 2, 69 );
 }
+
+/**
+ * Check if on an allowed bbPress component
+ *
+ * @since  4.2.0
+ *
+ * @return boolean  true if an allowed component, false otherwise
+ */
+function wds_bbpress_allowed_areas() {
+
+	if ( bbp_is_single_user_edit() || bbp_is_single_user() || bbp_is_user_home() || bbp_is_user_home_edit() ) {
+		return true;
+	}
+	return false;
+
+}
+
+/**
+ * Check if on an allowed BuddyPress component
+ *
+ * @since  4.2.0
+ *
+ * @return boolean  true if an allowed component, false otherwise
+ */
+function wds_buddypress_allowed_areas() {
+	global $bp;
+
+	if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || $bp->current_component == 'register' || $bp->current_component == 'activate' ) {
+		return true;
+	}
+	return false;
+}
