@@ -162,3 +162,16 @@ function wds_buddypress_allowed_areas() {
 	}
 	return false;
 }
+
+function wds_get_moderation_status( $user_id ) {
+	$moderated = get_user_meta( $user_id, '_bprwg_is_moderated', true );
+
+	if ( 'true' == $moderated ) {
+		return true;
+	}
+	return false;
+}
+
+function wds_set_moderation_status( $user_id, $status = 'true' ) {
+	return update_user_meta( $user_id, '_bprwg_is_moderated', $status );
+}
