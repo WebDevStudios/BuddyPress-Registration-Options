@@ -11,7 +11,7 @@
 function wds_bp_registration_options_bp_after_activate_content(){
 	global $user_ID;
 
-	if ( isset( $_GET['key'] ) || $user_ID > 0 ) {
+	if ( isset( $_GET['key'] ) || wds_get_moderation_status( $user_ID ) ) {
 		$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
 		echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
 	}
