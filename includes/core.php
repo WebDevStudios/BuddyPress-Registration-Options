@@ -52,13 +52,8 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 				return;
 			}
 
-			//Hide user created by new user on activation.
-			$sql = 'UPDATE ' . $wpdb->base_prefix . 'users SET user_status = 69 WHERE ID = %d';
-			$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
-
-			//Hide activity created by new user
-			$sql = 'UPDATE ' . $wpdb->base_prefix . 'bp_activity SET hide_sitewide = 1 WHERE user_id = %d';
-			$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
+			//Set them as in moderation.
+			wds_set_moderation_status( $user_id );
 
 			//save user ip address
 			update_user_meta( $user_id, 'bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
