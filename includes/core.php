@@ -132,17 +132,6 @@ function wds_bp_registration_deny_access() {
 add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
 
 /**
- * Return an array of user statuses to check for.
- *
- * @since  4.2
- *
- * @return array  array of user statuses
- */
-function wds_bp_registration_get_user_status_values() {
-	return array( 2, 69 );
-}
-
-/**
  * Check if on an allowed bbPress component
  *
  * @since  4.2.0
