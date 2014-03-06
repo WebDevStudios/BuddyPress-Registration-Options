@@ -99,32 +99,35 @@ function bp_registration_hide_pending_members( $args ) {
 }
 add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
 
-/**
- * Prevent viewing of bbPress forums for non-approved members
- *
- * @since  4.2
- */
-function wds_bp_registration_deny_bbpress() {
+function wds_bp_registration_deny_access() {
+
 	$user = new WP_User( get_current_user_id() );
 	$deny = wds_bp_registration_get_user_status_values();
+	$private_network = get_option('bprwg_privacy_network');
 
-	if ( bbp_is_single_user_edit() ||
-	    bbp_is_single_user() ||
-	    bbp_is_user_home() ||
-	    bbp_is_user_home_edit()
-	) {
+	if ( wds_buddypress_allowed_areas() || wds_bbpress_allowed_areas() || !$private_network ) {
 		return;
 	}
 
+	if ( $user->ID == 0 && ( is_buddypress() || is_bbpress() ) ) {
+		wp_redirect( get_bloginfo( 'url' ) );
+		exit;
+	}
+
 	if ( $user->ID > 0 ) {
-		if ( in_array( $user->data->user_status, $deny ) && is_bbpress() ) {
-			wp_redirect( bbp_get_user_profile_url( $user->ID ) );
-			exit;
+		if ( in_array( $user->data->user_status, $deny ) ) {
+			if ( is_buddypress() ) {
+				wp_redirect( bp_core_get_user_domain( $user->ID ) );
+				exit;
+			} elseif ( is_bbpress() ) {
+				wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+				exit;
+			}
 		}
 	}
 
 }
-add_action( 'template_redirect', 'wds_bp_registration_deny_bbpress' );
+add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
 
 /**
  * Return an array of user statuses to check for.
