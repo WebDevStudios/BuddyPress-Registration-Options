@@ -6,7 +6,11 @@
  */
 
 /**
- * Show a custom message on the activation page and on users profile header.
+ * Display pending message to users until they're activated.
+ *
+ * @since  unknown
+ *
+ * @return string  HTML message
  */
 function wds_bp_registration_options_bp_after_activate_content(){
 	$user = get_current_user_id();
@@ -20,7 +24,11 @@ add_filter( 'bp_after_activate_content', 'wds_bp_registration_options_bp_after_a
 add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_activate_content' );
 
 /**
- * Custom activation functionality
+ * Set up our user upon activation, email appropriate people
+ *
+ * @since  unknown
+ *
+ * @param  integer  $user_id User ID
  */
 function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 
@@ -75,13 +83,14 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 }
 add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_activate_account');
 
-
-
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
- * @param  object $args arguments that BuddyPress will use to query for members
- * @return object       amended arguments with IDs to exclude.
- * @since  4.1
+ *
+ * @since  4.1.0
+ *
+ * @param  object  $args Arguments that BuddyPress will use to query for members
+ *
+ * @return object        Amended arguments with IDs to exclude.
  */
 function bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
@@ -102,6 +111,11 @@ function bp_registration_hide_pending_members( $args ) {
 }
 add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
 
+/**
+ * Check if current user should be denied access or not
+ *
+ * @since  4.2.0
+ */
 function wds_bp_registration_deny_access() {
 
 	$user = new WP_User( get_current_user_id() );
@@ -163,6 +177,15 @@ function wds_buddypress_allowed_areas() {
 	return false;
 }
 
+/**
+ * Check our moderation status and return boolean values based on that
+ *
+ * @since  4.2.0
+ *
+ * @param  integer  $user_id User ID to check
+ *
+ * @return boolean           Whether or not they're in moderation status.
+ */
 function wds_get_moderation_status( $user_id ) {
 	$moderated = get_user_meta( $user_id, '_bprwg_is_moderated', true );
 
@@ -172,6 +195,16 @@ function wds_get_moderation_status( $user_id ) {
 	return false;
 }
 
+/**
+ * Update our moderation status for a user
+ *
+ * @since  4.2.0
+ *
+ * @param  integer  $user_id User ID to update
+ * @param  string  $status   Value to update the user meta to
+ *
+ * @return integer           meta row ID that got updated.
+ */
 function wds_set_moderation_status( $user_id, $status = 'true' ) {
 	return update_user_meta( $user_id, '_bprwg_is_moderated', $status );
 }
