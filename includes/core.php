@@ -98,14 +98,14 @@ function bp_registration_hide_pending_members( $args ) {
 		$args->query_vars['exclude'] = $ids;
 
 	return $args;
+
 }
 add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
 
 function wds_bp_registration_deny_access() {
 
 	$user = new WP_User( get_current_user_id() );
-	$deny = wds_bp_registration_get_user_status_values();
-	$private_network = get_option('bprwg_privacy_network');
+	$private_network = get_option( 'bprwg_privacy_network' );
 
 	if ( wds_buddypress_allowed_areas() || wds_bbpress_allowed_areas() || !$private_network ) {
 		return;
