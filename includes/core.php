@@ -49,6 +49,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 					wpmu_delete_user( $user_id );
 				}
 				wp_delete_user( $user_id );
+
 				return;
 			}
 
@@ -65,8 +66,10 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 
 			//add our filter and provide the user name and user email for them to utilize.
 			$mod_email = apply_filters( 'bprwg_new_member_request_admin_email', $message, $user_name, $user_email );
+
 			wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
-			remove_filter('wp_mail_content_type','bp_registration_options_set_content_type');
+
+			remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 		}
 	}
 }
