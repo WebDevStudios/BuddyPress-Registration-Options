@@ -22,9 +22,11 @@ add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_act
 /**
  * Custom activation functionality
  */
-function wds_bp_registration_options_bp_core_activate_account($user_id){
-	global $wpdb, $bp_moderate;
-	if ( $bp_moderate &&  $user_id > 0 ) {
+function wds_bp_registration_options_bp_core_activate_account( $user_id ){
+
+	$private_network = get_option( 'bprwg_privacy_network' );
+
+	if ( $private_network && $user_id > 0 ) {
 		if ( isset( $_GET['key'] ) ) {
 
 			$user = get_userdata( $user_id );
