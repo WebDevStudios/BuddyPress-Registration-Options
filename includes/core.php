@@ -41,7 +41,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 			$admin_email = get_bloginfo( 'admin_email' );
 
 			//add HTML capabilities temporarily
-			add_filter('wp_mail_content_type','bp_registration_options_set_content_type');
+			add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 			//If their IP or email is blocked, don't proceed and exit silently.
 			$blockedIPs = get_option( 'bprwg_blocked_ips' );
