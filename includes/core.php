@@ -56,7 +56,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ){
 			wds_set_moderation_status( $user_id );
 
 			//save user ip address
-			update_user_meta( $user_id, 'bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
+			update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
 			//email admin about new member request
 			$user_name = $user->user_login;
