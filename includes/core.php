@@ -117,7 +117,7 @@ function wds_bp_registration_deny_access() {
 	}
 
 	if ( $user->ID > 0 ) {
-		if ( in_array( $user->data->user_status, $deny ) ) {
+		if ( wds_get_moderation_status( $user->ID ) ) {
 			if ( is_buddypress() ) {
 				wp_redirect( bp_core_get_user_domain( $user->ID ) );
 				exit;
