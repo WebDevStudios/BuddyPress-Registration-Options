@@ -108,9 +108,9 @@ function wds_bp_registration_options_form_actions(){
 						$user_email = $user->user_email;
 						$email = str_replace( '[username]', $user_name, $message );
 
-						add_filter('wp_mail_content_type','bp_registration_options_set_content_type');
+						add_filter( 'wp_mail_content_type','bp_registration_options_set_content_type' );
 						wp_mail( $user_email, $subject, $email );
-						remove_filter('wp_mail_content_type','bp_registration_options_set_content_type');
+						remove_filter( 'wp_mail_content_type','bp_registration_options_set_content_type' );
 					}
 				}
 			}
@@ -507,7 +507,7 @@ function bp_registration_options_banned() {
 
 function bp_registration_options_help_support(){ ?>
 	<div class="wrap">
-		<?php wds_bp_registration_options_tab_menu('help');?>
+		<?php wds_bp_registration_options_tab_menu( 'help' );?>
 	</div>
 	<?php bp_registration_options_admin_footer();
 }
