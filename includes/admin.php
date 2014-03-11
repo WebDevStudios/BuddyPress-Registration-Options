@@ -1,9 +1,4 @@
 <?php
-/**
- * BP-Registration-Options Admin Settings Pages
- *
- * @package BP-Registration-Options
- */
 
 
 /**
