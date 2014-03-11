@@ -147,39 +147,65 @@ function wds_bp_registration_options_admin_messages() { /**/
 }
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 
+function wds_bp_registration_options_plugin_menu() { /**/
+	global $blog_id;
 
+	$member_requests = wds_bp_registration_get_pending_user_count();
 
-/**
- * Plugin Menu
- */
-add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
-function wds_bp_registration_options_plugin_menu() {
-	global $wds_bp_member_requests,$blog_id;
 	if ( $blog_id == 1 ) {
-	  $minimum_cap = 'manage_options';
-	  add_menu_page( __( 'BP Registration', 'bp-registration-options' ), __( 'BP Registration', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options', 'bp_registration_options_settings', plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' ) );
 
-	  $count = '<span class="update-plugins count-' . $wds_bp_member_requests . '"><span class="plugin-count">' . $wds_bp_member_requests . '</span></span>';
+		$minimum_cap = 'manage_options';
 
-	  add_submenu_page( 'bp_registration_options', __( 'Member Requests ', 'bp-registration-options' ) . $count, __( 'Member Requests ', 'bp-registration-options' ) . $count, $minimum_cap, 'bp_registration_options_member_requests', 'bp_registration_options_member_requests' );
+		add_menu_page(
+			__( 'BP Registration', 'bp-registration-options' ),
+			__( 'BP Registration', 'bp-registration-options' ),
+			$minimum_cap,
+			'bp_registration_options',
+			'bp_registration_options_settings',
+			plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' )
+		);
 
-	  add_submenu_page( 'bp_registration_options', __( 'Banned Sources', 'bp-registration-options' ), __( 'Banned Sources', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options_banned', 'bp_registration_options_banned' );
+		$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
 
-	  add_submenu_page( 'bp_registration_options', __( 'Help / Support', 'bp-registration-options' ), __( 'Help / Support', 'bp-registration-options' ), $minimum_cap, 'bp_registration_options_help_support', 'bp_registration_options_help_support' );
+		add_submenu_page(
+			'bp_registration_options',
+			__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
+			__( 'Member Requests ', 'bp-registration-options' ) . $count,
+			$minimum_cap,
+			'bp_registration_options_member_requests',
+			'bp_registration_options_member_requests'
+		);
+
+		add_submenu_page(
+			'bp_registration_options',
+			__( 'Banned Sources', 'bp-registration-options' ),
+			__( 'Banned Sources', 'bp-registration-options' ),
+			$minimum_cap,
+			'bp_registration_options_banned',
+			'bp_registration_options_banned'
+		);
+
+		add_submenu_page(
+			'bp_registration_options',
+			__( 'Help / Support', 'bp-registration-options' ),
+			__( 'Help / Support', 'bp-registration-options' ),
+			$minimum_cap,
+			'bp_registration_options_help_support',
+			'bp_registration_options_help_support'
+		);
 	}
 }
+add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
 
-/**
- * Tabs on the top of each admin.php?page=
- */
-function wds_bp_registration_options_tab_menu($page = ''){
-	global $wds_bp_member_requests; ?>
-	<div id="icon-buddypress" class="icon32"></div>
+function wds_bp_registration_options_tab_menu( $page = '' ) { /**/
+
+	$member_requests = wds_bp_registration_get_pending_user_count(); ?>
+
 	<h2 class="nav-tab-wrapper">
 	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
-	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
-	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_member_requests"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $wds_bp_member_requests;?>)</a>
-	<a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?>" href="admin.php?page=bp_registration_options_banned"><?php _e( 'Banned', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options' ); ?>"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_member_requests' ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
+	<a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?>"><?php _e( 'Banned', 'bp-registration-options' ); ?></a>
 	</h2>
 <?php }
 
