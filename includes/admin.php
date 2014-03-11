@@ -213,61 +213,106 @@ function wds_bp_registration_options_tab_menu( $page = '' ) { /**/
  * BP-Registration-Options main settings page output.
  */
 function bp_registration_options_settings() {
-	//DEFAULT VALUES
-	$bp_moderate = get_option('bprwg_moderate');
-	$privacy_network = get_option('bprwg_privacy_network');
-	$activate_message = get_option('bprwg_activate_message');
+
+    $bp_moderate        = get_option( 'bprwg_moderate' );
+    $privacy_network    = get_option( 'bprwg_privacy_network' );
+    $activate_message   = get_option( 'bprwg_activate_message' );
+    $approved_message   = get_option('bprwg_approved_message');
+    $denied_message     = get_option( 'bprwg_denied_message' );
+
 	if ( !$activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
-		update_option('bprwg_activate_message', $activate_message);
+		update_option( 'bprwg_activate_message', $activate_message );
 	}
-	$approved_message = get_option('bprwg_approved_message');
+
 	if ( !$approved_message ) {
-		$approved_message = sprintf( __('Hi [username], your member account on %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ), get_bloginfo('url') );
-		update_option('bprwg_approved_message', $approved_message);
+		$approved_message = sprintf(
+			__( 'Hi [username], your member account on %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ),
+			get_bloginfo( 'url' )
+		);
+
+		update_option( 'bprwg_approved_message', $approved_message );
 	}
-	$denied_message = get_option('bprwg_denied_message');
+
 	if ( !$denied_message ) {
-		$denied_message = sprintf( __('Hi [username], we regret to inform you that your member account on %s has been denied...', 'bp-registration-options' ), get_bloginfo("url") );
-		update_option('bprwg_denied_message', $denied_message);
+		$denied_message = sprintf(
+			__( 'Hi [username], we regret to inform you that your member account on %s has been denied...', 'bp-registration-options' ),
+			get_bloginfo( 'url' )
+		);
+
+		update_option( 'bprwg_denied_message', $denied_message);
 	}
-	//FORM
 	?>
 	<div class="wrap" >
-		<?php wds_bp_registration_options_tab_menu();?>
+		<?php wds_bp_registration_options_tab_menu(); ?>
+
 		<form method="post">
-		<?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-		<p><input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>&nbsp;<label for="bp_moderate"><strong><?php _e( 'Moderate New Members', 'bp-registration-options' ); ?></strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress components.', 'bp-registration-options' ); ?>)</label></p>
-		<p><input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/> <label for="privacy_network"><?php _e( 'Only registered or approved members can view BuddyPress pages (Private Network).', 'bp-registration-options' ); ?></label></p>
-		<table>
-			<tr>
-				<td align="right" valign="top"><?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></td>
-				<td><textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes($activate_message);?></textarea></td>
-			</tr>
-			<tr>
-				<td align="right" valign="top"><?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?></td>
-				<td><textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes($approved_message);?></textarea></td>
-			</tr>
-			<tr>
-				<td align="right" valign="top"><?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?></td>
-				<td><textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes($denied_message);?></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td align="right">
-					<table width="100%">
-					<tr>
-						<td><?php _e( 'Short Code Key: [username]', 'bp-registration-options' ); ?></td>
-						<td align="right"><input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" /></td>
-					</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-		<?php do_action('bp_registration_options_general_settings_form');?>
-		<input type="submit" class="button button-primary" name="Save" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
+			<?php wp_nonce_field('bp_reg_options_check'); ?>
+
+			<p>
+				<input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>
+				<label for="bp_moderate">
+					<strong>
+						<?php _e( 'Moderate New Members', 'bp-registration-options' ); ?>
+					</strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress components.', 'bp-registration-options' ); ?>)
+				</label>
+			</p>
+
+			<p>
+				<input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/>
+				<label for="privacy_network">
+					<?php _e( 'Only registered or approved members can view BuddyPress pages (Private Network).', 'bp-registration-options' ); ?>
+				</label>
+			</p>
+
+			<table>
+				<tr>
+					<td align="right" valign="top">
+						<?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?>
+					</td>
+					<td>
+						<textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes( $activate_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top">
+						<?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?>
+					</td>
+					<td>
+						<textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes( $approved_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top">
+						<?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?>
+					</td>
+					<td>
+						<textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes( $denied_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="right">
+						<table width="100%">
+							<tr>
+								<td>
+									<?php _e( 'Short Code Key: [username]', 'bp-registration-options' ); ?>
+								</td>
+								<td align="right">
+									<input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			<?php do_action('bp_registration_options_general_settings_form');?>
+
+			<input type="submit" class="button button-primary" name="save" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
 		</form>
 	</div>
+
 	<?php bp_registration_options_admin_footer();
 }
 
