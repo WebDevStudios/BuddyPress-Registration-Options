@@ -322,21 +322,23 @@ function bp_registration_options_settings() {
  * New member requests ui.
  */
 function bp_registration_options_member_requests() {
-	global $wpdb, $bp, $wds_bp_member_requests;
+	global $wpdb;
+
+	$member_requests = wds_bp_registration_get_pending_user_count();
+
 	?>
 	<div class="wrap">
-		<?php wds_bp_registration_options_tab_menu('requests');
+		<?php wds_bp_registration_options_tab_menu( 'requests' );
 
-		if ( $wds_bp_member_requests > 0 ) {
-			$page = ( isset( $_GET["p"] ) ) ? $_GET["p"] : 1 ;
-			$total_pages = ceil($wds_bp_member_requests / 20);
-			$start_from = ($page-1) * 20;
-			$sql = 'select ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
-			$rs = $wpdb->get_results( $wpdb->prepare( $sql , $start_from) );?>
+		if ( $member_requests > 0 ) {
+			$page = ( isset( $_GET['p'] ) ) ? $_GET['p'] : 1 ;
+			$total_pages = ceil( $member_requests / 20 );
+			$start_from = ( $page - 1 ) * 20;
+			$sql = 'SELECT ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
+			$rs = $wpdb->get_results( $wpdb->prepare( $sql , $start_from ) );?>
+
 			<form method="post" name="bprwg">
-			<?php if ( function_exists('wp_nonce_field') ) wp_nonce_field('bp_reg_options_check'); ?>
-
-			<?php
+			<?php wp_nonce_field('bp_reg_options_check');
 
 			/*
 			Developers. Please return a multidimensional array in the following format.
@@ -358,7 +360,8 @@ function bp_registration_options_member_requests() {
 					)
 				);
 			}
-			 */
+			*/
+
 			$extra_fields = apply_filters( 'bprwg_request_columns', array() );
 			if ( !empty( $extra_fields ) ) {
 				$headings = wp_list_pluck( $extra_fields, 'heading' );
@@ -409,21 +412,21 @@ function bp_registration_options_member_requests() {
 				}
 				?>
 					<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_member_check[]" value="<?php echo $user_id; ?>"  /></th>
-					<td><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $userpic?></a></td>
-					<td><strong><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $username?></a></strong></td>
-					<td><a href="mailto:<?php echo $useremail;?>"><?php echo $useremail;?></a></td>
-					<td><?php echo $userregistered;?></td>
+					<td><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $userpic; ?></a></td>
+					<td><strong><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $username; ?></a></strong></td>
+					<td><a href="mailto:<?php echo $useremail;?>"><?php echo $useremail; ?></a></td>
+					<td><?php echo $userregistered; ?></td>
 					<td>
 						<div class="alignleft">
-						<?php echo '<img height="50" src="http://api.hostip.info/flag.php?ip=' . $userip . '" / >' ?>
+							<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
 						</div>
 						<div class="alignright">
 							<?php
 							$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
 							if ( !is_wp_error( $response ) ) {
 								$data = $response['body'];
-								$data = str_replace('City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-								$data = str_replace('IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
+								$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
+								$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
 								echo $data;
 							} else {
 								echo $userip;
@@ -467,7 +470,7 @@ function bp_registration_options_member_requests() {
 
 			<?php if ( $total_pages > 1 ) {
 				echo '<h3>';
-				for ( $i=1; $i<=$total_pages; $i++ ) {
+				for ( $i = 1; $i <= $total_pages; $i++ ) {
 					echo "<a href='" . add_query_arg( 'p', $i ) . "'>" . $i . "</a> ";
 				}
 				echo '</h3>';
