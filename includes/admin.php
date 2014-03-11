@@ -596,41 +596,67 @@ function bp_registration_options_help_support(){
  * Display our footer content
  * @return string html for the footer output
  */
-function bp_registration_options_admin_footer() { ?>
-	<p style="margin-top: 50px;"><?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?> <a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a></p>
-		<table>
-			<tr>
-				<td>
-					<table>
-						<tr>
-							<td><a target="_blank" href="http://webdevstudios.com"><img width="50" src="<?php echo plugins_url( 'bp-registration-options/images/WDS-150x150.png' );?>" /></a></td>
-							<td><strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios!</strong><br />
-							<a target="_blank" href="https://plus.google.com/108871619014334838112"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
-							<a target="_blank" href="http://twitter.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
-							<a target="_blank" href="http://facebook.com/webdevstudios"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
-							<td>
-						</tr>
-					</table>
-				</td>
-				<td>
-					<table>
-						<tr>
-							<td><a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/"><img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" /></a></td>
-							<td><strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
-							<a target="_blank" href="https://plus.google.com/117578069784985312197"><img src="<?php echo plugins_url( 'bp-registration-options/images/google-icon.png' );?>" /></a>
-							<a target="_blank" href="http://twitter.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/twitter-icon.png' );?>" /></a>
-							<a target="_blank" href="http://facebook.com/bmess"><img src="<?php echo plugins_url( 'bp-registration-options/images/facebook-icon.png' );?>" /></a>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
+function bp_registration_options_admin_footer() { /**/
+	?>
+	<p style="margin-top: 50px;">
+		<?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?>
+		<a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a>
+	</p>
+	<table>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<a target="_blank" href="http://webdevstudios.com">
+								<img width="50" src="<?php echo plugins_url( '/images/WDS-150x150.png', dirname( __FILE__ ) );?>" />
+							</a>
+						</td>
+						<td>
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios!</strong><br />
+							<a target="_blank" href="https://plus.google.com/108871619014334838112">
+								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://twitter.com/webdevstudios">
+								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://facebook.com/webdevstudios">
+								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+						<td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/">
+								<img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" />
+							</a>
+						</td>
+						<td>
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
+							<a target="_blank" href="https://plus.google.com/117578069784985312197">
+								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://twitter.com/bmess">
+								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://facebook.com/bmess">
+								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 <?php
 }
 
-add_action( 'admin_footer', 'bp_registration_options_js' );
-function bp_registration_options_js() { ?>
+function bp_registration_options_js() { /**/
+	?>
 	<script language="javascript">
 		(function($) {
 			//Handle our checkboxes
@@ -662,7 +688,8 @@ function bp_registration_options_js() { ?>
 	</script>
 <?php
 }
+add_action( 'admin_footer', 'bp_registration_options_js' );
 
-function bp_registration_options_set_content_type( $content_type ){
+function bp_registration_options_set_content_type( $content_type ){ /**/
 	return 'text/html';
 }
