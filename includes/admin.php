@@ -584,7 +584,8 @@ function bp_registration_options_banned() {
 		bp_registration_options_admin_footer();
 }
 
-function bp_registration_options_help_support(){ ?>
+function bp_registration_options_help_support(){
+	?>
 	<div class="wrap">
 		<?php wds_bp_registration_options_tab_menu( 'help' );?>
 	</div>
