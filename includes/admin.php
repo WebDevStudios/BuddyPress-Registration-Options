@@ -3,15 +3,12 @@
 function wds_bp_registration_get_pending_user_count() { /**/
 	global $wpdb;
 
-/**
- * set $bp_member_requests global
- */
-add_action( 'init', 'wds_bp_registration_options_member_requests');
-function wds_bp_registration_options_member_requests(){
-	if( is_admin() ) {
-		global $wpdb, $bp, $wds_bp_member_requests;
-		$rs = $wpdb->get_results( $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->base_prefix . 'users WHERE user_status IN (2,69)' , '') );
-		$wds_bp_member_requests = count( $rs );
+	$sql = "SELECT count( user_id ) as count FROM " . $wpdb->prefix . "usermeta WHERE meta_key = %s AND meta_value = %s";
+
+	$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
+
+	if ( !empty( $rs ) ) {
+		return absint( $rs[0] );
 	}
 }
 
