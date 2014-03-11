@@ -115,27 +115,37 @@ function wds_bp_registration_options_form_actions() {
 }
 add_action( 'admin_init', 'wds_bp_registration_options_form_actions' );
 
+function wds_bp_registration_options_admin_messages() { /**/
 
+	$member_requests = wds_bp_registration_get_pending_user_count();
 
-/**
- * set admin message to show count of member requests.
- */
-add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
-function wds_bp_registration_options_admin_messages(){
-	global $wds_bp_member_requests;
-	if ( $wds_bp_member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can('add_users') ) {
+	if ( $member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can( 'add_users' ) ) {
+
 		$s = '';
-		if ( $wds_bp_member_requests != 1 ) {
+		if ( $member_requests > 1 ) {
 			$s = 's';
 		}
-		echo '<div class="error"><p>' . sprintf( __( 'You have %s new member request%s that need to be approved or denied. Please %s click here%s to take action', 'bp-registration-options' ),
-			'<a href="' . admin_url( '/admin.php?page=bp_registration_options_member_requests' ) . '"><strong>' . $wds_bp_member_requests,
-			$s . '</strong></a>',
-			'<a href="' . admin_url('/admin.php?page=bp_registration_options_member_requests') . '">',
-			'</a>'
-			 ) . '</p></div>';
+
+		$message = '<div class="error"><p>';
+		$message .= sprintf(
+			__( 'You have %s new member request%s that need to be approved or denied. Please %s to take action', 'bp-registration-options' ),
+			sprintf(
+				'<a href="%s"><strong>%s</strong></a>',
+				admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+				$member_requests . $s
+			),
+			sprintf(
+				'<a href="%s">%s</a>',
+				admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+				__( 'click here', 'bp-registration-options' )
+			)
+		);
+		$message .= '</p></div>';
+
+		echo $message;
 	}
 }
+add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 
 
 
