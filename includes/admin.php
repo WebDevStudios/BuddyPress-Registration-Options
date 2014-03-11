@@ -12,108 +12,108 @@ function wds_bp_registration_get_pending_user_count() { /**/
 	}
 }
 
-/**
- * form submissions
- */
-add_action( 'admin_init', 'wds_bp_registration_options_form_actions');
-function wds_bp_registration_options_form_actions(){
-	if(is_admin()){
-		global $wpdb, $bp, $wds_bp_member_requests;
-		//settings save
-		if ( isset( $_POST['Save'] ) ) {
-			check_admin_referer('bp_reg_options_check');//nonce WP security check
-			$bp_moderate = '';
-			if ( isset( $_POST['bp_moderate'] ) )
-				$bp_moderate = $_POST['bp_moderate'];
-			update_option('bprwg_moderate', $bp_moderate);
+function wds_bp_registration_options_form_actions() {
 
-			$privacy_network = '';
-			if ( isset( $_POST['privacy_network'] ) )
-				$privacy_network = $_POST['privacy_network'];
-			update_option('bprwg_privacy_network', $privacy_network);
+	//settings save
+	if ( isset( $_POST['save'] ) ) {
+		check_admin_referer( 'bp_reg_options_check' );//nonce WP security check
+		$bp_moderate = '';
 
-			$activate_message = sanitize_text_field( $_POST['activate_message'] );
-			update_option('bprwg_activate_message', $activate_message);
-
-			$approved_message = sanitize_text_field( $_POST['approved_message'] );
-			update_option('bprwg_approved_message', $approved_message);
-
-			$denied_message = sanitize_text_field( $_POST['denied_message'] );
-			update_option('bprwg_denied_message', $denied_message);
-
-			do_action( 'bp_registration_options_general_settings_form_save' );
+		if ( isset( $_POST['bp_moderate'] ) ) {
+			$bp_moderate = sanitize_text_field( $_POST['bp_moderate'] );
+			update_option( 'bprwg_moderate', $bp_moderate );
 		}
 
-		if ( isset( $_POST['reset_messages'] ) ) {
-			check_admin_referer('bp_reg_options_check');//nonce WP security check
-
-			delete_option('bprwg_activate_message');
-			delete_option('bprwg_approved_message');
-			delete_option('bprwg_denied_message');
+		$privacy_network = '';
+		if ( isset( $_POST['privacy_network'] ) ) {
+			$privacy_network = sanitize_text_field( $_POST['privacy_network'] );
+			update_option( 'bprwg_privacy_network', $privacy_network );
 		}
 
-		//request submissions
-		if ( isset( $_POST['Moderate'] ) ) {
-			//make sure we are coming from a safe place
-			check_admin_referer('bp_reg_options_check');
-			$action = $_POST['Moderate'];
-			//Grab all submitted checkboxes
-			$checked_members = $_POST['bp_member_check'];
-			if ( is_array( $checked_members ) ) {
-				//grab message
-				if ( $action == "Deny" ) {
-					$subject = 'Membership Denied'; //Don't localize. Used in message that goes out to users
-					$message = get_option('bprwg_denied_message');
-				}
-				if ( $action == "Approve" ) {
-					$subject = 'Membership Approved'; //Don't localize. Used in message that goes out to users
-					$message = get_option('bprwg_approved_message');
-				}
-				//loop all checked members
-				$count = count( $checked_members );
-				for ( $i = 0; $i < $count; ++$i ) {
-					$user_id = (int) $checked_members[$i];
+		$activate_message = sanitize_text_field( $_POST['activate_message'] );
+		update_option( 'bprwg_activate_message', $activate_message );
 
-					//Grab our userdata object while we still have a user.
-					$user = get_userdata( $user_id );
-					if ( $action == "Deny" || $action == "Ban") {
-						//Add our user to the IP ban option.
-						if ( "Ban" == $action ) {
-							$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
-							$blockedemails = get_option( 'bprwg_blocked_emails', array() );
-							$blockedIPs[] = get_user_meta( $user_id, 'bprwg_ip_address', true);
-							$blockedemails[] = $user->user_email;
-							$successIP = update_option( 'bprwg_blocked_ips', $blockedIPs );
-							$successEmail = update_option( 'bprwg_blocked_emails', $blockedemails );
- 						}
-						if ( is_multisite() ) {
-							wpmu_delete_user( $user_id );
-						}
-						wp_delete_user( $user_id );
-					} elseif ( $action == "Approve" ) {
-						$sql = 'UPDATE ' . $wpdb->base_prefix . 'users SET user_status = 0 WHERE ID = %d';
-						$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
-						$sql = 'UPDATE ' .$wpdb->base_prefix.'bp_activity SET hide_sitewide = 0 WHERE user_id = %d';
-						$wpdb->query( $wpdb->prepare( $sql, $user_id ) );
-					}
-					//only send out message if one exists
-					if ( $subject && $message ) {
-						$user_name = $user->user_login;
-						$user_email = $user->user_email;
-						$email = str_replace( '[username]', $user_name, $message );
+		$approved_message = sanitize_text_field( $_POST['approved_message'] );
+		update_option( 'bprwg_approved_message', $approved_message );
 
-						add_filter( 'wp_mail_content_type','bp_registration_options_set_content_type' );
-						wp_mail( $user_email, $subject, $email );
-						remove_filter( 'wp_mail_content_type','bp_registration_options_set_content_type' );
-					}
+		$denied_message = sanitize_text_field( $_POST['denied_message'] );
+		update_option( 'bprwg_denied_message', $denied_message );
+
+		do_action( 'bp_registration_options_general_settings_form_save' );
+	}
+
+	if ( isset( $_POST['reset_messages'] ) ) {
+		check_admin_referer( 'bp_reg_options_check' );//nonce WP security check
+
+		delete_option( 'bprwg_activate_message' );
+		delete_option( 'bprwg_approved_message' );
+		delete_option( 'bprwg_denied_message' );
+	}
+
+	//request submissions
+	if ( isset( $_POST['Moderate'] ) ) {
+		//make sure we are coming from a safe place
+		check_admin_referer( 'bp_reg_options_check' );
+		$action = $_POST['Moderate'];
+
+		//Grab all submitted checkboxes
+		$checked_members = $_POST['bp_member_check'];
+		if ( !is_array( $checked_members ) ) {
+			$checked_members = array( $checked_members );
+		}
+
+		//grab message
+		if ( 'Deny' == $action ) {
+			$subject = 'Membership Denied'; //Don't localize. Used in message that goes out to users
+			$message = get_option( 'bprwg_denied_message' );
+		}
+		if ( 'Approve' == $action ) {
+			$subject = 'Membership Approved'; //Don't localize. Used in message that goes out to users
+			$message = get_option( 'bprwg_approved_message' );
+		}
+		//loop all checked members
+		$count = count( $checked_members );
+		for ( $i = 0; $i < $count; ++$i ) {
+
+			$user_id = (int) $checked_members[ $i ];
+
+			//Grab our userdata object while we still have a user.
+			$user = get_userdata( $user_id );
+			if ( $action == 'Deny' || $action == 'Ban' ) {
+				//Add our user to the IP ban option.
+				if ( 'Ban' == $action ) {
+
+					$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+					$blockedemails = get_option( 'bprwg_blocked_emails', array() );
+					$blockedIPs[] = get_user_meta( $user_id, 'bprwg_ip_address', true);
+					$blockedemails[] = $user->user_email;
+					$successIP = update_option( 'bprwg_blocked_ips', $blockedIPs );
+					$successEmail = update_option( 'bprwg_blocked_emails', $blockedemails );
 				}
+
+				if ( is_multisite() ) {
+					wpmu_delete_user( $user_id );
+				}
+				wp_delete_user( $user_id );
+
+			} elseif ( $action == 'Approve' ) {
+				wds_set_moderation_status( 'false' );
 			}
-			//reset global
-			$rs = $wpdb->get_results( $wpdb->prepare( 'SELECT ID FROM '.$wpdb->base_prefix.'users WHERE user_status IN (2,69)', '' ) );
-			$wds_bp_member_requests = count( $rs );
+
+			//only send out message if one exists
+			if ( $subject && $message ) {
+				$user_name = $user->user_login;
+				$user_email = $user->user_email;
+				$email = str_replace( '[username]', $user_name, $message );
+
+				add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+				wp_mail( $user_email, $subject, $email );
+				remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+			}
 		}
 	}
 }
+add_action( 'admin_init', 'wds_bp_registration_options_form_actions' );
 
 
 
