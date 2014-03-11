@@ -1,5 +1,7 @@
 <?php
 
+function wds_bp_registration_get_pending_user_count() { /**/
+	global $wpdb;
 
 /**
  * set $bp_member_requests global
