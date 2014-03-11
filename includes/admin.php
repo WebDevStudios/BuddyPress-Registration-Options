@@ -500,6 +500,7 @@ function bp_registration_options_banned() {
 
 	$blockedIPs = get_option( 'bprwg_blocked_ips' );
 	$blockedemails = get_option( 'bprwg_blocked_emails' );
+
 	if ( !empty( $blockedIPs ) || !empty( $blockedemails ) ) { ?>
 
 		<h3><?php _e( 'The following IP addresses are currently banned.', 'bp-registration-options' ); ?></h3>
