@@ -525,11 +525,14 @@ function bp_registration_options_member_requests() { /**/ ?>
 			do_action( 'bp_registration_options_member_request_form' ); ?>
 
 			</form>
+
 		<?php } else {
 			echo '<p><strong>' . __( 'No new members to approve.', 'bp-registration-options' ) . '</strong></p>';
 		} ?>
-	</div>
-	<?php bp_registration_options_admin_footer();
+	</div> <!--End Wrap-->
+
+	<?php
+	bp_registration_options_admin_footer();
 }
 
 /**
