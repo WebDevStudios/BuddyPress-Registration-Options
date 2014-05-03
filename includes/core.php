@@ -222,6 +222,6 @@ function wds_get_moderation_status( $user_id ) {
  *
  * @return integer           meta row ID that got updated.
  */
-function wds_set_moderation_status( $user_id, $status = 'true' ) {
-	return update_user_meta( $user_id, '_bprwg_is_moderated', $status );
+function wds_set_moderation_status( $user_id = 0, $status = 'true' ) {
+	return update_user_meta( absint( $user_id ), '_bprwg_is_moderated', $status );
 }
