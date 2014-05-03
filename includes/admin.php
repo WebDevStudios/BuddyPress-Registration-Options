@@ -323,7 +323,8 @@ function bp_registration_options_settings() { /**/
 		update_option( 'bprwg_denied_message', $denied_message);
 	}
 	?>
-	<div class="wrap" >
+
+	<div class="wrap gensettings" >
 		<?php wds_bp_registration_options_tab_menu(); ?>
 
 		<form method="post">
