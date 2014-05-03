@@ -19,23 +19,32 @@ function wds_bp_registration_get_pending_user_count() { /**/
 	}
 }
 
-function wds_bp_registration_options_form_actions() {
+/**
+ * Get our pending users
+ *
+ * @since  4.2.0
+ *
+ * @param  integer $start_from Offset to start from with our paging of pending users.
+ *
+ * @return array              Array of user ID objects or empty array.
+ */
+function wds_bp_registration_get_pending_users( $start_from = 0 ) { /**/
+	global $wpdb;
 
-	//settings save
-	if ( isset( $_POST['save'] ) ) {
-		check_admin_referer( 'bp_reg_options_check' );//nonce WP security check
-		$bp_moderate = '';
+	$sql = "
+		SELECT u.ID AS user_id
+		FROM " . $wpdb->prefix . "users AS u
+		INNER JOIN " . $wpdb->prefix . "usermeta AS um
+		WHERE u.ID = um.user_id
+		AND um.meta_key = %s
+		AND meta_value = %s
+		ORDER BY u.user_registered
+		LIMIT %d, 20";
 
-		if ( isset( $_POST['bp_moderate'] ) ) {
-			$bp_moderate = sanitize_text_field( $_POST['bp_moderate'] );
-			update_option( 'bprwg_moderate', $bp_moderate );
-		}
+	$rs = $wpdb->get_results( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true', $start_from ) );
 
-		$privacy_network = '';
-		if ( isset( $_POST['privacy_network'] ) ) {
-			$privacy_network = sanitize_text_field( $_POST['privacy_network'] );
-			update_option( 'bprwg_privacy_network', $privacy_network );
-		}
+	return ( !empty( $rs ) ) ? $rs : array();
+}
 
 		$activate_message = sanitize_text_field( $_POST['activate_message'] );
 		update_option( 'bprwg_activate_message', $activate_message );
