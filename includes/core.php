@@ -98,15 +98,16 @@ function bp_registration_hide_pending_members( $args ) {
 
 	$ids = array();
 
-	$sql = "SELECT user_id FROM " . $wpdb->base_prefix . "usermeta WHERE meta_key = '_bprwg_is_moderated' AND meta_value = 'true'";
+	$sql = "SELECT user_id FROM " . $wpdb->prefix . "usermeta WHERE meta_key = '_bprwg_is_moderated' AND meta_value = 'true'";
 	$rs = $wpdb->get_results( $wpdb->prepare( $sql, '' ), ARRAY_N );
 	//Grab the actual IDs
 	foreach( $rs as $key => $value) {
 		$ids[] = $value[0];
 	}
 
-	if ( $ids )
+	if ( $ids ) {
 		$args->query_vars['exclude'] = $ids;
+	}
 
 	return $args;
 
