@@ -431,27 +431,24 @@ function bp_registration_options_member_requests() { /**/ ?>
 					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
-					<?php
-					if ( !empty( $headings ) ) {
-						foreach( $headings as $heading ) {
-							echo '<th>' . $heading . '</th>';
-						}
-					}
-					?>
 				</tr>
 			</thead>
-			<?php $odd = true;
+			<?php
 
-			foreach( $rs as $r ) {
-				$user_id = $r->ID;
-				$author = new BP_Core_User( $user_id );
-				$userpic = $author->avatar_mini;
-				$userlink = $author->user_url;
-				$username = $author->fullname;
-				$user = get_userdata( $user_id );
-				$useremail = $user->user_email;
-				$userregistered = $user->user_registered;
-				$userip = get_user_meta( $user_id, 'bprwg_ip_address', true);
+			$odd = true;
+
+			//Get paged value, determine total pages, and calculate start_from value for offset.
+			$page = ( isset( $_GET['p'] ) ) ? $_GET['p'] : 1;
+			$total_pages = ceil( $member_requests / 20 ); //TODO: Test pagination
+			$start_from = ( $page - 1 ) * 20;
+
+			$pending_users = wds_bp_registration_get_pending_users( $start_from );
+
+			foreach( $pending_users as $pending ) {
+				$user = new BP_Core_User( $pending->user_id );
+				$user_data = get_userdata( $pending->user_id );
+				$userip = trim( get_user_meta( $pending->user_id, 'bprwg_ip_address', true ) );
+
 				if ( $odd ) {
 					echo '<tr class="alternate">';
 					$odd = false;
@@ -460,11 +457,27 @@ function bp_registration_options_member_requests() { /**/ ?>
 					$odd = true;
 				}
 				?>
-					<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_member_check[]" value="<?php echo $user_id; ?>"  /></th>
-					<td><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $userpic; ?></a></td>
-					<td><strong><a target="_blank" href="<?php echo $userlink; ?>"><?php echo $username; ?></a></strong></td>
-					<td><a href="mailto:<?php echo $useremail;?>"><?php echo $useremail; ?></a></td>
-					<td><?php echo $userregistered; ?></td>
+					<th class="check-column" scope="row">
+						<input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $pending->user_id; ?>" name="bp_member_check[]" value="<?php echo $pending->user_id; ?>"  />
+					</th>
+					<td>
+						<a target="_blank" href="<?php echo $user->user_url; ?>">
+							<?php echo $user->avatar_mini; ?>
+						</a>
+					</td>
+					<td>
+						<strong><a target="_blank" href="<?php echo $user->user_url; ?>">
+							<?php echo $user->fullname; ?>
+						</a></strong>
+					</td>
+					<td>
+						<a href="mailto:<?php echo $user_data->user_email;?>">
+							<?php echo $user_data->user_email; ?>
+						</a>
+					</td>
+					<td>
+						<?php echo $user_data->user_registered; ?>
+					</td>
 					<td>
 						<div class="alignleft">
 							<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
@@ -483,13 +496,6 @@ function bp_registration_options_member_requests() { /**/ ?>
 							?>
 						</div>
 					</td>
-					<?php
-					if ( !empty( $content ) ) {
-						foreach( $content as $td ) {
-							echo '<td>' . $td . '</td>';
-						}
-					}
-					?>
 				</tr>
 			<?php } ?>
 			<tfoot>
@@ -500,22 +506,13 @@ function bp_registration_options_member_requests() { /**/ ?>
 					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
-					<?php
-					if ( !empty( $headings ) ) {
-						foreach( $headings as $heading ) {
-							echo '<th>' . $heading . '</th>';
-						}
-					}
-					?>
 				</tr>
 			</tfoot>
 			</table>
 
-			<p><input type="submit" class="button button-primary" name="Moderate" value="<?php esc_attr_e( 'Approve', 'bp-registration-options' ); ?>" />
-			&nbsp;
-			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Deny', 'bp-registration-options' ); ?>" id="bpro_deny" />
-			&nbsp;
-			<input type="submit" class="button button-secondary" name="Moderate" value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
+			<p><input type="submit" class="button button-primary" name="moderate" value="<?php esc_attr_e( 'Approve', 'bp-registration-options' ); ?>" id="bpro_approve" />
+			<input type="submit" class="button button-secondary" name="moderate" value="<?php esc_attr_e( 'Deny', 'bp-registration-options' ); ?>" id="bpro_deny" />
+			<input type="submit" class="button button-secondary" name="moderate" disabled value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
 
 			<?php if ( $total_pages > 1 ) {
 				echo '<h3>';
