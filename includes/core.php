@@ -44,10 +44,11 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 			add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 			//If their IP or email is blocked, don't proceed and exit silently.
-			$blockedIPs = get_option( 'bprwg_blocked_ips' );
-			$blockedemails = get_option( 'bprwg_blocked_emails' );
+			//$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+			//$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
-			if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
+			//Warning: in_array() expects parameter 2 to be array, boolean given in /Applications/XAMPP/xamppfiles/htdocs/wp/buddypress/wp-content/plugins/BuddyPress-Registration-Options/includes/core.php on line 50
+			/*if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
 				$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
 
 				wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
@@ -59,7 +60,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 				wp_delete_user( $user_id );
 
 				return;
-			}
+			}*/
 
 			//Set them as in moderation.
 			wds_set_moderation_status( $user_id );
