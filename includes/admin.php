@@ -227,7 +227,7 @@ function wds_bp_registration_options_plugin_menu() { /**/
 			$minimum_cap,
 			'bp_registration_options',
 			'bp_registration_options_settings',
-			plugins_url( 'bp-registration-options/images/webdevstudios-16x16.png' )
+			plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
 		);
 
 		$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
