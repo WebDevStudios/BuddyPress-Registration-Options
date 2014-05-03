@@ -219,7 +219,7 @@ function wds_bp_registration_options_plugin_menu() { /**/
 
 	if ( $blog_id == 1 ) {
 
-		$minimum_cap = 'manage_options';
+		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', 'manage_options' );
 
 		add_menu_page(
 			__( 'BP Registration', 'bp-registration-options' ),
