@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Get a count of our pending users
+ *
+ * @since  4.2.0
+ *
+ * @return integer  count of our current pending users
+ */
 function wds_bp_registration_get_pending_user_count() { /**/
 	global $wpdb;
 
