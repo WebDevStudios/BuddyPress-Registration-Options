@@ -705,6 +705,27 @@ function bp_registration_options_admin_footer() { /**/
 <?php
 }
 
+/**
+ * Add CSS to our admin_head output for styling purposes.
+ *
+ * @since  4.2.0
+ *
+ * @return string  CSS style block.
+ */
+function bp_registration_options_css() { /**/
+	echo '<style>';
+		echo '.gensettings textarea { height: 100px; width: 500px;';
+	echo '</style>';
+}
+add_action( 'admin_head', 'bp_registration_options_css' );
+
+/**
+ * Add JS to our admin_footer output for DOM manipulation purposes
+ *
+ * @since  unknown
+ *
+ * @return string  JS script block.
+ */
 function bp_registration_options_js() { /**/
 	?>
 	<script language="javascript">
@@ -740,6 +761,15 @@ function bp_registration_options_js() { /**/
 }
 add_action( 'admin_footer', 'bp_registration_options_js' );
 
+/**
+ * Callback function for HTML email purposes.
+ *
+ * @since  4.2.0
+ *
+ * @param  string  $content_type content type
+ *
+ * @return string                new content type to use
+ */
 function bp_registration_options_set_content_type( $content_type ){ /**/
 	return 'text/html';
 }
