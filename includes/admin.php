@@ -410,44 +410,13 @@ function bp_registration_options_member_requests() { /**/ ?>
 		<?php
 		wds_bp_registration_options_tab_menu( 'requests' );
 
-		if ( $member_requests > 0 ) {
-			$page = ( isset( $_GET['p'] ) ) ? $_GET['p'] : 1 ;
-			$total_pages = ceil( $member_requests / 20 );
-			$start_from = ( $page - 1 ) * 20;
-			$sql = 'SELECT ID from ' .$wpdb->base_prefix.'users where user_status in (2,69) order by user_registered LIMIT %d, 20';
-			$rs = $wpdb->get_results( $wpdb->prepare( $sql , $start_from ) );?>
+		$member_requests = wds_bp_registration_get_pending_user_count();
 
-			<form method="post" name="bprwg">
-			<?php wp_nonce_field('bp_reg_options_check');
+		if ( $member_requests > 0 ) { ?>
 
-			/*
-			Developers. Please return a multidimensional array in the following format.
-
-			add_filter( 'bprwg_request_columns', 'bprwg_myfilter' );
-			function bpro_myfilter( $fields ) {
-				return $fields = array(
-					array(
-						'heading' => 'Column name 1',
-						'content' => 'Column content 1'
-					),
-					array(
-						'heading' => 'Column name 2',
-						'content' => 'Column content 2'
-					),
-					array(
-						'heading' => 'Column name 3',
-						'content' => 'Column content 3'
-					)
-				);
-			}
-			*/
-
-			$extra_fields = apply_filters( 'bprwg_request_columns', array() );
-			if ( !empty( $extra_fields ) ) {
-				$headings = wp_list_pluck( $extra_fields, 'heading' );
-				$content = wp_list_pluck( $extra_fields, 'content' );
-			}
-			?>
+			<form method="POST" name="bprwg">
+			<?php
+			wp_nonce_field( 'bp_reg_options_check' ); ?>
 
 			<p><?php _e( 'Please approve or deny the following new members:', 'bp-registration-options' ); ?></p>
 
