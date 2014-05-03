@@ -30,7 +30,7 @@ add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_act
  *
  * @param  integer  $user_id User ID
  */
-function wds_bp_registration_options_bp_core_activate_account( $user_id ){
+function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 
 	$private_network = get_option( 'bprwg_privacy_network' );
 
