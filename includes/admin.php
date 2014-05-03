@@ -46,14 +46,37 @@ function wds_bp_registration_get_pending_users( $start_from = 0 ) { /**/
 	return ( !empty( $rs ) ) ? $rs : array();
 }
 
-		$activate_message = sanitize_text_field( $_POST['activate_message'] );
-		update_option( 'bprwg_activate_message', $activate_message );
+/**
+ * Delete our stored options so that they get reset next time.
+ *
+ * @since  4.2.0
+ */
+function wds_bp_registration_handle_reset_messages() {
 
-		$approved_message = sanitize_text_field( $_POST['approved_message'] );
-		update_option( 'bprwg_approved_message', $approved_message );
+	delete_option( 'bprwg_activate_message' );
+	delete_option( 'bprwg_approved_message' );
+	delete_option( 'bprwg_denied_message' );
 
-		$denied_message = sanitize_text_field( $_POST['denied_message'] );
-		update_option( 'bprwg_denied_message', $denied_message );
+}
+
+function wds_bp_registration_handle_general_settings( $args = array() ) {
+	//Handle saving our moderate setting
+	if ( isset( $args['set_moderate'] ) ) {
+		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
+		update_option( 'bprwg_moderate', $bp_moderate );
+	}
+
+	//Handle saving our private network setting
+	if ( isset( $args['set_private'] ) ) {
+		$privacy_network = sanitize_text_field( $args['set_private'] );
+		update_option( 'bprwg_privacy_network', $privacy_network );
+	}
+
+	$activate_message = sanitize_text_field( $args['activate_message'] );
+	update_option( 'bprwg_activate_message', $activate_message );
+
+	$approved_message = sanitize_text_field( $args['approved_message'] );
+	update_option( 'bprwg_approved_message', $approved_message );
 
 		do_action( 'bp_registration_options_general_settings_form_save' );
 	}
