@@ -324,7 +324,7 @@ function bp_registration_options_settings() { /**/
 	}
 	?>
 
-	<div class="wrap gensettings" >
+	<div class="wrap gensettings">
 		<?php wds_bp_registration_options_tab_menu(); ?>
 
 		<form method="post">
