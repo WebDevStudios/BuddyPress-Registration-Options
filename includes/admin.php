@@ -404,14 +404,11 @@ function bp_registration_options_settings() { /**/
  *
  * @return string  HTML page output
  */
-function bp_registration_options_member_requests() {
-	global $wpdb;
+function bp_registration_options_member_requests() { /**/ ?>
 
-	$member_requests = wds_bp_registration_get_pending_user_count();
-
-	?>
 	<div class="wrap">
-		<?php wds_bp_registration_options_tab_menu( 'requests' );
+		<?php
+		wds_bp_registration_options_tab_menu( 'requests' );
 
 		if ( $member_requests > 0 ) {
 			$page = ( isset( $_GET['p'] ) ) ? $_GET['p'] : 1 ;
