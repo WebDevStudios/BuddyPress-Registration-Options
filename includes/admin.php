@@ -397,10 +397,12 @@ function bp_registration_options_settings() { /**/
 	<?php bp_registration_options_admin_footer();
 }
 
-
-
 /**
- * New member requests ui.
+ * Options page for managing pending members.
+ *
+ * @since  unknown
+ *
+ * @return string  HTML page output
  */
 function bp_registration_options_member_requests() {
 	global $wpdb;
