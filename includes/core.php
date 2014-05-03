@@ -165,6 +165,8 @@ add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
  */
 function wds_bbpress_allowed_areas() {
 
+	if ( !function_exists( 'bbp_is_single_user_edit' ) ) { return false; }
+
 	if ( bbp_is_single_user_edit() || bbp_is_single_user() || bbp_is_user_home() || bbp_is_user_home_edit() ) {
 		return true;
 	}
@@ -180,11 +182,15 @@ function wds_bbpress_allowed_areas() {
  * @return boolean  true if an allowed component, false otherwise
  */
 function wds_buddypress_allowed_areas() {
+
+	if ( !function_exists( 'bp_is_my_profile' ) ) { return false; }
+
 	global $bp;
 
 	if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || $bp->current_component == 'register' || $bp->current_component == 'activate' ) {
 		return true;
 	}
+
 	return false;
 }
 
