@@ -128,23 +128,31 @@ function wds_bp_registration_deny_access() {
 		return;
 	}
 
-	if ( $user->ID == 0 && ( is_buddypress() || is_bbpress() ) ) {
-		wp_redirect( get_bloginfo( 'url' ) );
-		exit;
+	//Not logged in user.
+	if ( $user->ID == 0 ) {
+		if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+			wp_redirect( get_bloginfo( 'url' ) );
+			exit;
+		}
+		if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
+			wp_redirect( get_bloginfo( 'url' ) );
+			exit;
+		}
 	}
 
+	//Logged in user but moderated.
 	if ( $user->ID > 0 ) {
 		if ( wds_get_moderation_status( $user->ID ) ) {
-			if ( is_buddypress() ) {
+			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 				wp_redirect( bp_core_get_user_domain( $user->ID ) );
 				exit;
-			} elseif ( is_bbpress() ) {
+			}
+			if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 				wp_redirect( bbp_get_user_profile_url( $user->ID ) );
 				exit;
 			}
 		}
 	}
-
 }
 add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
 
