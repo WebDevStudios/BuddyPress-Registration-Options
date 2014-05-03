@@ -352,7 +352,7 @@ function bp_registration_options_settings() { /**/
 						<?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
-						<textarea name="activate_message" style="width:500px;height:100px;"><?php echo stripslashes( $activate_message );?></textarea>
+						<textarea name="activate_message"><?php echo stripslashes( $activate_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -360,7 +360,7 @@ function bp_registration_options_settings() { /**/
 						<?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
-						<textarea name="approved_message" style="width:500px;height:100px;"><?php echo stripslashes( $approved_message );?></textarea>
+						<textarea name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -368,7 +368,7 @@ function bp_registration_options_settings() { /**/
 						<?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
-						<textarea name="denied_message" style="width:500px;height:100px;"><?php echo stripslashes( $denied_message );?></textarea>
+						<textarea name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
