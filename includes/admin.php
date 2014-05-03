@@ -535,12 +535,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 	bp_registration_options_admin_footer();
 }
 
-/**
- * Render our page to display banned IP addresses and Email addresses
- *
- * @since  4.2
- */
+
 function bp_registration_options_banned() {
+	//NEEDS DONE
 	?>
 	<div class="wrap">
 	<?php
@@ -633,7 +630,8 @@ function bp_registration_options_banned() {
 		bp_registration_options_admin_footer();
 }
 
-function bp_registration_options_help_support(){
+function bp_registration_options_help_support() {
+	//NEEDS DONE
 	?>
 	<div class="wrap">
 		<?php wds_bp_registration_options_tab_menu( 'help' );?>
@@ -642,8 +640,11 @@ function bp_registration_options_help_support(){
 }
 
 /**
- * Display our footer content
- * @return string html for the footer output
+ * Render our content at the bottom of each page. Displays contact and credit information
+ *
+ * @since  unknown
+ *
+ * @return string  HTML markup output.
  */
 function bp_registration_options_admin_footer() { /**/
 	?>
