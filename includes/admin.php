@@ -390,7 +390,7 @@ function bp_registration_options_settings() { /**/
 
 			<?php do_action('bp_registration_options_general_settings_form');?>
 
-			<input type="submit" class="button button-primary" name="save" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
+			<input type="submit" class="button button-primary" name="save_general" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
 		</form>
 	</div>
 
