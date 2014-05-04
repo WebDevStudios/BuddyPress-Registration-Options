@@ -335,14 +335,14 @@ function bp_registration_options_settings() { /**/
 				<label for="bp_moderate">
 					<strong>
 						<?php _e( 'Moderate New Members', 'bp-registration-options' ); ?>
-					</strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress components.', 'bp-registration-options' ); ?>)
+					</strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress/bbPress components.', 'bp-registration-options' ); ?>)
 				</label>
 			</p>
 
 			<p>
 				<input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/>
 				<label for="privacy_network">
-					<?php _e( 'Only registered or approved members can view BuddyPress pages (Private Network).', 'bp-registration-options' ); ?>
+					<?php _e( 'Only registered or approved members can view BuddyPress/bbPress pages (Private Network).', 'bp-registration-options' ); ?>
 				</label>
 			</p>
 
