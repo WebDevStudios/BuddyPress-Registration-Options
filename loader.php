@@ -19,7 +19,22 @@ define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.2' );
  *
  */
 function wds_bp_registration_options_init() {
-	require( dirname( __FILE__ ) . '/bp-registration-options.php' );
-	$bp_registration_options = new BP_Registration_Options;
+
+	if ( function_exists( 'buddypress' ) ) {
+		$bp = buddypress();
+	}
+
+	if ( function_exists( 'bbpress' ) ) {
+		$bbp = bbpress();
+	}
+
+	if (
+	    ( isset( $bp ) && version_compare( $bp->version, '1.7.0', '>=' ) ) ||
+	    ( isset( $bbp ) && version_compare( $bbp->version, '2.0.0', '>=' ) )
+	   ) {
+		require( dirname( __FILE__ ) . '/bp-registration-options.php' );
+		$bp_registration_options = new BP_Registration_Options;
+	}
+
 }
-add_action( 'bp_include', 'wds_bp_registration_options_init' );
+add_action( 'init', 'wds_bp_registration_options_init' );
