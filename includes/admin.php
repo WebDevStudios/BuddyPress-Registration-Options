@@ -445,7 +445,10 @@ function bp_registration_options_member_requests() { /**/ ?>
 			$pending_users = wds_bp_registration_get_pending_users( $start_from );
 
 			foreach( $pending_users as $pending ) {
-				$user = new BP_Core_User( $pending->user_id );
+				if ( class_exists( 'BP_Core_User' ) ) {
+					$user = new BP_Core_User( $pending->user_id );
+				}
+
 				$user_data = get_userdata( $pending->user_id );
 				$userip = trim( get_user_meta( $pending->user_id, 'bprwg_ip_address', true ) );
 
@@ -461,22 +464,28 @@ function bp_registration_options_member_requests() { /**/ ?>
 						<input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $pending->user_id; ?>" name="bp_member_check[]" value="<?php echo $pending->user_id; ?>"  />
 					</th>
 					<td>
-						<a target="_blank" href="<?php echo $user->user_url; ?>">
-							<?php echo $user->avatar_mini; ?>
+						<?php if ( isset( $user ) ) { ?>
+							<a target="_blank" href="<?php echo $user->user_url; ?>">
+								<?php echo $user->avatar_mini; ?>
+							</a>
+						<?php } ?>
+					</td>
+					<td>
+						<?php if ( isset( $user ) ) { ?>
+							<strong><a target="_blank" href="<?php echo $user->user_url; ?>">
+								<?php echo $user->fullname; ?>
+							</a></strong>
+						<?php } else {
+							echo $user_data->user_login;
+						} ?>
+					</td>
+					<td>
+						<a href="mailto:<?php echo $user_data->data->user_email;?>">
+							<?php echo $user_data->data->user_email; ?>
 						</a>
 					</td>
 					<td>
-						<strong><a target="_blank" href="<?php echo $user->user_url; ?>">
-							<?php echo $user->fullname; ?>
-						</a></strong>
-					</td>
-					<td>
-						<a href="mailto:<?php echo $user_data->user_email;?>">
-							<?php echo $user_data->user_email; ?>
-						</a>
-					</td>
-					<td>
-						<?php echo $user_data->user_registered; ?>
+						<?php echo $user_data->data->user_registered; ?>
 					</td>
 					<td>
 						<div class="alignleft">
