@@ -2,20 +2,19 @@
 
 Contributors: webdevstudios, Messenlehner, jibbius, tw2113
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
-Tags: buddypress, wpmu, wpms, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
-Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 4.1.3
+Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
+Requires at least: 3.5
+Tested up to: 3.9
+Stable tag: 4.2
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
 == Description ==
 
-Great plugin for stopping spam bots from registering on your BuddyPress website!
+Prevent users and bots from accessing your BuddyPress or bbPress sites until they are approved.
 
-This WordPress BuddyPress plugin that allows for new member moderation, if moderation is turned on from the admin settings page, any new members will be blocked from interacting with any buddypress elements (except editing their own profile and uploading their avatar) and will not be listed in any directory until an administrator approves or denies their account. If moderation is turned on admins can create custom display messages and email alert messages for approved or denied accounts. When admin approves or denies, custom emails get sent out to new members telling them they were approved or denied.
+This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision.
 
-Presently does not block bbPress. Tentatively will be the main enhancement for version 4.2.
 
 Follow along with development on GitHub at [BuddyPress-Registration-Options](https://github.com/WebDevStudios/BuddyPress-Registration-Options)
 
@@ -34,6 +33,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.2.0 =
+* Rewrote most aspects of plugin, with focus on preventing access to the community areas.
+* Added bbPress support so you can deny users from accessing forums.
 
 = 4.1.3 =
 * Changed the hook that the load_plugin_textdomain loads on. Courtesy of http://geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
@@ -95,6 +98,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Upgrade Notice ==
 
+= 4.2.0 =
+* Rewrote most aspects of plugin, with focus on preventing access to the community areas.
+* Added bbPress support so you can deny users from accessing forums.
+
 = 4.1.2 =
 * Update if you need to translate the plugin.
 
@@ -123,13 +130,8 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 2. Activate the plugin
 
-3. Click on the "BP Registation Options" link under Settings.
+3. Click on the "BP Registation" link in your admin menu.
 
 4. Configure your BuddyPress registration options.
 
 == Frequently Asked Questions ==
-
-
-= Does this plugin work with WordPress Multi-Site? =
-
-Absolutely!  This plugin has been tested and verified to work on the most current version of WordPress with Multi-Site or with stand alone WordPress.
