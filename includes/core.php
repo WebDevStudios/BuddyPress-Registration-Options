@@ -12,7 +12,7 @@
  *
  * @return string  HTML message
  */
-function wds_bp_registration_options_bp_after_activate_content(){
+function wds_bp_registration_options_bp_after_activate_content() {
 	$user = get_current_user_id();
 
 	if ( isset( $_GET['key'] ) || wds_get_moderation_status( $user ) ) {
