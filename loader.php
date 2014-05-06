@@ -18,7 +18,7 @@ define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.2' );
  * @package BP-Registration-Options
  *
  */
-function wds_bp_registration_options_init() {
+function bp_registration_options_init() {
 
 	if ( function_exists( 'buddypress' ) ) {
 		$bp = buddypress();
@@ -37,4 +37,4 @@ function wds_bp_registration_options_init() {
 	}
 
 }
-add_action( 'init', 'wds_bp_registration_options_init' );
+add_action( 'init', 'bp_registration_options_init' );
