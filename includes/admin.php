@@ -34,7 +34,7 @@ function wds_bp_registration_get_pending_users( $start_from = 0 ) { /**/
 	$sql = "
 		SELECT u.ID AS user_id
 		FROM " . $wpdb->users . " AS u
-		INNER JOIN " . $wpdb->usermeta . "usermeta AS um
+		INNER JOIN " . $wpdb->usermeta . " AS um
 		WHERE u.ID = um.user_id
 		AND um.meta_key = %s
 		AND meta_value = %s
