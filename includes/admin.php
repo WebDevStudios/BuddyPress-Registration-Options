@@ -850,3 +850,7 @@ add_action( 'admin_footer', 'bp_registration_options_js' );
 function bp_registration_options_set_content_type( $content_type ) { /**/
 	return 'text/html';
 }
+
+function bp_registration_options_delete_user_count_transient() {
+	delete_transient( 'bpro_user_count' );
+}
