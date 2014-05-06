@@ -179,10 +179,14 @@ function bp_registration_options_form_actions() {
 
 				do_action( 'bpro_hook_denied_user_after_delete', $user_id );
 
+				bp_registration_options_delete_user_count_transient();
+
 			} elseif ( 'Approve' == $action ) {
 				bp_registration_set_moderation_status( $user_id, 'false' );
 
 				do_action( 'bpro_hook_approved_user', $user_id );
+
+				bp_registration_options_delete_user_count_transient();
 			}
 
 			//only send out message if one exists
