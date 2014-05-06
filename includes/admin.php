@@ -771,7 +771,12 @@ function bp_registration_options_admin_footer() { /**/
  */
 function bp_registration_options_css() { /**/
 	echo '<style>';
-		echo '.gensettings textarea { height: 100px; width: 500px;';
+		$styles = '
+			.gensettings textarea { height: 100px; width: 500px; };
+			.bpro_current { text-decoration: none; }';
+
+		echo apply_filters( 'bpro_hook_admin_styles', $styles );
+
 	echo '</style>';
 }
 add_action( 'admin_head', 'bp_registration_options_css' );
