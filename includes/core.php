@@ -151,7 +151,7 @@ function wds_bp_registration_deny_access() {
 
 	//Logged in user but moderated.
 	if ( $user->ID > 0 ) {
-		if ( wds_get_moderation_status( $user->ID ) ) {
+		if ( wds_bp_registration_get_moderation_status( $user->ID ) ) {
 			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 				wp_redirect( bp_core_get_user_domain( $user->ID ) );
 				exit;
