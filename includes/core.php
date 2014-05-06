@@ -38,11 +38,13 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 		if ( isset( $_GET['key'] ) ) {
 
 			//Somehow the WP-FB-AutoConnect plugin uses $_GET['key'] as well for user IDs. Let's check if the value returns a user.
-			$is_user = get_userdata( $_GET['key'] );
+			/*$is_user = get_userdata( $_GET['key'] );
 
 			if ( !$is_user ) {
 				return;
-			}
+			}*/
+
+			wds_bp_registration_set_moderation_status( $user_id );
 
 			$user = get_userdata( $user_id );
 			$admin_email = get_bloginfo( 'admin_email' );
