@@ -121,7 +121,7 @@ function wds_bp_registration_hide_pending_members( $args ) {
 	return $args;
 
 }
-add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
+add_action( 'bp_pre_user_query_construct', 'wds_bp_registration_hide_pending_members' );
 
 /**
  * Check if current user should be denied access or not
