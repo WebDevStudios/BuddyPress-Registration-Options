@@ -80,7 +80,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 			//email admin about new member request
             $user_name      = $user->user_login;
             $user_email     = $user->user_email;
-            $message        = $user_name . ' ( ' . $user_email . ' ) ' . __( 'would like to become a member of your website, to accept or reject their request please go to ', 'bp-registration-options') . admin_url( '/admin.php?page=bp_registration_options_member_requests' );
+            $message        = $user_name . ' ( ' . $user_email . ' ) ' . __( 'would like to become a member of your website, to accept or reject their request please go to ', 'bp-registration-options' ) . admin_url( '/admin.php?page=bp_registration_options_member_requests' );
 
 			//add our filter and provide the user name and user email for them to utilize.
 			$mod_email = apply_filters( 'bprwg_new_member_request_admin_email', $message, $user_name, $user_email );
