@@ -72,7 +72,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 			}*/
 
 			//Set them as in moderation.
-			wds_set_moderation_status( $user_id );
+			wds_bp_registration_set_moderation_status( $user_id );
 
 			//save user ip address
 			update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
