@@ -170,8 +170,8 @@ function wds_bp_registration_options_form_actions() {
 					wp_delete_user( $user_id );
 				}
 
-			} elseif ( $action == 'Approve' ) {
-				wds_set_moderation_status( $user_id, 'false' );
+			} elseif ( 'Approve' == $action ) {
+				wds_bp_registration_set_moderation_status( $user_id, 'false' );
 			}
 
 			//only send out message if one exists
