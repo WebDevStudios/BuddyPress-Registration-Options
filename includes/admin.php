@@ -176,12 +176,19 @@ function wds_bp_registration_options_form_actions() {
 
 			//only send out message if one exists
 			if ( $send ) {
-				$user_name = $user->data->user_login;
-				$user_email = $user->data->user_email;
-				$email = str_replace( '[username]', $user_name, $message );
+
+				$mailme = array(
+					'user_email' => $user->data->user_email,
+					'user_subject' => $subject,
+					'user_message' => str_replace( '[username]', $user->data->user_login, $message )
+				);
+
+				$mailme_filtered = apply_filters( 'bpro_hook_before_email', $mailme, $user );
 
 				add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
-				wp_mail( $user_email, $subject, $email );
+
+				wp_mail( $mailme_filtered['user_email'], $mailme_filtered['user_subject'], $mailme_filtered['user_message'] );
+
 				remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 			}
 		}
