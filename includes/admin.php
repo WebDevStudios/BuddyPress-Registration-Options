@@ -59,6 +59,13 @@ function wds_bp_registration_handle_reset_messages() {
 
 }
 
+/**
+ * Handle processing of new values for general options page
+ *
+ * @since  4.2.0
+ *
+ * @param  array   $args array of inputs to save
+ */
 function wds_bp_registration_handle_general_settings( $args = array() ) {
 	//Handle saving our moderate setting
 	if ( isset( $args['set_moderate'] ) ) {
@@ -82,6 +89,11 @@ function wds_bp_registration_handle_general_settings( $args = array() ) {
 	update_option( 'bprwg_denied_message', $denied_message );
 }
 
+/**
+ * Process approved or denied users. Sends out the notifications and handles user deletion when applicable
+ *
+ * @since  unknown
+ */
 function wds_bp_registration_options_form_actions() {
 
 	//settings save
@@ -179,6 +191,13 @@ function wds_bp_registration_options_form_actions() {
 }
 add_action( 'admin_init', 'wds_bp_registration_options_form_actions' );
 
+/**
+ * Adds our admin notices with pending users info, for people who can manage users
+ *
+ * @since  unknown
+ *
+ * @return string  HTML markup for admin notice.
+ */
 function wds_bp_registration_options_admin_messages() { /**/
 
 	$member_requests = wds_bp_registration_get_pending_user_count();
@@ -212,6 +231,11 @@ function wds_bp_registration_options_admin_messages() { /**/
 }
 add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
 
+/**
+ * Register our plugins menus
+ *
+ * @since  unknown
+ */
 function wds_bp_registration_options_plugin_menu() { /**/
 	global $blog_id;
 
@@ -544,7 +568,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 	bp_registration_options_admin_footer();
 }
 
-
+/**
+ * Render our banned members management page
+ */
 function bp_registration_options_banned() {
 	//NEEDS DONE
 	?>
@@ -639,6 +665,9 @@ function bp_registration_options_banned() {
 		bp_registration_options_admin_footer();
 }
 
+/**
+ * Render our help/support page
+ */
 function bp_registration_options_help_support() {
 	//NEEDS DONE
 	?>
