@@ -130,7 +130,6 @@ function wds_bp_registration_options_form_actions() {
 		$send = false;
 
 		if ( isset( $_POST['bp_member_check'] ) ) {
-			//Grab all submitted checkboxes
 			$checked_members = $_POST['bp_member_check'];
 		}
 
@@ -138,13 +137,12 @@ function wds_bp_registration_options_form_actions() {
 			$checked_members = array( $checked_members );
 		}
 
-		//grab message
-		if ( 'Deny' == $action ) {
+		if ( 'Deny' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
 			$send = true;
 			$subject = __( 'Membership Denied', 'bp-registration-options' );
 			$message = get_option( 'bprwg_denied_message' );
 		}
-		if ( 'Approve' == $action ) {
+		if ( 'Approve' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
 			$send = true;
 			$subject = __( 'Membership Approved', 'bp-registration-options' );
 			$message = get_option( 'bprwg_approved_message' );
@@ -154,7 +152,7 @@ function wds_bp_registration_options_form_actions() {
 
 			//Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
-			if ( $action == 'Deny' || $action == 'Ban' ) {
+			if ( 'Deny' == $action || 'Ban' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
 				//Add our user to the IP ban option.
 				/*if ( 'Ban' == $action ) {
 
