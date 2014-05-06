@@ -7,15 +7,20 @@
  *
  * @return integer  count of our current pending users
  */
-function wds_bp_registration_get_pending_user_count() { /**/
-	global $wpdb;
+function bp_registration_get_pending_user_count() { /**/
 
-	$sql = "SELECT count( user_id ) AS count FROM " . $wpdb->usermeta . " WHERE meta_key = %s AND meta_value = %s";
+	if ( false === ( $rs = get_transient( 'bpro_user_count' ) ) ) {
+		global $wpdb;
 
-	$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
+		$sql = "SELECT count( user_id ) AS count FROM " . $wpdb->usermeta . " WHERE meta_key = %s AND meta_value = %s";
 
-	if ( !empty( $rs ) ) {
-		return absint( $rs[0] );
+		$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
+
+		set_transient( 'bpro_user_count', $rs, 60*5 );
+
+		if ( !empty( $rs ) ) {
+			return absint( $rs[0] );
+		}
 	}
 }
 
