@@ -212,7 +212,7 @@ function wds_buddypress_allowed_areas() {
  *
  * @return boolean           Whether or not they're in moderation status.
  */
-function wds_get_moderation_status( $user_id ) {
+function wds_bp_registration_get_moderation_status( $user_id ) {
 	$moderated = get_user_meta( $user_id, '_bprwg_is_moderated', true );
 
 	if ( 'true' == $moderated ) {
@@ -231,6 +231,6 @@ function wds_get_moderation_status( $user_id ) {
  *
  * @return integer           meta row ID that got updated.
  */
-function wds_set_moderation_status( $user_id = 0, $status = 'true' ) {
+function wds_bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
 	return update_user_meta( absint( $user_id ), '_bprwg_is_moderated', $status );
 }
