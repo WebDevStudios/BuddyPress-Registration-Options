@@ -33,7 +33,7 @@ function bp_registration_get_pending_user_count() { /**/
  *
  * @return array              Array of user ID objects or empty array.
  */
-function wds_bp_registration_get_pending_users( $start_from = 0 ) { /**/
+function bp_registration_get_pending_users( $start_from = 0 ) { /**/
 	global $wpdb;
 
 	$sql = "
@@ -56,7 +56,7 @@ function wds_bp_registration_get_pending_users( $start_from = 0 ) { /**/
  *
  * @since  4.2.0
  */
-function wds_bp_registration_handle_reset_messages() {
+function bp_registration_handle_reset_messages() {
 
 	delete_option( 'bprwg_activate_message' );
 	delete_option( 'bprwg_approved_message' );
@@ -71,7 +71,7 @@ function wds_bp_registration_handle_reset_messages() {
  *
  * @param  array   $args array of inputs to save
  */
-function wds_bp_registration_handle_general_settings( $args = array() ) {
+function bp_registration_handle_general_settings( $args = array() ) {
 	//Handle saving our moderate setting
 	if ( isset( $args['set_moderate'] ) ) {
 		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
@@ -99,14 +99,14 @@ function wds_bp_registration_handle_general_settings( $args = array() ) {
  *
  * @since  unknown
  */
-function wds_bp_registration_options_form_actions() {
+function bp_registration_options_form_actions() {
 
 	//settings save
 	if ( isset( $_POST['save_general'] ) ) {
 
 		check_admin_referer( 'bp_reg_options_check' );
 
-		wds_bp_registration_handle_general_settings(
+		bp_registration_handle_general_settings(
 			array(
                 'set_moderate'          => $_POST['bp_moderate'],
                 'set_private'           => $_POST['privacy_network'],
@@ -121,7 +121,7 @@ function wds_bp_registration_options_form_actions() {
 
 		check_admin_referer( 'bp_reg_options_check' );
 
-		wds_bp_registration_handle_reset_messages();
+		bp_registration_handle_reset_messages();
 	}
 
 	//request submissions
@@ -180,7 +180,7 @@ function wds_bp_registration_options_form_actions() {
 				do_action( 'bpro_hook_denied_user_after_delete', $user_id );
 
 			} elseif ( 'Approve' == $action ) {
-				wds_bp_registration_set_moderation_status( $user_id, 'false' );
+				bp_registration_set_moderation_status( $user_id, 'false' );
 
 				do_action( 'bpro_hook_approved_user', $user_id );
 			}
@@ -205,7 +205,7 @@ function wds_bp_registration_options_form_actions() {
 		}
 	}
 }
-add_action( 'admin_init', 'wds_bp_registration_options_form_actions' );
+add_action( 'admin_init', 'bp_registration_options_form_actions' );
 
 /**
  * Adds our admin notices with pending users info, for people who can manage users
@@ -214,9 +214,9 @@ add_action( 'admin_init', 'wds_bp_registration_options_form_actions' );
  *
  * @return string  HTML markup for admin notice.
  */
-function wds_bp_registration_options_admin_messages() { /**/
+function bp_registration_options_admin_messages() { /**/
 
-	$member_requests = wds_bp_registration_get_pending_user_count();
+	$member_requests = bp_registration_get_pending_user_count();
 
 	if ( $member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can( 'add_users' ) ) {
 
@@ -245,17 +245,17 @@ function wds_bp_registration_options_admin_messages() { /**/
 		echo $message;
 	}
 }
-add_action('admin_notices', 'wds_bp_registration_options_admin_messages');
+add_action('admin_notices', 'bp_registration_options_admin_messages');
 
 /**
  * Register our plugins menus
  *
  * @since  unknown
  */
-function wds_bp_registration_options_plugin_menu() { /**/
+function bp_registration_options_plugin_menu() { /**/
 	global $blog_id;
 
-	$member_requests = wds_bp_registration_get_pending_user_count();
+	$member_requests = bp_registration_get_pending_user_count();
 
 	if ( $blog_id == 1 ) {
 
@@ -300,7 +300,7 @@ function wds_bp_registration_options_plugin_menu() { /**/
 		);*/
 	}
 }
-add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
+add_action( 'admin_menu', 'bp_registration_options_plugin_menu' );
 
 /**
  * Create our tab navigation between setting pages
@@ -311,9 +311,9 @@ add_action( 'admin_menu', 'wds_bp_registration_options_plugin_menu' );
  *
  * @return string        HTML markup for the tab navigation
  */
-function wds_bp_registration_options_tab_menu( $page = '' ) { /**/
+function bp_registration_options_tab_menu( $page = '' ) { /**/
 
-	$member_requests = wds_bp_registration_get_pending_user_count(); ?>
+	$member_requests = bp_registration_get_pending_user_count(); ?>
 
 	<h2 class="nav-tab-wrapper">
 	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
@@ -365,7 +365,7 @@ function bp_registration_options_settings() { /**/
 	?>
 
 	<div class="wrap gensettings">
-		<?php wds_bp_registration_options_tab_menu(); ?>
+		<?php bp_registration_options_tab_menu(); ?>
 
 		<form method="post">
 			<?php wp_nonce_field('bp_reg_options_check'); ?>
@@ -450,9 +450,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 
 	<div class="wrap">
 		<?php
-		wds_bp_registration_options_tab_menu( 'requests' );
+		bp_registration_options_tab_menu( 'requests' );
 
-		$member_requests = wds_bp_registration_get_pending_user_count();
+		$member_requests = bp_registration_get_pending_user_count();
 
 		if ( $member_requests > 0 ) { ?>
 
@@ -487,7 +487,7 @@ function bp_registration_options_member_requests() { /**/ ?>
 			$total_pages = ceil( $member_requests / 20 ); //TODO: Test pagination
 			$start_from = ( $page - 1 ) * 20;
 
-			$pending_users = wds_bp_registration_get_pending_users( $start_from );
+			$pending_users = bp_registration_get_pending_users( $start_from );
 
 			foreach( $pending_users as $pending ) {
 				if ( class_exists( 'BP_Core_User' ) ) {
@@ -603,7 +603,7 @@ function bp_registration_options_banned() {
 	<div class="wrap">
 	<?php
 
-	wds_bp_registration_options_tab_menu( 'banned' );
+	bp_registration_options_tab_menu( 'banned' );
 
 	$blockedIPs = get_option( 'bprwg_blocked_ips' );
 	$blockedemails = get_option( 'bprwg_blocked_emails' );
@@ -698,7 +698,7 @@ function bp_registration_options_help_support() {
 	//NEEDS DONE
 	?>
 	<div class="wrap">
-		<?php wds_bp_registration_options_tab_menu( 'help' );?>
+		<?php bp_registration_options_tab_menu( 'help' );?>
 	</div>
 	<?php bp_registration_options_admin_footer();
 }
