@@ -102,7 +102,7 @@ add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_act
  *
  * @return object        Amended arguments with IDs to exclude.
  */
-function bp_registration_hide_pending_members( $args ) {
+function wds_bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
 
 	$ids = array();
