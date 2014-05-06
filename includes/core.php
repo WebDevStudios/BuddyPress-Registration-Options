@@ -12,16 +12,16 @@
  *
  * @return string  HTML message
  */
-function wds_bp_registration_options_bp_after_activate_content() {
+function bp_registration_options_bp_after_activate_content() {
 	$user = get_current_user_id();
 
-	if ( isset( $_GET['key'] ) || wds_bp_registration_get_moderation_status( $user ) ) {
+	if ( isset( $_GET['key'] ) || bp_registration_get_moderation_status( $user ) ) {
 		$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
 		echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
 	}
 }
-add_filter( 'bp_after_activate_content', 'wds_bp_registration_options_bp_after_activate_content' );
-add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_activate_content' );
+add_filter( 'bp_after_activate_content', 'bp_registration_options_bp_after_activate_content' );
+add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activate_content' );
 
 /**
  * Set up our user upon activation, email appropriate people
@@ -30,7 +30,7 @@ add_filter( 'bp_before_member_header', 'wds_bp_registration_options_bp_after_act
  *
  * @param  integer  $user_id User ID
  */
-function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
+function bp_registration_options_bp_core_activate_account( $user_id ) {
 
 	$private_network = get_option( 'bprwg_privacy_network' );
 
@@ -44,7 +44,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 				return;
 			}*/
 
-			wds_bp_registration_set_moderation_status( $user_id );
+			bp_registration_set_moderation_status( $user_id );
 
 			$user = get_userdata( $user_id );
 			$admin_email = get_bloginfo( 'admin_email' );
@@ -72,7 +72,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 			}*/
 
 			//Set them as in moderation.
-			wds_bp_registration_set_moderation_status( $user_id );
+			bp_registration_set_moderation_status( $user_id );
 
 			//save user ip address
 			update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
@@ -91,7 +91,7 @@ function wds_bp_registration_options_bp_core_activate_account( $user_id ) {
 		}
 	}
 }
-add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_activate_account');
+add_action( 'bp_core_activate_account', 'bp_registration_options_bp_core_activate_account');
 
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
@@ -102,7 +102,7 @@ add_action( 'bp_core_activate_account', 'wds_bp_registration_options_bp_core_act
  *
  * @return object        Amended arguments with IDs to exclude.
  */
-function wds_bp_registration_hide_pending_members( $args ) {
+function bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
 
 	$ids = array();
@@ -121,19 +121,19 @@ function wds_bp_registration_hide_pending_members( $args ) {
 	return $args;
 
 }
-add_action( 'bp_pre_user_query_construct', 'wds_bp_registration_hide_pending_members' );
+add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
 
 /**
  * Check if current user should be denied access or not
  *
  * @since  4.2.0
  */
-function wds_bp_registration_deny_access() {
+function bp_registration_deny_access() {
 
 	$user = new WP_User( get_current_user_id() );
 	$private_network = get_option( 'bprwg_privacy_network' );
 
-	if ( wds_buddypress_allowed_areas() || wds_bbpress_allowed_areas() || !$private_network ) {
+	if ( bp_registration_buddypress_allowed_areas() || bp_registration_bbpress_allowed_areas() || !$private_network ) {
 		return;
 	}
 
@@ -151,7 +151,7 @@ function wds_bp_registration_deny_access() {
 
 	//Logged in user but moderated.
 	if ( $user->ID > 0 ) {
-		if ( wds_bp_registration_get_moderation_status( $user->ID ) ) {
+		if ( bp_registration_get_moderation_status( $user->ID ) ) {
 			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 				wp_redirect( bp_core_get_user_domain( $user->ID ) );
 				exit;
@@ -163,7 +163,7 @@ function wds_bp_registration_deny_access() {
 		}
 	}
 }
-add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
+add_action( 'template_redirect', 'bp_registration_deny_access' );
 
 /**
  * Check if on an allowed bbPress component
@@ -172,7 +172,7 @@ add_action( 'template_redirect', 'wds_bp_registration_deny_access' );
  *
  * @return boolean  true if an allowed component, false otherwise
  */
-function wds_bbpress_allowed_areas() {
+function bp_registration_bbpress_allowed_areas() {
 
 	if ( !function_exists( 'bbp_is_single_user_edit' ) ) { return false; }
 
@@ -190,7 +190,7 @@ function wds_bbpress_allowed_areas() {
  *
  * @return boolean  true if an allowed component, false otherwise
  */
-function wds_buddypress_allowed_areas() {
+function bp_registration_buddypress_allowed_areas() {
 
 	if ( !function_exists( 'bp_is_my_profile' ) ) { return false; }
 
@@ -212,7 +212,7 @@ function wds_buddypress_allowed_areas() {
  *
  * @return boolean           Whether or not they're in moderation status.
  */
-function wds_bp_registration_get_moderation_status( $user_id ) {
+function bp_registration_get_moderation_status( $user_id ) {
 	$moderated = get_user_meta( $user_id, '_bprwg_is_moderated', true );
 
 	if ( 'true' == $moderated ) {
@@ -231,6 +231,6 @@ function wds_bp_registration_get_moderation_status( $user_id ) {
  *
  * @return integer           meta row ID that got updated.
  */
-function wds_bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
+function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
 	return update_user_meta( absint( $user_id ), '_bprwg_is_moderated', $status );
 }
