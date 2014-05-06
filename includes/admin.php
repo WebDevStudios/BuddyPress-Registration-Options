@@ -16,12 +16,12 @@ function bp_registration_get_pending_user_count() { /**/
 
 		$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
 
-		set_transient( 'bpro_user_count', $rs, 60*5 );
-
 		if ( !empty( $rs ) ) {
-			return absint( $rs[0] );
+			set_transient( 'bpro_user_count', $rs, 60*5 );
 		}
 	}
+
+	return ( $rs ) ? $rs[0] : '0';
 }
 
 /**
