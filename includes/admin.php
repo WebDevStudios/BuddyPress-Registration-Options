@@ -558,11 +558,16 @@ function bp_registration_options_member_requests() { /**/ ?>
 			<input type="submit" class="button button-secondary" name="moderate" disabled value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
 
 			<?php if ( $total_pages > 1 ) {
-				echo '<h3>';
+				$current = ( !empty( $_GET['p'] ) ) ? $_GET['p'] : 1;
+				echo '<p>';
 				for ( $i = 1; $i <= $total_pages; $i++ ) {
-					echo "<a href='" . add_query_arg( 'p', $i ) . "'>" . $i . "</a> ";
+					if ( $i == $current ) {
+						echo '<a class="bpro_current wp-ui-highlight" href="' . add_query_arg( 'p', $i ) . '">' . $i . '</a> ';
+					} else {
+						echo '<a href="' . add_query_arg( 'p', $i ) . '">' . $i . '</a> ';
+					}
 				}
-				echo '</h3>';
+				echo '</p>';
 			}
 
 			do_action( 'bpro_hook_after_pending_member_list' ); ?>
