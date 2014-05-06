@@ -359,6 +359,8 @@ function bp_registration_options_settings() { /**/
 		<form method="post">
 			<?php wp_nonce_field('bp_reg_options_check'); ?>
 
+			<?php do_action('bpro_hook_before_general_settings_form'); ?>
+
 			<p>
 				<input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>
 				<label for="bp_moderate">
@@ -417,7 +419,7 @@ function bp_registration_options_settings() { /**/
 				</tr>
 			</table>
 
-			<?php do_action('bp_registration_options_general_settings_form');?>
+			<?php do_action('bpro_hook_after_general_settings_form'); ?>
 
 			<input type="submit" class="button button-primary" name="save_general" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
 		</form>
@@ -445,6 +447,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 
 			<form method="POST" name="bprwg">
 			<?php
+
+			do_action( 'bpro_hook_before_pending_member_list' );
+
 			wp_nonce_field( 'bp_reg_options_check' ); ?>
 
 			<p><?php _e( 'Please approve or deny the following new members:', 'bp-registration-options' ); ?></p>
@@ -560,7 +565,7 @@ function bp_registration_options_member_requests() { /**/ ?>
 				echo '</h3>';
 			}
 
-			do_action( 'bp_registration_options_member_request_form' ); ?>
+			do_action( 'bpro_hook_after_pending_member_list' ); ?>
 
 			</form>
 
@@ -690,6 +695,9 @@ function bp_registration_options_help_support() {
  * @return string  HTML markup output.
  */
 function bp_registration_options_admin_footer() { /**/
+
+	echo do_action( 'bpro_hook_before_footer' );
+
 	?>
 	<p style="margin-top: 50px;">
 		<?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?>
@@ -746,6 +754,7 @@ function bp_registration_options_admin_footer() { /**/
 		</tr>
 	</table>
 <?php
+	echo do_action( 'bpro_hook_after_footer' );
 }
 
 /**
