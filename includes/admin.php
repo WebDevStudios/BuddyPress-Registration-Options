@@ -164,14 +164,20 @@ function wds_bp_registration_options_form_actions() {
 					$successEmail = update_option( 'bprwg_blocked_emails', $blockedemails );
 				}*/
 
+				do_action( 'bpro_hook_denied_user_before_delete', $user_id );
+
 				if ( is_multisite() ) {
 					wpmu_delete_user( $user_id );
 				} else {
 					wp_delete_user( $user_id );
 				}
 
+				do_action( 'bpro_hook_denied_user_after_delete', $user_id );
+
 			} elseif ( 'Approve' == $action ) {
 				wds_bp_registration_set_moderation_status( $user_id, 'false' );
+
+				do_action( 'bpro_hook_approved_user', $user_id );
 			}
 
 			//only send out message if one exists
