@@ -851,6 +851,13 @@ function bp_registration_options_set_content_type( $content_type ) { /**/
 	return 'text/html';
 }
 
+/**
+ * Delete user count transient as needed.
+ *
+ * @since  4.2.0
+ *
+ * @return boolean  True on success, false on failure
+ */
 function bp_registration_options_delete_user_count_transient() {
-	delete_transient( 'bpro_user_count' );
+	return delete_transient( 'bpro_user_count' );
 }
