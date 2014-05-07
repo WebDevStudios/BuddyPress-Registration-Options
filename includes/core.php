@@ -230,3 +230,28 @@ function bp_registration_get_moderation_status( $user_id ) {
 function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
 	return update_user_meta( absint( $user_id ), '_bprwg_is_moderated', $status );
 }
+
+/**
+ * Send an email to the administrator email upon new user registration
+ *
+ * @since  4.2.0
+ *
+ * @param  array   $args Array of arguments for the email
+ */
+function bp_registration_options_send_admin_email( $args = array() ) {
+
+	$args = wp_parse_args( $args, array(
+		'user_login' => '',
+		'user_email' => '',
+		'message'    => '',
+	) );
+
+	$admin_email = get_bloginfo( 'admin_email' );
+
+	//add our filter and provide the user name and user email for them to utilize.
+	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
+
+	wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
+
+	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+}
