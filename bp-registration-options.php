@@ -13,6 +13,7 @@ class BP_Registration_Options {
 
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
+		require_once( $this->directory_path . 'includes/compatibility.php' );
 
 		add_action( 'init', array( &$this, 'load_textdomain' ) );
 	}
