@@ -34,6 +34,7 @@ function bp_registration_options_init() {
 	   ) {
 		require( dirname( __FILE__ ) . '/bp-registration-options.php' );
 		$bp_registration_options = new BP_Registration_Options;
+		$bp_registration_compatibility = new BP_Registration_Compatibility;
 	}
 
 }
