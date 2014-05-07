@@ -77,17 +77,13 @@ function bp_registration_options_bp_core_activate_account( $user_id ) {
 			//save user ip address
 			update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
-			//email admin about new member request
-            $user_name      = $user->user_login;
-            $user_email     = $user->user_email;
-            $message        = $user_name . ' ( ' . $user_email . ' ) ' . __( 'would like to become a member of your website, to accept or reject their request please go to ', 'bp-registration-options' ) . admin_url( '/admin.php?page=bp_registration_options_member_requests' );
-
-			//add our filter and provide the user name and user email for them to utilize.
-			$mod_email = apply_filters( 'bprwg_new_member_request_admin_email', $message, $user_name, $user_email );
-
-			wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
-
-			remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+			bp_registration_options_send_admin_email(
+				array(
+					'user_login' => $user->user_login,
+					'user_email' => $user->user_email,
+					'message'    => $user_name . ' ( ' . $user_email . ' ) ' . __( 'would like to become a member of your website, to accept or reject their request please go to ', 'bp-registration-options' ) . admin_url( '/admin.php?page=bp_registration_options_member_requests' )
+				)
+			);
 		}
 	}
 }
