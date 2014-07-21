@@ -278,7 +278,9 @@ function bp_registration_options_plugin_menu() { /**/
 
 	if ( $blog_id == $check_blog_id ) {
 
-		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', 'manage_options' );
+		$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
+
+		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 
 		add_menu_page(
 			__( 'BP Registration', 'bp-registration-options' ),
