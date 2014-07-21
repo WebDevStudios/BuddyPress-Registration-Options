@@ -36,7 +36,6 @@ class BP_Registration_Options {
 	 * Deactivation hook for the plugin.
 	 */
 	function deactivate() {
-		global $wp_rewrite;
 		flush_rewrite_rules();
 	}
 
