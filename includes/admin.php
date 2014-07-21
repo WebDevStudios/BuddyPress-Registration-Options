@@ -818,6 +818,16 @@ function bp_registration_options_css() { /**/
 add_action( 'admin_head', 'bp_registration_options_css' );
 
 /**
+ * Add our core plugin CSS
+ *
+ * @since 4.2.0
+ */
+function bp_registration_options_stylesheet() {
+	wp_enqueue_style( 'bp-registration-options-stylesheet', plugins_url( 'assets/bp-registration-options.css', dirname( __FILE__ ) ) );
+}
+add_action( 'admin_enqueue_scripts', 'bp_registration_options_stylesheet' );
+
+/**
  * Add JS to our admin_footer output for DOM manipulation purposes
  *
  * @since  unknown
