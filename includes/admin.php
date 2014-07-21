@@ -594,9 +594,17 @@ function bp_registration_options_member_requests() { /**/ ?>
 				echo '<p>';
 				for ( $i = 1; $i <= $total_pages; $i++ ) {
 					if ( $i == $current ) {
-						echo '<a class="bpro_current wp-ui-highlight" href="' . add_query_arg( 'p', $i ) . '">' . $i . '</a> ';
+						printf(
+							'<a class="bpro_current wp-ui-highlight" href="%s">%s</a>',
+							add_query_arg( 'p', $i ),
+							$i
+						);
 					} else {
-						echo '<a href="' . add_query_arg( 'p', $i ) . '">' . $i . '</a> ';
+						printf(
+							'<a href="%s">%s</a>',
+							add_query_arg( 'p', $i ),
+							$i
+						);
 					}
 				}
 				echo '</p>';
