@@ -516,11 +516,13 @@ function bp_registration_options_member_requests() { /**/ ?>
 				$user_data = get_userdata( $pending->user_id );
 				$userip = trim( get_user_meta( $pending->user_id, '_bprwg_ip_address', true ) );
 
-				if ( $odd ) {
-					echo '<tr class="alternate">';
+				if ( $odd ) { ?>
+					<tr class="alternate">
+					<?php
 					$odd = false;
-				} else {
-					echo '<tr>';
+				} else { ?>
+					<tr>
+					<?php
 					$odd = true;
 				}
 				?>
