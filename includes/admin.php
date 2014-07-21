@@ -693,11 +693,13 @@ function bp_registration_options_banned() {
 		$odd = true;
 
 		foreach( $blockedemails as $email ) {
-			if ( $odd ) {
-				echo '<tr class="alternate">';
+			if ( $odd ) { ?>
+				<tr class="alternate">
+				<?php
 				$odd = false;
-			} else {
-				echo '<tr>';
+			} else { ?>
+				<tr>
+				<?php
 				$odd = true;
 			}
 			?>
