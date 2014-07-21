@@ -810,14 +810,10 @@ function bp_registration_options_admin_footer() { /**/
  * @return string  CSS style block.
  */
 function bp_registration_options_css() { /**/
-	echo '<style>';
-		$styles = '
-			.gensettings textarea { height: 100px; width: 500px; };
-			.bpro_current { text-decoration: none; }';
-
-		echo apply_filters( 'bpro_hook_admin_styles', $styles );
-
-	echo '</style>';
+	$styles = apply_filters( 'bpro_hook_admin_styles', '' );
+	if ( !empty( $styles ) ) {
+		echo '<style>' . $styles . '</style>';
+	}
 }
 add_action( 'admin_head', 'bp_registration_options_css' );
 
