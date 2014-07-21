@@ -11,10 +11,6 @@ class BP_Registration_Compatibility {
 
 	}
 
-	public function rename_me() {
-
-	}
-
 	/*
 	Adds compatibility to http://wordpress.org/plugins/wp-fb-autoconnect/
 	 */
