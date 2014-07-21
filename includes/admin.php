@@ -803,7 +803,7 @@ function bp_registration_options_admin_footer() { /**/
 }
 
 /**
- * Add CSS to our admin_head output for styling purposes.
+ * Add User-provided CSS to our admin_head output for styling purposes.
  *
  * @since  4.2.0
  *
