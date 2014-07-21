@@ -409,7 +409,7 @@ function bp_registration_options_settings() { /**/
 
 			<table>
 				<tr>
-					<td align="right" valign="top">
+					<td class="alignright">
 						<?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
@@ -417,7 +417,7 @@ function bp_registration_options_settings() { /**/
 					</td>
 				</tr>
 				<tr>
-					<td align="right" valign="top">
+					<td class="alignright">
 						<?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
@@ -425,7 +425,7 @@ function bp_registration_options_settings() { /**/
 					</td>
 				</tr>
 				<tr>
-					<td align="right" valign="top">
+					<td class="alignright">
 						<?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?>
 					</td>
 					<td>
@@ -434,13 +434,13 @@ function bp_registration_options_settings() { /**/
 				</tr>
 				<tr>
 					<td></td>
-					<td align="right">
+					<td class="alignright">
 						<table width="100%">
 							<tr>
 								<td>
 									<?php _e( 'Short Code Key: [username]', 'bp-registration-options' ); ?>
 								</td>
-								<td align="right">
+								<td class="alignright">
 									<input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" />
 								</td>
 							</tr>
