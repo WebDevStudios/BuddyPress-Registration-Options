@@ -744,7 +744,7 @@ function bp_registration_options_admin_footer() { /**/
 	echo do_action( 'bpro_hook_before_footer' );
 
 	?>
-	<p style="margin-top: 50px;">
+	<p class="createdby">
 		<?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?>
 		<a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a>
 	</p>
