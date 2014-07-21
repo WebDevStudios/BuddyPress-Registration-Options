@@ -7,7 +7,7 @@
  *
  * @return integer  count of our current pending users
  */
-function bp_registration_get_pending_user_count() { /**/
+function bp_registration_get_pending_user_count() {
 
 	if ( false === ( $rs = get_transient( 'bpro_user_count' ) ) ) {
 		global $wpdb;
@@ -33,7 +33,7 @@ function bp_registration_get_pending_user_count() { /**/
  *
  * @return array              Array of user ID objects or empty array.
  */
-function bp_registration_get_pending_users( $start_from = 0 ) { /**/
+function bp_registration_get_pending_users( $start_from = 0 ) {
 	global $wpdb;
 
 	$sql = "
@@ -220,7 +220,7 @@ add_action( 'admin_init', 'bp_registration_options_form_actions' );
  *
  * @return string  HTML markup for admin notice.
  */
-function bp_registration_options_admin_messages() { /**/
+function bp_registration_options_admin_messages() {
 
 	$member_requests = bp_registration_get_pending_user_count();
 
