@@ -878,7 +878,7 @@ add_action( 'admin_footer', 'bp_registration_options_js' );
  *
  * @return string                new content type to use
  */
-function bp_registration_options_set_content_type( $content_type ) { /**/
+function bp_registration_options_set_content_type( $content_type ) {
 	return 'text/html';
 }
 
