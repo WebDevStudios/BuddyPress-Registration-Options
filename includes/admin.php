@@ -263,7 +263,20 @@ function bp_registration_options_plugin_menu() { /**/
 
 	$member_requests = bp_registration_get_pending_user_count();
 
-	if ( $blog_id == 1 ) {
+	$default_check = absint( 1 );
+	$check_blog_id = absint( apply_filters( 'bp_registration_filter_blog_id', $default_check ) );
+
+	//If we're not given a valid blog_id value, reset value back to blog_id 1
+	if ( is_multisite() && absint( 1 ) !== $check_blog_id ) {
+		$sites = wp_get_sites();
+		$available_sites = wp_list_pluck( $sites, 'blog_id' );
+
+		if ( !in_array( $check_blog_id, $available_sites ) ) {
+			$check_blog_id = $default_check;
+		}
+	}
+
+	if ( $blog_id == $check_blog_id ) {
 
 		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', 'manage_options' );
 
