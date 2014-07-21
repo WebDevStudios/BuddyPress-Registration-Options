@@ -133,6 +133,8 @@ function bp_registration_options_form_actions() {
 
 		$checked_members = array();
 		$send = false;
+		$subject = '';
+		$message = '';
 
 		if ( isset( $_POST['bp_member_check'] ) ) {
 			$checked_members = $_POST['bp_member_check'];
