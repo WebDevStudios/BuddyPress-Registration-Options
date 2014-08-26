@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2014-05-05 21:19-0600\n"
-"PO-Revision-Date: 2014-05-05 21:19-0600\n"
+"POT-Creation-Date: 2014-08-26 15:59-0600\n"
+"PO-Revision-Date: 2014-08-26 15:59-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
-"Language: en_EN\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -18,50 +18,50 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-registration-options.php:29
+#: bp-registration-options.php:30
 msgid "This plugin requires WordPress version 3.0 or higher."
 msgstr ""
 
-#: includes/admin.php:142
+#: includes/admin.php:149
 msgid "Membership Denied"
 msgstr ""
 
-#: includes/admin.php:147
+#: includes/admin.php:154
 msgid "Membership Approved"
 msgstr ""
 
-#: includes/admin.php:219
+#: includes/admin.php:236
 #, php-format
 msgid ""
 "You have %s new member request%s that need to be approved or denied. Please "
 "%s to take action"
 msgstr ""
 
-#: includes/admin.php:229
+#: includes/admin.php:246
 msgid "click here"
 msgstr ""
 
-#: includes/admin.php:254 includes/admin.php:255
+#: includes/admin.php:286 includes/admin.php:287
 msgid "BP Registration"
 msgstr ""
 
-#: includes/admin.php:266 includes/admin.php:267
+#: includes/admin.php:298 includes/admin.php:299
 msgid "Member Requests "
 msgstr ""
 
-#: includes/admin.php:308
+#: includes/admin.php:340
 msgid "BP Registration Options"
 msgstr ""
 
-#: includes/admin.php:309
+#: includes/admin.php:341
 msgid "General Settings"
 msgstr ""
 
-#: includes/admin.php:310
+#: includes/admin.php:342
 msgid "Member Requests"
 msgstr ""
 
-#: includes/admin.php:332
+#: includes/admin.php:364
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -69,154 +69,155 @@ msgid ""
 "email notice."
 msgstr ""
 
-#: includes/admin.php:339
+#: includes/admin.php:371
 #, php-format
 msgid ""
 "Hi [username], your member account on %s has been approved! You can now "
 "login and start interacting with the rest of the community..."
 msgstr ""
 
-#: includes/admin.php:348
+#: includes/admin.php:380
 #, php-format
 msgid ""
 "Hi [username], we regret to inform you that your member account on %s has "
 "been denied..."
 msgstr ""
 
-#: includes/admin.php:368
+#: includes/admin.php:400
 msgid "Moderate New Members"
 msgstr ""
 
-#: includes/admin.php:369
+#: includes/admin.php:401
 msgid ""
 "Every new member will have to be approved by an administrator before they "
 "can interact with BuddyPress/bbPress components."
 msgstr ""
 
-#: includes/admin.php:376
+#: includes/admin.php:408
 msgid ""
 "Only registered or approved members can view BuddyPress/bbPress pages "
 "(Private Network)."
 msgstr ""
 
-#: includes/admin.php:383
+#: includes/admin.php:415
 msgid "Activate & Profile Alert Message:"
 msgstr ""
 
-#: includes/admin.php:391
+#: includes/admin.php:423
 msgid "Account Approved Email:"
 msgstr ""
 
-#: includes/admin.php:399
+#: includes/admin.php:431
 msgid "Account Denied Email:"
 msgstr ""
 
-#: includes/admin.php:411
+#: includes/admin.php:443
 msgid "Short Code Key: [username]"
 msgstr ""
 
-#: includes/admin.php:414
+#: includes/admin.php:446
 msgid "Reset Messages"
 msgstr ""
 
-#: includes/admin.php:424
+#: includes/admin.php:456
 msgid "Save Options"
 msgstr ""
 
-#: includes/admin.php:455
+#: includes/admin.php:487
 msgid "Please approve or deny the following new members:"
 msgstr ""
 
-#: includes/admin.php:463 includes/admin.php:547
+#: includes/admin.php:495 includes/admin.php:581
 msgid "Photo"
 msgstr ""
 
-#: includes/admin.php:464 includes/admin.php:548
+#: includes/admin.php:496 includes/admin.php:582
 msgid "Name"
 msgstr ""
 
-#: includes/admin.php:465 includes/admin.php:549
+#: includes/admin.php:497 includes/admin.php:583
 msgid "Email"
 msgstr ""
 
-#: includes/admin.php:466 includes/admin.php:550
+#: includes/admin.php:498 includes/admin.php:584
 msgid "Created"
 msgstr ""
 
-#: includes/admin.php:467 includes/admin.php:551
+#: includes/admin.php:499 includes/admin.php:585
 msgid "Additional Data"
 msgstr ""
 
-#: includes/admin.php:533
+#: includes/admin.php:567
 msgid "City:"
 msgstr ""
 
-#: includes/admin.php:534
+#: includes/admin.php:568
 msgid "IP:"
 msgstr ""
 
-#: includes/admin.php:556
+#: includes/admin.php:590
 msgid "Approve"
 msgstr ""
 
-#: includes/admin.php:557
+#: includes/admin.php:591
 msgid "Deny"
 msgstr ""
 
-#: includes/admin.php:558
+#: includes/admin.php:592
 msgid "Ban"
 msgstr ""
 
-#: includes/admin.php:578
+#: includes/admin.php:620
 msgid "No new members to approve."
 msgstr ""
 
-#: includes/admin.php:602
+#: includes/admin.php:644
 msgid "The following IP addresses are currently banned."
 msgstr ""
 
-#: includes/admin.php:609 includes/admin.php:635
+#: includes/admin.php:651 includes/admin.php:677
 msgid "IP Address"
 msgstr ""
 
-#: includes/admin.php:640
+#: includes/admin.php:682
 msgid "The following Email addresses are currently banned."
 msgstr ""
 
-#: includes/admin.php:648 includes/admin.php:673
+#: includes/admin.php:690 includes/admin.php:717
 msgid "Email Address"
 msgstr ""
 
-#: includes/admin.php:678
+#: includes/admin.php:722
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 
-#: includes/admin.php:708
+#: includes/admin.php:752
 msgid "BuddyPress Registration Options plugin created by"
 msgstr ""
 
-#: includes/admin.php:722 includes/admin.php:745
+#: includes/admin.php:766 includes/admin.php:789
 msgid "Follow"
 msgstr ""
 
-#: includes/admin.php:812
+#: includes/admin.php:862
 msgid "Are you sure you want to deny and delete the checked member(s)?"
 msgstr ""
 
-#: includes/admin.php:815
+#: includes/admin.php:865
 msgid "Are you sure you want to ban and delete the checked member(s)?"
 msgstr ""
 
-#: includes/admin.php:818
+#: includes/admin.php:868
 msgid "Are you sure you want to reset to the default messages?"
 msgstr ""
 
-#: includes/core.php:83
+#: includes/compatibility.php:33 includes/core.php:85
+#, php-format
 msgid ""
-"would like to become a member of your website, to accept or reject their "
-"request please go to "
+"%s ( %s ) would like to become a member of your website. To accept or reject "
+"their request, please go to <a href=\"%s\">%s</a>."
 msgstr ""
 
-#: includes/core.php:88
+#: includes/core.php:260
 msgid "New Member Request"
 msgstr ""
