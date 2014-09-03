@@ -32,9 +32,9 @@ add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activat
  */
 function bp_registration_options_bp_core_activate_account( $user_id ) {
 
-	$private_network = get_option( 'bprwg_privacy_network' );
+	$moderate = get_option( 'bprwg_moderate' );
 
-	if ( $private_network && $user_id > 0 ) {
+	if ( $moderate && $user_id > 0 ) {
 		if ( isset( $_GET['key'] ) ) {
 
 			//Somehow the WP-FB-AutoConnect plugin uses $_GET['key'] as well for user IDs. Let's check if the value returns a user.
