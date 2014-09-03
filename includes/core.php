@@ -91,6 +91,7 @@ function bp_registration_options_bp_core_activate_account( $user_id ) {
 				)
 			);
 		}
+	bp_registration_options_delete_user_count_transient();
 	}
 }
 add_action( 'bp_core_activate_account', 'bp_registration_options_bp_core_activate_account');
