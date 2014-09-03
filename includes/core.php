@@ -241,6 +241,13 @@ function bp_registration_get_moderation_status( $user_id ) {
  * @return integer           meta row ID that got updated.
  */
 function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
+	$user = get_userdata( $user_id );
+
+	if ( ! $user ) {
+		return false;
+	}
+
+	delete_user_meta( $user_id, '_bprwg_is_moderated' );
 	return update_user_meta( absint( $user_id ), '_bprwg_is_moderated', $status );
 }
 
