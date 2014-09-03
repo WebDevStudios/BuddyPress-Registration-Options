@@ -73,15 +73,19 @@ function bp_registration_handle_reset_messages() {
  */
 function bp_registration_handle_general_settings( $args = array() ) {
 	//Handle saving our moderate setting
-	if ( isset( $args['set_moderate'] ) ) {
+	if ( !empty( $args['set_moderate'] ) ) {
 		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
 		update_option( 'bprwg_moderate', $bp_moderate );
+	} else {
+		delete_option( 'bprwg_moderate' );
 	}
 
 	//Handle saving our private network setting
-	if ( isset( $args['set_private'] ) ) {
+	if ( !empty( $args['set_private'] ) ) {
 		$privacy_network = sanitize_text_field( $args['set_private'] );
 		update_option( 'bprwg_privacy_network', $privacy_network );
+	} else {
+		delete_option( 'bprwg_privacy_network' );
 	}
 
 	$activate_message = sanitize_text_field( $args['activate_message'] );
