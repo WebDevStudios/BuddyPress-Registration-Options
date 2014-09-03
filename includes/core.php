@@ -108,6 +108,12 @@ add_action( 'bp_core_activate_account', 'bp_registration_options_bp_core_activat
 function bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
 
+	$private_network = get_option( 'bprwg_privacy_network' );
+
+	if ( empty( $private_network ) || ! $private_network ) {
+		return;
+	}
+
 	$ids = array();
 
 	$sql = "SELECT user_id FROM " . $wpdb->prefix . "usermeta WHERE meta_key = '_bprwg_is_moderated' AND meta_value = %s";
