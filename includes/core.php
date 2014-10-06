@@ -14,10 +14,13 @@
  */
 function bp_registration_options_bp_after_activate_content() {
 	$user = get_current_user_id();
+	$moderate = get_option( 'bprwg_moderate' );
 
 	if ( isset( $_GET['key'] ) || bp_registration_get_moderation_status( $user ) ) {
-		$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
-		echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
+		if ( $moderate ) {
+			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
+			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
+		}
 	}
 }
 add_filter( 'bp_after_activate_content', 'bp_registration_options_bp_after_activate_content' );
