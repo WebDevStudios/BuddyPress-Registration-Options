@@ -136,6 +136,49 @@ function bp_registration_hide_pending_members( $args ) {
 add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members' );
 
 /**
+ * Hide BP posting UI components for private networks.
+ *
+ * @since 4.2.1
+ */
+function bp_registration_hide_ui() {
+
+	$user = get_current_user_id();
+	$private_network = get_option( 'bprwg_privacy_network' );
+	$moderate = get_option( 'bprwg_moderate' );
+
+	if ( empty( $private_network ) || ! $private_network ) {
+		return;
+	}
+
+	if ( empty( $moderate ) || ! $moderate ) {
+		return;
+	}
+
+	if ( ! bp_registration_get_moderation_status( $user ) ) {
+		return;
+	}
+
+	add_filter( 'bp_activity_can_favorite', '__return_false' );
+	//hide friend buttons
+	add_filter( 'bp_get_add_friend_button', '__return_false' );
+	add_filter( 'bp_get_send_public_message_button', '__return_false' );
+	add_filter( 'bp_get_send_message_button', '__return_false' );
+
+	//hide group buttons
+	add_filter( 'bp_user_can_create_groups', '__return_false' );
+	add_filter( 'bp_get_group_join_button', '__return_false' );
+
+	//hide activity comment buttons
+	add_filter( 'bp_activity_can_comment_reply', '__return_false' );
+	add_filter( 'bp_activity_can_comment', '__return_false' );
+	add_filter( 'bp_acomment_name', '__return_false' );
+
+	add_filter( 'bbp_current_user_can_access_create_reply_form', '__return_false' );
+	add_filter( 'bbp_current_user_can_access_create_topic_form', '__return_false' );
+}
+add_action( 'bp_ready', 'bp_registration_hide_ui' );
+
+/**
  * Check if current user should be denied access or not
  *
  * @since  4.2.0
