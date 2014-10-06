@@ -186,9 +186,9 @@ add_action( 'bp_ready', 'bp_registration_hide_ui' );
 function bp_registration_deny_access() {
 
 	$user = new WP_User( get_current_user_id() );
-	$private_network = get_option( 'bprwg_privacy_network' );
+	$moderate = get_option( 'bprwg_privacy_network' );
 
-	if ( bp_registration_buddypress_allowed_areas() || bp_registration_bbpress_allowed_areas() || !$private_network ) {
+	if ( bp_registration_buddypress_allowed_areas() || bp_registration_bbpress_allowed_areas() || ! $moderate ) {
 		return;
 	}
 
