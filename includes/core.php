@@ -33,7 +33,7 @@ add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activat
  *
  * @param  integer  $user_id User ID
  */
-function bp_registration_options_bp_core_activate_account( $user_id ) {
+function bp_registration_options_bp_core_register_account( $user_id ) {
 
 	$moderate = get_option( 'bprwg_moderate' );
 
@@ -97,7 +97,7 @@ function bp_registration_options_bp_core_activate_account( $user_id ) {
 	bp_registration_options_delete_user_count_transient();
 	}
 }
-add_action( 'bp_core_activate_account', 'bp_registration_options_bp_core_activate_account');
+add_action( 'user_register', 'bp_registration_options_bp_core_register_account');
 
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
