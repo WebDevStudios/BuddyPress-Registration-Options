@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 4.2.1
+Stable tag: 4.2.2
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -34,6 +34,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.2.2 =
+* Changed hooks for when setting "moderated" status. Hoping this one catches all incoming, spam or human.
+* Removed some checks that were producing unintended positives for bbPress.
 
 = 4.2.1 =
 * Fix with moderation coming through inaccurately. Sorry about that everyone.
@@ -103,6 +107,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 
 == Upgrade Notice ==
+
+= 4.2.2 =
+* Changed hooks for when setting "moderated" status. Hoping this one catches all incoming, spam or human.
+* Removed some checks that were producing unintended positives for bbPress.
 
 = 4.2.1 =
 * Fix with moderation coming through inaccurately. Sorry about that everyone.
