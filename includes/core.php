@@ -29,7 +29,7 @@ add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activat
 /**
  * Set up our user upon activation, email appropriate people
  *
- * @since  unknown
+ * @since  4.2.2
  *
  * @param  integer  $user_id User ID
  */
