@@ -186,32 +186,39 @@ function bp_registration_deny_access() {
 	$user = new WP_User( get_current_user_id() );
 	$moderate = (bool) get_option( 'bprwg_privacy_network' );
 
-	if ( bp_registration_buddypress_allowed_areas() || bp_registration_bbpress_allowed_areas() || ! $moderate ) {
-		return;
-	}
+	if ( $moderate ) {
 
-	//Not logged in user.
-	if ( $user->ID == 0 ) {
-		if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-			wp_redirect( get_bloginfo( 'url' ) );
-			exit;
+		if ( bp_registration_buddypress_allowed_areas() ) {
+			return;
 		}
-		if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-			wp_redirect( get_bloginfo( 'url' ) );
-			exit;
-		}
-	}
 
-	//Logged in user but moderated.
-	if ( $user->ID > 0 ) {
-		if ( bp_registration_get_moderation_status( $user->ID ) ) {
+		if ( bp_registration_bbpress_allowed_areas() ) {
+			return;
+		}
+
+		//Not logged in user.
+		if ( $user->ID == 0 ) {
 			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-				wp_redirect( bp_core_get_user_domain( $user->ID ) );
+				wp_redirect( get_bloginfo( 'url' ) );
 				exit;
 			}
 			if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-				wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+				wp_redirect( get_bloginfo( 'url' ) );
 				exit;
+			}
+		}
+
+		//Logged in user but moderated.
+		if ( $user->ID > 0 ) {
+			if ( bp_registration_get_moderation_status( $user->ID ) ) {
+				if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+					wp_redirect( bp_core_get_user_domain( $user->ID ) );
+					exit;
+				}
+				if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
+					wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+					exit;
+				}
 			}
 		}
 	}
