@@ -38,7 +38,6 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 	$moderate = get_option( 'bprwg_moderate' );
 
 	if ( $moderate && $user_id > 0 ) {
-		if ( isset( $_GET['key'] ) ) {
 
 			//Somehow the WP-FB-AutoConnect plugin uses $_GET['key'] as well for user IDs. Let's check if the value returns a user.
 			/*$is_user = get_userdata( $_GET['key'] );
@@ -92,9 +91,9 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 						admin_url( '/admin.php?page=bp_registration_options_member_requests' )
 					)
 				)
-			);
-		}
-	bp_registration_options_delete_user_count_transient();
+			)
+		);
+		bp_registration_options_delete_user_count_transient();
 	}
 }
 add_action( 'user_register', 'bp_registration_options_bp_core_register_account');
