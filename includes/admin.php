@@ -785,15 +785,10 @@ function bp_registration_options_admin_footer() { /**/
 				<table>
 					<tr>
 						<td>
-							<a target="_blank" href="http://webdevstudios.com/team/brian-messenlehner/">
-								<img src="https://lh3.googleusercontent.com/-eCNkGgNdWx8/AAAAAAAAAAI/AAAAAAAAAGQ/kjKbI1XZv3Y/photo.jpg?sz=50" />
-							</a>
+							&nbsp;
 						</td>
 						<td>
 							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
-							<a target="_blank" href="https://plus.google.com/117578069784985312197">
-								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
 							<a target="_blank" href="http://twitter.com/bmess">
 								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
 							</a>
