@@ -20,6 +20,7 @@ define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.2.2' );
  */
 function bp_registration_options_init() {
 
+	# Not using bp_includes because we want to be able to be run with just bbPress as well.
 	if ( function_exists( 'buddypress' ) ) {
 		$bp = buddypress();
 	}
