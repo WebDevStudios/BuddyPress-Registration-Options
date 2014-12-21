@@ -335,3 +335,8 @@ function bp_registration_options_remove_compose_message() {
 	}
 }
 add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
+
+function bp_registration_options_remove_moderated_count( $count ) {
+	return ( $count - absint( bp_registration_get_pending_user_count() ) );
+}
+add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
