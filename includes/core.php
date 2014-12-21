@@ -173,6 +173,7 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bbp_current_user_can_access_create_reply_form', '__return_false' );
 	add_filter( 'bbp_current_user_can_access_create_topic_form', '__return_false' );
+
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
@@ -199,6 +200,7 @@ function bp_registration_deny_access() {
 		//Not logged in user.
 		if ( $user->ID == 0 ) {
 			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+
 				wp_redirect( get_bloginfo( 'url' ) );
 				exit;
 			}
