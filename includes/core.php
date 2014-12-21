@@ -328,3 +328,10 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }
+
+function bp_registration_options_remove_compose_message() {
+	if ( true === bp_registration_get_moderation_status( get_current_user_id() ) ) {
+		bp_core_remove_subnav_item( 'messages', 'compose' );
+	}
+}
+add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
