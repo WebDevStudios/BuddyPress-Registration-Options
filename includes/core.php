@@ -341,7 +341,40 @@ function bp_registration_options_remove_compose_message() {
 }
 add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
 
+/**
+ * Filter our user count to take into account spam members.
+ * @param $count Total active users.
+ *
+ * @return mixed|null|string
+ */
 function bp_registration_options_remove_moderated_count( $count ) {
-	return ( $count - absint( bp_registration_get_pending_user_count() ) );
+
+	$pending_count = bp_registration_get_pending_user_count();
+
+	if ( 0 == $pending_count ) {
+		return $count;
+	}
+
+	global $wpdb;
+
+	$total_count = get_transient( 'bpro_total_user_count' );
+
+	if ( false === $total_count ) {
+
+		$status_sql = "user_status = 0";
+
+		if ( is_multisite() ) {
+			$status_sql = "spam = 0 AND deleted = 0 AND user_status = 0";
+		}
+
+		$total_count = $wpdb->get_var( "SELECT COUNT(ID) FROM {$wpdb->users} WHERE {$status_sql}" );
+
+		set_transient( 'bpro_total_user_count', $total_count, HOUR_IN_SECONDS );
+	}
+
+	$final_count = ( $total_count - $pending_count );
+
+	return ( $final_count > 0 ) ? $final_count : $count;
+
 }
-add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
+#add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
