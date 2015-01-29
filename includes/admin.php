@@ -751,7 +751,7 @@ function bp_registration_options_admin_footer() { /**/
 							</a>
 						</td>
 						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios!</strong><br />
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios</strong><br />
 							<a target="_blank" href="https://plus.google.com/108871619014334838112">
 								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
 							</a>
@@ -772,7 +772,25 @@ function bp_registration_options_admin_footer() { /**/
 							&nbsp;
 						</td>
 						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Michael Beckwith</strong><br />
+							<a target="_blank" href="http://twitter.com/tw2113">
+								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://facebook.com/tw2113">
+								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner</strong><br />
 							<a target="_blank" href="http://twitter.com/bmess">
 								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
 							</a>
