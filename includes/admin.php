@@ -438,6 +438,14 @@ function bp_registration_options_settings() { /**/
 					</td>
 				</tr>
 				<tr>
+					<td class="alignright">
+						<?php _e( 'Admin Pending Email:', 'bp-registration-options' ); ?>
+					</td>
+					<td>
+						<textarea name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
 					<td></td>
 					<td class="alignright">
 						<table width="100%">
