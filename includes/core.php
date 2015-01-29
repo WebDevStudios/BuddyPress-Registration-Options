@@ -79,17 +79,15 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		//save user ip address
 		update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
+		$message = get_option( 'bprwg_admin_pending_message' );
+		$message = str_replace( '[username]', $user->data->user_login, $message );
+		$message = str_replace( '[user_email]', $user->data->user_email, $message );
+
 		bp_registration_options_send_admin_email(
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
-				'message'    => sprintf(
-					__( '%s ( %s ) would like to become a member of your website. To accept or reject their request, please go to <a href="%s">%s</a>.', 'bp-registration-options' ),
-					$user->data->user_nicename,
-					$user->data->user_email,
-					admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
-					admin_url( '/admin.php?page=bp_registration_options_member_requests' )
-				)
+				'message'    => $message
 			)
 		);
 		bp_registration_options_delete_user_count_transient();
