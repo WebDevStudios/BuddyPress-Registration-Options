@@ -116,11 +116,12 @@ function bp_registration_options_form_actions() {
 
 		bp_registration_handle_general_settings(
 			array(
-                'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'] ,
-                'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
-                'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
-                'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
-                'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message']
+				'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'],
+				'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
+				'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
+				'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
+				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
+				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message']
 			)
 		);
 	}
