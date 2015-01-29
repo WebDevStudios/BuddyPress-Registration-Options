@@ -267,63 +267,47 @@ function bp_registration_options_plugin_menu() { /**/
 
 	$member_requests = bp_registration_get_pending_user_count();
 
-	$default_check = absint( 1 );
-	$check_blog_id = absint( apply_filters( 'bp_registration_filter_blog_id', $default_check ) );
+	$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
 
-	//If we're not given a valid blog_id value, reset value back to blog_id 1
-	if ( is_multisite() && absint( 1 ) !== $check_blog_id ) {
-		$sites = wp_get_sites();
-		$available_sites = wp_list_pluck( $sites, 'blog_id' );
+	$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 
-		if ( !in_array( $check_blog_id, $available_sites ) ) {
-			$check_blog_id = $default_check;
-		}
-	}
+	add_menu_page(
+		__( 'BP Registration', 'bp-registration-options' ),
+		__( 'BP Registration', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options',
+		'bp_registration_options_settings',
+		plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
+	);
 
-	if ( $blog_id == $check_blog_id ) {
+	$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
 
-		$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
+	add_submenu_page(
+		'bp_registration_options',
+		__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
+		__( 'Member Requests ', 'bp-registration-options' ) . $count,
+		$minimum_cap,
+		'bp_registration_options_member_requests',
+		'bp_registration_options_member_requests'
+	);
 
-		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
+	/*add_submenu_page(
+		'bp_registration_options',
+		__( 'Banned Sources', 'bp-registration-options' ),
+		__( 'Banned Sources', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options_banned',
+		'bp_registration_options_banned'
+	);*/
 
-		add_menu_page(
-			__( 'BP Registration', 'bp-registration-options' ),
-			__( 'BP Registration', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options',
-			'bp_registration_options_settings',
-			plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
-		);
-
-		$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
-
-		add_submenu_page(
-			'bp_registration_options',
-			__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
-			__( 'Member Requests ', 'bp-registration-options' ) . $count,
-			$minimum_cap,
-			'bp_registration_options_member_requests',
-			'bp_registration_options_member_requests'
-		);
-
-		/*add_submenu_page(
-			'bp_registration_options',
-			__( 'Banned Sources', 'bp-registration-options' ),
-			__( 'Banned Sources', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options_banned',
-			'bp_registration_options_banned'
-		);*/
-
-		/*add_submenu_page(
-			'bp_registration_options',
-			__( 'Help / Support', 'bp-registration-options' ),
-			__( 'Help / Support', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options_help_support',
-			'bp_registration_options_help_support'
-		);*/
-	}
+	/*add_submenu_page(
+		'bp_registration_options',
+		__( 'Help / Support', 'bp-registration-options' ),
+		__( 'Help / Support', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options_help_support',
+		'bp_registration_options_help_support'
+	);*/
 }
 add_action( 'admin_menu', 'bp_registration_options_plugin_menu' );
 
