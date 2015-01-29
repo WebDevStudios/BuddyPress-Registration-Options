@@ -375,7 +375,16 @@ function bp_registration_options_settings() { /**/
 			get_bloginfo( 'url' )
 		);
 
-		update_option( 'bprwg_denied_message', $denied_message);
+		update_option( 'bprwg_denied_message', $denied_message );
+	}
+
+	if ( !$admin_pending_message ) {
+		$admin_pending_message = sprintf(
+			__( '[username] ( [user_email] ) would like to become a member of your website. To accept or reject their request, please go to %s', 'bp-registration-options' ),
+			'<a href="' . admin_url( '/admin.php?page=bp_registration_options_member_requests' ) . '">' . __( 'Member Requests', 'bp-registration-options' ) . '</a>'
+		);
+
+		update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 	}
 	?>
 
