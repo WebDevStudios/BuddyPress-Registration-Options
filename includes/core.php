@@ -343,7 +343,7 @@ add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
 
 /**
  * Filter our user count to take into account spam members.
- * @param $count Total active users.
+ * @param string $count Total active users.
  *
  * @return mixed|null|string
  */
