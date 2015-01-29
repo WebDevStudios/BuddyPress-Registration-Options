@@ -97,6 +97,9 @@ function bp_registration_handle_general_settings( $args = array() ) {
 
 	$denied_message = sanitize_text_field( $args['denied_message'] );
 	update_option( 'bprwg_denied_message', $denied_message );
+
+	$admin_pending_message = sanitize_text_field( $args['admin_pending_message'] );
+	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 }
 
 /**
