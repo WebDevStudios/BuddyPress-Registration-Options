@@ -199,13 +199,15 @@ function bp_registration_deny_access() {
 
 		//Not logged in user.
 		if ( $user->ID == 0 ) {
-			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 
-				wp_redirect( get_bloginfo( 'url' ) );
+			$logged_out_url = apply_filters( 'bprwg_logged_out_redirect_url', get_bloginfo( 'url' ) );
+
+			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+				wp_redirect( $logged_out_url );
 				exit;
 			}
 			if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-				wp_redirect( get_bloginfo( 'url' ) );
+				wp_redirect( $logged_out_url );
 				exit;
 			}
 		}
@@ -214,11 +216,11 @@ function bp_registration_deny_access() {
 		if ( $user->ID > 0 ) {
 			if ( bp_registration_get_moderation_status( $user->ID ) ) {
 				if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-					wp_redirect( bp_core_get_user_domain( $user->ID ) );
+					wp_redirect( apply_filters( 'bprwg_bp_logged_in_redirect_url', bp_core_get_user_domain( $user->ID ) ) );
 					exit;
 				}
 				if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-					wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+					wp_redirect( apply_filters( 'bprwg_bbp_logged_in_redirect_url', bbp_get_user_profile_url( $user->ID ) ) );
 					exit;
 				}
 			}
