@@ -95,7 +95,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		bp_registration_options_delete_user_count_transient();
 	}
 }
-add_action( 'user_register', 'bp_registration_options_bp_core_register_account');
+add_action( 'user_register', 'bp_registration_options_bp_core_register_account' );
 
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
