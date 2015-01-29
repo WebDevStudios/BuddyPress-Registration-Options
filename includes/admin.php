@@ -291,14 +291,14 @@ function bp_registration_options_plugin_menu() { /**/
 		'bp_registration_options_member_requests'
 	);
 
-	/*add_submenu_page(
+	add_submenu_page(
 		'bp_registration_options',
 		__( 'Banned Sources', 'bp-registration-options' ),
 		__( 'Banned Sources', 'bp-registration-options' ),
 		$minimum_cap,
 		'bp_registration_options_banned',
 		'bp_registration_options_banned'
-	);*/
+	);
 
 	add_submenu_page(
 		'bp_registration_options',
