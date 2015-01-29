@@ -347,11 +347,12 @@ function bp_registration_options_tab_menu( $page = '' ) { /**/
 function bp_registration_options_settings() { /**/
 
 	//Check for already saved values.
-    $bp_moderate        = get_option( 'bprwg_moderate' );
-    $privacy_network    = get_option( 'bprwg_privacy_network' );
-    $activate_message   = get_option( 'bprwg_activate_message' );
-    $approved_message   = get_option( 'bprwg_approved_message' );
-    $denied_message     = get_option( 'bprwg_denied_message' );
+	$bp_moderate           = get_option( 'bprwg_moderate' );
+	$privacy_network       = get_option( 'bprwg_privacy_network' );
+	$activate_message      = get_option( 'bprwg_activate_message' );
+	$approved_message      = get_option( 'bprwg_approved_message' );
+	$denied_message        = get_option( 'bprwg_denied_message' );
+	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
 
 	if ( !$activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
