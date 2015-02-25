@@ -16,7 +16,8 @@ function bp_registration_options_bp_after_activate_content() {
 	$user = get_current_user_id();
 	$moderate = get_option( 'bprwg_moderate' );
 
-	if ( isset( $_GET['key'] ) || bp_registration_get_moderation_status( $user ) ) {
+	$activate_screen = ( false === strpos( $_SERVER['REQUEST_URI'], 'activate' ) ) ? false : true;
+	if ( $activate_screen || bp_registration_get_moderation_status( $user ) ) {
 		if ( $moderate ) {
 			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
 			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
@@ -141,41 +142,129 @@ add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members
 function bp_registration_hide_ui() {
 
 	$user = get_current_user_id();
-	$private_network = get_option( 'bprwg_privacy_network' );
-	$moderate = get_option( 'bprwg_moderate' );
-
-	if ( empty( $private_network ) || ! $private_network ) {
-		return;
-	}
+	$moderate = (bool) get_option( 'bprwg_moderate' );
 
 	if ( empty( $moderate ) || ! $moderate ) {
 		return;
+	}
+	$count = bp_registration_get_pending_user_count();
+	if ( absint( $count ) ) {
+		add_filter( 'bp_before_has_members_parse_args', 'bp_registration_hide_widget_members' );
 	}
 
 	if ( ! bp_registration_get_moderation_status( $user ) ) {
 		return;
 	}
 
+	remove_action( 'bp_directory_members_actions', 'bp_member_add_friend_button' );
+
 	add_filter( 'bp_activity_can_favorite', '__return_false' );
 	//hide friend buttons
-	add_filter( 'bp_get_add_friend_button', '__return_false' );
-	add_filter( 'bp_get_send_public_message_button', '__return_false' );
+	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
+	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_message_button', '__return_false' );
+	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
 
 	//hide group buttons
 	add_filter( 'bp_user_can_create_groups', '__return_false' );
-	add_filter( 'bp_get_group_join_button', '__return_false' );
+	add_filter( 'bp_get_group_join_button', '__return_empty_string' );
+	add_filter( 'bp_get_group_create_button', '__return_empty_array' );
 
 	//hide activity comment buttons
 	add_filter( 'bp_activity_can_comment_reply', '__return_false' );
 	add_filter( 'bp_activity_can_comment', '__return_false' );
 	add_filter( 'bp_acomment_name', '__return_false' );
+	add_filter( 'bp_get_activity_delete_link', '__return_empty_string' );
 
 	add_filter( 'bbp_current_user_can_access_create_reply_form', '__return_false' );
 	add_filter( 'bbp_current_user_can_access_create_topic_form', '__return_false' );
+	add_filter( 'bbp_get_topic_reply_link', '__return_empty_string' );
+	add_filter( 'bbp_get_user_subscribe_link', '__return_empty_string' );
+	add_filter( 'bbp_get_user_favorites_link', '__return_empty_string' );
+	add_action( 'bp_before_activity_post_form', 'bp_registration_hide_whatsnew_start' );
+	add_action( 'bp_after_activity_post_form', 'bp_registration_hide_whatsnew_end' );
 
+	add_filter( 'bp_messages_admin_nav', 'bp_registration_hide_messages_adminbar' );
+	add_filter( 'bp_groups_admin_nav', 'bp_registration_hide_groups_adminbar' );
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
+
+/**
+ * Start output buffering before the start of whats new fields.
+ *
+ * @since 4.2.5
+ */
+function bp_registration_hide_whatsnew_start() {
+	ob_start();
+}
+
+/**
+ * Start output buffering after the end of whats new fields.
+ *
+ * @since 4.2.5
+ */
+function bp_registration_hide_whatsnew_end() {
+	ob_end_clean();
+}
+
+/**
+ * Hide interaction menu items from Admin Bar.
+ *
+ * @since 4.2.5
+ *
+ * @param array $items Array of menu items to be displayed.
+ *
+ * @return array $items Filtered menu items.
+ */
+function bp_registration_hide_messages_adminbar( $items = array() ) {
+	foreach( $items as $key => $value ) {
+		if ( 'my-account-messages-compose' == $value['id'] ) {
+			unset( $items[ $key ] );
+			break;
+		}
+	}
+	return $items;
+}
+
+/**
+ * Hide interaction menu items from Admin Bar.
+ *
+ * @since 4.2.5
+ *
+ * @param array $items Array of menu items to be displayed.
+ *
+ * @return array $items Filtered menu items.
+ */
+function bp_registration_hide_groups_adminbar( $items = array() ) {
+	foreach( $items as $key => $value ) {
+		if ( 'my-account-groups-create' == $value['id'] ) {
+			unset( $items[ $key ] );
+			break;
+		}
+	}
+	return $items;
+}
+
+/**
+ * Removes pending users from member listings.
+ *
+ * @since 4.2.5
+ *
+ * @param array $r Query args for member list.
+ *
+ * @return array $r Amended query args.
+ */
+function bp_registration_hide_widget_members( $r = array() ) {
+	$exclude_me = bp_registration_get_pending_users();
+	$excluded = array();
+
+	foreach( $exclude_me as $exclude ) {
+		$excluded[] = $exclude->user_id;
+	}
+	$r['exclude'] = implode( ',', $excluded );
+
+	return $r;
+}
 
 /**
  * Check if current user should be denied access or not
@@ -185,9 +274,9 @@ add_action( 'bp_ready', 'bp_registration_hide_ui' );
 function bp_registration_deny_access() {
 
 	$user = new WP_User( get_current_user_id() );
-	$moderate = (bool) get_option( 'bprwg_privacy_network' );
+	$private_network = (bool) get_option( 'bprwg_privacy_network' );
 
-	if ( $moderate ) {
+	if ( $private_network ) {
 
 		if ( bp_registration_buddypress_allowed_areas() ) {
 			return;
@@ -343,7 +432,7 @@ add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
 
 /**
  * Filter our user count to take into account spam members.
- * @param $count Total active users.
+ * @param string $count Total active users.
  *
  * @return mixed|null|string
  */

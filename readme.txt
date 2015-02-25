@@ -1,11 +1,11 @@
 === BuddyPress Registration Options ===
 
-Contributors: webdevstudios, Messenlehner, jibbius, tw2113
+Contributors: webdevstudios, Messenlehner, tw2113
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 4.2.4
+Stable tag: 4.2.5
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -34,6 +34,14 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.2.5 =
+* Added more hooks to remove UI elements for moderated members.
+* Fixed logic bug that was returning too early in UI hiding if "private network" wasn't checked.
+* Fixed missing message for new users due to changes in BuddyPress registration URLs.
+* Added support for BuddyPress Like and BuddyPress Send Invites plugins.
+* Added transient clearing for pending member count upon user deletion.
+* Known issue: UI elements returning in ajax-refreshed tabs
 
 = 4.2.4 =
 * Remove filter on total user count added in 4.2.3.
@@ -114,6 +122,14 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 
 == Upgrade Notice ==
+
+= 4.2.5 =
+* Added more hooks to remove UI elements for moderated members.
+* Fixed logic bug that was returning too early in UI hiding if "private network" wasn't checked.
+* Fixed missing message for new users due to changes in BuddyPress registration URLs.
+* Added support for BuddyPress Like and BuddyPress Send Invites plugins.
+* Added transient clearing for pending member count upon user deletion.
+* Known issue: UI elements returning in ajax-refreshed tabs
 
 = 4.2.4 =
 * Remove filter on total user count added in 4.2.3. Filter was only displaying active users, not ALL members.

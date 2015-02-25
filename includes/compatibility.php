@@ -9,10 +9,14 @@ class BP_Registration_Compatibility {
 			add_action( 'wpfb_inserted_user', array( $this, 'wp_fb_autoconnect_compat' ) );
 		}
 
+		$this->buddypress_like();
+		$this->buddypress_send_invites();
+
 	}
 
 	/*
-	Adds compatibility to http://wordpress.org/plugins/wp-fb-autoconnect/
+	 * Adds compatibility support for WP-FB-AutoConnect.
+	 * http://wordpress.org/plugins/wp-fb-autoconnect/
 	 */
 	function wp_fb_autoconnect_compat( $fbuser ) {
 
@@ -38,6 +42,54 @@ class BP_Registration_Compatibility {
 				)
 			)
 		);
+	}
+
+	/**
+	 * Adds compatibility support for BuddyPress Like.
+	 * https://wordpress.org/plugins/buddypress-like/
+	 */
+	function buddypress_like() {
+
+		$user = get_current_user_id();
+		$moderate = (bool) get_option( 'bprwg_moderate' );
+
+		if ( empty( $moderate ) || ! $moderate ) {
+			return;
+		}
+
+		if ( ! bp_registration_get_moderation_status( $user ) ) {
+			return;
+		}
+
+		remove_filter( 'bp_activity_entry_meta' , 'bp_like_button', 1000 );
+		remove_filter( 'bp_activity_comment_options' , 'bp_like_button', 1000 );
+		remove_action( 'bp_before_blog_single_post' , 'bp_like_button' , 1000 );
+
+		remove_action( 'bp_activity_filter_options' , 'bp_like_activity_filter' );
+		remove_action( 'bp_group_activity_filter_options' , 'bp_like_activity_filter' );
+		remove_action( 'bp_member_activity_filter_options' , 'bp_like_activity_filter' );
+
+		remove_action( 'bp_setup_nav', 'invite_anyone_setup_nav' );
+	}
+
+	/**
+	 * Adds compatibility support for BuddyPress Invite Anyone.
+	 * https://wordpress.org/plugins/invite-anyone/
+	 */
+	function buddypress_send_invites() {
+
+		$user = get_current_user_id();
+		$moderate = (bool) get_option( 'bprwg_moderate' );
+
+		if ( empty( $moderate ) || ! $moderate ) {
+			return;
+		}
+
+		if ( ! bp_registration_get_moderation_status( $user ) ) {
+			return;
+		}
+
+		remove_action( 'bp_setup_nav', 'invite_anyone_setup_nav' );
 	}
 
 }
