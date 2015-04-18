@@ -56,11 +56,10 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 		//If their IP or email is blocked, don't proceed and exit silently.
-		//$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
-		//$blockedemails = get_option( 'bprwg_blocked_emails', array() );
+		$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+		$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
-		//Warning: in_array() expects parameter 2 to be array, boolean given in /Applications/XAMPP/xamppfiles/htdocs/wp/buddypress/wp-content/plugins/BuddyPress-Registration-Options/includes/core.php on line 50
-		/*if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
+		if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
 			$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
 
 			wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
@@ -68,11 +67,12 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			//Delete their account thus far.
 			if ( is_multisite() ) {
 				wpmu_delete_user( $user_id );
+			} else {
+				wp_delete_user( $user_id );
 			}
-			wp_delete_user( $user_id );
 
 			return;
-		}*/
+		}
 
 		//Set them as in moderation.
 		bp_registration_set_moderation_status( $user_id );
@@ -80,17 +80,15 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		//save user ip address
 		update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
+		$message = get_option( 'bprwg_admin_pending_message' );
+		$message = str_replace( '[username]', $user->data->user_login, $message );
+		$message = str_replace( '[user_email]', $user->data->user_email, $message );
+
 		bp_registration_options_send_admin_email(
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
-				'message'    => sprintf(
-					__( '%s ( %s ) would like to become a member of your website. To accept or reject their request, please go to <a href="%s">%s</a>.', 'bp-registration-options' ),
-					$user->data->user_nicename,
-					$user->data->user_email,
-					admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
-					admin_url( '/admin.php?page=bp_registration_options_member_requests' )
-				)
+				'message'    => $message
 			)
 		);
 		bp_registration_options_delete_user_count_transient();
@@ -288,13 +286,15 @@ function bp_registration_deny_access() {
 
 		//Not logged in user.
 		if ( $user->ID == 0 ) {
-			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 
-				wp_redirect( get_bloginfo( 'url' ) );
+			$logged_out_url = apply_filters( 'bprwg_logged_out_redirect_url', get_bloginfo( 'url' ) );
+
+			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+				wp_redirect( $logged_out_url );
 				exit;
 			}
 			if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-				wp_redirect( get_bloginfo( 'url' ) );
+				wp_redirect( $logged_out_url );
 				exit;
 			}
 		}
@@ -303,11 +303,11 @@ function bp_registration_deny_access() {
 		if ( $user->ID > 0 ) {
 			if ( bp_registration_get_moderation_status( $user->ID ) ) {
 				if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-					wp_redirect( bp_core_get_user_domain( $user->ID ) );
+					wp_redirect( apply_filters( 'bprwg_bp_logged_in_redirect_url', bp_core_get_user_domain( $user->ID ) ) );
 					exit;
 				}
 				if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-					wp_redirect( bbp_get_user_profile_url( $user->ID ) );
+					wp_redirect( apply_filters( 'bprwg_bbp_logged_in_redirect_url', bbp_get_user_profile_url( $user->ID ) ) );
 					exit;
 				}
 			}

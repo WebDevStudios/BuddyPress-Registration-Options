@@ -61,6 +61,7 @@ function bp_registration_handle_reset_messages() {
 	delete_option( 'bprwg_activate_message' );
 	delete_option( 'bprwg_approved_message' );
 	delete_option( 'bprwg_denied_message' );
+	delete_option( 'bprwg_admin_pending_message' );
 
 }
 
@@ -96,6 +97,9 @@ function bp_registration_handle_general_settings( $args = array() ) {
 
 	$denied_message = sanitize_text_field( $args['denied_message'] );
 	update_option( 'bprwg_denied_message', $denied_message );
+
+	$admin_pending_message = sanitize_text_field( $args['admin_pending_message'] );
+	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 }
 
 /**
@@ -112,11 +116,12 @@ function bp_registration_options_form_actions() {
 
 		bp_registration_handle_general_settings(
 			array(
-                'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'] ,
-                'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
-                'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
-                'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
-                'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message']
+				'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'],
+				'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
+				'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
+				'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
+				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
+				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message']
 			)
 		);
 	}
@@ -267,63 +272,47 @@ function bp_registration_options_plugin_menu() { /**/
 
 	$member_requests = bp_registration_get_pending_user_count();
 
-	$default_check = absint( 1 );
-	$check_blog_id = absint( apply_filters( 'bp_registration_filter_blog_id', $default_check ) );
+	$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
 
-	//If we're not given a valid blog_id value, reset value back to blog_id 1
-	if ( is_multisite() && absint( 1 ) !== $check_blog_id ) {
-		$sites = wp_get_sites();
-		$available_sites = wp_list_pluck( $sites, 'blog_id' );
+	$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 
-		if ( !in_array( $check_blog_id, $available_sites ) ) {
-			$check_blog_id = $default_check;
-		}
-	}
+	add_menu_page(
+		__( 'BP Registration', 'bp-registration-options' ),
+		__( 'BP Registration', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options',
+		'bp_registration_options_settings',
+		plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
+	);
 
-	if ( $blog_id == $check_blog_id ) {
+	$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
 
-		$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
+	add_submenu_page(
+		'bp_registration_options',
+		__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
+		__( 'Member Requests ', 'bp-registration-options' ) . $count,
+		$minimum_cap,
+		'bp_registration_options_member_requests',
+		'bp_registration_options_member_requests'
+	);
 
-		$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
+	add_submenu_page(
+		'bp_registration_options',
+		__( 'Banned Sources', 'bp-registration-options' ),
+		__( 'Banned Sources', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options_banned',
+		'bp_registration_options_banned'
+	);
 
-		add_menu_page(
-			__( 'BP Registration', 'bp-registration-options' ),
-			__( 'BP Registration', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options',
-			'bp_registration_options_settings',
-			plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
-		);
-
-		$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
-
-		add_submenu_page(
-			'bp_registration_options',
-			__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
-			__( 'Member Requests ', 'bp-registration-options' ) . $count,
-			$minimum_cap,
-			'bp_registration_options_member_requests',
-			'bp_registration_options_member_requests'
-		);
-
-		/*add_submenu_page(
-			'bp_registration_options',
-			__( 'Banned Sources', 'bp-registration-options' ),
-			__( 'Banned Sources', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options_banned',
-			'bp_registration_options_banned'
-		);*/
-
-		/*add_submenu_page(
-			'bp_registration_options',
-			__( 'Help / Support', 'bp-registration-options' ),
-			__( 'Help / Support', 'bp-registration-options' ),
-			$minimum_cap,
-			'bp_registration_options_help_support',
-			'bp_registration_options_help_support'
-		);*/
-	}
+	add_submenu_page(
+		'bp_registration_options',
+		__( 'Help / Support', 'bp-registration-options' ),
+		__( 'Help / Support', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options_help_support',
+		'bp_registration_options_help_support'
+	);
 }
 add_action( 'admin_menu', 'bp_registration_options_plugin_menu' );
 
@@ -358,11 +347,12 @@ function bp_registration_options_tab_menu( $page = '' ) { /**/
 function bp_registration_options_settings() { /**/
 
 	//Check for already saved values.
-    $bp_moderate        = get_option( 'bprwg_moderate' );
-    $privacy_network    = get_option( 'bprwg_privacy_network' );
-    $activate_message   = get_option( 'bprwg_activate_message' );
-    $approved_message   = get_option( 'bprwg_approved_message' );
-    $denied_message     = get_option( 'bprwg_denied_message' );
+	$bp_moderate           = get_option( 'bprwg_moderate' );
+	$privacy_network       = get_option( 'bprwg_privacy_network' );
+	$activate_message      = get_option( 'bprwg_activate_message' );
+	$approved_message      = get_option( 'bprwg_approved_message' );
+	$denied_message        = get_option( 'bprwg_denied_message' );
+	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
 
 	if ( !$activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
@@ -385,7 +375,16 @@ function bp_registration_options_settings() { /**/
 			get_bloginfo( 'url' )
 		);
 
-		update_option( 'bprwg_denied_message', $denied_message);
+		update_option( 'bprwg_denied_message', $denied_message );
+	}
+
+	if ( !$admin_pending_message ) {
+		$admin_pending_message = sprintf(
+			__( '[username] ( [user_email] ) would like to become a member of your website. To accept or reject their request, please go to %s', 'bp-registration-options' ),
+			'<a href="' . admin_url( '/admin.php?page=bp_registration_options_member_requests' ) . '">' . __( 'Member Requests', 'bp-registration-options' ) . '</a>'
+		);
+
+		update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 	}
 	?>
 
@@ -436,6 +435,14 @@ function bp_registration_options_settings() { /**/
 					</td>
 					<td>
 						<textarea name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="alignright">
+						<?php _e( 'Admin Pending Email:', 'bp-registration-options' ); ?>
+					</td>
+					<td>
+						<textarea name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -767,7 +774,7 @@ function bp_registration_options_admin_footer() { /**/
 							</a>
 						</td>
 						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios!</strong><br />
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios</strong><br />
 							<a target="_blank" href="https://plus.google.com/108871619014334838112">
 								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
 							</a>
@@ -788,7 +795,25 @@ function bp_registration_options_admin_footer() { /**/
 							&nbsp;
 						</td>
 						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner!</strong><br />
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Michael Beckwith</strong><br />
+							<a target="_blank" href="http://twitter.com/tw2113">
+								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+							<a target="_blank" href="http://facebook.com/tw2113">
+								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner</strong><br />
 							<a target="_blank" href="http://twitter.com/bmess">
 								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
 							</a>
