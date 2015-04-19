@@ -193,7 +193,10 @@ function bp_registration_options_form_actions() {
 				bp_registration_options_delete_user_count_transient();
 
 			} elseif ( 'Approve' == $action ) {
+				# Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
+				# Mark as not spam for BuddyPress Core.
+				bp_core_process_spammer_status( $user_id, 'ham' );
 
 				do_action( 'bpro_hook_approved_user', $user_id );
 
