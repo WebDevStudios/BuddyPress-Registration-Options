@@ -602,13 +602,13 @@ function bp_registration_options_member_requests() { /**/ ?>
 					if ( $i == $current ) {
 						printf(
 							'<a class="bpro_current wp-ui-highlight" href="%s">%s</a>',
-							add_query_arg( 'p', $i ),
+							esc_url( add_query_arg( 'p', $i ) ),
 							$i
 						);
 					} else {
 						printf(
 							'<a href="%s">%s</a>',
-							add_query_arg( 'p', $i ),
+							esc_url( add_query_arg( 'p', $i ) ),
 							$i
 						);
 					}
