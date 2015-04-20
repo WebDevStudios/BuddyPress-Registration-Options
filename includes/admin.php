@@ -588,7 +588,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 						</div>
 					</td>
 				</tr>
-			<?php } ?>
+				<?php
+					do_action( 'bpro_hook_after_pending_member_list_item' );
+				} ?>
 			<tfoot>
 				<tr>
 					<th class="manage-column column-cb check-column" scope="col"><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></th>
