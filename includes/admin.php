@@ -890,10 +890,11 @@ add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient
 function bp_registration_options_ip_data( $user_id ) {
 	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
 	?>
+	<div class="ip_address_wrap">
 	<div class="alignleft">
 		<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
 	</div>
-	<div class="alignright">
+	<div class="alignleft">
 		<?php
 			$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
 			if ( !is_wp_error( $response ) ) {
@@ -905,6 +906,7 @@ function bp_registration_options_ip_data( $user_id ) {
 				echo $userip;
 			}
 		?>
+	</div>
 	</div>
 <?php
 }
