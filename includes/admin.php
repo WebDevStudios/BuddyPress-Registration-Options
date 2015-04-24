@@ -520,7 +520,6 @@ function bp_registration_options_member_requests() { /**/ ?>
 				}
 
 				$user_data = get_userdata( $pending->user_id );
-				$userip = trim( get_user_meta( $pending->user_id, '_bprwg_ip_address', true ) );
 
 				if ( $odd ) { ?>
 					<tr class="alternate">
@@ -560,22 +559,7 @@ function bp_registration_options_member_requests() { /**/ ?>
 						<?php echo $user_data->data->user_registered; ?>
 					</td>
 					<td>
-						<div class="alignleft">
-							<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
-						</div>
-						<div class="alignright">
-							<?php
-							$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
-							if ( !is_wp_error( $response ) ) {
-								$data = $response['body'];
-								$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-								$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
-								echo $data;
-							} else {
-								echo $userip;
-							}
-							?>
-						</div>
+						<?php do_action( 'bpro_hook_member_item_additional_data', $pending->user_id ); ?>
 					</td>
 				</tr>
 			<?php } ?>
@@ -895,5 +879,33 @@ function bp_registration_options_set_content_type( $content_type ) {
 function bp_registration_options_delete_user_count_transient() {
 	return delete_transient( 'bpro_user_count' );
 }
-
 add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient' );
+
+/**
+ * Filters the IP data into the user list table.
+ *
+ * @since 4.3.0
+ * @param int $user_id ID of the user being listed.
+ */
+function bp_registration_options_ip_data( $user_id ) {
+	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
+	?>
+	<div class="alignleft">
+		<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
+	</div>
+	<div class="alignright">
+		<?php
+			$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
+			if ( !is_wp_error( $response ) ) {
+				$data = $response['body'];
+				$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
+				$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
+				echo $data;
+			} else {
+				echo $userip;
+			}
+		?>
+	</div>
+<?php
+}
+add_action( 'bpro_hook_member_item_additional_data', 'bp_registration_options_ip_data', 10, 1 );
