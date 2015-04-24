@@ -35,6 +35,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.0 =
+* New hook in pending member "additional data" section for displaying custom data about user.
+
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()
 * Early attempts to prevent ajax refresh appropriately.
@@ -126,6 +129,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 
 == Upgrade Notice ==
+
+= 4.3.0 =
+* New hook in pending member "additional data" section for displaying custom data about user.
 
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()
