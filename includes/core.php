@@ -202,6 +202,11 @@ if ( defined( 'DOING_AJAX' ) AND DOING_AJAX ) {
 		// filter before BP
 		add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 
+	} else {
+
+		// some AJAX requests still come through the 'init' action
+		bp_registration_hide_ui();
+
 	}
 
 } else {
