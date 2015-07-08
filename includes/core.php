@@ -189,7 +189,24 @@ function bp_registration_hide_ui() {
 
 	add_action( 'wp_head', 'bp_registration_options_disable_ajax' );
 }
-add_action( 'bp_ready', 'bp_registration_hide_ui' );
+
+// check for routing via AJAX
+if ( defined( 'DOING_AJAX' ) AND DOING_AJAX ) {
+
+	// test for BP component object
+	if ( ! empty( $_POST['object'] ) ) {
+
+		// sanitise it
+		$object = sanitize_title( $_POST['object'] );
+
+		// filter before BP
+		add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
+
+	}
+
+} else {
+	add_action( 'bp_ready', 'bp_registration_hide_ui' );
+}
 
 function bp_registration_options_disable_ajax() {
 	?>
