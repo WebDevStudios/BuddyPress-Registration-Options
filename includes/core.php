@@ -184,8 +184,6 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bp_messages_admin_nav', 'bp_registration_hide_messages_adminbar' );
 	add_filter( 'bp_groups_admin_nav', 'bp_registration_hide_groups_adminbar' );
-
-	add_action( 'wp_head', 'bp_registration_options_disable_ajax' );
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
@@ -203,16 +201,6 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		# Some AJAX requests still come through the 'init' action
 		bp_registration_hide_ui();
 	}
-}
-
-function bp_registration_options_disable_ajax() {
-	?>
-<script>
-	jQuery(document).ready(function($) {
-		$('.item-list-tabs, .item-list-tabs li, .item-list-tabs a').addClass('no-ajax');
-	});
-</script>
-<?php
 }
 
 /**
