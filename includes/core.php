@@ -189,6 +189,22 @@ function bp_registration_hide_ui() {
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
+if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+	# Test for BP Component object
+	if ( ! empty( $_POST['object'] ) ) {
+		$object = sanitize_title( $_POST['object'] );
+
+		if ( ! bp_is_active( $object ) ) {
+			return;
+		}
+
+		add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
+	} else {
+		# Some AJAX requests still come through the 'init' action
+		bp_registration_hide_ui();
+	}
+}
+
 function bp_registration_options_disable_ajax() {
 	?>
 <script>
