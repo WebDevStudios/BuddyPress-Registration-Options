@@ -192,11 +192,9 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	if ( ! empty( $_POST['object'] ) ) {
 		$object = sanitize_title( $_POST['object'] );
 
-		if ( ! bp_is_active( $object ) ) {
-			return;
+		if ( bp_is_active( $object ) ) {
+			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 		}
-
-		add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 	} else {
 		# Some AJAX requests still come through the 'init' action
 		bp_registration_hide_ui();
