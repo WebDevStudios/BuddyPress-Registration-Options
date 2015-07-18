@@ -440,34 +440,34 @@ function bp_registration_options_settings() { /**/
 			<table>
 				<tr>
 					<td class="alignright">
-						<?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?>
+						<label for="activate_message"><?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
-						<textarea name="activate_message"><?php echo stripslashes( $activate_message );?></textarea>
+						<textarea id="activate_message" name="activate_message"><?php echo stripslashes( $activate_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td class="alignright">
-						<?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?>
+						<label for="approved_message"><?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
-						<textarea name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
+						<textarea id="approved_message" name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td class="alignright">
-						<?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?>
+						<label for="denied_message"><?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
-						<textarea name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
+						<textarea id="denied_message" name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td class="alignright">
-						<?php _e( 'Admin Pending Email:', 'bp-registration-options' ); ?>
+						<label for="admin_pending_message"><?php _e( 'Admin Pending Email:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
-						<textarea name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
+						<textarea id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
