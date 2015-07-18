@@ -35,6 +35,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.2.7 =
+* Fixed issue with widget listing prevention overwriting other potential existing values.
+* Update copy in readme and plugin headings.
+
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()
 * Early attempts to prevent ajax refresh appropriately.
@@ -126,6 +130,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 
 == Upgrade Notice ==
+
+= 4.2.7 =
+* Fixed issue with widget listing prevention overwriting other potential existing values.
+* Update copy in readme and plugin headings.
 
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()
