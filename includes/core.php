@@ -487,3 +487,49 @@ function bp_registration_options_remove_moderated_count( $count ) {
 
 }
 #add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
+
+/**
+ * Adds our setting links to the BuddyPress member menu for our administrators.
+ *
+ * @since 4.3.0
+ *
+ * @return bool
+ */
+function bp_registration_options_admin_bar_add() {
+	global $wp_admin_bar, $bp;
+
+	if ( ! bp_use_wp_admin_bar() || defined( 'DOING_AJAX' ) ) {
+		return false;
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return false;
+	}
+
+	$general_settings = admin_url( 'admin.php?page=bp_registration_options' );
+	$member_requests  = admin_url( 'admin.php?page=bp_registration_options_member_requests' );
+
+	$wp_admin_bar->add_menu( array(
+		'parent' => $bp->my_account_menu_id,
+		'id'     => 'bp-registration-options',
+		'title'  => __( 'BP Registration Options', 'bp-registration-options' ),
+		'meta' => array( 'class' => 'menupop' ),
+		'href'   => $general_settings
+	) );
+
+	# Submenus
+	$wp_admin_bar->add_menu( array(
+		'parent' => 'bp-registration-options',
+		'id'     => 'bp-registration-options-general-settings',
+		'title'  => __( 'General Settings', 'bp-registration-options' ),
+		'href'   => $general_settings
+	) );
+	# Submenus
+	$wp_admin_bar->add_menu( array(
+		'parent' => 'bp-registration-options',
+		'id'     => 'bp-registration-options-member-requests',
+		'title'  => __( 'Member Requests', 'bp-registration-options' ),
+		'href'   => $member_requests
+	) );
+}
+add_action( 'bp_setup_admin_bar', 'bp_registration_options_admin_bar_add', 300 );
