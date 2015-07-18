@@ -72,6 +72,12 @@ function bp_registration_handle_reset_messages() {
 	delete_option( 'bprwg_denied_message' );
 	delete_option( 'bprwg_admin_pending_message' );
 
+	/**
+	 * Fires after we've deleted our four message options
+	 *
+	 * @since 4.3.0
+	 */
+	do_action( 'bpro_hook_after_reset_messages' );
 }
 
 /**
