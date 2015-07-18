@@ -273,7 +273,13 @@ function bp_registration_hide_widget_members( $r = array() ) {
 	foreach( $exclude_me as $exclude ) {
 		$excluded[] = $exclude->user_id;
 	}
-	$r['exclude'] = implode( ',', $excluded );
+
+	# Prevent overwriting of existing exclude values.
+	if ( empty ( $r['exclude'] ) ) {
+		$r['exclude'] = implode( ',', $excluded );
+	} else {
+		$r['exclude'] .= ',' . implode( ',', $excluded );
+	}
 
 	return $r;
 }

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2015-02-25 09:53-0600\n"
-"PO-Revision-Date: 2015-02-25 09:53-0600\n"
+"POT-Creation-Date: 2015-07-18 17:19-0500\n"
+"PO-Revision-Date: 2015-07-18 17:19-0500\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -222,7 +222,7 @@ msgstr ""
 "möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
 "dem folgenden Link folgen"
 
-#: ../includes/core.php:416
+#: ../includes/core.php:434
 msgid "New Member Request"
 msgstr "Neue Mitgliedschafts-Anfrage"
 

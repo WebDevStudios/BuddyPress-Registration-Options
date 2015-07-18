@@ -5,13 +5,13 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 4.2.6
+Stable tag: 4.2.7
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
 == Description ==
 
-Prevent users and bots from accessing your BuddyPress or bbPress sites until they are approved.
+Prevent users and bots from accessing the BuddyPress or bbPress areas of your website(s) until they are approved.
 
 This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision.
 
@@ -37,6 +37,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.0 =
 * New hook in pending member "additional data" section for displaying custom data about user.
+
+= 4.2.7 =
+* Fixed issue with widget listing prevention overwriting other potential existing values.
+* Update copy in readme and plugin headings.
 
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()
@@ -132,6 +136,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.0 =
 * New hook in pending member "additional data" section for displaying custom data about user.
+
+= 4.2.7 =
+* Fixed issue with widget listing prevention overwriting other potential existing values.
+* Update copy in readme and plugin headings.
 
 = 4.2.6 =
 * Preventive measures for potential XSS security issues with add_query_arg()

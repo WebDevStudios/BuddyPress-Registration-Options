@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2015-02-25 09:52-0600\n"
+"POT-Creation-Date: 2015-07-18 17:18-0500\n"
 "PO-Revision-Date: 2015-02-25 09:52-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
@@ -9,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -218,6 +219,6 @@ msgid ""
 "their request, please go to <a href=\"%s\">%s</a>."
 msgstr ""
 
-#: includes/core.php:416
+#: includes/core.php:434
 msgid "New Member Request"
 msgstr ""
