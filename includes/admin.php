@@ -115,6 +115,13 @@ function bp_registration_handle_general_settings( $args = array() ) {
 
 	$admin_pending_message = esc_textarea( $args['admin_pending_message'] );
 	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
+
+	/**
+	 * Fires after we've saved our options
+	 *
+	 * @since 4.3.0
+	 */
+	do_action( 'bpro_hook_after_save_settings' );
 }
 
 /**
