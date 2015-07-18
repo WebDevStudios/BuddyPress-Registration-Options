@@ -46,9 +46,18 @@ function bp_registration_get_pending_users( $start_from = 0 ) {
 		ORDER BY u.user_registered
 		LIMIT %d, 20";
 
-	$rs = $wpdb->get_results( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true', $start_from ) );
+	$results = $wpdb->get_results( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true', $start_from ) );
 
-	return ( !empty( $rs ) ) ? $rs : array();
+	/**
+	 * Filters the results of the pending users.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array $results Array of found pending users.
+	 */
+	$results = apply_filters( 'bpro_hook_get_pending_users', $results );
+
+	return ( !empty( $results ) ) ? $results : array();
 }
 
 /**
