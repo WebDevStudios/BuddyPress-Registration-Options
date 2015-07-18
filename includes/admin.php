@@ -89,16 +89,16 @@ function bp_registration_handle_general_settings( $args = array() ) {
 		delete_option( 'bprwg_privacy_network' );
 	}
 
-	$activate_message = sanitize_text_field( $args['activate_message'] );
+	$activate_message = esc_textarea( $args['activate_message'] );
 	update_option( 'bprwg_activate_message', $activate_message );
 
-	$approved_message = sanitize_text_field( $args['approved_message'] );
+	$approved_message = esc_textarea( $args['approved_message'] );
 	update_option( 'bprwg_approved_message', $approved_message );
 
-	$denied_message = sanitize_text_field( $args['denied_message'] );
+	$denied_message = esc_textarea( $args['denied_message'] );
 	update_option( 'bprwg_denied_message', $denied_message );
 
-	$admin_pending_message = sanitize_text_field( $args['admin_pending_message'] );
+	$admin_pending_message = esc_textarea( $args['admin_pending_message'] );
 	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 }
 
