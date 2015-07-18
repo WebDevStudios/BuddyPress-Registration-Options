@@ -11,7 +11,7 @@ Moderate new BuddyPress members and fight BuddyPress spam.
 
 == Description ==
 
-Prevent users and bots from accessing your BuddyPress or bbPress sites until they are approved.
+Prevent users and bots from accessing the BuddyPress or bbPress areas of your website(s) until they are approved.
 
 This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision.
 
