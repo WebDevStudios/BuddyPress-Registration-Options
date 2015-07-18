@@ -111,7 +111,7 @@ function bp_registration_hide_pending_members( $args ) {
 	$private_network = get_option( 'bprwg_privacy_network' );
 
 	if ( empty( $private_network ) || ! $private_network ) {
-		return;
+		return false;
 	}
 
 	$ids = array();
@@ -531,5 +531,7 @@ function bp_registration_options_admin_bar_add() {
 		'title'  => __( 'Member Requests', 'bp-registration-options' ),
 		'href'   => $member_requests
 	) );
+
+	return true;
 }
 add_action( 'bp_setup_admin_bar', 'bp_registration_options_admin_bar_add', 300 );
