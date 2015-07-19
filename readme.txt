@@ -201,3 +201,23 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 4. Configure your BuddyPress registration options.
 
 == Frequently Asked Questions ==
+
+1. What does this plugin do?
+
+We do our best to prevent unmoderated users from being able to interact or even access the social network areas of your website until approved. This includes BuddyPress and evolving support for bbPress as well. The plugin has evolved since its original origins, so admittedly the "registration options" part has changed. It focuses on moderation.
+
+2. What does this plugin not do?
+
+We do not prevent overall spam from getting through. We also don't prevent the activation emails from going out for the user. Even on a private network, the user would be able to activate the user account and log in and see at least their own profile. When just "Moderate New Members" is checked, they will be able to browse around and see a general picture, but they won't be able to interact. If you believe you have found a bug or "hole" with this, please start a support thread at https://wordpress.org/support/plugin/bp-registration-options and we will respond there.
+
+3. Does it offer support for bbPress?
+
+bbPress support is a work in progress. As we continue to develop it, we will do what we can to help prevent bbPress forum acces, but at the moment it is not as comprehensively covered as BuddyPress.
+
+4. Does it account for multisite super admins being the only ones able to edit users?
+
+A work in progress. We are aware of the limitation, and are trying to find the best solution around this issue, especially for anyone who isn't a super admin in a Multisite network, but still wants social network functionality for their site within the network.
+
+5. Is this a good plugin to help prevent spam coming into my whole site?
+
+If you are looking for sitewide spam prevention, we will not be the right plugin for you. Our plugin will only cover the BuddyPress and bbPress areas. Regular WordPress pages or the blog would still be able to be accessed.
