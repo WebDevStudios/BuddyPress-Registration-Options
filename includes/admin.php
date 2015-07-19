@@ -925,7 +925,10 @@ function bp_registration_options_set_content_type( $content_type ) {
  * @return boolean
  */
 function bp_registration_options_delete_user_count_transient() {
-	return delete_transient( 'bpro_user_count' );
+	delete_transient( 'bpro_user_count' );
+	delete_transient( 'bpro_total_user_count' );
+
+	return true;
 }
 add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient' );
 
