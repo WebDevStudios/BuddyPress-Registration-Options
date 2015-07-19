@@ -535,3 +535,26 @@ function bp_registration_options_admin_bar_add() {
 	return true;
 }
 add_action( 'bp_setup_admin_bar', 'bp_registration_options_admin_bar_add', 300 );
+
+/**
+ * Prevents "___ has become a registered member" messages in activity.
+ *
+ * @since 4.3.0
+ *
+ * @param BP_Activity_Activity $args Array of arguments for activity item.
+ */
+function bp_registration_options_prevent_activity_posting( $args ) {
+	if ( true === bp_registration_get_moderation_status( $args->user_id ) && 'new_member' == $args->type ) {
+		$args->type = '';
+	}
+}
+add_action( 'bp_activity_before_save', 'bp_registration_options_prevent_activity_posting' );
+
+function bp_registration_options_display_activity_posting( $user_id ) {
+	bp_activity_add( array(
+		'user_id'   => $user_id,
+		'component' => buddypress()->members->id,
+		'type'      => 'new_member'
+	) );
+}
+add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity_posting' );
