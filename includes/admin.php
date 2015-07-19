@@ -615,21 +615,16 @@ function bp_registration_options_member_requests() { /**/ ?>
 
 			<?php if ( $total_pages > 1 ) {
 				$current = ( !empty( $_GET['p'] ) ) ? $_GET['p'] : 1;
-				echo '<p>';
+				echo '<p>' . __( 'Pagination: ', 'bp-registration-options' );
 				for ( $i = 1; $i <= $total_pages; $i++ ) {
-					if ( $i == $current ) {
-						printf(
-							'<a class="bpro_current wp-ui-highlight" href="%s">%s</a>',
-							esc_url( add_query_arg( 'p', $i ) ),
-							$i
-						);
-					} else {
-						printf(
-							'<a href="%s">%s</a>',
-							esc_url( add_query_arg( 'p', $i ) ),
-							$i
-						);
-					}
+					$classes = ( $i == $current ) ? 'bpro_pagination bpro_current wp-ui-highlight' : 'bpro_pagination';
+					$classes = 'class="' . $classes . '"';
+					printf(
+						'<a href="%s" %s>%s</a> ',
+						esc_url( add_query_arg( 'p', $i ) ),
+						$classes,
+						$i
+					);
 				}
 				echo '</p>';
 			}
