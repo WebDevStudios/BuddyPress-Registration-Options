@@ -486,7 +486,7 @@ function bp_registration_options_remove_moderated_count( $count ) {
 	return ( $final_count > 0 ) ? $final_count : $count;
 
 }
-#add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
+add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderated_count' );
 
 /**
  * Adds our setting links to the BuddyPress member menu for our administrators.
