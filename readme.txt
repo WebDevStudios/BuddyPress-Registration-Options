@@ -22,15 +22,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Screenshots ==
 
 1. General Settings page:
-
 2. New member registration:
-
 3. New members can login but can only see/edit their profile and change their avatar. If an unapproved new member tries to go to any other BuddyPress pages they are redirected back to their profile page.
-
 4. Admin receives email notice of new member:
-
 5. Admin Dashboard Alert:
-
 6. Approve, deny or ban new members:
 
 == Changelog ==
