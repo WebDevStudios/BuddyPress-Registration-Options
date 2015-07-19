@@ -460,7 +460,7 @@ function bp_registration_options_remove_moderated_count( $count ) {
 
 	$pending_count = bp_registration_get_pending_user_count();
 
-	if ( 0 == $pending_count ) {
+	if ( "0" == $pending_count ) {
 		return $count;
 	}
 
