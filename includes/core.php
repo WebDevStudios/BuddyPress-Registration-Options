@@ -571,13 +571,17 @@ add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity
  * @return array $caps Capabilities for meta capability
  */
 function bp_registration_bp_docs_map_meta_caps( $caps, $cap, $user_id, $args ) {
-	if ( true === bp_registration_get_moderation_status( $user_id ) && 'bp_docs_create' == $cap ) {
+	if ( true === bp_registration_get_moderation_status( $user_id ) ) {
 	
-		// remove the 'exist' cap
-		$caps = array_diff( $caps, array( 'exist' ) );
-		
-		// add 'do_not_allow' cap
-		$caps[] = 'do_not_allow';
+		// do not allow these actions
+		switch( $cap ) {	
+			case 'bp_docs_create' :
+			case 'bp_docs_edit' :
+			case 'bp_docs_manage' :
+			case 'bp_docs_post_comments' :
+				$caps = array( 'do_not_allow' );
+				break;
+		}
 		
 	}
 	return $caps;
