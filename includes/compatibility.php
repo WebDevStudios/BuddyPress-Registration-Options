@@ -12,6 +12,7 @@ class BP_Registration_Compatibility {
 		$this->buddypress_like();
 		$this->buddypress_send_invites();
 
+		// filter BuddyPress Docs capabilities
 		add_filter( 'bp_docs_map_meta_caps', array( $this, 'bp_docs_map_meta_caps' ), 100, 4 );
 	}
 
@@ -94,7 +95,7 @@ class BP_Registration_Compatibility {
 	}
 
 	/**
-	 * Prevents moderated users from creating BP Docs
+	 * Prevents moderated users from critical interactions with BP Docs
 	 *
 	 * @param array $caps Capabilities for meta capability
 	 * @param string $cap Capability name
@@ -102,20 +103,27 @@ class BP_Registration_Compatibility {
 	 * @param mixed $args Arguments passed to map_meta_cap filter
 	 * @return array $caps Capabilities for meta capability
 	 */
-	function bp_docs_map_meta_caps( $caps, $cap, $user_id, $args ) {
-		if ( true === bp_registration_get_moderation_status( $user_id ) ) {
-	
-			// do not allow these actions
-			switch( $cap ) {	
-				case 'bp_docs_create' :
-				case 'bp_docs_edit' :
-				case 'bp_docs_manage' :
-				case 'bp_docs_post_comments' :
-					$caps = array( 'do_not_allow' );
-					break;
-			}
-		
+	public function bp_docs_map_meta_caps( $caps, $cap, $user_id, $args ) {
+
+		$moderate = (bool) get_option( 'bprwg_moderate' );
+		if ( empty( $moderate ) || ! $moderate ) {
+			return $caps;
 		}
+
+		if ( ! bp_registration_get_moderation_status( $user_id ) ) {
+			return $caps;
+		}
+
+		// do not allow these actions
+		switch( $cap ) {	
+			case 'bp_docs_create' :
+			case 'bp_docs_edit' :
+			case 'bp_docs_manage' :
+			case 'bp_docs_post_comments' :
+				$caps = array( 'do_not_allow' );
+				break;
+		}
+	
 		return $caps;
 	}
 }
