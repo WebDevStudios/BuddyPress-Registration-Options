@@ -184,6 +184,8 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bp_messages_admin_nav', 'bp_registration_hide_messages_adminbar' );
 	add_filter( 'bp_groups_admin_nav', 'bp_registration_hide_groups_adminbar' );
+	
+	add_filter( 'bp_docs_map_meta_caps', 'bp_registration_bp_docs_map_meta_caps', 100, 4 );
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
@@ -558,3 +560,25 @@ function bp_registration_options_display_activity_posting( $user_id ) {
 	) );
 }
 add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity_posting' );
+
+/**
+ * Prevents moderated users from creating BP Docs
+ *
+ * @param array $caps Capabilities for meta capability
+ * @param string $cap Capability name
+ * @param int $user_id User id
+ * @param mixed $args Arguments passed to map_meta_cap filter
+ * @return array $caps Capabilities for meta capability
+ */
+function bp_registration_bp_docs_map_meta_caps( $caps, $cap, $user_id, $args ) {
+	if ( true === bp_registration_get_moderation_status( $user_id ) && 'bp_docs_create' == $cap ) {
+	
+		// remove the 'exist' cap
+		$caps = array_diff( $caps, array( 'exist' ) );
+		
+		// add 'do_not_allow' cap
+		$caps[] = 'do_not_allow';
+		
+	}
+	return $caps;
+}
