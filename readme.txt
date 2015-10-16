@@ -4,8 +4,8 @@ Contributors: webdevstudios, Messenlehner, tw2113
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.2
-Stable tag: 4.2.7
+Tested up to: 4.3.1
+Stable tag: 4.2.8
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -34,6 +34,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.2.8 =
+* Rework loader file to better work with translating the plugin.
 
 = 4.2.7 =
 * Fixed issue with widget listing prevention overwriting other potential existing values.
@@ -101,35 +104,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 * Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
 
-= 3.0.3 =
-
-* Added country flag and data driven from IP address on moderation admin page to quickly show where a requested member is from. Thanks for the idea Steve Bruner!
-
-= 3.0.2 =
-
-* Any registered members that never activated their account will be deleted after 7 days.
-
-= 3.0.1 =
-
-* When a member is denied and they joined any groups at registration any records relating them to groups will be deleted.
-
-= 3.0 =
-
-* Updated plugin to work with WP 3.0
-* Updated plugin to work with WP Multi-Site
-* Hide "Person became a registered member" from activity stream if moderation is turned on until person is approved.
-* Added ability to make website a private network where only registered members can view any BuddyPress pages. Certain page exceptions can be made. Visitors are redirected to the registration page.
-
-= 1.2 =
-
-* Updated plugin to work with BuddyPress 1.2
-
-= 1.0 =
-
-* First official release
-
-
 == Upgrade Notice ==
+
+= 4.2.8 =
+* Rework loader file to better work with translating the plugin.
 
 = 4.2.7 =
 * Fixed issue with widget listing prevention overwriting other potential existing values.
@@ -182,11 +160,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Accessibility updates
 * Now translation ready
 
-
 = 4.0.0 =
 
 * Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
-
 
 == Installation ==
 
