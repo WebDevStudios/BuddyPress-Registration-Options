@@ -52,6 +52,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		$user = get_userdata( $user_id );
 		$admin_email = get_bloginfo( 'admin_email' );
+		$admin = get_user_by( 'email', $admin_email );
 
 		// Add HTML capabilities temporarily.
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
@@ -93,6 +94,17 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			)
 		);
 		bp_registration_options_delete_user_count_transient();
+
+		# Set admin notification for new member.
+		$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
+		if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
+			bp_notifications_add_notification( array(
+				'user_id'          => $admin->ID,
+				'component_name'   => 'bpro_pending_members',
+				'component_action' => 'New pending BPRO member',
+				'allow_duplicate'  => 1
+			) );
+		}
 	}
 }
 add_action( 'user_register', 'bp_registration_options_bp_core_register_account' );
