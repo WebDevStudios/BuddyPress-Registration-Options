@@ -760,7 +760,7 @@ function bp_registration_options_help_support() {
  */
 function bp_registration_options_admin_footer() {
 
-	echo do_action( 'bpro_hook_before_footer' );
+	do_action( 'bpro_hook_before_footer' );
 
 	?>
 	<p class="createdby">
