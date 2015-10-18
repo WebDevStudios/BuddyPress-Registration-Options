@@ -576,7 +576,13 @@ function bp_registration_options_member_requests() { ?>
 					<td>
 						<?php if ( isset( $user ) ) { ?>
 							<strong><a target="_blank" href="<?php echo $user->user_url; ?>">
-								<?php echo $user->fullname; ?>
+								<?php
+								if ( ! empty( $user->fullname ) ) {
+									echo $user->fullname;
+								} else {
+									echo $user->profile_data['user_login'];
+								}
+								?>
 							</a></strong>
 						<?php } else {
 							echo $user_data->user_login;
