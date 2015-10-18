@@ -1,8 +1,22 @@
 <?php
+/**
+ * Compatibility fixes for various other BuddyPress related plugins.
+
+ * @package BP-Registration-Options
+ */
+
+/**
+ * Class BP_Registration_Compatibility
+ *
+ * Adds compatibility with other 3rd party plugins.
+ */
 class BP_Registration_Compatibility {
 
+	/**
+	 * Piece it all together.
+	 */
 	public function __construct() {
-		//WP FB AutoConnect
+		// WP FB AutoConnect.
 		global $jfb_name;
 
 		if ( !empty( $jfb_name) ) {
@@ -12,23 +26,24 @@ class BP_Registration_Compatibility {
 		$this->buddypress_like();
 		$this->buddypress_send_invites();
 
-		// filter BuddyPress Docs capabilities
+		// Filter BuddyPress Docs capabilities.
 		add_filter( 'bp_docs_map_meta_caps', array( $this, 'bp_docs_map_meta_caps' ), 100, 4 );
 	}
 
-	/*
+	/**
 	 * Adds compatibility support for WP-FB-AutoConnect.
 	 * http://wordpress.org/plugins/wp-fb-autoconnect/
+	 *
+	 * @param array $fbuser Array hoding Facebook user data.
 	 */
 	function wp_fb_autoconnect_compat( $fbuser ) {
 
 		$id = $fbuser['WP_ID'];
 
-		//Hide activity created by new user
-		//$sql = 'UPDATE ' . $wpdb->base_prefix . 'bp_activity SET hide_sitewide = 1 WHERE user_id = %d';
-		//$wpdb->query( $wpdb->prepare( $sql, $id ) );
-
-		//email admin about new member request
+		// Hide activity created by new user
+		// $sql = 'UPDATE ' . $wpdb->base_prefix . 'bp_activity SET hide_sitewide = 1 WHERE user_id = %d';
+		// $wpdb->query( $wpdb->prepare( $sql, $id ) );
+		// email admin about new member request.
 		$user = get_userdata( $id );
 
 		bp_registration_options_send_admin_email(
@@ -97,10 +112,10 @@ class BP_Registration_Compatibility {
 	/**
 	 * Prevents moderated users from critical interactions with BP Docs
 	 *
-	 * @param array $caps Capabilities for meta capability
-	 * @param string $cap Capability name
-	 * @param int $user_id User id
-	 * @param mixed $args Arguments passed to map_meta_cap filter
+	 * @param array  $caps    Capabilities for meta capability.
+	 * @param string $cap     Capability name.
+	 * @param int    $user_id User id.
+	 * @param mixed  $args    Arguments passed to map_meta_cap filter.
 	 * @return array $caps Capabilities for meta capability
 	 */
 	public function bp_docs_map_meta_caps( $caps, $cap, $user_id, $args ) {
@@ -114,8 +129,8 @@ class BP_Registration_Compatibility {
 			return $caps;
 		}
 
-		// do not allow these actions
-		switch( $cap ) {	
+		// Do not allow these actions.
+		switch( $cap ) {
 			case 'bp_docs_create' :
 			case 'bp_docs_edit' :
 			case 'bp_docs_manage' :
@@ -123,7 +138,7 @@ class BP_Registration_Compatibility {
 				$caps = array( 'do_not_allow' );
 				break;
 		}
-	
+
 		return $caps;
 	}
 }
