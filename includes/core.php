@@ -1,6 +1,6 @@
 <?php
 /**
- * BP-Registration-Options Core Initialization
+ * BP-Registration-Options Core Initialization.
  *
  * @package BP-Registration-Options
  */
@@ -8,9 +8,7 @@
 /**
  * Display pending message to users until they're activated.
  *
- * @since  unknown
- *
- * @return string  HTML message
+ * @since unknown
  */
 function bp_registration_options_bp_after_activate_content() {
 	$user = get_current_user_id();
@@ -28,11 +26,11 @@ add_filter( 'bp_after_activate_content', 'bp_registration_options_bp_after_activ
 add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activate_content' );
 
 /**
- * Set up our user upon activation, email appropriate people
+ * Set up our user upon activation, email appropriate people.
  *
- * @since  4.2.2
+ * @since 4.2.2
  *
- * @param  integer  $user_id User ID
+ * @param int $user_id User ID.
  */
 function bp_registration_options_bp_core_register_account( $user_id ) {
 
@@ -40,22 +38,25 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 	if ( $moderate && $user_id > 0 ) {
 
-		//Somehow the WP-FB-AutoConnect plugin uses $_GET['key'] as well for user IDs. Let's check if the value returns a user.
-		/*$is_user = get_userdata( $_GET['key'] );
+		/* Somehow the WP-FB-AutoConnect plugin uses $_GET['key'] as well for user IDs. Let's check if the value returns a user. */
+
+		/*
+		 $is_user = get_userdata( $_GET['key'] );
 
 		if ( !$is_user ) {
 			return;
-		}*/
+		}
+		*/
 
 		bp_registration_set_moderation_status( $user_id );
 
 		$user = get_userdata( $user_id );
 		$admin_email = get_bloginfo( 'admin_email' );
 
-		//add HTML capabilities temporarily
+		// Add HTML capabilities temporarily.
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
-		//If their IP or email is blocked, don't proceed and exit silently.
+		// If their IP or email is blocked, don't proceed and exit silently.
 		$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
 		$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
@@ -64,7 +65,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 			wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
 
-			//Delete their account thus far.
+			// Delete their account thus far.
 			if ( is_multisite() ) {
 				wpmu_delete_user( $user_id );
 			} else {
@@ -74,10 +75,10 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			return;
 		}
 
-		//Set them as in moderation.
+		// Set them as in moderation.
 		bp_registration_set_moderation_status( $user_id );
 
-		//save user ip address
+		// Save user ip address.
 		update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
 
 		$message = get_option( 'bprwg_admin_pending_message' );
@@ -99,11 +100,10 @@ add_action( 'user_register', 'bp_registration_options_bp_core_register_account' 
 /**
  * Hide members, who haven't been approved yet, on the frontend listings.
  *
- * @since  4.1.0
+ * @since 4.1.0
  *
- * @param  object  $args Arguments that BuddyPress will use to query for members
- *
- * @return object        Amended arguments with IDs to exclude.
+ * @param object $args Arguments that BuddyPress will use to query for members.
+ * @return object Amended arguments with IDs to exclude.
  */
 function bp_registration_hide_pending_members( $args ) {
 	global $wpdb;
@@ -118,7 +118,7 @@ function bp_registration_hide_pending_members( $args ) {
 
 	$sql = "SELECT user_id FROM " . $wpdb->prefix . "usermeta WHERE meta_key = '_bprwg_is_moderated' AND meta_value = %s";
 	$rs = $wpdb->get_results( $wpdb->prepare( $sql, 'true' ), ARRAY_N );
-	//Grab the actual IDs
+	// Grab the actual IDs.
 	foreach( $rs as $key => $value) {
 		$ids[] = $value[0];
 	}
@@ -157,18 +157,18 @@ function bp_registration_hide_ui() {
 	remove_action( 'bp_directory_members_actions', 'bp_member_add_friend_button' );
 
 	add_filter( 'bp_activity_can_favorite', '__return_false' );
-	//hide friend buttons
+	// Hide friend buttons.
 	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_message_button', '__return_false' );
 	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
 
-	//hide group buttons
+	// Hide group buttons.
 	add_filter( 'bp_user_can_create_groups', '__return_false' );
 	add_filter( 'bp_get_group_join_button', '__return_empty_string' );
 	add_filter( 'bp_get_group_create_button', '__return_empty_array' );
 
-	//hide activity comment buttons
+	// Hide activity comment buttons.
 	add_filter( 'bp_activity_can_comment_reply', '__return_false' );
 	add_filter( 'bp_activity_can_comment', '__return_false' );
 	add_filter( 'bp_acomment_name', '__return_false' );
@@ -188,7 +188,7 @@ function bp_registration_hide_ui() {
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
 if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-	# Test for BP Component object
+	# Test for BP Component object.
 	if ( ! empty( $_POST['object'] ) ) {
 		$object = sanitize_title( $_POST['object'] );
 
@@ -196,7 +196,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 		}
 	} else {
-		# Some AJAX requests still come through the 'init' action
+		# Some AJAX requests still come through the 'init' action.
 		bp_registration_hide_ui();
 	}
 }
@@ -225,7 +225,6 @@ function bp_registration_hide_whatsnew_end() {
  * @since 4.2.5
  *
  * @param array $items Array of menu items to be displayed.
- *
  * @return array $items Filtered menu items.
  */
 function bp_registration_hide_messages_adminbar( $items = array() ) {
@@ -244,7 +243,6 @@ function bp_registration_hide_messages_adminbar( $items = array() ) {
  * @since 4.2.5
  *
  * @param array $items Array of menu items to be displayed.
- *
  * @return array $items Filtered menu items.
  */
 function bp_registration_hide_groups_adminbar( $items = array() ) {
@@ -263,7 +261,6 @@ function bp_registration_hide_groups_adminbar( $items = array() ) {
  * @since 4.2.5
  *
  * @param array $r Query args for member list.
- *
  * @return array $r Amended query args.
  */
 function bp_registration_hide_widget_members( $r = array() ) {
@@ -285,9 +282,9 @@ function bp_registration_hide_widget_members( $r = array() ) {
 }
 
 /**
- * Check if current user should be denied access or not
+ * Check if current user should be denied access or not.
  *
- * @since  4.2.0
+ * @since 4.2.0
  */
 function bp_registration_deny_access() {
 
@@ -304,7 +301,7 @@ function bp_registration_deny_access() {
 			return;
 		}
 
-		//Not logged in user.
+		// Not logged in user.
 		if ( $user->ID == 0 ) {
 
 			$logged_out_url = apply_filters( 'bprwg_logged_out_redirect_url', get_bloginfo( 'url' ) );
@@ -319,7 +316,7 @@ function bp_registration_deny_access() {
 			}
 		}
 
-		//Logged in user but moderated.
+		// Logged in user but moderated.
 		if ( $user->ID > 0 ) {
 			if ( bp_registration_get_moderation_status( $user->ID ) ) {
 				if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
@@ -337,11 +334,11 @@ function bp_registration_deny_access() {
 add_action( 'template_redirect', 'bp_registration_deny_access' );
 
 /**
- * Check if on an allowed bbPress component
+ * Check if on an allowed bbPress component.
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @return boolean  true if an allowed component, false otherwise
+ * @return boolean True if an allowed component, false otherwise.
  */
 function bp_registration_bbpress_allowed_areas() {
 
@@ -355,11 +352,11 @@ function bp_registration_bbpress_allowed_areas() {
 }
 
 /**
- * Check if on an allowed BuddyPress component
+ * Check if on an allowed BuddyPress component.
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @return boolean  true if an allowed component, false otherwise
+ * @return boolean True if an allowed component, false otherwise.
  */
 function bp_registration_buddypress_allowed_areas() {
 
@@ -375,13 +372,12 @@ function bp_registration_buddypress_allowed_areas() {
 }
 
 /**
- * Check our moderation status and return boolean values based on that
+ * Check our moderation status and return boolean values based on that.
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  integer  $user_id User ID to check
- *
- * @return boolean           Whether or not they're in moderation status.
+ * @param int $user_id User ID to check.
+ * @return boolean Whether or not they're in moderation status.
  */
 function bp_registration_get_moderation_status( $user_id ) {
 	$moderated = get_user_meta( $user_id, '_bprwg_is_moderated', true );
@@ -393,14 +389,13 @@ function bp_registration_get_moderation_status( $user_id ) {
 }
 
 /**
- * Update our moderation status for a user
+ * Update our moderation status for a user.
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  integer  $user_id User ID to update
- * @param  string  $status   Value to update the user meta to
- *
- * @return integer           meta row ID that got updated.
+ * @param int    $user_id User ID to update.
+ * @param string $status   Value to update the user meta to.
+ * @return int Meta row ID that got updated.
  */
 function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' ) {
 	$user = get_userdata( $user_id );
@@ -416,9 +411,9 @@ function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' )
 /**
  * Send an email to the administrator email upon new user registration
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  array   $args Array of arguments for the email
+ * @param array $args Array of arguments for the email.
  */
 function bp_registration_options_send_admin_email( $args = array() ) {
 
@@ -430,7 +425,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 
 	$admin_email = get_bloginfo( 'admin_email' );
 
-	//add our filter and provide the user name and user email for them to utilize.
+	// Add our filter and provide the user name and user email for them to utilize.
 	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
 
 	wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
@@ -452,8 +447,8 @@ add_action( 'bp_setup_nav', 'bp_registration_options_remove_compose_message' );
 
 /**
  * Filter our user count to take into account spam members.
- * @param string $count Total active users.
  *
+ * @param string $count Total active users.
  * @return mixed|null|string
  */
 function bp_registration_options_remove_moderated_count( $count ) {
@@ -550,6 +545,13 @@ function bp_registration_options_prevent_activity_posting( $args ) {
 }
 add_action( 'bp_activity_before_save', 'bp_registration_options_prevent_activity_posting' );
 
+/**
+ * Add activity item for newly approved member.
+ *
+ * @since 4.3.0
+ *
+ * @param int $user_id ID of the approved user.
+ */
 function bp_registration_options_display_activity_posting( $user_id ) {
 	bp_activity_add( array(
 		'user_id'   => $user_id,
