@@ -385,6 +385,7 @@ function bp_registration_options_settings() {
 	// Check for already saved values.
 	$bp_moderate           = get_option( 'bprwg_moderate' );
 	$privacy_network       = get_option( 'bprwg_privacy_network' );
+	$enable_notifications  = get_option( 'bprwg_enable_notifications' );
 	$activate_message      = get_option( 'bprwg_activate_message' );
 	$approved_message      = get_option( 'bprwg_approved_message' );
 	$denied_message        = get_option( 'bprwg_denied_message' );
@@ -445,6 +446,13 @@ function bp_registration_options_settings() {
 				<input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/>
 				<label for="privacy_network">
 					<?php _e( 'Only registered or approved members can view BuddyPress/bbPress pages (Private Network).', 'bp-registration-options' ); ?>
+				</label>
+			</p>
+
+			<p>
+				<input type="checkbox" id="enable_notifications" name="enable_notifications" value="1" <?php checked( $enable_notifications, '1' ); ?>/>
+				<label for="enable_notifications">
+					<?php _e( 'Add new user notification to admin user account BuddyPress notification inbox.', 'bp-registration-options' ); ?>
 				</label>
 			</p>
 
