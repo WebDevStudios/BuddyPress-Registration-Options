@@ -526,7 +526,7 @@ function bp_registration_options_member_requests() { ?>
 			<thead>
 				<tr>
 					<th id="cb" class="manage-column column-cb check-column" scope="col">
-						<input type="checkbox" id="bp_checkall_top" name="checkall" />
+						<label><input type="checkbox" id="bp_checkall_top" name="checkall" /></label>
 					</th>
 					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
@@ -564,7 +564,7 @@ function bp_registration_options_member_requests() { ?>
 				}
 				?>
 					<th class="check-column" scope="row">
-						<input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $pending->user_id; ?>" name="bp_member_check[]" value="<?php echo $pending->user_id; ?>"  />
+						<label><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $pending->user_id; ?>" name="bp_member_check[]" value="<?php echo $pending->user_id; ?>"  /></label>
 					</th>
 					<td>
 						<?php if ( isset( $user ) ) { ?>
@@ -599,7 +599,7 @@ function bp_registration_options_member_requests() { ?>
 				} ?>
 			<tfoot>
 				<tr>
-					<th class="manage-column column-cb check-column" scope="col"><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></th>
+					<th class="manage-column column-cb check-column" scope="col"><label><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></label></th>
 					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
 					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
@@ -663,7 +663,7 @@ function bp_registration_options_banned() {
 		<thead>
 			<tr>
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
-					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
 				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
 			</tr>
@@ -682,14 +682,14 @@ function bp_registration_options_banned() {
 			}
 
 			?>
-			<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo $IP; ?>"  /></th>
+			<th class="check-column" scope="row"><label><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo $IP; ?>"  /></label></th>
 			<td><?php echo $IP; ?></a></td>
 			</tr>
 		<?php } ?>
 		<tfoot>
 			<tr>
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
-					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
 				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
 			</tr>
@@ -702,7 +702,7 @@ function bp_registration_options_banned() {
 		<thead>
 			<tr>
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
-					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
 				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
 			</tr>
@@ -729,7 +729,7 @@ function bp_registration_options_banned() {
 		<tfoot>
 			<tr>
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
-					<input type="checkbox" id="bp_checkall_top_blocked" name="checkall" />
+					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
 				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
 			</tr>
