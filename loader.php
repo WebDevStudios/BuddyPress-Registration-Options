@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: BP Registration Options
 Plugin URI: http://wordpress.org/plugins/bp-registration-options/
 Description: This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision.
@@ -16,7 +16,6 @@ define( 'BP_REGISTRATION_OPTIONS_VERSION', '4.3.0' );
  * Loads BP Registration Options files only if BuddyPress is present
  *
  * @package BP-Registration-Options
- *
  */
 function bp_registration_options_init() {
 
@@ -57,6 +56,8 @@ function bp_registration_options_compat_init() {
  *
  * @param object|string $bp  BuddyPress instance, if available.
  * @param object|string $bbp bbPress instance, if available.
+ *
+ * @return bool
  */
 function bp_registration_should_init( $bp = '', $bbp = '' ) {
 	if (
