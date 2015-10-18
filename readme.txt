@@ -105,7 +105,14 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Upgrade Notice ==
 
 = 4.3.0 =
-* New hook in pending member "additional data" section for displaying custom data about user.
+* Added: New hook in pending member "additional data" section for displaying custom data about user.
+* Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
+* Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
+* Fixed: Hardened user display in pending member list if no Full Name value provided.
+* Added: prevention of activity stream posting about new member until member is approved.
+* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
+* Added: Filter in wp_redirect urls for non-logged in users.
+* Fixed: Prevention of working in non-main site sites for Multisite.
 
 = 4.2.8 =
 * Rework loader file to better work with translating the plugin.
