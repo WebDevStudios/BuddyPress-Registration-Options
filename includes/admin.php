@@ -109,6 +109,14 @@ function bp_registration_handle_general_settings( $args = array() ) {
 		delete_option( 'bprwg_privacy_network' );
 	}
 
+	// Handle saving our BuddyPress notifications setting.
+	if ( !empty( $args['enable_notifications'] ) ) {
+		$enable_notifications = sanitize_text_field( $args['enable_notifications'] );
+		update_option( 'bprwg_enable_notifications', $enable_notifications );
+	} else {
+		delete_option( 'bprwg_enable_notifications' );
+	}
+
 	$activate_message = esc_textarea( $args['activate_message'] );
 	update_option( 'bprwg_activate_message', $activate_message );
 
