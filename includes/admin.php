@@ -1,4 +1,9 @@
 <?php
+/**
+ * Admin Settings for BP Registration Options.
+
+ * @package BP-Registration-Options
+ */
 
 /**
  * Get a count of our pending users
@@ -83,12 +88,12 @@ function bp_registration_handle_reset_messages() {
 /**
  * Handle processing of new values for general options page
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  array   $args array of inputs to save
+ * @param array $args Array of inputs to save.
  */
 function bp_registration_handle_general_settings( $args = array() ) {
-	//Handle saving our moderate setting
+	// Handle saving our moderate setting.
 	if ( !empty( $args['set_moderate'] ) ) {
 		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
 		update_option( 'bprwg_moderate', $bp_moderate );
@@ -96,7 +101,7 @@ function bp_registration_handle_general_settings( $args = array() ) {
 		delete_option( 'bprwg_moderate' );
 	}
 
-	//Handle saving our private network setting
+	// Handle saving our private network setting.
 	if ( !empty( $args['set_private'] ) ) {
 		$privacy_network = sanitize_text_field( $args['set_private'] );
 		update_option( 'bprwg_privacy_network', $privacy_network );
@@ -131,7 +136,7 @@ function bp_registration_handle_general_settings( $args = array() ) {
  */
 function bp_registration_options_form_actions() {
 
-	//settings save
+	// Settings save.
 	if ( isset( $_POST['save_general'] ) ) {
 
 		check_admin_referer( 'bp_reg_options_check' );
@@ -155,7 +160,7 @@ function bp_registration_options_form_actions() {
 		bp_registration_handle_reset_messages();
 	}
 
-	//request submissions
+	// Request submissions.
 	if ( isset( $_POST['moderate'] ) ) {
 
 		check_admin_referer( 'bp_reg_options_check' );
@@ -175,12 +180,12 @@ function bp_registration_options_form_actions() {
 			$checked_members = array( $checked_members );
 		}
 
-		if ( 'Deny' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
+		if ( 'Deny' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
 			$send = true;
 			$subject = __( 'Membership Denied', 'bp-registration-options' );
 			$message = get_option( 'bprwg_denied_message' );
 		}
-		if ( 'Approve' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
+		if ( 'Approve' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
 			$send = true;
 			$subject = __( 'Membership Approved', 'bp-registration-options' );
 			$message = get_option( 'bprwg_approved_message' );
@@ -188,11 +193,13 @@ function bp_registration_options_form_actions() {
 
 		foreach( $checked_members as $user_id ) {
 
-			//Grab our userdata object while we still have a user.
+			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
-			if ( 'Deny' == $action || 'Ban' == $action ) { //Leave capitalized and don't i18n, because we're comparing button values for the time being.
-				//Add our user to the IP ban option.
-				/*if ( 'Ban' == $action ) {
+			if ( 'Deny' == $action || 'Ban' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
+
+				/*
+				 // Add our user to the IP ban option.
+				 if ( 'Ban' == $action ) {
 
 					$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
 					$blockedemails = get_option( 'bprwg_blocked_emails', array() );
@@ -200,7 +207,8 @@ function bp_registration_options_form_actions() {
 					$blockedemails[] = $user->data->user_email;
 					$successIP = update_option( 'bprwg_blocked_ips', $blockedIPs );
 					$successEmail = update_option( 'bprwg_blocked_emails', $blockedemails );
-				}*/
+				}
+				*/
 
 				do_action( 'bpro_hook_denied_user_before_delete', $user_id );
 
@@ -225,7 +233,7 @@ function bp_registration_options_form_actions() {
 				bp_registration_options_delete_user_count_transient();
 			}
 
-			//only send out message if one exists
+			// Only send out message if one exists.
 			if ( $send ) {
 
 				$mailme = array(
@@ -251,8 +259,6 @@ add_action( 'admin_init', 'bp_registration_options_form_actions' );
  * Adds our admin notices with pending users info, for people who can manage users
  *
  * @since  unknown
- *
- * @return string  HTML markup for admin notice.
  */
 function bp_registration_options_admin_messages() {
 
@@ -290,9 +296,9 @@ add_action('admin_notices', 'bp_registration_options_admin_messages');
 /**
  * Register our plugins menus
  *
- * @since  unknown
+ * @since unknown
  */
-function bp_registration_options_plugin_menu() { /**/
+function bp_registration_options_plugin_menu() {
 	global $blog_id;
 
 	$member_requests = bp_registration_get_pending_user_count();
@@ -346,11 +352,9 @@ add_action( 'admin_menu', 'bp_registration_options_plugin_menu' );
  *
  * @since  unknown
  *
- * @param  string  $page Page title to render
- *
- * @return string        HTML markup for the tab navigation
+ * @param string $page Page title to render.
  */
-function bp_registration_options_tab_menu( $page = '' ) { /**/
+function bp_registration_options_tab_menu( $page = '' ) {
 
 	$member_requests = bp_registration_get_pending_user_count(); ?>
 
@@ -358,20 +362,18 @@ function bp_registration_options_tab_menu( $page = '' ) { /**/
 	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
 	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options' ); ?>"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
 	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_member_requests' ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
-	<?php //<a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
+	<?php // <a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
 	</h2>
 <?php }
 
 /**
  * Options page for settings and messages to use
  *
- * @since  unknown
- *
- * @return string  HTML page output.
+ * @since unknown
  */
-function bp_registration_options_settings() { /**/
+function bp_registration_options_settings() {
 
-	//Check for already saved values.
+	// Check for already saved values.
 	$bp_moderate           = get_option( 'bprwg_moderate' );
 	$privacy_network       = get_option( 'bprwg_privacy_network' );
 	$activate_message      = get_option( 'bprwg_activate_message' );
@@ -499,11 +501,9 @@ function bp_registration_options_settings() { /**/
 /**
  * Options page for managing pending members.
  *
- * @since  unknown
- *
- * @return string  HTML page output
+ * @since unknown
  */
-function bp_registration_options_member_requests() { /**/ ?>
+function bp_registration_options_member_requests() { ?>
 
 	<div class="wrap">
 		<?php
@@ -539,9 +539,9 @@ function bp_registration_options_member_requests() { /**/ ?>
 
 			$odd = true;
 
-			//Get paged value, determine total pages, and calculate start_from value for offset.
+			// Get paged value, determine total pages, and calculate start_from value for offset.
 			$page = ( isset( $_GET['p'] ) ) ? $_GET['p'] : 1;
-			$total_pages = ceil( $member_requests / 20 ); //TODO: Test pagination
+			$total_pages = ceil( $member_requests / 20 ); // TODO: Test pagination.
 			$start_from = ( $page - 1 ) * 20;
 
 			$pending_users = bp_registration_get_pending_users( $start_from );
@@ -646,7 +646,7 @@ function bp_registration_options_member_requests() { /**/ ?>
  * Render our banned members management page
  */
 function bp_registration_options_banned() {
-	//NEEDS DONE
+	// NEEDS DONE.
 	?>
 	<div class="wrap">
 	<?php
@@ -745,7 +745,7 @@ function bp_registration_options_banned() {
  * Render our help/support page
  */
 function bp_registration_options_help_support() {
-	//NEEDS DONE
+	// NEEDS DONE.
 	?>
 	<div class="wrap">
 		<?php bp_registration_options_tab_menu( 'help' );?>
@@ -756,11 +756,9 @@ function bp_registration_options_help_support() {
 /**
  * Render our content at the bottom of each page. Displays contact and credit information
  *
- * @since  unknown
- *
- * @return string  HTML markup output.
+ * @since unknown
  */
-function bp_registration_options_admin_footer() { /**/
+function bp_registration_options_admin_footer() {
 
 	echo do_action( 'bpro_hook_before_footer' );
 
@@ -833,17 +831,15 @@ function bp_registration_options_admin_footer() { /**/
 		</tr>
 	</table>
 <?php
-	echo do_action( 'bpro_hook_after_footer' );
+	do_action( 'bpro_hook_after_footer' );
 }
 
 /**
  * Add User-provided CSS to our admin_head output for styling purposes.
  *
  * @since  4.2.0
- *
- * @return string  CSS style block.
  */
-function bp_registration_options_css() { /**/
+function bp_registration_options_css() {
 	$styles = apply_filters( 'bpro_hook_admin_styles', '' );
 	if ( !empty( $styles ) ) {
 		echo '<style>' . $styles . '</style>';
@@ -865,10 +861,8 @@ add_action( 'admin_enqueue_scripts', 'bp_registration_options_stylesheet' );
  * Add JS to our admin_footer output for DOM manipulation purposes
  *
  * @since  unknown
- *
- * @return string  JS script block.
  */
-function bp_registration_options_js() { /**/
+function bp_registration_options_js() {
 	?>
 	<script language="javascript">
 		(function($) {
@@ -906,11 +900,11 @@ add_action( 'admin_footer', 'bp_registration_options_js' );
 /**
  * Callback function for HTML email purposes.
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  string  $content_type content type
+ * @param string $content_type Content type.
  *
- * @return string                new content type to use
+ * @return string $value new content type to use
  */
 function bp_registration_options_set_content_type( $content_type ) {
 	return 'text/html';
