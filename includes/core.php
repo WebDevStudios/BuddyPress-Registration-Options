@@ -572,3 +572,21 @@ function bp_registration_options_display_activity_posting( $user_id ) {
 	) );
 }
 add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity_posting' );
+
+/**
+ * Add BP-Registration-Options as a possible component.
+ *
+ * @param array $component_names Array of component names.
+ * @return array $component_names Array of updated component names.
+ */
+function bp_registration_options_get_registered_components( $component_names = array() ) {
+	// Force $component_names to be an array.
+	if ( ! is_array( $component_names ) ) {
+		$component_names = array();
+	}
+
+	array_push( $component_names, 'bpro_pending_members' );
+
+	return $component_names;
+}
+add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
