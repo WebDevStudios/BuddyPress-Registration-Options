@@ -52,7 +52,8 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		$user = get_userdata( $user_id );
 		$admin_email = get_bloginfo( 'admin_email' );
-		$admin = get_user_by( 'email', $admin_email );
+		# Used for BP Notifications
+		$admins = get_users( 'role=administrator' );
 
 		// Add HTML capabilities temporarily.
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
@@ -98,12 +99,14 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		# Set admin notification for new member.
 		$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
 		if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
-			bp_notifications_add_notification( array(
-				'user_id'          => $admin->ID,
-				'component_name'   => 'bpro_pending_members',
-				'component_action' => __( 'New pending BPRO member', 'bp-registration-options' ),
-				'allow_duplicate'  => 1
-			) );
+			foreach ( $admins as $admin ) {
+				bp_notifications_add_notification( array(
+					'user_id'          => $admin->ID,
+					'component_name'   => 'bp_registration_options',
+					'component_action' => __( 'New pending BPRO member', 'bp-registration-options' ),
+					'allow_duplicate'  => true
+				) );
+			}
 		}
 	}
 }
@@ -585,7 +588,7 @@ function bp_registration_options_get_registered_components( $component_names = a
 		$component_names = array();
 	}
 
-	array_push( $component_names, 'bpro_pending_members' );
+	array_push( $component_names, 'bp_registration_options' );
 
 	return $component_names;
 }
