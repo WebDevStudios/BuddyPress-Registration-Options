@@ -101,7 +101,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			bp_notifications_add_notification( array(
 				'user_id'          => $admin->ID,
 				'component_name'   => 'bpro_pending_members',
-				'component_action' => 'New pending BPRO member',
+				'component_action' => __( 'New pending BPRO member', 'bp-registration-options' ),
 				'allow_duplicate'  => 1
 			) );
 		}
