@@ -77,11 +77,17 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			return;
 		}
 
-		// Set them as in moderation.
+		# Set them as in moderation.
 		bp_registration_set_moderation_status( $user_id );
 
-		// Save user ip address.
-		update_user_meta( $user_id, '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] );
+		/**
+		 * Filters the SERVER global reported remote address.
+		 *
+		 * @since 4.3.0
+		 *
+		 * @param string $value IP Address of the user being registered.
+		 */
+		update_user_meta( $user_id, '_bprwg_ip_address', apply_filters( '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] ) );
 
 		$message = get_option( 'bprwg_admin_pending_message' );
 		$message = str_replace( '[username]', $user->data->user_login, $message );
