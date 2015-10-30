@@ -297,20 +297,36 @@ function bp_registration_options_admin_messages() {
 		}
 
 		$message = '<div class="error"><p>';
+		$numeral_url = sprintf(
+			'<a href="%s"><strong>%s</strong></a>',
+			admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+			$member_requests
+		);
+
+		$click_url = sprintf(
+			'<a href="%s">%s</a>',
+			admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+			__( 'click here', 'bp-registration-options' )
+		);
+
 		$message .= sprintf(
-			__( 'You have %s new member request%s that need to be approved or denied. Please %s to take action', 'bp-registration-options' ),
-			sprintf(
-				'<a href="%s"><strong>%s</strong></a>',
-				admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+			_n(
+				sprintf(
+					'You have %s new member request that needs to be approved or denied. Please %s to take action',
+					$numeral_url,
+					$click_url
+				),
+				sprintf(
+					'You have %s new member requests that needs to be approved or denied. Please %s to take action',
+					$numeral_url,
+					$click_url
+				),
 				$member_requests
-			),
-			$s,
-			sprintf(
-				'<a href="%s">%s</a>',
-				admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
-				__( 'click here', 'bp-registration-options' )
 			)
 		);
+
+
+
 		$message .= '</p></div>';
 
 		echo $message;
