@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin Settings for BP Registration Options.
-
+ *
  * @package BP-Registration-Options
  */
 
