@@ -416,7 +416,7 @@ function bp_registration_options_settings() {
 
 	if ( ! $approved_message ) {
 		$approved_message = sprintf(
-			__( 'Hi [username], your member account on %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ),
+			__( 'Hi [username], your member account at %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ),
 			get_bloginfo( 'url' )
 		);
 
@@ -425,7 +425,7 @@ function bp_registration_options_settings() {
 
 	if ( ! $denied_message ) {
 		$denied_message = sprintf(
-			__( 'Hi [username], we regret to inform you that your member account on %s has been denied...', 'bp-registration-options' ),
+			__( 'Hi [username], we regret to inform you that your member account at %s has been denied...', 'bp-registration-options' ),
 			get_bloginfo( 'url' )
 		);
 
@@ -529,7 +529,7 @@ function bp_registration_options_settings() {
 						<table width="100%">
 							<tr>
 								<td>
-									<?php _e( 'Short Code Key: [username]', 'bp-registration-options' ); ?>
+									<?php _e( 'Short Code Key: [username], [user_email]', 'bp-registration-options' ); ?>
 								</td>
 								<td class="alignright">
 									<input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" />
