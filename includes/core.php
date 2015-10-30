@@ -431,7 +431,7 @@ function bp_registration_set_moderation_status( $user_id = 0, $status = 'true' )
 }
 
 /**
- * Send an email to the administrator email upon new user registration
+ * Send an email to the administrator email upon new user registration.
  *
  * @since 4.2.0
  *
