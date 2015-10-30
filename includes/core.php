@@ -94,24 +94,11 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		$message = str_replace( '[username]', $user->data->user_login, $message );
 		$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
-		// Pending user email.
-		$pending_message = get_option( 'bprwg_user_pending_message' );
-		$pending_message = str_replace( '[username]', $user->data->user_login, $pending_message );
-		$pending_message = str_replace( '[user_email]', $user->data->user_email, $pending_message );
-
 		bp_registration_options_send_admin_email(
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
 				'message'    => $message
-			)
-		);
-
-		bp_registration_options_send_pending_user_email(
-			array(
-				'user_login' => $user->data->user_login,
-				'user_email' => $user->data->user_email,
-				'message'    => $pending_message
 			)
 		);
 
@@ -634,3 +621,29 @@ function bp_registration_options_get_registered_components( $component_names = a
 	return $component_names;
 }
 add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
+
+/**
+ * Emails user about pending status upon activation.
+ *
+ * @since 4.3.0
+ *
+ * @param int    $user_id ID of the user being checked.
+ * @param string $key     Activation key.
+ * @param array  $user    Array of user data.
+ */
+function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
+
+	$user_info = get_userdata( $user_id );
+	$pending_message = get_option( 'bprwg_user_pending_message' );
+	$pending_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
+	$pending_message = str_replace( '[user_email]', $user_info->data->user_email, $pending_message );
+
+	bp_registration_options_send_pending_user_email(
+		array(
+			'user_login' => $user->data->user_login,
+			'user_email' => $user->data->user_email,
+			'message'    => $pending_message
+		)
+	);
+}
+add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
