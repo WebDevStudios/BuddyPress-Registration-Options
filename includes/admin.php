@@ -408,13 +408,13 @@ function bp_registration_options_settings() {
 	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
 	$user_pending_message = get_option( 'bprwg_user_pending_message' );
 
-	if ( !$activate_message ) {
+	if ( ! $activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
 
 		update_option( 'bprwg_activate_message', $activate_message );
 	}
 
-	if ( !$approved_message ) {
+	if ( ! $approved_message ) {
 		$approved_message = sprintf(
 			__( 'Hi [username], your member account on %s has been approved! You can now login and start interacting with the rest of the community...', 'bp-registration-options' ),
 			get_bloginfo( 'url' )
@@ -423,7 +423,7 @@ function bp_registration_options_settings() {
 		update_option( 'bprwg_approved_message', $approved_message );
 	}
 
-	if ( !$denied_message ) {
+	if ( ! $denied_message ) {
 		$denied_message = sprintf(
 			__( 'Hi [username], we regret to inform you that your member account on %s has been denied...', 'bp-registration-options' ),
 			get_bloginfo( 'url' )
@@ -432,7 +432,7 @@ function bp_registration_options_settings() {
 		update_option( 'bprwg_denied_message', $denied_message );
 	}
 
-	if ( !$admin_pending_message ) {
+	if ( ! $admin_pending_message ) {
 		$admin_pending_message = sprintf(
 			__( '[username] ( [user_email] ) would like to become a member of your website. To accept or reject their request, please go to %s', 'bp-registration-options' ),
 			'<a href="' . admin_url( '/admin.php?page=bp_registration_options_member_requests' ) . '">' . __( 'Member Requests', 'bp-registration-options' ) . '</a>'
@@ -509,7 +509,7 @@ function bp_registration_options_settings() {
 				</tr>
 				<tr>
 					<td class="alignright">
-						<label for="admin_pending_message"><?php _e( 'Admin Pending Email:', 'bp-registration-options' ); ?></label>
+						<label for="admin_pending_message"><?php _e( 'Admin Pending Email Message:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
 						<textarea id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
@@ -779,7 +779,7 @@ function bp_registration_options_banned() {
 				$odd = true;
 			}
 			?>
-			<th class="check-column" scope="row"><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_blockedemail_check[]" value=""  /></th>
+			<th class="check-column" scope="row"><label><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $user_id; ?>" name="bp_blockedemail_check[]" value=""  /></label></th>
 			<td><?php echo $email; ?></a></td>
 			</tr>
 		<?php } ?>
