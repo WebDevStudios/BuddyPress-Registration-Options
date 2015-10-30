@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2015-10-30 01:02-0500\n"
-"PO-Revision-Date: 2015-10-30 01:02-0500\n"
+"POT-Creation-Date: 2015-10-30 14:58-0500\n"
+"PO-Revision-Date: 2015-10-30 14:58-0500\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language: ca\n"
@@ -202,75 +202,75 @@ msgstr "Creat"
 msgid "Additional Data"
 msgstr "Dades addicionals"
 
-#: includes/admin.php:680
+#: includes/admin.php:681
 msgid "Approve"
 msgstr "Aprovar"
 
-#: includes/admin.php:681
+#: includes/admin.php:682
 msgid "Deny"
 msgstr "Denegar"
 
-#: includes/admin.php:682
+#: includes/admin.php:683
 msgid "Ban"
 msgstr "Prohibir"
 
-#: includes/admin.php:686
+#: includes/admin.php:688
 msgid "Pagination: "
 msgstr ""
 
-#: includes/admin.php:705
+#: includes/admin.php:707
 msgid "No new members to approve."
 msgstr "No hi ha nous membres per a aprovar."
 
-#: includes/admin.php:729
+#: includes/admin.php:731
 msgid "The following IP addresses are currently banned."
 msgstr "Actualment, les següents adreces IP estan prohibides."
 
-#: includes/admin.php:736 includes/admin.php:762
+#: includes/admin.php:738 includes/admin.php:764
 msgid "IP Address"
 msgstr "Adreça IP"
 
-#: includes/admin.php:767
+#: includes/admin.php:769
 msgid "The following Email addresses are currently banned."
 msgstr ""
 "Actualment, les següents adreces de correu electrònic estan prohibides."
 
-#: includes/admin.php:775 includes/admin.php:802
+#: includes/admin.php:777 includes/admin.php:804
 msgid "Email Address"
 msgstr "Correu electrònic"
 
-#: includes/admin.php:807
+#: includes/admin.php:809
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 "Actualment no teniu bloquejades adreces IP o adreces de correu electrònic"
 
-#: includes/admin.php:835
+#: includes/admin.php:837
 msgid "BuddyPress Registration Options plugin created by"
 msgstr "Extensió BuddyPress Registration Options creada per"
 
-#: includes/admin.php:849 includes/admin.php:870 includes/admin.php:888
+#: includes/admin.php:851 includes/admin.php:872 includes/admin.php:890
 msgid "Follow"
 msgstr "Segueix"
 
-#: includes/admin.php:954
+#: includes/admin.php:956
 msgid "Are you sure you want to deny and delete the checked member(s)?"
 msgstr ""
 "Esteu segur que voleu denegar i esborrar el(s) membre (s) sel·leccionats?"
 
-#: includes/admin.php:957
+#: includes/admin.php:959
 msgid "Are you sure you want to ban and delete the checked member(s)?"
 msgstr ""
 "Esteu segur que voleu prohibir i esborrar el(s) membre (s) sel·leccionats?"
 
-#: includes/admin.php:960
+#: includes/admin.php:962
 msgid "Are you sure you want to reset to the default messages?"
 msgstr "Esteu segur que voleu restablir els missatges per defecte?"
 
-#: includes/admin.php:1016
+#: includes/admin.php:1018
 msgid "City:"
 msgstr "Ciutat:"
 
-#: includes/admin.php:1017
+#: includes/admin.php:1019
 msgid "IP:"
 msgstr "IP:"
 
