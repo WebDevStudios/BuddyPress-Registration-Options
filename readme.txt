@@ -31,7 +31,19 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Changelog ==
 
 = 4.3.0 =
-* New hook in pending member "additional data" section for displaying custom data about user.
+* Added: New hook in pending member "additional data" section for displaying custom data about user.
+* Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
+* Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
+* Added: prevention of activity stream posting about new member until member is approved.
+* Added: Filter in wp_redirect urls for non-logged in users.
+* Added: Email notification and default message setting for pending users upon activation.
+* Added: Before and after save hooks for general settings.
+* Added: Filter on IP address before saving to user meta.
+* Fixed: Hardened user display in pending member list if no Full Name value provided.
+* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
+* Fixed: Prevention of working in non-main site sites for Multisite.
+* Fixed: internationalization issues with singular/plural "members" admin notice.
+* Updated: internationalization strings for default messages.
 
 = 4.2.8 =
 * Rework loader file to better work with translating the plugin.
@@ -108,11 +120,16 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added: New hook in pending member "additional data" section for displaying custom data about user.
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
 * Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
-* Fixed: Hardened user display in pending member list if no Full Name value provided.
 * Added: prevention of activity stream posting about new member until member is approved.
-* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
 * Added: Filter in wp_redirect urls for non-logged in users.
+* Added: Email notification and default message setting for pending users upon activation.
+* Added: Before and after save hooks for general settings.
+* Added: Filter on IP address before saving to user meta.
+* Fixed: Hardened user display in pending member list if no Full Name value provided.
+* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
 * Fixed: Prevention of working in non-main site sites for Multisite.
+* Fixed: internationalization issues with singular/plural "members" admin notice.
+* Updated: internationalization strings for default messages.
 
 = 4.2.8 =
 * Rework loader file to better work with translating the plugin.
