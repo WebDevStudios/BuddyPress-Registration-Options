@@ -52,7 +52,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		$user = get_userdata( $user_id );
 		$admin_email = get_bloginfo( 'admin_email' );
-		# Used for BP Notifications
+		// Used for BP Notifications.
 		$admins = get_users( 'role=administrator' );
 
 		// Add HTML capabilities temporarily.
@@ -77,7 +77,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			return;
 		}
 
-		# Set them as in moderation.
+		// Set them as in moderation.
 		bp_registration_set_moderation_status( $user_id );
 
 		/**
@@ -89,6 +89,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		 */
 		update_user_meta( $user_id, '_bprwg_ip_address', apply_filters( '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] ) );
 
+		// Admin email.
 		$message = get_option( 'bprwg_admin_pending_message' );
 		$message = str_replace( '[username]', $user->data->user_login, $message );
 		$message = str_replace( '[user_email]', $user->data->user_email, $message );
@@ -102,7 +103,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		);
 		bp_registration_options_delete_user_count_transient();
 
-		# Set admin notification for new member.
+		// Set admin notification for new member.
 		$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
 		if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
 			foreach ( $admins as $admin ) {
@@ -209,7 +210,7 @@ function bp_registration_hide_ui() {
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
 if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-	# Test for BP Component object.
+	// Test for BP Component object.
 	if ( ! empty( $_POST['object'] ) ) {
 		$object = sanitize_title( $_POST['object'] );
 
@@ -217,7 +218,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 		}
 	} else {
-		# Some AJAX requests still come through the 'init' action.
+		// Some AJAX requests still come through the 'init' action.
 		bp_registration_hide_ui();
 	}
 }
@@ -292,7 +293,7 @@ function bp_registration_hide_widget_members( $r = array() ) {
 		$excluded[] = $exclude->user_id;
 	}
 
-	# Prevent overwriting of existing exclude values.
+	// Prevent overwriting of existing exclude values.
 	if ( empty ( $r['exclude'] ) ) {
 		$r['exclude'] = implode( ',', $excluded );
 	} else {
@@ -533,14 +534,14 @@ function bp_registration_options_admin_bar_add() {
 		'href'   => $general_settings
 	) );
 
-	# Submenus
+	// Submenus.
 	$wp_admin_bar->add_menu( array(
 		'parent' => 'bp-registration-options',
 		'id'     => 'bp-registration-options-general-settings',
 		'title'  => __( 'General Settings', 'bp-registration-options' ),
 		'href'   => $general_settings
 	) );
-	# Submenus
+	// Submenus.
 	$wp_admin_bar->add_menu( array(
 		'parent' => 'bp-registration-options',
 		'id'     => 'bp-registration-options-member-requests',
