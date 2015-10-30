@@ -553,7 +553,7 @@ function bp_registration_options_settings() {
 
 			<?php do_action('bpro_hook_after_general_settings_form'); ?>
 
-			<input type="submit" class="button button-primary" name="save_general" value="<?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?>" />
+			<button class="button button-primary" name="save_general" value="save_general"><?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?></button>
 		</form>
 	</div>
 
@@ -677,9 +677,11 @@ function bp_registration_options_member_requests() { ?>
 			</tfoot>
 			</table>
 
-			<p><input type="submit" class="button button-primary" name="moderate" value="<?php esc_attr_e( 'Approve', 'bp-registration-options' ); ?>" id="bpro_approve" />
-			<input type="submit" class="button button-secondary" name="moderate" value="<?php esc_attr_e( 'Deny', 'bp-registration-options' ); ?>" id="bpro_deny" />
-			<input type="submit" class="button button-secondary" name="moderate" disabled value="<?php esc_attr_e( 'Ban', 'bp-registration-options' ); ?>" id="bpro_ban" /></p>
+			<p>
+			<button class="button button-primary" name="moderate" value="approve" id="bpro_approve"><?php _e( 'Approve', 'bp-registration-options' ); ?></button>
+			<button class="button button-secondary" name="moderate" value="deny" id="bpro_deny"><?php _e( 'Deny', 'bp-registration-options' ); ?></button>
+			<button class="button button-secondary" name="moderate" value="ban" id="bpro_ban" disabled><?php _e( 'Ban', 'bp-registration-options' ); ?></button>
+			</p>
 
 			<?php if ( $total_pages > 1 ) {
 				$current = ( !empty( $_GET['p'] ) ) ? $_GET['p'] : 1;
