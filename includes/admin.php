@@ -93,6 +93,16 @@ function bp_registration_handle_reset_messages() {
  * @param array $args Array of inputs to save.
  */
 function bp_registration_handle_general_settings( $args = array() ) {
+
+	/**
+	 * Fires before we've saved our options
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array $args Array of inputs to be saved.
+	 */
+	do_action( 'bpro_hook_before_save_settings', $args );
+
 	// Handle saving our moderate setting.
 	if ( !empty( $args['set_moderate'] ) ) {
 		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
@@ -136,8 +146,10 @@ function bp_registration_handle_general_settings( $args = array() ) {
 	 * Fires after we've saved our options
 	 *
 	 * @since 4.3.0
+	 *
+	 * @param array $args Array of inputs that were saved.
 	 */
-	do_action( 'bpro_hook_after_save_settings' );
+	do_action( 'bpro_hook_after_save_settings', $args );
 }
 
 /**
