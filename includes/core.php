@@ -94,6 +94,11 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		$message = str_replace( '[username]', $user->data->user_login, $message );
 		$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
+		// Pending user email.
+		$pending_message = get_option( 'bprwg_user_pending_message' );
+		$pending_message = str_replace( '[username]', $user->data->user_login, $pending_message );
+		$pending_message = str_replace( '[user_email]', $user->data->user_email, $pending_message );
+
 		bp_registration_options_send_admin_email(
 			array(
 				'user_login' => $user->data->user_login,
@@ -101,6 +106,15 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 				'message'    => $message
 			)
 		);
+
+		bp_registration_options_send_pending_user_email(
+			array(
+				'user_login' => $user->data->user_login,
+				'user_email' => $user->data->user_email,
+				'message'    => $pending_message
+			)
+		);
+
 		bp_registration_options_delete_user_count_transient();
 
 		// Set admin notification for new member.
@@ -451,6 +465,26 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
 
 	wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
+
+	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+}
+
+/**
+ * Send an email to the pending user upon registration.
+ *
+ * @since 4.3.0
+ *
+ * @param array $args Array of argumetns for the email.
+ */
+function bp_registration_options_send_pending_user_email( $args = array() ) {
+
+	$args = wp_parse_args( $args, array(
+		'user_login' => '',
+		'user_email' => '',
+		'message'    => '',
+	) );
+
+	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options'), $args['message'] );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }
