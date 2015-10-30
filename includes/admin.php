@@ -190,7 +190,7 @@ function bp_registration_options_form_actions() {
 
 		check_admin_referer( 'bp_reg_options_check' );
 
-		$action = $_POST['moderate'];
+		$action = sanitize_text_field( $_POST['moderate'] );
 
 		$checked_members = array();
 		$send = false;
