@@ -731,14 +731,14 @@ function bp_registration_options_banned() {
 
 		foreach( $blockedIPs as $IP ) {
 			if ( $odd ) {
-				echo '<tr class="alternate">';
+				$attributes = ' class="alternate"';
 				$odd = false;
 			} else {
-				echo '<tr>';
+				$attributes = '';
 				$odd = true;
 			}
-
 			?>
+			<tr<?php echo $attributes; ?>>
 			<th class="check-column" scope="row"><label><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo $IP; ?>"  /></label></th>
 			<td><?php echo $IP; ?></a></td>
 			</tr>
