@@ -8,7 +8,7 @@
 /**
  * Get a count of our pending users
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
  * @return integer  count of our current pending users
  */
@@ -32,11 +32,10 @@ function bp_registration_get_pending_user_count() {
 /**
  * Get our pending users
  *
- * @since  4.2.0
+ * @since 4.2.0
  *
- * @param  integer $start_from Offset to start from with our paging of pending users.
- *
- * @return array              Array of user ID objects or empty array.
+ * @param integer $start_from Offset to start from with our paging of pending users.
+ * @return array Array of user ID objects or empty array.
  */
 function bp_registration_get_pending_users( $start_from = 0 ) {
 	global $wpdb;
@@ -232,9 +231,9 @@ function bp_registration_options_form_actions() {
 				bp_registration_options_delete_user_count_transient();
 
 			} elseif ( 'Approve' == $action ) {
-				# Mark as not spam for BuddyPress Registration Options.
+				// Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
-				# Mark as not spam for BuddyPress Core.
+				// Mark as not spam for BuddyPress Core.
 				bp_core_process_spammer_status( $user_id, 'ham' );
 
 				do_action( 'bpro_hook_approved_user', $user_id );
@@ -860,7 +859,7 @@ function bp_registration_options_admin_footer() {
 /**
  * Add User-provided CSS to our admin_head output for styling purposes.
  *
- * @since  4.2.0
+ * @since 4.2.0
  */
 function bp_registration_options_css() {
 	$styles = apply_filters( 'bpro_hook_admin_styles', '' );
@@ -883,7 +882,7 @@ add_action( 'admin_enqueue_scripts', 'bp_registration_options_stylesheet' );
 /**
  * Add JS to our admin_footer output for DOM manipulation purposes
  *
- * @since  unknown
+ * @since unknown
  */
 function bp_registration_options_js() {
 	?>
@@ -953,6 +952,7 @@ add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient
  * Filters the IP data into the user list table.
  *
  * @since 4.3.0
+ *
  * @param int $user_id ID of the user being listed.
  */
 function bp_registration_options_ip_data( $user_id ) {
