@@ -1,67 +1,67 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2015-07-18 17:19-0500\n"
-"PO-Revision-Date: 2015-07-18 17:19-0500\n"
+"POT-Creation-Date: 2015-10-30 01:03-0500\n"
+"PO-Revision-Date: 2015-10-30 01:03-0500\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ../includes\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../bp-registration-options.php:30
+#: ../bp-registration-options.php:38
 msgid "This plugin requires WordPress version 3.0 or higher."
 msgstr "Dieses Plugin benötigt die WordPress Version 3.0 oder höher."
 
-#: ../includes/admin.php:153
+#: ../includes/admin.php:210
 msgid "Membership Denied"
 msgstr ""
 
-#: ../includes/admin.php:158
+#: ../includes/admin.php:215
 msgid "Membership Approved"
 msgstr ""
 
-#: ../includes/admin.php:240
-#, fuzzy, php-format
-msgid ""
-"You have %s new member request%s that need to be approved or denied. Please "
-"%s to take action"
-msgstr ""
-"%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden müssen. "
-"Bitte %s hier klicken%s, um damit zu beginnen"
-
-#: ../includes/admin.php:250
+#: ../includes/admin.php:309
 msgid "click here"
 msgstr ""
 
-#: ../includes/admin.php:290 ../includes/admin.php:291
+#: ../includes/admin.php:347 ../includes/admin.php:348
 msgid "BP Registration"
 msgstr "BP Registrierung"
 
-#: ../includes/admin.php:302 ../includes/admin.php:303
+#: ../includes/admin.php:359 ../includes/admin.php:360
 msgid "Member Requests "
 msgstr "Mitgliedschafts-Anfragen"
 
-#: ../includes/admin.php:344
+#: ../includes/admin.php:368 ../includes/admin.php:369
+msgid "Banned Sources"
+msgstr ""
+
+#: ../includes/admin.php:377 ../includes/admin.php:378
+#, fuzzy
+msgid "Help / Support"
+msgstr "Hilfe/Support"
+
+#: ../includes/admin.php:398 ../includes/core.php:553
 msgid "BP Registration Options"
 msgstr "BP Registrierungs-Optionen"
 
-#: ../includes/admin.php:345
+#: ../includes/admin.php:399 ../includes/core.php:562
 msgid "General Settings"
 msgstr "Einstellungen"
 
-#: ../includes/admin.php:346
+#: ../includes/admin.php:400 ../includes/admin.php:449 ../includes/core.php:569
 msgid "Member Requests"
 msgstr "Mitgliedschafts-Anfragen"
 
-#: ../includes/admin.php:368
+#: ../includes/admin.php:423
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -73,30 +73,44 @@ msgstr ""
 "auszunutzen, solange das Konto nicht freigeschaltet worden ist. Einmal "
 "freigeschaltet oder abgeleht werden Sie eine Email-Mitteilung erhalten. "
 
-#: ../includes/admin.php:375
-#, php-format
+#: ../includes/admin.php:430
+#, fuzzy, php-format
 msgid ""
-"Hi [username], your member account on %s has been approved! You can now "
+"Hi [username], your member account at %s has been approved! You can now "
 "login and start interacting with the rest of the community..."
 msgstr ""
 "Hallo [username], Ihr Konto auf %s ist freigeschaltet worden! Sie können "
 "sich jetzt einloggen und damit beginnen, mit den Mitgliedern der Community "
 "zu kommunizieren…"
 
-#: ../includes/admin.php:384
-#, php-format
+#: ../includes/admin.php:439
+#, fuzzy, php-format
 msgid ""
-"Hi [username], we regret to inform you that your member account on %s has "
+"Hi [username], we regret to inform you that your member account at %s has "
 "been denied..."
 msgstr ""
 "Hallo [username], wir bedauern, Sie informieren zu müssen, dass Ihr Antrag "
 "auf Mitgliedschaft bei %s abgeleht worden ist…"
 
-#: ../includes/admin.php:404
+#: ../includes/admin.php:448
+#, fuzzy, php-format
+msgid ""
+"[username] ( [user_email] ) would like to become a member of your website. "
+"To accept or reject their request, please go to %s"
+msgstr ""
+"möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
+"dem folgenden Link folgen"
+
+#: ../includes/admin.php:457
+#, php-format
+msgid "Hi [username], your account at %s is currently pending approval."
+msgstr ""
+
+#: ../includes/admin.php:477
 msgid "Moderate New Members"
 msgstr "Neue Mitglieder moderieren"
 
-#: ../includes/admin.php:405
+#: ../includes/admin.php:478
 #, fuzzy
 msgid ""
 "Every new member will have to be approved by an administrator before they "
@@ -105,7 +119,7 @@ msgstr ""
 "Jedes neue Mitglied muss von einem Administrator zugelassen worden sein, "
 "bevor es die Mitgliedschafts-Komponenten nutzen kann."
 
-#: ../includes/admin.php:412
+#: ../includes/admin.php:485
 #, fuzzy
 msgid ""
 "Only registered or approved members can view BuddyPress/bbPress pages "
@@ -114,106 +128,126 @@ msgstr ""
 "Nur registrierte und zugelassene Mitglieder können Mitglieschaftssteien-"
 "Seiten (privates Netzwerk) sehen."
 
-#: ../includes/admin.php:419
+#: ../includes/admin.php:492
+msgid ""
+"Add new user notification to admin user account BuddyPress notification "
+"inbox."
+msgstr ""
+
+#: ../includes/admin.php:499
 msgid "Activate & Profile Alert Message:"
 msgstr "Mitteilung zur Aktivierung und zum Profil:"
 
-#: ../includes/admin.php:427
+#: ../includes/admin.php:507
 msgid "Account Approved Email:"
 msgstr "Email zur Konto-Freischaltung:"
 
-#: ../includes/admin.php:435
+#: ../includes/admin.php:515
 msgid "Account Denied Email:"
 msgstr "Email zur Konto-Zurückweisung:"
 
-#: ../includes/admin.php:447
-msgid "Short Code Key: [username]"
+#: ../includes/admin.php:523
+msgid "Admin Pending Email Message:"
+msgstr ""
+
+#: ../includes/admin.php:531
+msgid "User Pending Email Message:"
+msgstr ""
+
+#: ../includes/admin.php:543
+#, fuzzy
+msgid "Short Code Key: [username], [user_email]"
 msgstr "Short Code Key: [username]"
 
-#: ../includes/admin.php:491
+#: ../includes/admin.php:585
 msgid "Please approve or deny the following new members:"
 msgstr "Bitte die folgenden Member zulassen oder ablehnen:"
 
-#: ../includes/admin.php:499 ../includes/admin.php:585
+#: ../includes/admin.php:593 ../includes/admin.php:671
 msgid "Photo"
 msgstr "Foto"
 
-#: ../includes/admin.php:500 ../includes/admin.php:586
+#: ../includes/admin.php:594 ../includes/admin.php:672
 msgid "Name"
 msgstr "Name"
 
-#: ../includes/admin.php:501 ../includes/admin.php:587
+#: ../includes/admin.php:595 ../includes/admin.php:673
 msgid "Email"
 msgstr "Email"
 
-#: ../includes/admin.php:502 ../includes/admin.php:588
+#: ../includes/admin.php:596 ../includes/admin.php:674
 msgid "Created"
 msgstr "Erstellt"
 
-#: ../includes/admin.php:503 ../includes/admin.php:589
+#: ../includes/admin.php:597 ../includes/admin.php:675
 msgid "Additional Data"
 msgstr "Zusatzinfos"
 
-#: ../includes/admin.php:571
-msgid "City:"
-msgstr "Ort:"
+#: ../includes/admin.php:686
+msgid "Pagination: "
+msgstr ""
 
-#: ../includes/admin.php:572
-msgid "IP:"
-msgstr "IP:"
-
-#: ../includes/admin.php:624
+#: ../includes/admin.php:705
 msgid "No new members to approve."
 msgstr "Keine neuen Member zur Prüfung."
 
-#: ../includes/admin.php:648
+#: ../includes/admin.php:729
 msgid "The following IP addresses are currently banned."
 msgstr ""
 
-#: ../includes/admin.php:655 ../includes/admin.php:681
+#: ../includes/admin.php:736 ../includes/admin.php:762
 msgid "IP Address"
 msgstr ""
 
-#: ../includes/admin.php:686
+#: ../includes/admin.php:767
 msgid "The following Email addresses are currently banned."
 msgstr ""
 
-#: ../includes/admin.php:694 ../includes/admin.php:721
+#: ../includes/admin.php:775 ../includes/admin.php:802
 #, fuzzy
 msgid "Email Address"
 msgstr "E-Mail-Adresse"
 
-#: ../includes/admin.php:726
+#: ../includes/admin.php:807
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 
-#: ../includes/admin.php:756
+#: ../includes/admin.php:835
 msgid "BuddyPress Registration Options plugin created by"
 msgstr "BuddyPress-Registrierungs-Optionen-Plugin entwickelt von"
 
-#: ../includes/admin.php:770 ../includes/admin.php:791
+#: ../includes/admin.php:849 ../includes/admin.php:870
+#: ../includes/admin.php:888
 msgid "Follow"
 msgstr "Folgen"
 
-#: ../includes/admin.php:861
+#: ../includes/admin.php:954
 msgid "Are you sure you want to deny and delete the checked member(s)?"
 msgstr ""
 "Sind Sie sicher, dass die markierten Member abgelehnt und gelöscht werden "
 "sollen?"
 
-#: ../includes/admin.php:864
+#: ../includes/admin.php:957
 msgid "Are you sure you want to ban and delete the checked member(s)?"
 msgstr ""
 "Sind Sie sicher, dass die markierten Member gebannt und gelöscht werden "
 "sollen?"
 
-#: ../includes/admin.php:867
+#: ../includes/admin.php:960
 msgid "Are you sure you want to reset to the default messages?"
 msgstr ""
 "Sind sie sicher, dass die Standard-Mitteilungen wieder hergestellt werden "
 "sollen?"
 
-#: ../includes/compatibility.php:37 ../includes/core.php:88
+#: ../includes/admin.php:1016
+msgid "City:"
+msgstr "Ort:"
+
+#: ../includes/admin.php:1017
+msgid "IP:"
+msgstr "IP:"
+
+#: ../includes/compatibility.php:54
 #, fuzzy, php-format
 msgid ""
 "%s ( %s ) would like to become a member of your website. To accept or reject "
@@ -222,9 +256,35 @@ msgstr ""
 "möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
 "dem folgenden Link folgen"
 
-#: ../includes/core.php:434
+#: ../includes/core.php:66
+msgid ""
+"Someone with a banned IP address or email just tried to register with your "
+"site"
+msgstr ""
+
+#: ../includes/core.php:68
+msgid "Banned member registration attempt"
+msgstr ""
+
+#: ../includes/core.php:114
+msgid "New pending BPRO member"
+msgstr ""
+
+#: ../includes/core.php:454
 msgid "New Member Request"
 msgstr "Neue Mitgliedschafts-Anfrage"
+
+#: ../includes/core.php:474
+msgid "Pending Membership"
+msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "You have %s new member request%s that need to be approved or denied. "
+#~ "Please %s to take action"
+#~ msgstr ""
+#~ "%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden "
+#~ "müssen. Bitte %s hier klicken%s, um damit zu beginnen"
 
 #~ msgid "bp_registration_options"
 #~ msgstr "bp_registration_options"
