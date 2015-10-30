@@ -205,12 +205,12 @@ function bp_registration_options_form_actions() {
 			$checked_members = array( $checked_members );
 		}
 
-		if ( 'Deny' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
+		if ( 'deny' == $action ) {
 			$send = true;
 			$subject = __( 'Membership Denied', 'bp-registration-options' );
 			$message = get_option( 'bprwg_denied_message' );
 		}
-		if ( 'Approve' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
+		if ( 'approve' == $action ) {
 			$send = true;
 			$subject = __( 'Membership Approved', 'bp-registration-options' );
 			$message = get_option( 'bprwg_approved_message' );
@@ -220,7 +220,7 @@ function bp_registration_options_form_actions() {
 
 			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
-			if ( 'Deny' == $action || 'Ban' == $action ) { // Leave capitalized and don't i18n, because we're comparing button values for the time being.
+			if ( 'deny' == $action || 'ban' == $action ) {
 
 				/*
 				 // Add our user to the IP ban option.
@@ -247,7 +247,7 @@ function bp_registration_options_form_actions() {
 
 				bp_registration_options_delete_user_count_transient();
 
-			} elseif ( 'Approve' == $action ) {
+			} elseif ( 'approve' == $action ) {
 				// Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
 				// Mark as not spam for BuddyPress Core.
