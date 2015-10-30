@@ -311,18 +311,13 @@ function bp_registration_options_admin_messages() {
 
 		$message .= sprintf(
 			_n(
-				sprintf(
-					'You have %s new member request that needs to be approved or denied. Please %s to take action',
-					$numeral_url,
-					$click_url
-				),
-				sprintf(
-					'You have %s new member requests that needs to be approved or denied. Please %s to take action',
-					$numeral_url,
-					$click_url
-				),
-				$member_requests
-			)
+				'You have %s new member request that needs to be approved or denied. Please %s to take action',
+				'You have %s new member requests that needs to be approved or denied. Please %s to take action',
+				$member_requests,
+				'bp-registration-options'
+			),
+			$numeral_url,
+			$click_url
 		);
 
 
