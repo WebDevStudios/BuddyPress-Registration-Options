@@ -75,6 +75,7 @@ function bp_registration_handle_reset_messages() {
 	delete_option( 'bprwg_approved_message' );
 	delete_option( 'bprwg_denied_message' );
 	delete_option( 'bprwg_admin_pending_message' );
+	delete_option( 'bprwg_user_pending_message' );
 
 	/**
 	 * Fires after we've deleted our four message options
@@ -128,6 +129,9 @@ function bp_registration_handle_general_settings( $args = array() ) {
 	$admin_pending_message = esc_textarea( $args['admin_pending_message'] );
 	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 
+	$user_pending_message = esc_textarea( $args['user_pending_message'] );
+	update_option( 'bprwg_user_pending_message', $user_pending_message );
+
 	/**
 	 * Fires after we've saved our options
 	 *
@@ -156,7 +160,8 @@ function bp_registration_options_form_actions() {
 				'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
 				'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
 				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
-				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message']
+				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message'],
+				'user_pending_message'  => empty( $_POST['user_pending_message'] ) ? '' : $_POST['user_pending_message']
 			)
 		);
 	}
@@ -389,6 +394,7 @@ function bp_registration_options_settings() {
 	$approved_message      = get_option( 'bprwg_approved_message' );
 	$denied_message        = get_option( 'bprwg_denied_message' );
 	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
+	$user_pending_message = get_option( 'bprwg_user_pending_message' );
 
 	if ( !$activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
@@ -421,6 +427,15 @@ function bp_registration_options_settings() {
 		);
 
 		update_option( 'bprwg_admin_pending_message', $admin_pending_message );
+	}
+
+	if ( ! $user_pending_message ) {
+		$user_pending_message = sprintf(
+			__( 'Hi [username], your account at %s is currently pending approval.', 'bp-registration-options' ),
+			get_bloginfo( 'url' )
+		);
+
+		update_option( 'bprwg_denied_message', $user_pending_message );
 	}
 	?>
 
@@ -486,6 +501,14 @@ function bp_registration_options_settings() {
 					</td>
 					<td>
 						<textarea id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="alignright">
+						<label for="user_pending_message"><?php _e( 'User Pending Email Message:', 'bp-registration-options' ); ?></label>
+					</td>
+					<td>
+						<textarea id="user_pending_message" name="user_pending_message"><?php echo stripslashes( $user_pending_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
