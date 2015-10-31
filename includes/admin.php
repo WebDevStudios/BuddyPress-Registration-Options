@@ -303,24 +303,24 @@ function bp_registration_options_admin_messages() {
 			$member_requests
 		);
 
-		$click_url = sprintf(
-			'<a href="%s">%s</a>',
-			admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
-			__( 'click here', 'bp-registration-options' )
-		);
-
 		$message .= sprintf(
 			_n(
-				'You have %s new member request that needs to be approved or denied. Please %s to take action',
-				'You have %s new member requests that needs to be approved or denied. Please %s to take action',
+				'You have %d new member request that needs to be approved or denied.',
+				'You have %d new member requests that needs to be approved or denied.',
 				$member_requests,
 				'bp-registration-options'
 			),
-			$numeral_url,
-			$click_url
+			$member_requests
 		);
-
-
+		$message .= ' ' . sprintf(
+			/* translators: placeholder will have linked "click here" that goes to requests page. */
+			__( 'Please %s to take action', 'bp-registration-options' ),
+			sprintf(
+				'<a href="%s">%s</a>',
+				admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
+				__( 'click here', 'bp-registration-options' )
+			)
+		);
 
 		$message .= '</p></div>';
 
