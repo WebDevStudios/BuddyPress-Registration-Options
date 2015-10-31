@@ -824,85 +824,45 @@ function bp_registration_options_help_support() {
 }
 
 /**
- * Render our content at the bottom of each page. Displays contact and credit information
+ * Render our content at the bottom of each page. Displays contact and credit information.
  *
  * @since unknown
+ * @since 4.3.0 Revised to be a footer text filter.
+ *
+ * @param string $original Original footer text.
+ * @return string $value New footer text.
  */
-function bp_registration_options_admin_footer() {
+function bp_registration_options_admin_footer( $original = '' ) {
 
-	do_action( 'bpro_hook_before_footer' );
+	$screen = get_current_screen();
+	if ( ! is_object( $screen ) || 'bp_registration_options' != $screen->parent_base ) {
+		return $original;
+	}
+	return sprintf(
+		__( '%s version %s by %s', 'bp-registration-options' ),
+		sprintf(
+			'<a target="_blank" href="https://wordpress.org/support/plugin/bp-registration-options">%s</a>',
+			__( 'BP Registration Options', 'bp-registration-options' )
+		),
+		BP_REGISTRATION_OPTIONS_VERSION,
+		'<a href="http://webdevstudios.com" target="_blank">WebDevStudios</a>'
+	).
+	' - '.
+	sprintf(
+		'<a href="https://github.com/WebDevStudios/BuddyPress-Registration-Options/issues" target="_blank">%s</a>',
+		__( 'Please Report Bugs', 'bp-registration-options' )
+	).
+	' '.
+	__( 'Follow on Twitter:', 'bp-registration-options' ).
+	sprintf(
+		' %s &middot; %s &middot; %s',
+		'<a href="http://twitter.com/tw2113" target="_blank">Michael</a>',
+		'<a href="http://twitter.com/bmess" target="_blank">Brian</a>',
+		'<a href="http://twitter.com/webdevstudios" target="_blank">WebDevStudios</a>'
+	);
 
-	?>
-	<p class="createdby">
-		<?php _e( 'BuddyPress Registration Options plugin created by', 'bp-registration-options' ); ?>
-		<a target="_blank" href="http://webdevstudios.com">WebDevStudios.com</a>
-	</p>
-	<table>
-		<tr>
-			<td>
-				<table>
-					<tr>
-						<td>
-							<a target="_blank" href="http://webdevstudios.com">
-								<img width="50" src="<?php echo plugins_url( '/images/WDS-150x150.png', dirname( __FILE__ ) );?>" />
-							</a>
-						</td>
-						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> WebDevStudios</strong><br />
-							<a target="_blank" href="https://plus.google.com/108871619014334838112">
-								<img src="<?php echo plugins_url( '/images/google-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-							<a target="_blank" href="http://twitter.com/webdevstudios">
-								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-							<a target="_blank" href="http://facebook.com/webdevstudios">
-								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-						<td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table>
-					<tr>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Michael Beckwith</strong><br />
-							<a target="_blank" href="http://twitter.com/tw2113">
-								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-							<a target="_blank" href="http://facebook.com/tw2113">
-								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table>
-					<tr>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<strong><?php _e( 'Follow', 'bp-registration-options' ); ?> Brian Messenlehner</strong><br />
-							<a target="_blank" href="http://twitter.com/bmess">
-								<img src="<?php echo plugins_url( '/images/twitter-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-							<a target="_blank" href="http://facebook.com/bmess">
-								<img src="<?php echo plugins_url( '/images/facebook-icon.png', dirname( __FILE__ ) );?>" />
-							</a>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-<?php
-	do_action( 'bpro_hook_after_footer' );
 }
+add_filter( 'admin_footer_text', 'bp_registration_options_admin_footer' );
 
 /**
  * Add User-provided CSS to our admin_head output for styling purposes.
