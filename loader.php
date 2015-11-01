@@ -49,7 +49,7 @@ add_action( 'plugins_loaded', 'bp_registration_options_init' );
  * @since 4.2.8
  */
 function bp_registration_options_compat_init() {
-	$bp_registration_compatibility = new BP_Registration_Compatibility;
+	return new BP_Registration_Compatibility;
 }
 
 /**
