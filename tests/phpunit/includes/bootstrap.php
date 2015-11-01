@@ -67,9 +67,6 @@ function _tests_load_bp_registration_options() {
 }
 tests_add_filter( 'muplugins_loaded', '_tests_load_bp_registration_options' );
 
-// Requiring this file gives you access to BP_UnitTestCase.
-require BP_TESTS_DIR . '/includes/testcase.php';
-
 /**
  * Bootstraps the WordPress stack.
  */
