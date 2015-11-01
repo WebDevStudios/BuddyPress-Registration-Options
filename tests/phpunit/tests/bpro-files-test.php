@@ -17,14 +17,17 @@ class bpro_files_test extends WP_UnitTestCase {
 	 */
 	public function test_bp_registration_should_init() {
 		$dir = plugin_dir_path( dirname( dirname( dirname( __FILE__ ) ) ) );
-		echo $dir . 'bp-registration-options.php';
+
+		// Base directory.
 		$this->assertTrue( file_exists( $dir . 'bp-registration-options.php' ) );
 		$this->assertTrue( file_exists( $dir . 'loader.php' ) );
 
+		// Includes folder.
 		$this->assertTrue( file_exists( $dir . 'includes/admin.php' ) );
 		$this->assertTrue( file_exists( $dir . 'includes/compatibility.php' ) );
 		$this->assertTrue( file_exists( $dir . 'includes/core.php' ) );
 
+		// Assets.
 		$this->assertTrue( file_exists( $dir . 'assets/bp-registration-options.css' ) );
 	}
 }
