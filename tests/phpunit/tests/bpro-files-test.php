@@ -15,7 +15,7 @@ class bpro_files_test extends WP_UnitTestCase {
 	/**
 	 * Test if have all our files.
 	 */
-	public function test_bp_registration_should_init() {
+	public function test_files_exist() {
 		$dir = plugin_dir_path( dirname( dirname( dirname( __FILE__ ) ) ) );
 
 		// Base directory.
