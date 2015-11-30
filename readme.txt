@@ -45,6 +45,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: internationalization issues with singular/plural "members" admin notice.
 * Updated: internationalization strings for default messages.
 
+= 4.2.9 =
+* Add Hebrew translation.
+
 = 4.2.8 =
 * Rework loader file to better work with translating the plugin.
 
@@ -130,6 +133,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Prevention of working in non-main site sites for Multisite.
 * Fixed: internationalization issues with singular/plural "members" admin notice.
 * Updated: internationalization strings for default messages.
+
+= 4.2.9 =
+* Add Hebrew translation.
 
 = 4.2.8 =
 * Rework loader file to better work with translating the plugin.
