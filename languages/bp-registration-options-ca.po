@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2015-10-30 14:58-0500\n"
 "PO-Revision-Date: 2015-10-30 14:58-0500\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
+=======
+"POT-Creation-Date: 2015-10-29 18:26+0100\n"
+"PO-Revision-Date: 2015-10-29 19:02+0100\n"
+"Last-Translator: Albert Parera\n"
+>>>>>>> master
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
+<<<<<<< HEAD
 #: bp-registration-options.php:38
 msgid "This plugin requires WordPress version 3.0 or higher."
 msgstr "Aquesta extensió de WordPress requereix la versió 3.0 o superior."
@@ -78,6 +85,54 @@ msgid "Member Requests"
 msgstr "Sol·licituts d'afiliació"
 
 #: includes/admin.php:423
+=======
+#: bp-registration-options.php:30
+msgid "This plugin requires WordPress version 3.0 or higher."
+msgstr "Aquesta extensió de WordPress requereix la versió 3.0 o superior."
+
+#: includes/admin.php:153
+msgid "Membership Denied"
+msgstr "Afiliació denegada"
+
+#: includes/admin.php:158
+msgid "Membership Approved"
+msgstr "Afiliació aprovada"
+
+#: includes/admin.php:240
+#, php-format
+msgid ""
+"You have %s new member request%s that need to be approved or denied. Please "
+"%s to take action"
+msgstr ""
+"Teniu %s noves sol·licituts d'afiliació%s que requereixen ser aprovades o "
+"denegades. Feu %s per a atendre-ho"
+
+#: includes/admin.php:250
+msgid "click here"
+msgstr "clic aquí"
+
+#: includes/admin.php:290 includes/admin.php:291
+msgid "BP Registration"
+msgstr "BP Registration"
+
+#: includes/admin.php:302 includes/admin.php:303
+msgid "Member Requests "
+msgstr "Sol·licituts d'afiliació"
+
+#: includes/admin.php:344
+msgid "BP Registration Options"
+msgstr "BP Registration Options"
+
+#: includes/admin.php:345
+msgid "General Settings"
+msgstr "Paràmetres generals"
+
+#: includes/admin.php:346
+msgid "Member Requests"
+msgstr "Sol·licituts d'afiliació"
+
+#: includes/admin.php:368
+>>>>>>> master
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -88,15 +143,23 @@ msgstr ""
 "interacció amb la intranet està limitada al vostre perfil. Rebreu una "
 "notificació per correu electrònic en breu."
 
+<<<<<<< HEAD
 #: includes/admin.php:430
 #, fuzzy, php-format
 msgid ""
 "Hi [username], your member account at %s has been approved! You can now "
+=======
+#: includes/admin.php:375
+#, php-format
+msgid ""
+"Hi [username], your member account on %s has been approved! You can now "
+>>>>>>> master
 "login and start interacting with the rest of the community..."
 msgstr ""
 "Enhorabona [username], el teu compte a %s ha estat aprovat! Ja tens accés "
 "complet a la plataforma. Entra i interactúa amb la resta de membres!"
 
+<<<<<<< HEAD
 #: includes/admin.php:439
 #, fuzzy, php-format
 msgid ""
@@ -124,6 +187,20 @@ msgid "Moderate New Members"
 msgstr "Moderar als membres nous"
 
 #: includes/admin.php:478
+=======
+#: includes/admin.php:384
+#, php-format
+msgid ""
+"Hi [username], we regret to inform you that your member account on %s has "
+"been denied..."
+msgstr "[username], el seu compte a %s ha estat denegat."
+
+#: includes/admin.php:404
+msgid "Moderate New Members"
+msgstr "Moderar als membres nous"
+
+#: includes/admin.php:405
+>>>>>>> master
 msgid ""
 "Every new member will have to be approved by an administrator before they "
 "can interact with BuddyPress/bbPress components."
@@ -131,7 +208,11 @@ msgstr ""
 "Cada nou membre haurà de ser aprovat per un administrador abans que puguin "
 "interactuar amb els components BuddyPress/bbPress."
 
+<<<<<<< HEAD
 #: includes/admin.php:485
+=======
+#: includes/admin.php:412
+>>>>>>> master
 msgid ""
 "Only registered or approved members can view BuddyPress/bbPress pages "
 "(Private Network)."
@@ -139,6 +220,7 @@ msgstr ""
 "Només els usuaris registrats o autoritzats poden veure les pàgines "
 "BuddyPress/bbPress (xarxa privada)."
 
+<<<<<<< HEAD
 #: includes/admin.php:492
 msgid ""
 "Add new user notification to admin user account BuddyPress notification "
@@ -231,19 +313,111 @@ msgid "IP Address"
 msgstr "Adreça IP"
 
 #: includes/admin.php:769
+=======
+#: includes/admin.php:419
+msgid "Activate & Profile Alert Message:"
+msgstr "Activació i missatge d'alerta al perfil:"
+
+#: includes/admin.php:427
+msgid "Account Approved Email:"
+msgstr "Correu d'aprovació del compte:"
+
+#: includes/admin.php:435
+msgid "Account Denied Email:"
+msgstr "Correu de denegació del compte:"
+
+#: includes/admin.php:447
+msgid "Short Code Key: [username]"
+msgstr "Clau de Shortcode: [username]"
+
+#: includes/admin.php:450
+msgid "Reset Messages"
+msgstr "Restablir missatges"
+
+#: includes/admin.php:460
+msgid "Save Options"
+msgstr "Desa els canvis"
+
+#: includes/admin.php:491
+msgid "Please approve or deny the following new members:"
+msgstr "Si us plau, aproveu o denegueu l'afiliació dels següents nous membres:"
+
+#: includes/admin.php:499 includes/admin.php:585
+msgid "Photo"
+msgstr "Foto"
+
+#: includes/admin.php:500 includes/admin.php:586
+msgid "Name"
+msgstr "Nom"
+
+#: includes/admin.php:501 includes/admin.php:587
+msgid "Email"
+msgstr "Correu electrònic"
+
+#: includes/admin.php:502 includes/admin.php:588
+msgid "Created"
+msgstr "Creat"
+
+#: includes/admin.php:503 includes/admin.php:589
+msgid "Additional Data"
+msgstr "Dades addicionals"
+
+#: includes/admin.php:571
+msgid "City:"
+msgstr "Ciutat:"
+
+#: includes/admin.php:572
+msgid "IP:"
+msgstr "IP:"
+
+#: includes/admin.php:594
+msgid "Approve"
+msgstr "Aprovar"
+
+#: includes/admin.php:595
+msgid "Deny"
+msgstr "Denegar"
+
+#: includes/admin.php:596
+msgid "Ban"
+msgstr "Prohibir"
+
+#: includes/admin.php:624
+msgid "No new members to approve."
+msgstr "No hi ha nous membres per a aprovar."
+
+#: includes/admin.php:648
+msgid "The following IP addresses are currently banned."
+msgstr "Actualment, les següents adreces IP estan prohibides."
+
+#: includes/admin.php:655 includes/admin.php:681
+msgid "IP Address"
+msgstr "Adreça IP"
+
+#: includes/admin.php:686
+>>>>>>> master
 msgid "The following Email addresses are currently banned."
 msgstr ""
 "Actualment, les següents adreces de correu electrònic estan prohibides."
 
+<<<<<<< HEAD
 #: includes/admin.php:777 includes/admin.php:804
 msgid "Email Address"
 msgstr "Correu electrònic"
 
 #: includes/admin.php:809
+=======
+#: includes/admin.php:694 includes/admin.php:721
+msgid "Email Address"
+msgstr "Correu electrònic"
+
+#: includes/admin.php:726
+>>>>>>> master
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 "Actualment no teniu bloquejades adreces IP o adreces de correu electrònic"
 
+<<<<<<< HEAD
 #: includes/admin.php:837
 msgid "BuddyPress Registration Options plugin created by"
 msgstr "Extensió BuddyPress Registration Options creada per"
@@ -253,15 +427,31 @@ msgid "Follow"
 msgstr "Segueix"
 
 #: includes/admin.php:956
+=======
+#: includes/admin.php:756
+msgid "BuddyPress Registration Options plugin created by"
+msgstr "Extensió BuddyPress Registration Options creada per"
+
+#: includes/admin.php:770 includes/admin.php:791
+msgid "Follow"
+msgstr "Segueix"
+
+#: includes/admin.php:861
+>>>>>>> master
 msgid "Are you sure you want to deny and delete the checked member(s)?"
 msgstr ""
 "Esteu segur que voleu denegar i esborrar el(s) membre (s) sel·leccionats?"
 
+<<<<<<< HEAD
 #: includes/admin.php:959
+=======
+#: includes/admin.php:864
+>>>>>>> master
 msgid "Are you sure you want to ban and delete the checked member(s)?"
 msgstr ""
 "Esteu segur que voleu prohibir i esborrar el(s) membre (s) sel·leccionats?"
 
+<<<<<<< HEAD
 #: includes/admin.php:962
 msgid "Are you sure you want to reset to the default messages?"
 msgstr "Esteu segur que voleu restablir els missatges per defecte?"
@@ -275,6 +465,13 @@ msgid "IP:"
 msgstr "IP:"
 
 #: includes/compatibility.php:54
+=======
+#: includes/admin.php:867
+msgid "Are you sure you want to reset to the default messages?"
+msgstr "Esteu segur que voleu restablir els missatges per defecte?"
+
+#: includes/compatibility.php:37 includes/core.php:88
+>>>>>>> master
 #, php-format
 msgid ""
 "%s ( %s ) would like to become a member of your website. To accept or reject "
@@ -284,6 +481,7 @@ msgstr ""
 "acceptar o rebutjar la seva sol·licitud d'afiliació, si us plau aneu a <a "
 "href=\"%s\">%s</a>."
 
+<<<<<<< HEAD
 #: includes/core.php:66
 msgid ""
 "Someone with a banned IP address or email just tried to register with your "
@@ -305,3 +503,8 @@ msgstr "Nova sol·licitud d'afiliació"
 #: includes/core.php:474
 msgid "Pending Membership"
 msgstr ""
+=======
+#: includes/core.php:434
+msgid "New Member Request"
+msgstr "Nova sol·licitud d'afiliació"
+>>>>>>> master

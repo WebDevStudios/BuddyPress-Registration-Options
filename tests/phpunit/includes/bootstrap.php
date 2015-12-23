@@ -55,6 +55,7 @@ $GLOBALS['wp_tests_options'] = array(
  * Run custom functionality after mu-plugins are loaded.
  */
 function _tests_load_bp_registration_options() {
+
 	// Load BuddyPress.
 	require BP_TESTS_DIR . '/phpunit/includes/loader.php';
 
