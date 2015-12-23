@@ -334,7 +334,7 @@ function bp_registration_options_plugin_menu() {
 
 	$member_requests = bp_registration_get_pending_user_count();
 
-	$capability = ( is_multisite() ) ? 'create_users' : 'manage_options';
+	$capability = ( is_multisite() ) ? 'create_users' : 'delete_users';
 
 	$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 

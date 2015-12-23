@@ -540,7 +540,7 @@ function bp_registration_options_admin_bar_add() {
 		return false;
 	}
 
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( 'delete_users' ) ) {
 		return false;
 	}
 
