@@ -297,11 +297,6 @@ function bp_registration_options_admin_messages() {
 		}
 
 		$message = '<div class="error"><p>';
-		$numeral_url = sprintf(
-			'<a href="%s"><strong>%s</strong></a>',
-			admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
-			$member_requests
-		);
 
 		$message .= sprintf(
 			_n(
