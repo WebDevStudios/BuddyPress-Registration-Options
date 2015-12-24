@@ -344,7 +344,7 @@ function bp_registration_options_plugin_menu() {
 		$minimum_cap,
 		'bp_registration_options',
 		'bp_registration_options_settings',
-		plugins_url( 'images/webdevstudios-16x16.png' , dirname( __FILE__ ) )
+		'dashicons-groups'
 	);
 
 	$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
