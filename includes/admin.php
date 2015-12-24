@@ -389,8 +389,8 @@ function bp_registration_options_tab_menu( $page = '' ) {
 
 	$member_requests = bp_registration_get_pending_user_count(); ?>
 
+	<h1><?php _e( 'BP Registration Options', 'bp-registration-options' ); ?></h1>
 	<h2 class="nav-tab-wrapper">
-	<?php _e( 'BP Registration Options', 'bp-registration-options' ); ?>
 	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options' ); ?>"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
 	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_member_requests' ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
 	<?php // <a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
