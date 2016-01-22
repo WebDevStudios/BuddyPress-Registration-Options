@@ -365,7 +365,7 @@ add_action( 'template_redirect', 'bp_registration_deny_access' );
  */
 function bp_registration_bbpress_allowed_areas() {
 
-	if ( !function_exists( 'bbp_is_user_home' ) ) { return false; }
+	if ( !function_exists( 'bbp_is_user_home' ) || !function_exists( 'bbp_is_user_home_edit') ) { return false; }
 
 	if ( bbp_is_user_home() || bbp_is_user_home_edit() ) {
 		return true;
