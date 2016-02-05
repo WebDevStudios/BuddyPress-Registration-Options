@@ -560,22 +560,24 @@ function bp_registration_options_member_requests() { /**/ ?>
 						<?php echo $user_data->data->user_registered; ?>
 					</td>
 					<td>
-						<div class="alignleft">
-							<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
-						</div>
-						<div class="alignright">
-							<?php
-							$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
-							if ( !is_wp_error( $response ) ) {
-								$data = $response['body'];
-								$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-								$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
-								echo $data;
-							} else {
-								echo $userip;
-							}
-							?>
-						</div>
+						<?php
+						$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
+						if ( !is_wp_error( $response ) ) {
+						?>
+							<div class="alignleft">
+								<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
+							</div>
+							<div class="alignright">
+								<?php
+									$data = $response['body'];
+									$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
+									$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
+									echo $data;
+								?>
+							</div>
+						<?php } else {
+							 echo wpautop( $userip );
+						} ?>
 					</td>
 				</tr>
 			<?php } ?>
