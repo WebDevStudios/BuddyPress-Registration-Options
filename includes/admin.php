@@ -291,11 +291,6 @@ function bp_registration_options_admin_messages() {
 
 	if ( $member_requests > 0 && isset( $_GET['page'] ) != 'bp_registration_options_member_requests' && current_user_can( 'add_users' ) ) {
 
-		$s = '';
-		if ( $member_requests > 1 ) {
-			$s = 's';
-		}
-
 		$message = '<div class="error"><p>';
 
 		$message .= sprintf(
