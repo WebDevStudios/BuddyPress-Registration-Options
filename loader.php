@@ -1,6 +1,7 @@
 <?php
 /**
  * WordPress plugin loader file.
+ *
  * @package BP-Registration-Options
  */
 
