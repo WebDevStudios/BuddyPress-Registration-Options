@@ -16,20 +16,52 @@ class bpro_admin_test extends WP_UnitTestCase {
 	 * Tests pending user count total.
 	 */
 	public function test_get_pending_user_count() {
-		/*
-		 * Set 1 user at pending status, check return value for 1.
-		 * Set X users at pending status, check return value for X users.
-		 */
+		$none = bp_registration_get_pending_user_count();
+		$this->assertTrue( empty( $none ) );
+
+		$u1     = $this->factory->user->create();
+		bp_registration_set_moderation_status( $u1 );
+
+		delete_transient( 'bpro_user_count' );
+
+		$one = bp_registration_get_pending_user_count();
+		$this->assertFalse( empty( $one ) );
+		$this->assertEquals( '1', $one );
+
+		delete_transient( 'bpro_user_count' );
+
+		$u2     = $this->factory->user->create();
+		bp_registration_set_moderation_status( $u2 );
+		$two = bp_registration_get_pending_user_count();
+
+		$this->assertFalse( empty( $two ) );
+		$this->assertEquals( '2', $two );
+		$this->assertNotEquals( '3', $two );
 	}
 
 	/**
 	 * Tests pending users.
 	 */
 	public function test_get_pending_users() {
-		/*
-		 * Set X users, at pending status
-		 * Check return value.
-		 */
+		$none = bp_registration_get_pending_users();
+		$this->assertTrue( is_array( $none ) );
+		$this->assertTrue( empty( $none ) );
+
+		$u1     = $this->factory->user->create();
+		bp_registration_set_moderation_status( $u1 );
+
+		$users_single = bp_registration_get_pending_users();
+		$this->assertFalse( empty( $users_single ) );
+		$this->assertEquals( $u1, $users_single[0]->user_id );
+
+		$u2     = $this->factory->user->create();
+		bp_registration_set_moderation_status( $u2 );
+
+		$users_multiple = bp_registration_get_pending_users();
+
+		$this->assertFalse( empty( $users_multiple ) );
+		$this->assertEquals( $u1, $users_multiple[0]->user_id );
+		$this->assertEquals( $u2, $users_multiple[1]->user_id );
 
 	}
 
@@ -47,7 +79,7 @@ class bpro_admin_test extends WP_UnitTestCase {
 	 */
 	public function test_handle_general_settings() {
 		/*
-		 * Pass in dummby $_POST data. Check if matching values exist.
+		 * Pass in dummy $_POST data. Check if matching values exist.
 		 *
 		 * Pass in empty $_POST data. Check if options deleted. Checked values only.
 		 */
@@ -66,8 +98,11 @@ class bpro_admin_test extends WP_UnitTestCase {
 	 * Tests stylesheet enqueue status.
 	 */
 	public function test_options_stylesheet() {
-		/*
-		 * Boolean: wp_style_is( $handle, $list = 'enqueued' )
-		 */
+
+		$this->assertFalse( wp_style_is( 'bp-registration-options-stylesheet' ) );
+
+		bp_registration_options_stylesheet();
+
+		$this->assertTrue( wp_style_is( 'bp-registration-options-stylesheet' ) );
 	}
 }
