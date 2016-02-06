@@ -57,6 +57,20 @@ class bpro_core_test extends WP_UnitTestCase {
 		 */
 	}
 	public function test_register_components() {
+
+		$this->markTestIncomplete(
+			'This test needs more research.'
+		);
+
+		$this->assertFalse( isset( buddypress()->active_components['bp_registration_options'] ) );
+
+		$submitted = array( 'bp_registration_options' => 1 );
+		bp_core_admin_get_active_components_from_submitted_settings( $submitted );
+
+		$components = bp_registration_options_get_registered_components( buddypress()->active_components );
+
+		$this->assertTrue( isset( buddypress()->active_components['bp_registration_options'] ) );
+
 		/*
 		 * Check if we're properly registering out component.
 		 */
