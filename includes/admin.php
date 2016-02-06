@@ -960,25 +960,26 @@ add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient
  */
 function bp_registration_options_ip_data( $user_id ) {
 	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
-	?>
-	<div class="ip_address_wrap">
-	<div class="alignleft">
-		<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
-	</div>
-	<div class="alignleft">
-		<?php
-			$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
-			if ( !is_wp_error( $response ) ) {
-				$data = $response['body'];
-				$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-				$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
-				echo $data;
-			} else {
-				echo $userip;
-			}
+	$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
+
+	if ( !is_wp_error( $response ) ) {
 		?>
-	</div>
-	</div>
+		<div class="ip_address_wrap">
+		<div class="alignleft">
+			<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
+		</div>
+		<div class="alignleft">
+		<?php
+			$data = $response['body'];
+			$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
+			$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
+			echo $data;
+		?>
+		</div>
+		</div>
+	<?php } else {
+		echo wpautop( $userip );
+	} ?>
 <?php
 }
 add_action( 'bpro_hook_member_item_additional_data', 'bp_registration_options_ip_data', 10, 1 );
