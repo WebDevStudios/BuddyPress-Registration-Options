@@ -56,6 +56,7 @@ class bpro_core_test extends WP_UnitTestCase {
 		 * Check if we have registered admin bar items.
 		 */
 	}
+
 	public function test_register_components() {
 
 		$this->markTestIncomplete(
