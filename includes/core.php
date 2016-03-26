@@ -596,11 +596,13 @@ add_action( 'bp_activity_before_save', 'bp_registration_options_prevent_activity
  * @param int $user_id ID of the approved user.
  */
 function bp_registration_options_display_activity_posting( $user_id ) {
-	bp_activity_add( array(
-		'user_id'   => $user_id,
-		'component' => buddypress()->members->id,
-		'type'      => 'new_member'
-	) );
+	if ( bp_is_active( 'activity' ) ) {
+		bp_activity_add( array(
+			'user_id'   => $user_id,
+			'component' => buddypress()->members->id,
+			'type'      => 'new_member'
+		) );
+	}
 }
 add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity_posting' );
 
