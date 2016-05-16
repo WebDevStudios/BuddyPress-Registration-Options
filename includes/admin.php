@@ -21,8 +21,8 @@ function bp_registration_get_pending_user_count() {
 
 		$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
 
-		if ( !empty( $rs ) ) {
-			set_transient( 'bpro_user_count', $rs, 60*5 );
+		if ( ! empty( $rs ) ) {
+			set_transient( 'bpro_user_count', $rs, 60 * 5 );
 		}
 	}
 
@@ -61,7 +61,7 @@ function bp_registration_get_pending_users( $start_from = 0 ) {
 	 */
 	$results = apply_filters( 'bpro_hook_get_pending_users', $results );
 
-	return ( !empty( $results ) ) ? $results : array();
+	return ( ! empty( $results ) ) ? $results : array();
 }
 
 /**
@@ -104,7 +104,7 @@ function bp_registration_handle_general_settings( $args = array() ) {
 	do_action( 'bpro_hook_before_save_settings', $args );
 
 	// Handle saving our moderate setting.
-	if ( !empty( $args['set_moderate'] ) ) {
+	if ( ! empty( $args['set_moderate'] ) ) {
 		$bp_moderate = sanitize_text_field( $args['set_moderate'] );
 		update_option( 'bprwg_moderate', $bp_moderate );
 	} else {
@@ -112,7 +112,7 @@ function bp_registration_handle_general_settings( $args = array() ) {
 	}
 
 	// Handle saving our private network setting.
-	if ( !empty( $args['set_private'] ) ) {
+	if ( ! empty( $args['set_private'] ) ) {
 		$privacy_network = sanitize_text_field( $args['set_private'] );
 		update_option( 'bprwg_privacy_network', $privacy_network );
 	} else {
@@ -120,7 +120,7 @@ function bp_registration_handle_general_settings( $args = array() ) {
 	}
 
 	// Handle saving our BuddyPress notifications setting.
-	if ( !empty( $args['enable_notifications'] ) ) {
+	if ( ! empty( $args['enable_notifications'] ) ) {
 		$enable_notifications = sanitize_text_field( $args['enable_notifications'] );
 		update_option( 'bprwg_enable_notifications', $enable_notifications );
 	} else {
@@ -201,7 +201,7 @@ function bp_registration_options_form_actions() {
 			$checked_members = $_POST['bp_member_check'];
 		}
 
-		if ( !is_array( $checked_members ) ) {
+		if ( ! is_array( $checked_members ) ) {
 			$checked_members = array( $checked_members );
 		}
 
@@ -216,7 +216,7 @@ function bp_registration_options_form_actions() {
 			$message = get_option( 'bprwg_approved_message' );
 		}
 
-		foreach( $checked_members as $user_id ) {
+		foreach ( $checked_members as $user_id ) {
 
 			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
@@ -264,7 +264,7 @@ function bp_registration_options_form_actions() {
 				$mailme = array(
 					'user_email' => $user->data->user_email,
 					'user_subject' => $subject,
-					'user_message' => str_replace( '[username]', $user->data->user_login, $message )
+					'user_message' => str_replace( '[username]', $user->data->user_login, $message ),
 				);
 
 				$mailme_filtered = apply_filters( 'bpro_hook_before_email', $mailme, $user );
@@ -317,7 +317,7 @@ function bp_registration_options_admin_messages() {
 		echo $message;
 	}
 }
-add_action('admin_notices', 'bp_registration_options_admin_messages');
+add_action( 'admin_notices', 'bp_registration_options_admin_messages' );
 
 /**
  * Register our plugins menus
@@ -384,12 +384,12 @@ function bp_registration_options_tab_menu( $page = '' ) {
 
 	$member_requests = bp_registration_get_pending_user_count(); ?>
 
-	<h1><?php _e( 'BP Registration Options', 'bp-registration-options' ); ?></h1>
+	<h1><?php esc_html_e( 'BP Registration Options', 'bp-registration-options' ); ?></h1>
 	<h2 class="nav-tab-wrapper">
-	<a class="nav-tab<?php if ( !$page ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options' ); ?>"><?php _e( 'General Settings', 'bp-registration-options' ); ?></a>
-	<a class="nav-tab<?php if ( $page == 'requests' ) echo ' nav-tab-active';?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_member_requests' ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
+	<a class="nav-tab<?php if ( ! $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options' ) ); ?>"><?php esc_html_e( 'General Settings', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( $page == 'requests' ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_member_requests' ) ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
 	<?php // <a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
-	<a class="nav-tab<?php if ( $page == 'help' ) {echo ' nav-tab-active';}?>" href="<?php echo admin_url( 'admin.php?page=bp_registration_options_help_support' ); ?>"><?php _e( 'Help / Support', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( $page == 'help' ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_help_support' ) ); ?>"><?php esc_html_e( 'Help / Support', 'bp-registration-options' ); ?></a>
 	</h2>
 <?php }
 
@@ -457,45 +457,45 @@ function bp_registration_options_settings() {
 		<?php bp_registration_options_tab_menu(); ?>
 
 		<form method="post">
-			<?php wp_nonce_field('bp_reg_options_check'); ?>
+			<?php wp_nonce_field( 'bp_reg_options_check' ); ?>
 
-			<?php do_action('bpro_hook_before_general_settings_form'); ?>
+			<?php do_action( 'bpro_hook_before_general_settings_form' ); ?>
 
 			<p>
 				<input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>
 				<label for="bp_moderate">
 					<strong>
-						<?php _e( 'Moderate New Members', 'bp-registration-options' ); ?>
-					</strong> (<?php _e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress/bbPress components.', 'bp-registration-options' ); ?>)
+						<?php esc_html_e( 'Moderate New Members', 'bp-registration-options' ); ?>
+					</strong> (<?php esc_html_e( 'Every new member will have to be approved by an administrator before they can interact with BuddyPress/bbPress components.', 'bp-registration-options' ); ?>)
 				</label>
 			</p>
 
 			<p>
 				<input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/>
 				<label for="privacy_network">
-					<?php _e( 'Only registered or approved members can view BuddyPress/bbPress pages (Private Network).', 'bp-registration-options' ); ?>
+					<?php esc_html_e( 'Only registered or approved members can view BuddyPress/bbPress pages (Private Network).', 'bp-registration-options' ); ?>
 				</label>
 			</p>
 
 			<p>
 				<input type="checkbox" id="enable_notifications" name="enable_notifications" value="1" <?php checked( $enable_notifications, '1' ); ?>/>
 				<label for="enable_notifications">
-					<?php _e( 'Add new user notification to admin user account BuddyPress notification inbox.', 'bp-registration-options' ); ?>
+					<?php esc_html_e( 'Add new user notification to admin user account BuddyPress notification inbox.', 'bp-registration-options' ); ?>
 				</label>
 			</p>
 
 			<table>
 				<tr>
 					<td class="alignright">
-						<label for="activate_message"><?php _e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></label>
+						<label for="activate_message"><?php esc_html_e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
-						<textarea id="activate_message" name="activate_message"><?php echo stripslashes( $activate_message );?></textarea>
+						<textarea id="activate_message" name="activate_message"><?php echo stripslashes( $activate_message ); ?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td class="alignright">
-						<label for="approved_message"><?php _e( 'Account Approved Email:', 'bp-registration-options' ); ?></label>
+						<label for="approved_message"><?php esc_html_e( 'Account Approved Email:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
 						<textarea id="approved_message" name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
@@ -503,7 +503,7 @@ function bp_registration_options_settings() {
 				</tr>
 				<tr>
 					<td class="alignright">
-						<label for="denied_message"><?php _e( 'Account Denied Email:', 'bp-registration-options' ); ?></label>
+						<label for="denied_message"><?php esc_html_e( 'Account Denied Email:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
 						<textarea id="denied_message" name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
@@ -511,7 +511,7 @@ function bp_registration_options_settings() {
 				</tr>
 				<tr>
 					<td class="alignright">
-						<label for="admin_pending_message"><?php _e( 'Admin Pending Email Message:', 'bp-registration-options' ); ?></label>
+						<label for="admin_pending_message"><?php esc_html_e( 'Admin Pending Email Message:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
 						<textarea id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
@@ -519,7 +519,7 @@ function bp_registration_options_settings() {
 				</tr>
 				<tr>
 					<td class="alignright">
-						<label for="user_pending_message"><?php _e( 'User Pending Email Message:', 'bp-registration-options' ); ?></label>
+						<label for="user_pending_message"><?php esc_html_e( 'User Pending Email Message:', 'bp-registration-options' ); ?></label>
 					</td>
 					<td>
 						<textarea id="user_pending_message" name="user_pending_message"><?php echo stripslashes( $user_pending_message );?></textarea>
@@ -531,7 +531,7 @@ function bp_registration_options_settings() {
 						<table width="100%">
 							<tr>
 								<td>
-									<?php _e( 'Short Code Key: [username], [user_email]', 'bp-registration-options' ); ?>
+									<?php esc_html_e( 'Short Code Key: [username], [user_email]', 'bp-registration-options' ); ?>
 								</td>
 								<td class="alignright">
 									<input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" />
@@ -542,7 +542,7 @@ function bp_registration_options_settings() {
 				</tr>
 			</table>
 
-			<?php do_action('bpro_hook_after_general_settings_form'); ?>
+			<?php do_action( 'bpro_hook_after_general_settings_form' ); ?>
 
 			<button class="button button-primary" name="save_general" value="save_general"><?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?></button>
 		</form>
@@ -573,7 +573,7 @@ function bp_registration_options_member_requests() { ?>
 
 			wp_nonce_field( 'bp_reg_options_check' ); ?>
 
-			<p><?php _e( 'Please approve or deny the following new members:', 'bp-registration-options' ); ?></p>
+			<p><?php esc_html_e( 'Please approve or deny the following new members:', 'bp-registration-options' ); ?></p>
 
 			<table class="widefat">
 			<thead>
@@ -581,11 +581,11 @@ function bp_registration_options_member_requests() { ?>
 					<th id="cb" class="manage-column column-cb check-column" scope="col">
 						<label><input type="checkbox" id="bp_checkall_top" name="checkall" /></label>
 					</th>
-					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Photo', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Name', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Email', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Created', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Additional Data', 'bp-registration-options' ); ?></th>
 				</tr>
 			</thead>
 			<?php
@@ -599,7 +599,7 @@ function bp_registration_options_member_requests() { ?>
 
 			$pending_users = bp_registration_get_pending_users( $start_from );
 
-			foreach( $pending_users as $pending ) {
+			foreach ( $pending_users as $pending ) {
 				if ( class_exists( 'BP_Core_User' ) ) {
 					$user = new BP_Core_User( $pending->user_id );
 				}
@@ -617,18 +617,18 @@ function bp_registration_options_member_requests() { ?>
 				}
 				?>
 					<th class="check-column" scope="row">
-						<label><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo $pending->user_id; ?>" name="bp_member_check[]" value="<?php echo $pending->user_id; ?>"  /></label>
+						<label><input type="checkbox" class="bpro_checkbox" id="bp_member_check_<?php echo esc_attr( $pending->user_id ); ?>" name="bp_member_check[]" value="<?php echo esc_attr( $pending->user_id ); ?>"  /></label>
 					</th>
 					<td>
 						<?php if ( isset( $user ) ) { ?>
-							<a target="_blank" href="<?php echo $user->user_url; ?>">
-								<?php echo $user->avatar_mini; ?>
+							<a target="_blank" href="<?php echo esc_attr( $user->user_url ); ?>">
+								<?php echo esc_html( $user->avatar_mini ); ?>
 							</a>
 						<?php } ?>
 					</td>
 					<td>
 						<?php if ( isset( $user ) ) { ?>
-							<strong><a target="_blank" href="<?php echo $user->user_url; ?>">
+							<strong><a target="_blank" href="<?php echo esc_attr( $user->user_url ); ?>">
 								<?php
 								if ( ! empty( $user->fullname ) ) {
 									echo $user->fullname;
@@ -655,28 +655,29 @@ function bp_registration_options_member_requests() { ?>
 				</tr>
 				<?php
 					do_action( 'bpro_hook_after_pending_member_list_item' );
-				} ?>
+				}
+				?>
 			<tfoot>
 				<tr>
 					<th class="manage-column column-cb check-column" scope="col"><label><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></label></th>
-					<th><?php _e( 'Photo', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Name', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Email', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Created', 'bp-registration-options' ); ?></th>
-					<th><?php _e( 'Additional Data', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Photo', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Name', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Email', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Created', 'bp-registration-options' ); ?></th>
+					<th><?php esc_html_e( 'Additional Data', 'bp-registration-options' ); ?></th>
 				</tr>
 			</tfoot>
 			</table>
 
 			<p>
-			<button class="button button-primary" name="moderate" value="approve" id="bpro_approve"><?php _e( 'Approve', 'bp-registration-options' ); ?></button>
-			<button class="button button-secondary" name="moderate" value="deny" id="bpro_deny"><?php _e( 'Deny', 'bp-registration-options' ); ?></button>
-			<button class="button button-secondary" name="moderate" value="ban" id="bpro_ban" disabled><?php _e( 'Ban', 'bp-registration-options' ); ?></button>
+			<button class="button button-primary" name="moderate" value="approve" id="bpro_approve"><?php esc_html_e( 'Approve', 'bp-registration-options' ); ?></button>
+			<button class="button button-secondary" name="moderate" value="deny" id="bpro_deny"><?php esc_html_e( 'Deny', 'bp-registration-options' ); ?></button>
+			<button class="button button-secondary" name="moderate" value="ban" id="bpro_ban" disabled><?php esc_html_e( 'Ban', 'bp-registration-options' ); ?></button>
 			</p>
 
 			<?php if ( $total_pages > 1 ) {
-				$current = ( !empty( $_GET['p'] ) ) ? $_GET['p'] : 1;
-				echo '<p>' . __( 'Pagination: ', 'bp-registration-options' );
+				$current = ( ! empty( $_GET['p'] ) ) ? $_GET['p'] : 1;
+				echo '<p>' . esc_html__( 'Pagination: ', 'bp-registration-options' );
 				for ( $i = 1; $i <= $total_pages; $i++ ) {
 					$classes = ( $i == $current ) ? 'bpro_pagination bpro_current wp-ui-highlight' : 'bpro_pagination';
 					$classes = 'class="' . $classes . '"';
@@ -695,8 +696,9 @@ function bp_registration_options_member_requests() { ?>
 			</form>
 
 		<?php } else {
-			echo '<p><strong>' . __( 'No new members to approve.', 'bp-registration-options' ) . '</strong></p>';
-		} ?>
+			echo '<p><strong>' . esc_html__( 'No new members to approve.', 'bp-registration-options' ) . '</strong></p>';
+		}
+		?>
 	</div> <!--End Wrap-->
 
 	<?php
@@ -717,23 +719,23 @@ function bp_registration_options_banned() {
 	$blockedIPs = get_option( 'bprwg_blocked_ips' );
 	$blockedemails = get_option( 'bprwg_blocked_emails' );
 
-	if ( !empty( $blockedIPs ) || !empty( $blockedemails ) ) { ?>
+	if ( ! empty( $blockedIPs ) || ! empty( $blockedemails ) ) { ?>
 
-		<h3><?php _e( 'The following IP addresses are currently banned.', 'bp-registration-options' ); ?></h3>
+		<h3><?php esc_html_e( 'The following IP addresses are currently banned.', 'bp-registration-options' ); ?></h3>
 		<table class="widefat">
 		<thead>
 			<tr>
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
 					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
-				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
+				<th><?php esc_html_e( 'IP Address', 'bp-registration-options' ); ?></th>
 			</tr>
 		</thead>
 		<?php
 
 		$odd = true;
 
-		foreach( $blockedIPs as $IP ) {
+		foreach ( $blockedIPs as $IP ) {
 			if ( $odd ) {
 				$attributes = ' class="alternate"';
 				$odd = false;
@@ -743,8 +745,8 @@ function bp_registration_options_banned() {
 			}
 			?>
 			<tr<?php echo $attributes; ?>>
-			<th class="check-column" scope="row"><label><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo $IP; ?>"  /></label></th>
-			<td><?php echo $IP; ?></a></td>
+			<th class="check-column" scope="row"><label><input type="checkbox" class="bpro_checkbox" id="bp_blocked_check_<?php echo $IP; ?>" name="bp_blockedip_check[]" value="<?php echo esc_attr( $IP ); ?>"  /></label></th>
+			<td><?php echo esc_html( $IP ); ?></a></td>
 			</tr>
 		<?php } ?>
 		<tfoot>
@@ -752,12 +754,12 @@ function bp_registration_options_banned() {
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
 					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
-				<th><?php _e( 'IP Address', 'bp-registration-options' ); ?></th>
+				<th><?php esc_html_e( 'IP Address', 'bp-registration-options' ); ?></th>
 			</tr>
 		</tfoot>
 		</table>
 
-		<h3><?php _e( 'The following Email addresses are currently banned.', 'bp-registration-options' ); ?></h3>
+		<h3><?php esc_html_e( 'The following Email addresses are currently banned.', 'bp-registration-options' ); ?></h3>
 
 		<table class="widefat">
 		<thead>
@@ -765,7 +767,7 @@ function bp_registration_options_banned() {
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
 					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
-				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
+				<th><?php esc_html_e( 'Email Address', 'bp-registration-options' ); ?></th>
 			</tr>
 		</thead>
 		<?php
@@ -792,12 +794,12 @@ function bp_registration_options_banned() {
 				<th id="cb" class="manage-column column-cb check-column" scope="col">
 					<label><input type="checkbox" id="bp_checkall_top_blocked" name="checkall" /></label>
 				</th>
-				<th><?php _e( 'Email Address', 'bp-registration-options' ); ?></th>
+				<th><?php esc_html_e( 'Email Address', 'bp-registration-options' ); ?></th>
 			</tr>
 		</tfoot>
 		</table>
 		<?php } else {
-			echo '<p><strong>' . __( 'You have no blocked IP Addresses or Email Addresses at the moment', 'bp-registration-options' ) . '</strong></p>';
+			echo '<p><strong>' . esc_html__( 'You have no blocked IP Addresses or Email Addresses at the moment', 'bp-registration-options' ) . '</strong></p>';
 		}
 		bp_registration_options_admin_footer();
 }
