@@ -365,12 +365,22 @@ add_action( 'template_redirect', 'bp_registration_deny_access' );
  */
 function bp_registration_bbpress_allowed_areas() {
 
-	if ( ! function_exists( 'bbp_is_user_home' ) || ! function_exists( 'bbp_is_user_home_edit' ) ) { return false; }
+	$allowed = false;
+
+	if ( ! function_exists( 'bbp_is_user_home' ) || ! function_exists( 'bbp_is_user_home_edit' ) ) { $allowed = false; }
 
 	if ( bbp_is_user_home() || bbp_is_user_home_edit() ) {
-		return true;
+		$allowed = true;
 	}
-	return false;
+
+	/**
+	 * Filter for user-set custom areas of bbPress.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param bool $allowed Current allowed value.
+	 */
+	return apply_filters( 'bprwg_bbpress_allowed_areas', $allowed );
 
 }
 
@@ -383,15 +393,24 @@ function bp_registration_bbpress_allowed_areas() {
  */
 function bp_registration_buddypress_allowed_areas() {
 
-	if ( ! function_exists( 'bp_is_my_profile' ) ) { return false; }
+	$allowed = false;
+
+	if ( ! function_exists( 'bp_is_my_profile' ) ) { $allowed = false; }
 
 	global $bp;
 
 	if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
-		return true;
+		$allowed = true;
 	}
 
-	return false;
+	/**
+	 * Filter for user-set custom areas of BuddyPress.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param bool $allowed Current allowed value.
+	 */
+	return apply_filters( 'bprwg_buddypress_allowed_areas', $allowed );
 }
 
 /**
