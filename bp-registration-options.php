@@ -1,6 +1,7 @@
 <?php
 /**
  * BP-Registration-Options Core Real Initialization.
+ *
  * @package BP-Registration-Options
  */
 
