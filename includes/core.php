@@ -508,10 +508,10 @@ function bp_registration_options_remove_moderated_count( $count ) {
 
 	if ( false === $total_count ) {
 
-		$status_sql = "user_status = 0";
+		$status_sql = 'user_status = 0';
 
 		if ( is_multisite() ) {
-			$status_sql = "spam = 0 AND deleted = 0 AND user_status = 0";
+			$status_sql = 'spam = 0 AND deleted = 0 AND user_status = 0';
 		}
 
 		$total_count = $wpdb->get_var( "SELECT COUNT(ID) FROM {$wpdb->users} WHERE {$status_sql}" );
