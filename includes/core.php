@@ -98,7 +98,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
-				'message'    => $message
+				'message'    => $message,
 			)
 		);
 
@@ -112,7 +112,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 					'user_id'          => $admin->ID,
 					'component_name'   => 'bp_registration_options',
 					'component_action' => __( 'New pending BPRO member', 'bp-registration-options' ),
-					'allow_duplicate'  => true
+					'allow_duplicate'  => true,
 				) );
 			}
 		}
@@ -552,7 +552,7 @@ function bp_registration_options_admin_bar_add() {
 		'id'     => 'bp-registration-options',
 		'title'  => __( 'BP Registration Options', 'bp-registration-options' ),
 		'meta' => array( 'class' => 'menupop' ),
-		'href'   => $general_settings
+		'href'   => $general_settings,
 	) );
 
 	// Submenus.
@@ -560,14 +560,14 @@ function bp_registration_options_admin_bar_add() {
 		'parent' => 'bp-registration-options',
 		'id'     => 'bp-registration-options-general-settings',
 		'title'  => __( 'General Settings', 'bp-registration-options' ),
-		'href'   => $general_settings
+		'href'   => $general_settings,
 	) );
 	// Submenus.
 	$wp_admin_bar->add_menu( array(
 		'parent' => 'bp-registration-options',
 		'id'     => 'bp-registration-options-member-requests',
 		'title'  => __( 'Member Requests', 'bp-registration-options' ),
-		'href'   => $member_requests
+		'href'   => $member_requests,
 	) );
 
 	return true;
@@ -600,7 +600,7 @@ function bp_registration_options_display_activity_posting( $user_id ) {
 		bp_activity_add( array(
 			'user_id'   => $user_id,
 			'component' => buddypress()->members->id,
-			'type'      => 'new_member'
+			'type'      => 'new_member',
 		) );
 	}
 }
@@ -644,7 +644,7 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 		array(
 			'user_login' => $user->data->user_login,
 			'user_email' => $user->data->user_email,
-			'message'    => $pending_message
+			'message'    => $pending_message,
 		)
 	);
 }

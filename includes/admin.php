@@ -173,7 +173,7 @@ function bp_registration_options_form_actions() {
 				'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
 				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
 				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message'],
-				'user_pending_message'  => empty( $_POST['user_pending_message'] ) ? '' : $_POST['user_pending_message']
+				'user_pending_message'  => empty( $_POST['user_pending_message'] ) ? '' : $_POST['user_pending_message'],
 			)
 		);
 	}

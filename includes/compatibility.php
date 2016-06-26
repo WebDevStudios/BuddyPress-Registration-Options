@@ -56,7 +56,7 @@ class BP_Registration_Compatibility {
 					$user->data->user_email,
 					admin_url( '/admin.php?page=bp_registration_options_member_requests' ),
 					admin_url( '/admin.php?page=bp_registration_options_member_requests' )
-				)
+				),
 			)
 		);
 	}
