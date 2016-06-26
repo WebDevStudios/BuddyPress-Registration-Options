@@ -959,24 +959,28 @@ add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient
  */
 function bp_registration_options_ip_data( $user_id ) {
 	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
-	$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
+	$response = wp_remote_get( 'https://freegeoip.net/json/' . $userip );
 
-	if ( ! is_wp_error( $response ) ) {
+	if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
+
 		?>
 		<div class="ip_address_wrap">
-		<div class="alignleft">
-			<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
+			<div class="alignleft">
+			<?php
+				$data = json_decode( wp_remote_retrieve_body( $response ) );
+				printf(
+					esc_html__( 'City: %s', 'bp-registration-options' ),
+					esc_html( $data->city )
+				);
+				printf(
+					esc_html__( 'IP: %s', 'bp-registration-options' ),
+					esc_html( $data->ip )
+				);
+			?>
+			</div>
 		</div>
-		<div class="alignleft">
-		<?php
-			$data = $response['body'];
-			$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data );
-			$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data );
-			echo $data;
-		?>
-		</div>
-		</div>
-	<?php } else {
+	<?php
+	} else {
 		echo wpautop( $userip );
 	} ?>
 <?php
