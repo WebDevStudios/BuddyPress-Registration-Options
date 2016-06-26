@@ -127,19 +127,19 @@ function bp_registration_handle_general_settings( $args = array() ) {
 		delete_option( 'bprwg_enable_notifications' );
 	}
 
-	$activate_message = esc_textarea( $args['activate_message'] );
+	$activate_message = wp_kses( $args['activate_message'] );
 	update_option( 'bprwg_activate_message', $activate_message );
 
-	$approved_message = esc_textarea( $args['approved_message'] );
+	$approved_message = wp_kses( $args['approved_message'] );
 	update_option( 'bprwg_approved_message', $approved_message );
 
-	$denied_message = esc_textarea( $args['denied_message'] );
+	$denied_message = wp_kses( $args['denied_message'] );
 	update_option( 'bprwg_denied_message', $denied_message );
 
-	$admin_pending_message = esc_textarea( $args['admin_pending_message'] );
+	$admin_pending_message = wp_kses( $args['admin_pending_message'] );
 	update_option( 'bprwg_admin_pending_message', $admin_pending_message );
 
-	$user_pending_message = esc_textarea( $args['user_pending_message'] );
+	$user_pending_message = wp_kses( $args['user_pending_message'] );
 	update_option( 'bprwg_user_pending_message', $user_pending_message );
 
 	/**
