@@ -95,36 +95,6 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Rewrote most aspects of plugin, with focus on preventing access to the community areas.
 * Added bbPress support so you can deny users from accessing forums.
 
-= 4.1.3 =
-* Changed the hook that the load_plugin_textdomain loads on. Courtesy of http://geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
-
-= 4.1.2 =
-* properly hook our textdomain method, so that the plugin can be properly translated.
-* refreshed the pot file with extra localization functions.
-
-= 4.1.1 =
-* fix spacing issues with admin email notice
-* rename pot file to hopefully help with translators.
-
-= 4.1 =
-
-* Added hiding of pending members from the members list on the frontend, until approved.
-* Updated UI to match latest WordPress visual style
-* Fixed issue with where we were trying to grab user data after the user was deleted.
-* Now translation ready
-* Accessibility updates
-* Sanitize inputs to help with security.
-* Code cleanup
-* Screenshot updates.
-
-= 4.0.1 =
-
-* Fixes for WP 3.5. Thanks jibbius!
-
-= 4.0.0 =
-
-* Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
-
 == Upgrade Notice ==
 
 = 4.3.0 =
@@ -189,25 +159,6 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 = 4.2.0 =
 * Rewrote most aspects of plugin, with focus on preventing access to the community areas.
 * Added bbPress support so you can deny users from accessing forums.
-
-= 4.1.2 =
-* Update if you need to translate the plugin.
-
-= 4.1.1 =
-* fix spacing issues with admin email notice
-* rename pot file to hopefully help with translators.
-
-= 4.1 =
-
-* Added hiding of pending members from the members list on the frontend, until approved.
-* Updated UI to match latest WordPress visual style
-* Fixed issue with where we were trying to grab user data after the user was deleted.
-* Accessibility updates
-* Now translation ready
-
-= 4.0.0 =
-
-* Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
 
 == Installation ==
 
