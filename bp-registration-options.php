@@ -60,7 +60,7 @@ class BP_Registration_Options {
 		// Verify user is running WP 3.0 or newer.
 	    if ( version_compare( get_bloginfo( 'version' ), '3.0', '<' ) ) {
 	        deactivate_plugins( plugin_basename( __FILE__ ) );
-	        wp_die( __( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
+	        wp_die( esc_html__( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
 	    }
 		flush_rewrite_rules();
 	}
