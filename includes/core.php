@@ -207,6 +207,8 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bp_messages_admin_nav', 'bp_registration_hide_messages_adminbar' );
 	add_filter( 'bp_groups_admin_nav', 'bp_registration_hide_groups_adminbar' );
+
+	add_filter( 'wpmu_active_signup', 'bp_registration_filter_wpmu_active_signup' );
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
@@ -276,6 +278,18 @@ function bp_registration_hide_groups_adminbar( $items = array() ) {
 		}
 	}
 	return $items;
+}
+
+/**
+ * Prevents blog creation in multisite for moderaated users.
+ *
+ * @since 4.3.0
+ *
+ * @param string $active_signup Active signup value.
+ * @return string
+ */
+function bp_registration_filter_wpmu_active_signup( $active_signup = '' ) {
+	return 'none';
 }
 
 /**
