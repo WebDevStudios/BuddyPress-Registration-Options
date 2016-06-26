@@ -325,7 +325,7 @@ function bp_registration_deny_access() {
 		}
 
 		// Not logged in user.
-		if ( $user->ID == 0 ) {
+		if ( 0 === $user->ID ) {
 
 			$logged_out_url = apply_filters( 'bprwg_logged_out_redirect_url', get_bloginfo( 'url' ) );
 
@@ -383,11 +383,11 @@ function bp_registration_bbpress_allowed_areas() {
  */
 function bp_registration_buddypress_allowed_areas() {
 
-	if ( !function_exists( 'bp_is_my_profile' ) ) { return false; }
+	if ( ! function_exists( 'bp_is_my_profile' ) ) { return false; }
 
 	global $bp;
 
-	if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || $bp->current_component == 'register' || $bp->current_component == 'activate' ) {
+	if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
 		return true;
 	}
 
@@ -498,7 +498,7 @@ function bp_registration_options_remove_moderated_count( $count ) {
 
 	$pending_count = bp_registration_get_pending_user_count();
 
-	if ( "0" == $pending_count ) {
+	if ( '0' === $pending_count ) {
 		return $count;
 	}
 
@@ -582,7 +582,7 @@ add_action( 'bp_setup_admin_bar', 'bp_registration_options_admin_bar_add', 300 )
  * @param BP_Activity_Activity $args Array of arguments for activity item.
  */
 function bp_registration_options_prevent_activity_posting( $args ) {
-	if ( true === bp_registration_get_moderation_status( $args->user_id ) && 'new_member' == $args->type ) {
+	if ( true === bp_registration_get_moderation_status( $args->user_id ) && 'new_member' === $args->type ) {
 		$args->type = '';
 	}
 }

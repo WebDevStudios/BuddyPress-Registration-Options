@@ -205,12 +205,12 @@ function bp_registration_options_form_actions() {
 			$checked_members = array( $checked_members );
 		}
 
-		if ( 'deny' == $action ) {
+		if ( 'deny' === $action ) {
 			$send = true;
 			$subject = __( 'Membership Denied', 'bp-registration-options' );
 			$message = get_option( 'bprwg_denied_message' );
 		}
-		if ( 'approve' == $action ) {
+		if ( 'approve' === $action ) {
 			$send = true;
 			$subject = __( 'Membership Approved', 'bp-registration-options' );
 			$message = get_option( 'bprwg_approved_message' );
@@ -247,7 +247,7 @@ function bp_registration_options_form_actions() {
 
 				bp_registration_options_delete_user_count_transient();
 
-			} elseif ( 'approve' == $action ) {
+			} elseif ( 'approve' === $action ) {
 				// Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
 				// Mark as not spam for BuddyPress Core.
@@ -387,9 +387,9 @@ function bp_registration_options_tab_menu( $page = '' ) {
 	<h1><?php esc_html_e( 'BP Registration Options', 'bp-registration-options' ); ?></h1>
 	<h2 class="nav-tab-wrapper">
 	<a class="nav-tab<?php if ( ! $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options' ) ); ?>"><?php esc_html_e( 'General Settings', 'bp-registration-options' ); ?></a>
-	<a class="nav-tab<?php if ( $page == 'requests' ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_member_requests' ) ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
+	<a class="nav-tab<?php if ( 'requests' === $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_member_requests' ) ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
 	<?php // <a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
-	<a class="nav-tab<?php if ( $page == 'help' ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_help_support' ) ); ?>"><?php esc_html_e( 'Help / Support', 'bp-registration-options' ); ?></a>
+	<a class="nav-tab<?php if ( 'help' === $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_help_support' ) ); ?>"><?php esc_html_e( 'Help / Support', 'bp-registration-options' ); ?></a>
 	</h2>
 <?php }
 
