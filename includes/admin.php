@@ -556,7 +556,8 @@ function bp_registration_options_settings() {
  *
  * @since unknown
  */
-function bp_registration_options_member_requests() { ?>
+function bp_registration_options_member_requests() {
+?>
 
 	<div class="wrap">
 		<?php
