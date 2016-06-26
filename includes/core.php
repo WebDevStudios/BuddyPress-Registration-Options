@@ -451,6 +451,8 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	// Add our filter and provide the user name and user email for them to utilize.
 	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
 
+	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+
 	wp_mail( $admin_email, __( 'New Member Request', 'bp-registration-options' ), $mod_email );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
