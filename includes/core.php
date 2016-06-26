@@ -609,6 +609,8 @@ add_action( 'bpro_hook_approved_user', 'bp_registration_options_display_activity
 /**
  * Add BP-Registration-Options as a possible component.
  *
+ * @since 4.3.0
+ *
  * @param array $component_names Array of component names.
  * @return array $component_names Array of updated component names.
  */
