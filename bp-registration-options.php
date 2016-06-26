@@ -11,6 +11,30 @@
 class BP_Registration_Options {
 
 	/**
+	 * Current version.
+	 *
+	 * @since unknown
+	 * @var string
+	 */
+	public $version = '';
+
+	/**
+	 * Plugin basename.
+	 *
+	 * @since unknown
+	 * @var string
+	 */
+	public $basename = '';
+
+	/**
+	 * Plugin directory server path.
+	 *
+	 * @since unknown
+	 * @var string
+	 */
+	public $directory_path = '';
+
+	/**
 	 * Piece it all together
 	 */
 	function __construct() {
