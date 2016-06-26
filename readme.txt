@@ -33,19 +33,22 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Changelog ==
 
 = 4.3.0 =
-* Added: New hook in pending member "additional data" section for displaying custom data about user.
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
 * Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
 * Added: prevention of activity stream posting about new member until member is approved.
-* Added: Filter in wp_redirect urls for non-logged in users.
 * Added: Email notification and default message setting for pending users upon activation.
 * Added: Before and after save hooks for general settings.
+* Added: Filter in pending member "additional data" section for displaying custom data about user.
+* Added: Filter in wp_redirect urls for non-logged in users.
 * Added: Filter on IP address before saving to user meta.
+* Added: Filter in "allowed areas" functions for custom area setting for 3rd party developers.
+* Fixed: Issues with HTML emails and HTML in available custom message fields.
+* Fixed: Changed API used for geo lookup in moderated user table.
 * Fixed: Hardened user display in pending member list if no Full Name value provided.
 * Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
 * Fixed: Prevention of working in non-main site sites for Multisite.
-* Fixed: internationalization issues with singular/plural "members" admin notice.
-* Updated: internationalization strings for default messages.
+* Fixed: Internationalization issues with singular/plural "members" admin notice.
+* Updated: Internationalization strings for default messages.
 
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
@@ -98,19 +101,22 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Upgrade Notice ==
 
 = 4.3.0 =
-* Added: New hook in pending member "additional data" section for displaying custom data about user.
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
 * Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
 * Added: prevention of activity stream posting about new member until member is approved.
-* Added: Filter in wp_redirect urls for non-logged in users.
 * Added: Email notification and default message setting for pending users upon activation.
 * Added: Before and after save hooks for general settings.
+* Added: Filter in pending member "additional data" section for displaying custom data about user.
+* Added: Filter in wp_redirect urls for non-logged in users.
 * Added: Filter on IP address before saving to user meta.
+* Added: Filter in "allowed areas" functions for custom area setting for 3rd party developers.
+* Fixed: Issues with HTML emails and HTML in available custom message fields.
+* Fixed: Changed API used for geo lookup in moderated user table.
 * Fixed: Hardened user display in pending member list if no Full Name value provided.
 * Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
 * Fixed: Prevention of working in non-main site sites for Multisite.
-* Fixed: internationalization issues with singular/plural "members" admin notice.
-* Updated: internationalization strings for default messages.
+* Fixed: Internationalization issues with singular/plural "members" admin notice.
+* Updated: Internationalization strings for default messages.
 
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
