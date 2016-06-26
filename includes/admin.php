@@ -623,7 +623,7 @@ function bp_registration_options_member_requests() {
 					<td>
 						<?php if ( isset( $user ) ) { ?>
 							<a target="_blank" href="<?php echo esc_attr( $user->user_url ); ?>">
-								<?php echo esc_html( $user->avatar_mini ); ?>
+								<?php echo $user->avatar_mini; ?>
 							</a>
 						<?php } ?>
 					</td>
