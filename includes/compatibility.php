@@ -19,7 +19,7 @@ class BP_Registration_Compatibility {
 		// WP FB AutoConnect.
 		global $jfb_name;
 
-		if ( !empty( $jfb_name) ) {
+		if ( ! empty( $jfb_name ) ) {
 			add_action( 'wpfb_inserted_user', array( $this, 'wp_fb_autoconnect_compat' ) );
 		}
 
@@ -130,7 +130,7 @@ class BP_Registration_Compatibility {
 		}
 
 		// Do not allow these actions.
-		switch( $cap ) {
+		switch ( $cap ) {
 			case 'bp_docs_create' :
 			case 'bp_docs_edit' :
 			case 'bp_docs_manage' :

@@ -408,7 +408,7 @@ function bp_registration_options_settings() {
 	$approved_message      = get_option( 'bprwg_approved_message' );
 	$denied_message        = get_option( 'bprwg_denied_message' );
 	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
-	$user_pending_message = get_option( 'bprwg_user_pending_message' );
+	$user_pending_message  = get_option( 'bprwg_user_pending_message' );
 
 	if ( ! $activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
@@ -774,7 +774,7 @@ function bp_registration_options_banned() {
 
 		$odd = true;
 
-		foreach( $blockedemails as $email ) {
+		foreach ( $blockedemails as $email ) {
 			if ( $odd ) { ?>
 				<tr class="alternate">
 				<?php
@@ -864,7 +864,7 @@ add_filter( 'admin_footer_text', 'bp_registration_options_admin_footer' );
  */
 function bp_registration_options_css() {
 	$styles = apply_filters( 'bpro_hook_admin_styles', '' );
-	if ( !empty( $styles ) ) {
+	if ( ! empty( $styles ) ) {
 		echo '<style>' . $styles . '</style>';
 	}
 }
@@ -960,7 +960,7 @@ function bp_registration_options_ip_data( $user_id ) {
 	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
 	$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
 
-	if ( !is_wp_error( $response ) ) {
+	if ( ! is_wp_error( $response ) ) {
 		?>
 		<div class="ip_address_wrap">
 		<div class="alignleft">
@@ -969,8 +969,8 @@ function bp_registration_options_ip_data( $user_id ) {
 		<div class="alignleft">
 		<?php
 			$data = $response['body'];
-			$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-			$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
+			$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data );
+			$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data );
 			echo $data;
 		?>
 		</div>

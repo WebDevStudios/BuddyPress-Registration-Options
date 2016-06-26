@@ -59,7 +59,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 		// If their IP or email is blocked, don't proceed and exit silently.
-		$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
+		$blockedIPs    = get_option( 'bprwg_blocked_ips', array() );
 		$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
 		if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
@@ -142,7 +142,7 @@ function bp_registration_hide_pending_members( $args ) {
 	$sql = "SELECT user_id FROM " . $wpdb->prefix . "usermeta WHERE meta_key = '_bprwg_is_moderated' AND meta_value = %s";
 	$rs = $wpdb->get_results( $wpdb->prepare( $sql, 'true' ), ARRAY_N );
 	// Grab the actual IDs.
-	foreach( $rs as $key => $value) {
+	foreach ( $rs as $key => $value ) {
 		$ids[] = $value[0];
 	}
 
@@ -251,7 +251,7 @@ function bp_registration_hide_whatsnew_end() {
  * @return array $items Filtered menu items.
  */
 function bp_registration_hide_messages_adminbar( $items = array() ) {
-	foreach( $items as $key => $value ) {
+	foreach ( $items as $key => $value ) {
 		if ( 'my-account-messages-compose' == $value['id'] ) {
 			unset( $items[ $key ] );
 			break;
@@ -269,7 +269,7 @@ function bp_registration_hide_messages_adminbar( $items = array() ) {
  * @return array $items Filtered menu items.
  */
 function bp_registration_hide_groups_adminbar( $items = array() ) {
-	foreach( $items as $key => $value ) {
+	foreach ( $items as $key => $value ) {
 		if ( 'my-account-groups-create' == $value['id'] ) {
 			unset( $items[ $key ] );
 			break;
@@ -290,12 +290,12 @@ function bp_registration_hide_widget_members( $r = array() ) {
 	$exclude_me = bp_registration_get_pending_users();
 	$excluded = array();
 
-	foreach( $exclude_me as $exclude ) {
+	foreach ( $exclude_me as $exclude ) {
 		$excluded[] = $exclude->user_id;
 	}
 
 	// Prevent overwriting of existing exclude values.
-	if ( empty ( $r['exclude'] ) ) {
+	if ( empty( $r['exclude'] ) ) {
 		$r['exclude'] = implode( ',', $excluded );
 	} else {
 		$r['exclude'] .= ',' . implode( ',', $excluded );
@@ -365,7 +365,7 @@ add_action( 'template_redirect', 'bp_registration_deny_access' );
  */
 function bp_registration_bbpress_allowed_areas() {
 
-	if ( !function_exists( 'bbp_is_user_home' ) || !function_exists( 'bbp_is_user_home_edit') ) { return false; }
+	if ( ! function_exists( 'bbp_is_user_home' ) || ! function_exists( 'bbp_is_user_home_edit' ) ) { return false; }
 
 	if ( bbp_is_user_home() || bbp_is_user_home_edit() ) {
 		return true;
@@ -471,7 +471,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 		'message'    => '',
 	) );
 
-	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options'), $args['message'] );
+	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), $args['message'] );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }
