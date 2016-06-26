@@ -907,13 +907,13 @@ function bp_registration_options_js() {
 			});
 			//Confirm/cancel on deny/ban.
 			$('#bpro_deny').on('click',function(){
-				return confirm("<?php _e( 'Are you sure you want to deny and delete the checked member(s)?', 'bp-registration-options' ); ?>");
+				return confirm("<?php esc_html_e( 'Are you sure you want to deny and delete the checked member(s)?', 'bp-registration-options' ); ?>");
 			});
 			$('#bpro_ban').on('click',function(){
-				return confirm("<?php _e( 'Are you sure you want to ban and delete the checked member(s)?', 'bp-registration-options' ); ?>");
+				return confirm("<?php esc_html_e( 'Are you sure you want to ban and delete the checked member(s)?', 'bp-registration-options' ); ?>");
 			});
 			$('#reset_messages').on('click',function(){
-				return confirm("<?php _e( 'Are you sure you want to reset to the default messages?', 'bp-registration-options' ); ?>");
+				return confirm("<?php esc_html_e( 'Are you sure you want to reset to the default messages?', 'bp-registration-options' ); ?>");
 			});
 		})(jQuery);
 	</script>
