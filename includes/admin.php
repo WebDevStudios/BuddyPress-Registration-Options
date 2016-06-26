@@ -283,7 +283,7 @@ add_action( 'admin_init', 'bp_registration_options_form_actions' );
 /**
  * Adds our admin notices with pending users info, for people who can manage users
  *
- * @since  unknown
+ * @since unknown
  */
 function bp_registration_options_admin_messages() {
 

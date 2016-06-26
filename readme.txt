@@ -4,8 +4,8 @@ Contributors: webdevstudios, Messenlehner, tw2113
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.5.2
-Stable tag: 4.2.10
+Tested up to: 4.5.3
+Stable tag: 4.2.11
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -46,6 +46,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Prevention of working in non-main site sites for Multisite.
 * Fixed: internationalization issues with singular/plural "members" admin notice.
 * Updated: internationalization strings for default messages.
+
+= 4.2.11 =
+* Fix issue with 404 errors in pending user list.
 
 = 4.2.10 =
 * WordPress 4.4 compatibility bump. No other code changes made.
@@ -138,6 +141,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Prevention of working in non-main site sites for Multisite.
 * Fixed: internationalization issues with singular/plural "members" admin notice.
 * Updated: internationalization strings for default messages.
+
+= 4.2.11 =
+* Fix issue with 404 errors in pending user list.
 
 = 4.2.10 =
 * WordPress 4.4 compatibility bump. No other code changes made.
