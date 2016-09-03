@@ -313,6 +313,10 @@ function bp_registration_hide_widget_members( $r = array() ) {
 		return $r;
 	}
 
+	if ( ! is_active_widget( false, false, 'bp_core_members_widget', true ) ) {
+		return $r;
+	}
+
 	$excluded = array();
 
 	foreach ( $exclude_me as $exclude ) {
