@@ -344,6 +344,13 @@ function bp_registration_deny_access() {
 			return;
 		}
 
+		$custom_redirect = (array) apply_filters( 'bprwg_custom_redirect', array( 'redirect' => 'false', 'url' => '' ) );
+
+		if ( 'true' === $custom_redirect['redirect'] ) {
+			wp_redirect( esc_url( $custom_redirect['url'] ) );
+			exit;
+		}
+
 		// Not logged in user.
 		if ( 0 === $user->ID ) {
 
