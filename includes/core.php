@@ -63,6 +63,12 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
 		if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
+
+			/**
+			 * Filters the email content for the admin user when banned IP tries to register.
+			 *
+			 * @since 4.2.0
+			 */
 			$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
 
 			wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
@@ -341,6 +347,13 @@ function bp_registration_deny_access() {
 		// Not logged in user.
 		if ( 0 === $user->ID ) {
 
+			/**
+			 * Filters the URL to redirect to for logged out users.
+			 *
+			 * @since 4.3.0
+			 *
+			 * @param string $value URL to redirect to.
+			 */
 			$logged_out_url = apply_filters( 'bprwg_logged_out_redirect_url', get_bloginfo( 'url' ) );
 
 			if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
@@ -357,10 +370,26 @@ function bp_registration_deny_access() {
 		if ( $user->ID > 0 ) {
 			if ( bp_registration_get_moderation_status( $user->ID ) ) {
 				if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+
+					/**
+					 * Filters the URL to redirect to for moderated logged in users and BuddyPress areas.
+					 *
+					 * @since 4.3.0
+					 *
+					 * @param string $value URL to redirect to.
+					 */
 					wp_redirect( apply_filters( 'bprwg_bp_logged_in_redirect_url', bp_core_get_user_domain( $user->ID ) ) );
 					exit;
 				}
 				if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
+
+					/**
+					 * Filters the URL to redirect to for moderated logged in users and bbPress areas.
+					 *
+					 * @since 4.3.0
+					 *
+					 * @param string $value URL to redirect to.
+					 */
 					wp_redirect( apply_filters( 'bprwg_bbp_logged_in_redirect_url', bbp_get_user_profile_url( $user->ID ) ) );
 					exit;
 				}
@@ -482,6 +511,15 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$admin_email = get_bloginfo( 'admin_email' );
 
 	// Add our filter and provide the user name and user email for them to utilize.
+	/**
+	 * Filters the email text for admin when new member signs up.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param string $value Message to send.
+	 * @param string $value User login name.
+	 * @param string $value User email address.
+	 */
 	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
