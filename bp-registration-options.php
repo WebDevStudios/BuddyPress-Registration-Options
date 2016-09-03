@@ -46,6 +46,7 @@ class BP_Registration_Options {
 		register_activation_hook( __FILE__, array( &$this, 'activate' ) );
 		register_deactivation_hook( __FILE__, array( &$this, 'deactivate' ) );
 
+		require_once( $this->directory_path . 'includes/utility.php' );
 		require_once( $this->directory_path . 'includes/admin.php' );
 		require_once( $this->directory_path . 'includes/core.php' );
 		require_once( $this->directory_path . 'includes/compatibility.php' );
