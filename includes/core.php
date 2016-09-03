@@ -308,6 +308,11 @@ function bp_registration_filter_wpmu_active_signup( $active_signup = '' ) {
  */
 function bp_registration_hide_widget_members( $r = array() ) {
 	$exclude_me = bp_registration_get_pending_users();
+
+	if ( empty( $exclude_me ) ) {
+		return $r;
+	}
+
 	$excluded = array();
 
 	foreach ( $exclude_me as $exclude ) {
