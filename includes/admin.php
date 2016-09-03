@@ -561,18 +561,20 @@ function bp_registration_options_member_requests() { /**/ ?>
 					</td>
 					<td>
 						<?php
-						$response = wp_remote_get( 'http://api.hostip.info/get_html.php?ip=' . $userip );
-						if ( !is_wp_error( $response ) ) {
+						$response = wp_remote_get( 'https://freegeoip.net/json/' . $userip );
+						if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
 						?>
 							<div class="alignleft">
-								<img height="50" src="http://api.hostip.info/flag.php?ip=<?php echo $userip; ?>" / >
-							</div>
-							<div class="alignright">
 								<?php
-									$data = $response['body'];
-									$data = str_replace( 'City:', '<br>' . __( 'City:', 'bp-registration-options' ), $data);
-									$data = str_replace( 'IP:', '<br>' . __( 'IP:', 'bp-registration-options' ), $data);
-									echo $data;
+									$data = json_decode( wp_remote_retrieve_body( $response ) );
+									printf(
+										esc_html__( 'City: %s', 'bp-registration-options' ),
+										esc_html( $data->city )
+									);
+									printf(
+										esc_html__( 'IP: %s', 'bp-registration-options' ),
+										esc_html( $data->ip )
+									);
 								?>
 							</div>
 						<?php } else {
