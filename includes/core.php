@@ -755,8 +755,8 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 	$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
 	bp_registration_options_send_pending_user_email(
 		array(
-			'user_login' => $user->data->user_login,
-			'user_email' => $user->data->user_email,
+			'user_login' => $user_info->data->user_login,
+			'user_email' => $user_info->data->user_email,
 			'message'    => $filtered_message,
 		)
 	);
