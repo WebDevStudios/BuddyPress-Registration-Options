@@ -4,8 +4,8 @@ Contributors: webdevstudios, Messenlehner, tw2113
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.4
-Stable tag: 4.2.11
+Tested up to: 4.6
+Stable tag: 4.2.12
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -18,6 +18,8 @@ This BuddyPress extension allows you to enable user moderation for new members, 
 Requires BuddyPress version 1.7 or higher and bbPress 2.0 or higher.
 
 Follow along with development on GitHub at [BuddyPress-Registration-Options](https://github.com/WebDevStudios/BuddyPress-Registration-Options)
+
+[Pluginize](https://pluginize.com/?utm_source=buddypress-registration-op&utm_medium=text&utm_campaign=wporg) was launched in 2016 by [WebDevStudios](https://webdevstudios.com/) to promote, support, and house all of their [WordPress products](https://pluginize.com/shop/?utm_source=buddypress-registration-op&utm_medium=text&utm_campaign=wporg). Pluginize is dedicated to [creating products that make your BuddyPress site](https://pluginize.com/product-category/buddypress/) easy to manage, without having to touch a line of code. Pluginize also provides ongoing support and development for WordPress community favorites like [CPTUI](https://wordpress.org/plugins/custom-post-type-ui/), [CMB2](https://wordpress.org/plugins/cmb2/), and more.
 
 == Screenshots ==
 
@@ -34,6 +36,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.2.12 =
+* Switch Geolocation provider to one still actively maintained.
 
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
@@ -114,6 +119,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
 
 == Upgrade Notice ==
+
+= 4.2.12 =
+* Switch Geolocation provider to one still actively maintained.
 
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
