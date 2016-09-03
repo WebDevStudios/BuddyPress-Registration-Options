@@ -50,6 +50,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Internationalization issues with singular/plural "members" admin notice.
 * Updated: Internationalization strings for default messages.
 
+= 4.2.12 =
+* Switch Geolocation provider to one still actively maintained.
+
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
 
@@ -117,6 +120,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Prevention of working in non-main site sites for Multisite.
 * Fixed: Internationalization issues with singular/plural "members" admin notice.
 * Updated: Internationalization strings for default messages.
+
+= 4.2.12 =
+* Switch Geolocation provider to one still actively maintained.
 
 = 4.2.11 =
 * Fix issue with 404 errors in pending user list.
