@@ -235,6 +235,13 @@ function bp_registration_options_form_actions() {
 				}
 				*/
 
+				/**
+				 * Fires before the user deletion when user denied.
+				 *
+				 * @since 4.2.0
+				 *
+				 * @param int $user_id User ID being deleted.
+				 */
 				do_action( 'bpro_hook_denied_user_before_delete', $user_id );
 
 				if ( is_multisite() ) {
@@ -243,6 +250,13 @@ function bp_registration_options_form_actions() {
 					wp_delete_user( $user_id );
 				}
 
+				/**
+				 * Fires after the user deletion when user denied.
+				 *
+				 * @since 4.2.0
+				 *
+				 * @param int $user_id User ID that was deleted.
+				 */
 				do_action( 'bpro_hook_denied_user_after_delete', $user_id );
 
 				bp_registration_options_delete_user_count_transient();
@@ -253,6 +267,13 @@ function bp_registration_options_form_actions() {
 				// Mark as not spam for BuddyPress Core.
 				bp_core_process_spammer_status( $user_id, 'ham' );
 
+				/**
+				 * Fires after a user has been marked as approved.
+				 *
+				 * @since 4.2.0
+				 *
+				 * @param int $user_id ID of the approved user.
+				 */
 				do_action( 'bpro_hook_approved_user', $user_id );
 
 				bp_registration_options_delete_user_count_transient();
@@ -267,6 +288,14 @@ function bp_registration_options_form_actions() {
 					'user_message' => str_replace( '[username]', $user->data->user_login, $message ),
 				);
 
+				/**
+				 * Filters the email arguments before mailing.
+				 *
+				 * @since 4.2.0
+				 *
+				 * @param array  $emailme Array of email arguments for wp_mail.
+				 * @param object $user User object for user being moderated.
+				 */
 				$mailme_filtered = apply_filters( 'bpro_hook_before_email', $mailme, $user );
 
 				add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
@@ -331,6 +360,13 @@ function bp_registration_options_plugin_menu() {
 
 	$capability = ( is_multisite() ) ? 'create_users' : 'delete_users';
 
+	/**
+	 * Filters the minimum capability needed to view options page.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param string $capability Minimal capability required.
+	 */
 	$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 
 	add_menu_page(
@@ -459,7 +495,14 @@ function bp_registration_options_settings() {
 		<form method="post">
 			<?php wp_nonce_field( 'bp_reg_options_check' ); ?>
 
-			<?php do_action( 'bpro_hook_before_general_settings_form' ); ?>
+			<?php
+
+			/**
+			 * Fires before the general settings form output, inside the form tag.
+			 *
+			 * @since 4.2.0
+			 */
+			do_action( 'bpro_hook_before_general_settings_form' ); ?>
 
 			<p>
 				<input type="checkbox" id="bp_moderate" name="bp_moderate" value="1" <?php checked( $bp_moderate, '1' ); ?>/>
@@ -542,7 +585,14 @@ function bp_registration_options_settings() {
 				</tr>
 			</table>
 
-			<?php do_action( 'bpro_hook_after_general_settings_form' ); ?>
+			<?php
+
+			/**
+			 * Fires after the general settings form output, inside the form tag.
+			 *
+			 * @since 4.2.0
+			 */
+			do_action( 'bpro_hook_after_general_settings_form' ); ?>
 
 			<button class="button button-primary" name="save_general" value="save_general"><?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?></button>
 		</form>
@@ -570,6 +620,11 @@ function bp_registration_options_member_requests() {
 			<form method="POST" name="bprwg">
 			<?php
 
+			/**
+			 * Fires before the pending members list output, inside the form tag.
+			 *
+			 * @since 4.2.0
+			 */
 			do_action( 'bpro_hook_before_pending_member_list' );
 
 			wp_nonce_field( 'bp_reg_options_check' ); ?>
@@ -651,13 +706,28 @@ function bp_registration_options_member_requests() {
 						<?php echo $user_data->data->user_registered; ?>
 					</td>
 					<td>
-						<?php do_action( 'bpro_hook_member_item_additional_data', $pending->user_id ); ?>
+						<?php
+
+						/**
+						 * Fires in the last table cell in pending member list.
+						 *
+						 * @since 4.3.0
+						 *
+						 * @param int $value Pending user ID.
+						 */
+						do_action( 'bpro_hook_member_item_additional_data', $pending->user_id ); ?>
 					</td>
 				</tr>
 				<?php
+
+					/**
+					 * Fires after an individual pending member table row item.
+					 *
+					 * @since 4.3.0
+					 */
 					do_action( 'bpro_hook_after_pending_member_list_item' );
-				}
-				?>
+			}
+			?>
 			<tfoot>
 				<tr>
 					<th class="manage-column column-cb check-column" scope="col"><label><input type="checkbox" id="bp_checkall_bottom" name="checkall" /></label></th>
@@ -692,6 +762,11 @@ function bp_registration_options_member_requests() {
 				echo '</p>';
 			}
 
+			/**
+			 * Fires after the pending members list output, inside the form tag.
+			 *
+			 * @since 4.2.0
+			 */
 			do_action( 'bpro_hook_after_pending_member_list' ); ?>
 
 			</form>
@@ -864,6 +939,12 @@ add_filter( 'admin_footer_text', 'bp_registration_options_admin_footer' );
  * @since 4.2.0
  */
 function bp_registration_options_css() {
+
+	/**
+	 * Filters and allows users to add their own CSS to the output of the page.
+	 *
+	 * @since 4.2.0
+	 */
 	$styles = apply_filters( 'bpro_hook_admin_styles', '' );
 	if ( ! empty( $styles ) ) {
 		echo '<style>' . $styles . '</style>';
