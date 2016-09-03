@@ -344,6 +344,13 @@ function bp_registration_deny_access() {
 			return;
 		}
 
+		/**
+		 * Sets up the ability for 3rd parties to do their own redirect based on their own conditions.
+		 *
+		 * @since 4.3.0
+		 *
+		 * @param array $value Array with keys for whether to redirect and where.
+		 */
 		$custom_redirect = (array) apply_filters( 'bprwg_custom_redirect', array( 'redirect' => 'false', 'url' => '' ) );
 
 		if ( 'true' === $custom_redirect['redirect'] ) {
@@ -719,14 +726,24 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 
 	$user_info = get_userdata( $user_id );
 	$pending_message = get_option( 'bprwg_user_pending_message' );
-	$pending_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
-	$pending_message = str_replace( '[user_email]', $user_info->data->user_email, $pending_message );
+	$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
+	$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
 
+	/**
+	 * Filters the message to be sent to user upon activation.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param string  $filtered_message Message to be sent with placeholders changed.
+	 * @param string  $pending_message  Original message before placeholders filtered.
+	 * @param WP_User $user_info        WP_User object for the newly activated user.
+	 */
+	$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
 	bp_registration_options_send_pending_user_email(
 		array(
 			'user_login' => $user->data->user_login,
 			'user_email' => $user->data->user_email,
-			'message'    => $pending_message,
+			'message'    => $filtered_message,
 		)
 	);
 }
