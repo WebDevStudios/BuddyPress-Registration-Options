@@ -1,6 +1,6 @@
 === BuddyPress Registration Options ===
 
-Contributors: webdevstudios, Messenlehner, tw2113
+Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
