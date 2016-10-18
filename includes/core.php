@@ -433,10 +433,15 @@ function bp_registration_bbpress_allowed_areas() {
 
 	$allowed = false;
 
-	if ( ! function_exists( 'bbp_is_user_home' ) || ! function_exists( 'bbp_is_user_home_edit' ) ) { $allowed = false; }
-
-	if ( bbp_is_user_home() || bbp_is_user_home_edit() ) {
-		$allowed = true;
+	/*
+	 * At time of this comment, bbp_is_user_home and bbp_is_user_home_edit are one after
+	 * another in the same file. If one doesn't exist, both don't, and vice versa. Both will
+	 * exist if one does.
+	 */
+	if ( function_exists( 'bbp_is_user_home' ) ) {
+		if ( bbp_is_user_home() || bbp_is_user_home_edit() ) {
+			$allowed = true;
+		}
 	}
 
 	/**
