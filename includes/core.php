@@ -51,7 +51,9 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		bp_registration_set_moderation_status( $user_id );
 
 		$user = get_userdata( $user_id );
-		$admin_email = get_bloginfo( 'admin_email' );
+
+		/** This filter is documented in includes/core.php */
+		//$admin_email = apply_filters( 'bprwg_admin_email_addresses', array( get_bloginfo( 'admin_email' ) ) );
 		// Used for BP Notifications.
 		$admins = get_users( 'role=administrator' );
 
@@ -59,17 +61,17 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 		// If their IP or email is blocked, don't proceed and exit silently.
-		$blockedIPs    = get_option( 'bprwg_blocked_ips', array() );
-		$blockedemails = get_option( 'bprwg_blocked_emails', array() );
+		//$blockedIPs    = get_option( 'bprwg_blocked_ips', array() );
+		//$blockedemails = get_option( 'bprwg_blocked_emails', array() );
 
-		if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
+		/*if ( in_array( $_SERVER['REMOTE_ADDR'], $blockedIPs ) || in_array( $user->user_email, $blockedemails ) ) {
 
 			/**
 			 * Filters the email content for the admin user when banned IP tries to register.
 			 *
 			 * @since 4.2.0
 			 */
-			$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
+			/*$message = apply_filters( 'bprwg_banned_user_admin_email', __( 'Someone with a banned IP address or email just tried to register with your site', 'bp-registration-options' ) );
 
 			wp_mail( $admin_email, __( 'Banned member registration attempt', 'bp-registration-options' ), $message );
 
@@ -81,7 +83,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			}
 
 			return;
-		}
+		}*/
 
 		// Set them as in moderation.
 		bp_registration_set_moderation_status( $user_id );
