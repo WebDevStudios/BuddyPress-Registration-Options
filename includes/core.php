@@ -538,9 +538,15 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 		'message'    => '',
 	) );
 
-	$admin_email = get_bloginfo( 'admin_email' );
+	/**
+	 * Filters the email address(es) to send admin notifications to.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array $value Array of email addresses to send notification to.
+	 */
+	$admin_email = apply_filters( 'bprwg_admin_email_addresses', array( get_bloginfo( 'admin_email' ) ) );
 
-	// Add our filter and provide the user name and user email for them to utilize.
 	/**
 	 * Filters the email text for admin when new member signs up.
 	 *
