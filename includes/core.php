@@ -119,7 +119,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 				bp_notifications_add_notification( array(
 					'user_id'          => $admin->ID,
 					'component_name'   => 'bp_registration_options',
-					'component_action' => __( 'New pending BPRO member', 'bp-registration-options' ),
+					'component_action' => 'bp_registration_options',
 					'allow_duplicate'  => true,
 				) );
 			}
@@ -743,6 +743,31 @@ function bp_registration_options_get_registered_components( $component_names = a
 	return $component_names;
 }
 add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
+
+
+function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
+
+	if ( 'bp_registration_options' === $action ) {
+
+		$title = __( 'New pending user in BP-Registration Options', 'bp-registration-options' );
+		$text  = apply_filters( 'bprwg_notification_text', __( 'You have a new pending user to moderate.', 'bp-registration-options' ) );
+		$link  = admin_url( 'admin.php?page=bp_registration_options_member_requests' );
+
+		$result = array(
+			'text' => $text,
+			'link' => $link
+		);
+
+		// WordPress Toolbar
+		if ( 'string' === $format ) {
+			$result = sprintf( '<a href="%s">%s</a>', $link, $text );
+		}
+
+		return $result;
+	}
+}
+add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications', 10, 5 );
+
 
 /**
  * Emails user about pending status upon activation.
