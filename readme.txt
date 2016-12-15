@@ -35,7 +35,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 = 4.3.0 =
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
 * Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
-* Added: prevention of activity stream posting about new member until member is approved.
+* Added: Prevention of activity stream posting about new member until member is approved.
 * Added: Email notification and default message setting for pending users upon activation.
 * Added: Before and after save hooks for general settings.
 * Added: Filter in pending member "additional data" section for displaying custom data about user.
