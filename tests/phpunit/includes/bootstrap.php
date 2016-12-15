@@ -10,6 +10,16 @@
 ini_set( 'display_errors', 'on' );
 error_reporting( E_ALL );
 
+if ( ! defined( 'BP_TESTS_DIR' ) ) {
+	// Apologies. Specific to Michael's setup. Git checkout located in wp-content.
+	define( 'BP_TESTS_DIR', __DIR__ . '/../../../../../buddypress-git-trunk/tests' );
+}
+
+if ( ! defined( 'BBP_TESTS_DIR' ) ) {
+	// Apologies. Specific to Michael's setup. Git checkout located in wp-content.
+	define( 'BBP_TESTS_DIR', __DIR__ . '/../../../../../bbpress/tests' );
+}
+
 /**
  * Set `WP_TESTS_DIR` to the base directory of WordPress:
  * `svn export http://develop.svn.wordpress.org/trunk/ /tmp/wordpress-tests`
@@ -45,10 +55,17 @@ $GLOBALS['wp_tests_options'] = array(
  * Run custom functionality after mu-plugins are loaded.
  */
 function _tests_load_bp_registration_options() {
+
+	// Load BuddyPress.
+	require BP_TESTS_DIR . '/phpunit/includes/loader.php';
+
+	// Load BuddyPress.
+	require BBP_TESTS_DIR . '/phpunit/includes/loader.php';
+
 	define( 'BPRO_DIRECTORY_PATH', trailingslashit( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ) );
+	// Load BPRO.
 	require BPRO_DIRECTORY_PATH . 'loader.php';
 }
-
 tests_add_filter( 'muplugins_loaded', '_tests_load_bp_registration_options' );
 
 /**

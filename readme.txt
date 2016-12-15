@@ -1,11 +1,11 @@
 === BuddyPress Registration Options ===
 
-Contributors: webdevstudios, Messenlehner, tw2113
+Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.6
-Stable tag: 4.2.12
+Tested up to: 4.7
+Stable tag: 4.3.0
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
@@ -24,18 +24,31 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 == Screenshots ==
 
 1. General Settings page:
-
 2. New member registration:
-
 3. New members can login but can only see/edit their profile and change their avatar. If an unapproved new member tries to go to any other BuddyPress pages they are redirected back to their profile page.
-
 4. Admin receives email notice of new member:
-
 5. Admin Dashboard Alert:
-
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.0 =
+* Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
+* Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
+* Added: Prevention of activity stream posting about new member until member is approved.
+* Added: Email notification and default message setting for pending users upon activation.
+* Added: Before and after save hooks for general settings.
+* Added: Filter in pending member "additional data" section for displaying custom data about user.
+* Added: Filter in wp_redirect urls for non-logged in users.
+* Added: Filter on IP address before saving to user meta.
+* Added: Filter in "allowed areas" functions for custom area setting for 3rd party developers.
+* Fixed: Issues with HTML emails and HTML in available custom message fields.
+* Fixed: Changed API used for geo lookup in moderated user table.
+* Fixed: Hardened user display in pending member list if no Full Name value provided.
+* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
+* Fixed: Prevention of working in non-main site sites for Multisite.
+* Fixed: Internationalization issues with singular/plural "members" admin notice.
+* Updated: Internationalization strings for default messages.
 
 = 4.2.12 =
 * Switch Geolocation provider to one still actively maintained.
@@ -88,37 +101,25 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Rewrote most aspects of plugin, with focus on preventing access to the community areas.
 * Added bbPress support so you can deny users from accessing forums.
 
-= 4.1.3 =
-* Changed the hook that the load_plugin_textdomain loads on. Courtesy of http://geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
-
-= 4.1.2 =
-* properly hook our textdomain method, so that the plugin can be properly translated.
-* refreshed the pot file with extra localization functions.
-
-= 4.1.1 =
-* fix spacing issues with admin email notice
-* rename pot file to hopefully help with translators.
-
-= 4.1 =
-
-* Added hiding of pending members from the members list on the frontend, until approved.
-* Updated UI to match latest WordPress visual style
-* Fixed issue with where we were trying to grab user data after the user was deleted.
-* Now translation ready
-* Accessibility updates
-* Sanitize inputs to help with security.
-* Code cleanup
-* Screenshot updates.
-
-= 4.0.1 =
-
-* Fixes for WP 3.5. Thanks jibbius!
-
-= 4.0.0 =
-
-* Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
-
 == Upgrade Notice ==
+
+= 4.3.0 =
+* Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
+* Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
+* Added: prevention of activity stream posting about new member until member is approved.
+* Added: Email notification and default message setting for pending users upon activation.
+* Added: Before and after save hooks for general settings.
+* Added: Filter in pending member "additional data" section for displaying custom data about user.
+* Added: Filter in wp_redirect urls for non-logged in users.
+* Added: Filter on IP address before saving to user meta.
+* Added: Filter in "allowed areas" functions for custom area setting for 3rd party developers.
+* Fixed: Issues with HTML emails and HTML in available custom message fields.
+* Fixed: Changed API used for geo lookup in moderated user table.
+* Fixed: Hardened user display in pending member list if no Full Name value provided.
+* Fixed: Mark user as not spam, upon approval, in BuddyPress core's user management page.
+* Fixed: Prevention of working in non-main site sites for Multisite.
+* Fixed: Internationalization issues with singular/plural "members" admin notice.
+* Updated: Internationalization strings for default messages.
 
 = 4.2.12 =
 * Switch Geolocation provider to one still actively maintained.
@@ -171,25 +172,6 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Rewrote most aspects of plugin, with focus on preventing access to the community areas.
 * Added bbPress support so you can deny users from accessing forums.
 
-= 4.1.2 =
-* Update if you need to translate the plugin.
-
-= 4.1.1 =
-* fix spacing issues with admin email notice
-* rename pot file to hopefully help with translators.
-
-= 4.1 =
-
-* Added hiding of pending members from the members list on the frontend, until approved.
-* Updated UI to match latest WordPress visual style
-* Fixed issue with where we were trying to grab user data after the user was deleted.
-* Accessibility updates
-* Now translation ready
-
-= 4.0.0 =
-
-* Revamp of entire plugin. Stripped out features for joining particular groups at registration so you may not want to upgrade if you are dependent on these features.
-
 == Installation ==
 
 
@@ -202,3 +184,23 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 4. Configure your BuddyPress registration options.
 
 == Frequently Asked Questions ==
+
+1. What does this plugin do?
+
+We do our best to prevent unmoderated users from being able to interact or even access the social network areas of your website until approved. This includes BuddyPress and evolving support for bbPress as well. The plugin has evolved since its original origins, so admittedly the "registration options" part has changed. It focuses on moderation.
+
+2. What does this plugin not do?
+
+We do not prevent overall spam from getting through. We also don't prevent the activation emails from going out for the user. Even on a private network, the user would be able to activate the user account and log in and see at least their own profile. When just "Moderate New Members" is checked, they will be able to browse around and see a general picture, but they won't be able to interact. If you believe you have found a bug or "hole" with this, please start a support thread at https://wordpress.org/support/plugin/bp-registration-options and we will respond there.
+
+3. Does it offer support for bbPress?
+
+bbPress support is a work in progress. As we continue to develop it, we will do what we can to help prevent bbPress forum acces, but at the moment it is not as comprehensively covered as BuddyPress.
+
+4. Does it account for multisite super admins being the only ones able to edit users?
+
+A work in progress. We are aware of the limitation, and are trying to find the best solution around this issue, especially for anyone who isn't a super admin in a Multisite network, but still wants social network functionality for their site within the network.
+
+5. Is this a good plugin to help prevent spam coming into my whole site?
+
+If you are looking for sitewide spam prevention, we will not be the right plugin for you. Our plugin will only cover the BuddyPress and bbPress areas. Regular WordPress pages or the blog would still be able to be accessed.
