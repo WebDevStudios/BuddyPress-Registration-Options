@@ -744,7 +744,19 @@ function bp_registration_options_get_registered_components( $component_names = a
 }
 add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
 
-
+/**
+ * Add BuddyPress notification text and link values.
+ *
+ * @since 4.3.0
+ *
+ * @param string  $action            BuddyPress action.
+ * @param string  $item_id           Primary item ID.
+ * @param string  $secondary_item_id Secondary item ID.
+ * @param integer $total_items       Total count.
+ * @param string  $format            Notification format.
+ *
+ * @return array|string
+ */
 function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
 
 	if ( 'bp_registration_options' === $action ) {
