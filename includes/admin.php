@@ -425,7 +425,7 @@ function bp_registration_options_tab_menu( $page = '' ) {
 	<a class="nav-tab<?php if ( ! $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options' ) ); ?>"><?php esc_html_e( 'General Settings', 'bp-registration-options' ); ?></a>
 	<a class="nav-tab<?php if ( 'requests' === $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_member_requests' ) ); ?>"><?php _e( 'Member Requests', 'bp-registration-options' ); ?> (<?php echo $member_requests;?>)</a>
 	<?php // <a class="nav-tab<?php if ( $page == 'banned' ) echo ' nav-tab-active';?" <?php //href="<?php echo admin_url( 'admin.php?page=bp_registration_options_banned' ); ?"><?php //_e( 'Banned', 'bp-registration-options' ); </a>?>
-	<a class="nav-tab<?php if ( 'help' === $page ) { echo ' nav-tab-active'; } ?>" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_help_support' ) ); ?>"><?php esc_html_e( 'Help / Support', 'bp-registration-options' ); ?></a>
+	<?php // <a class="nav-tab<?php if ( 'help' === $page ) { echo ' nav-tab-active'; } ?><?php //" href="<?php echo esc_attr( admin_url( 'admin.php?page=bp_registration_options_help_support' ) ); "><?php esc_html_e( 'Help / Support', 'bp-registration-options' ); //</a> ?>
 	</h2>
 <?php }
 
