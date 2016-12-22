@@ -774,7 +774,7 @@ function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_item
 
 	return $action;
 }
-add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications', 10, 7 );
+add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications', 11, 7 );
 
 /**
  * Emails user about pending status upon activation.
