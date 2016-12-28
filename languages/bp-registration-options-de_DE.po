@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2016-12-14 23:05-0600\n"
-"PO-Revision-Date: 2016-12-14 23:05-0600\n"
+"POT-Creation-Date: 2016-12-28 13:43-0600\n"
+"PO-Revision-Date: 2016-12-28 13:43-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -40,15 +40,6 @@ msgstr "BP Registrierung"
 #: ../includes/admin.php:385 ../includes/admin.php:386
 msgid "Member Requests "
 msgstr "Mitgliedschafts-Anfragen"
-
-#: ../includes/admin.php:394 ../includes/admin.php:395
-msgid "Banned Sources"
-msgstr ""
-
-#: ../includes/admin.php:403 ../includes/admin.php:404
-#, fuzzy
-msgid "Help / Support"
-msgstr "Hilfe/Support"
 
 #: ../includes/admin.php:426 ../includes/admin.php:476 ../includes/core.php:687
 msgid "Member Requests"
@@ -142,6 +133,10 @@ msgstr "Einstellungen"
 #: ../includes/core.php:759
 msgid "You have a new pending user to moderate."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Help / Support"
+#~ msgstr "Hilfe/Support"
 
 #~ msgid "This plugin requires WordPress version 3.0 or higher."
 #~ msgstr "Dieses Plugin benötigt die WordPress Version 3.0 oder höher."
