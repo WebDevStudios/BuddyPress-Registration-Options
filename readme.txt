@@ -32,6 +32,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.1 =
+* Fixed: Compatibility issues with bbPress and blank notifications.
+
 = 4.3.0 =
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
 * Added: BPRO menu items to BuddyPress Member Admin Bar for administrators.
@@ -102,6 +105,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.1 =
+* Fixed: Compatibility issues with bbPress and blank notifications.
 
 = 4.3.0 =
 * Added: Support for BuddyPress notifications of new user, checkbox setting to enable or disable it.
