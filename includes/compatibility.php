@@ -78,9 +78,9 @@ class BP_Registration_Compatibility {
 			return;
 		}
 
-		remove_filter( 'bp_activity_entry_meta' , 'bp_like_button', 1000 );
-		remove_filter( 'bp_activity_comment_options' , 'bp_like_button', 1000 );
-		remove_action( 'bp_before_blog_single_post' , 'bp_like_button' , 1000 );
+		remove_filter( 'bp_activity_entry_meta' , 'bplike_activity_update_button' );
+		remove_filter( 'bp_activity_comment_options' , 'bplike_activity_comment_button' );
+		remove_action( 'bp_before_blog_single_post' , 'bplike_blog_post_button' );
 
 		remove_action( 'bp_activity_filter_options' , 'bp_like_activity_filter' );
 		remove_action( 'bp_group_activity_filter_options' , 'bp_like_activity_filter' );
