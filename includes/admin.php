@@ -1126,3 +1126,76 @@ function bpro_clean_user_ip( $user_id = 0 ) {
 	delete_post_meta( $user_id, '_bprwg_ip_address' );
 }
 add_action( 'bpro_hook_approved_user', 'bpro_clean_user_ip' );
+
+/**
+ * Adds a custom column to the users list to show if the user is pending approval.
+ *
+ * @since 4.4.0
+ *
+ * @param array $columns Array of all current custom columns to show.
+ * @return array $columns Amended column list.
+ */
+function bp_registration_options_set_custom_edit_columns( $columns = array() ) {
+
+	$columns['bpro_pending'] = esc_html__( 'Pending approval', 'bp-registration-options' );
+
+	return $columns;
+}
+add_filter( 'manage_users_columns', 'bp_registration_options_set_custom_edit_columns' );
+
+/**
+ * Adds output for our custom column.
+ *
+ * Outputs "yes" for still pending, and "no" for not pending.
+ *
+ * @since 4.4.0
+ *
+ * @param string $column_output Default output for a custom column. Default empty string.
+ * @param string $column        The column name being displayed.
+ * @param int    $user_id       The user ID for the table row being displayed.
+ * @return string
+ */
+function bp_registration_options_custom_columns( $column_output = '', $column = '', $user_id = 0 ) {
+	if ( 'bpro_pending' === $column ) {
+		$column_output = ( bp_registration_get_moderation_status( $user_id ) ) ?
+			esc_html__( 'Yes', 'bp-registration-options' ) :
+			esc_html__( 'No', 'bp-registration-options' );
+	}
+	return $column_output;
+}
+add_filter( 'manage_users_custom_column' , 'bp_registration_options_custom_columns', 10, 3 );
+
+/**
+ * Filters and sets our orderby parameters for user sorting by pending status.
+ *
+ * @since 4.4.0
+ *
+ * @param WP_User_Query $query User query object.
+ */
+function bp_registration_options_set_user_sort_order( $query ) {
+
+   $orderby = $query->get( 'orderby' );
+
+   if ( ! empty( $orderby ) ) {
+
+		if ( 'bpro_pending' === $orderby ) {
+			$query->set( 'meta_key', '_bprwg_is_moderated' );
+			$query->set( 'orderby', 'meta_value' );
+		}
+   }
+}
+add_action( 'pre_get_users', 'bp_registration_options_set_user_sort_order' );
+
+/**
+ * Add our Pending approval column to the list of sortable columns.
+ *
+ * @since 4.4.0
+ *
+ * @param array $sortable_columns Array of current sortable columns.
+ * @return array
+ */
+function bp_registration_options_make_pending_status_sortable( $sortable_columns ) {
+	$sortable_columns[ 'bpro_pending' ] = 'bpro_pending';
+	return $sortable_columns;
+}
+add_filter( 'manage_users_sortable_columns', 'bp_registration_options_make_pending_status_sortable' );
