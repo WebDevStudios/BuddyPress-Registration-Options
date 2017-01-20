@@ -25,6 +25,7 @@ class BP_Registration_Compatibility {
 
 		$this->buddypress_like();
 		$this->buddypress_send_invites();
+		$this->bp_reactions();
 
 		// Filter BuddyPress Docs capabilities.
 		add_filter( 'bp_docs_map_meta_caps', array( $this, 'bp_docs_map_meta_caps' ), 100, 4 );
@@ -140,5 +141,25 @@ class BP_Registration_Compatibility {
 		}
 
 		return $caps;
+	}
+
+	/**
+	 * Adds compatibility support for BP Reactions
+	 * https://wordpress.org/plugins/bp-reactions/
+	 */
+	public function bp_reactions() {
+
+		$user     = get_current_user_id();
+		$moderate = (bool) get_option( 'bprwg_moderate' );
+
+		if ( empty( $moderate ) || ! $moderate ) {
+			return;
+		}
+
+		if ( ! bp_registration_get_moderation_status( $user ) ) {
+			return;
+		}
+
+		remove_action( 'bp_activity_entry_meta', 'bp_reactions_button' );
 	}
 }
