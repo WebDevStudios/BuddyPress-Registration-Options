@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-14 23:04-0600\n"
-"PO-Revision-Date: 2016-12-14 23:04-0600\n"
+"POT-Creation-Date: 2016-12-28 13:43-0600\n"
+"PO-Revision-Date: 2016-12-28 13:43-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language: he\n"
@@ -58,14 +58,6 @@ msgstr "רישום BP"
 #: includes/admin.php:385 includes/admin.php:386
 msgid "Member Requests "
 msgstr "בקשות חברות"
-
-#: includes/admin.php:394 includes/admin.php:395
-msgid "Banned Sources"
-msgstr ""
-
-#: includes/admin.php:403 includes/admin.php:404 includes/admin.php:428
-msgid "Help / Support"
-msgstr ""
 
 #: includes/admin.php:423 includes/admin.php:914 includes/core.php:671
 msgid "BP Registration Options"

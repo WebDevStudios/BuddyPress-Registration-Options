@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2016-12-14 23:03-0600\n"
+"POT-Creation-Date: 2016-12-28 13:43-0600\n"
 "PO-Revision-Date: 2015-02-25 09:52-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
@@ -54,14 +54,6 @@ msgstr ""
 
 #: includes/admin.php:385 includes/admin.php:386
 msgid "Member Requests "
-msgstr ""
-
-#: includes/admin.php:394 includes/admin.php:395
-msgid "Banned Sources"
-msgstr ""
-
-#: includes/admin.php:403 includes/admin.php:404 includes/admin.php:428
-msgid "Help / Support"
 msgstr ""
 
 #: includes/admin.php:423 includes/admin.php:914 includes/core.php:671
