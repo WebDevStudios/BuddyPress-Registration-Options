@@ -914,7 +914,7 @@ function bp_registration_options_admin_footer( $original = '' ) {
 			__( 'BP Registration Options', 'bp-registration-options' )
 		),
 		BP_REGISTRATION_OPTIONS_VERSION,
-		'<a href="http://webdevstudios.com" target="_blank">WebDevStudios</a>'
+		'<a href="http://webdevstudios.com" target="_blank">WebDevStudios.com</a>'
 	).
 	' - '.
 	sprintf(
