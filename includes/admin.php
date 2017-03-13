@@ -743,7 +743,7 @@ function bp_registration_options_member_requests() {
 			<p>
 			<button class="button button-primary" name="moderate" value="approve" id="bpro_approve"><?php esc_html_e( 'Approve', 'bp-registration-options' ); ?></button>
 			<button class="button button-secondary" name="moderate" value="deny" id="bpro_deny"><?php esc_html_e( 'Deny', 'bp-registration-options' ); ?></button>
-			<button class="button button-secondary" name="moderate" value="ban" id="bpro_ban" disabled><?php esc_html_e( 'Ban', 'bp-registration-options' ); ?></button>
+			<?php /*<button class="button button-secondary" name="moderate" value="ban" id="bpro_ban" disabled><?php esc_html_e( 'Ban', 'bp-registration-options' ); </button> */ ?>
 			</p>
 
 			<?php if ( $total_pages > 1 ) {
