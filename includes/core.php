@@ -218,7 +218,29 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'wpmu_active_signup', 'bp_registration_filter_wpmu_active_signup' );
 }
-add_action( 'bp_ready', 'bp_registration_hide_ui' );
+
+// check for routing via AJAX
+if ( defined( 'DOING_AJAX' ) AND DOING_AJAX ) {
+
+	// test for BP component object
+	if ( ! empty( $_POST['object'] ) ) {
+
+		// sanitise it
+		$object = sanitize_title( $_POST['object'] );
+
+		// filter before BP
+		add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
+
+	} else {
+
+		// some AJAX requests still come through the 'init' action
+		bp_registration_hide_ui();
+
+	}
+
+} else {
+	add_action( 'bp_ready', 'bp_registration_hide_ui' );
+}
 
 if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	// Test for BP Component object.
