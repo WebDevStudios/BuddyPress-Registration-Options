@@ -588,6 +588,8 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 	 * @param array $args Array of wp_mail args.
 	 */
 	$args = apply_filters( 'bprwg_pending_user_email_args', $args );
+	
+	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), $args['message'] );
 
