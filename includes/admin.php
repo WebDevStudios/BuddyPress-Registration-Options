@@ -305,6 +305,16 @@ function bp_registration_options_form_actions() {
 				remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 			}
 		}
+
+		/**
+		 * Fires after the moderation actions are completed.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $action          Action taken. May be approve or deny.
+		 * @param array  $checked_members Array of members that were acted on.
+		 */
+		do_action( 'bpro_after_moderate', $action, $checked_members );
 	}
 }
 add_action( 'admin_init', 'bp_registration_options_form_actions' );
