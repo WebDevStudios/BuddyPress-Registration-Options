@@ -556,7 +556,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	 * @param string $value User login name.
 	 * @param string $value User email address.
 	 */
-	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', $args['message'], $args['user_login'], $args['user_email'] );
+	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', wpautop( $args['message'] ), $args['user_login'], $args['user_email'] );
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
@@ -588,10 +588,10 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 	 * @param array $args Array of wp_mail args.
 	 */
 	$args = apply_filters( 'bprwg_pending_user_email_args', $args );
-	
+
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
-	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), $args['message'] );
+	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), wpautop( $args['message'] ) );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }

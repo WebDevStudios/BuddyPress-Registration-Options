@@ -285,7 +285,7 @@ function bp_registration_options_form_actions() {
 				$mailme = array(
 					'user_email' => $user->data->user_email,
 					'user_subject' => $subject,
-					'user_message' => str_replace( '[username]', $user->data->user_login, $message ),
+					'user_message' => str_replace( '[username]', $user->data->user_login, wpautop( $message ) ),
 				);
 
 				/**
