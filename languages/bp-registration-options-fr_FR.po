@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-13 14:44-0500\n"
-"PO-Revision-Date: 2017-03-13 14:44-0500\n"
+"POT-Creation-Date: 2018-01-03 22:41-0600\n"
+"PO-Revision-Date: 2018-01-03 22:41-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -28,7 +28,7 @@ msgid "Membership Approved"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:327
+#: includes/admin.php:330
 #, fuzzy, php-format
 msgid "You have %d new member request that needs to be approved or denied."
 msgid_plural ""
@@ -40,33 +40,33 @@ msgstr[1] ""
 "Vous avez %s nouvelles demandes d'inscription en attente d'approbation ou de "
 "rejet. Prière de %s cliquer ici%s pour cette opération."
 
-#: includes/admin.php:336
+#: includes/admin.php:339
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: includes/admin.php:340
+#: includes/admin.php:343
 #, fuzzy
 msgid "click here"
 msgstr "Cliquez ici"
 
 # @ bp-registration-options
-#: includes/admin.php:373 includes/admin.php:374
+#: includes/admin.php:376 includes/admin.php:377
 msgid "BP Registration"
 msgstr "Inscription BP"
 
 # @ bp-registration-options
-#: includes/admin.php:385 includes/admin.php:386
+#: includes/admin.php:388 includes/admin.php:389
 msgid "Member Requests "
 msgstr "Demande(s) d'inscription"
 
 # @ bp-registration-options
-#: includes/admin.php:426 includes/admin.php:476 includes/core.php:687
+#: includes/admin.php:429 includes/admin.php:479 includes/core.php:687
 msgid "Member Requests"
 msgstr "Demande d'inscription"
 
 # @ bp-registration-options
-#: includes/admin.php:450
+#: includes/admin.php:453
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -77,7 +77,7 @@ msgstr ""
 "demande aura été traitée vous recevrez un courriel."
 
 # @ bp-registration-options
-#: includes/admin.php:457
+#: includes/admin.php:460
 #, fuzzy, php-format
 msgid ""
 "Hi [username], your member account at %s has been approved! You can now "
@@ -87,7 +87,7 @@ msgstr ""
 "maintenant vous connecter et participer à la vie du site."
 
 # @ bp-registration-options
-#: includes/admin.php:466
+#: includes/admin.php:469
 #, fuzzy, php-format
 msgid ""
 "Hi [username], we regret to inform you that your member account at %s has "
@@ -96,7 +96,7 @@ msgstr ""
 "Bonjour [username], votre demande d'inscription du on %s a été rejetée ..."
 
 # @ bp-registration-options
-#: includes/admin.php:475
+#: includes/admin.php:478
 #, fuzzy, php-format
 msgid ""
 "[username] ( [user_email] ) would like to become a member of your website. "
@@ -105,26 +105,26 @@ msgstr ""
 "souhaiterait s'inscrire sur votre site. Pour accepter ou rejeter ces "
 "demandes rendez-vous en"
 
-#: includes/admin.php:484
+#: includes/admin.php:487
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
 
-#: includes/admin.php:911
+#: includes/admin.php:914
 #, php-format
 msgid "%s version %s by %s"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:914 includes/core.php:671
+#: includes/admin.php:917 includes/core.php:671
 msgid "BP Registration Options"
 msgstr "Options d'enregistrement BP"
 
-#: includes/admin.php:922
+#: includes/admin.php:925
 msgid "Please Report Bugs"
 msgstr ""
 
-#: includes/admin.php:925
+#: includes/admin.php:928
 msgid "Follow on Twitter:"
 msgstr ""
 
