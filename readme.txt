@@ -32,6 +32,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.3 =
+* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
+
 = 4.3.2 =
 * Fixed: Re-hide unimplemented ban button. Hopefully someday.
 * Fixed: Prevent possible fatal errors for non-existant functions at runtime.
@@ -109,6 +112,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.3 =
+* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
 
 = 4.3.2 =
 * Fixed: Re-hide unimplemented ban button. Hopefully someday.
