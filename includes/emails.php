@@ -281,7 +281,7 @@ class BP_Registration_Emails {
 			$email_type = 'account_approved';
 		}
 
-		bp_send_email( $email_type, $user->ID );
+		bp_send_email( $email_type, $user->user_email );
 	}
 
 	/**
