@@ -58,7 +58,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		/**
 		 * Filters the users to set notifications for new members.
 		 *
-		 * @since 4.3.2
+		 * @since 4.3.4
 		 *
 		 * @param array $value Array of users to set notifications for new members.
 		 */
