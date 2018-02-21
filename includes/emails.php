@@ -316,6 +316,9 @@ class BP_Registration_Emails {
 		$message = str_replace( '[username]', $user->data->user_login, $message );
 		$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
+		// Add HTML capabilities temporarily.
+		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
+
 		bp_registration_options_send_admin_email(
 			array(
 				'user_login' => $user->data->user_login,
