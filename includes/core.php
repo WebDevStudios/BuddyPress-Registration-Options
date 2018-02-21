@@ -813,3 +813,40 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 	);
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
+
+/**
+ * Display the alert message when an unapproved user attempts to log in.
+ *
+ * @since 4.3.4
+ *
+ * @param WP_User|WP_Error|null $user     Either the WP_User or the WP_Error object.
+ * @param string                $username The inputted, attempted username.
+ * @param string                $password The inputted, attempted password.
+ * @return WP_User|WP_Error
+ */
+function bp_registration_options_disable_unapproved( $user = null, $username = '', $password ='' ) {
+
+	// Login form not used.
+	if ( empty( $username ) && empty( $password ) ) {
+		return $user;
+	}
+
+	// this is not a locked network, bail
+	if ( ! bp_registration_is_moderated() || ! bp_registration_is_locked_network() )
+		return $user;
+
+	// not an existing user, bail
+	if ( is_wp_error( $user ) ) {
+		return $user;
+	}
+
+	// if the user is not in moderation, bail
+	if ( ! bp_registration_get_moderation_status( $user->ID ) )
+		return $user;
+
+	// this user has not yet been approved, show alert message
+	$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
+
+	return new WP_Error( 'bp_registration_options_account_not_approved', $activate_message );
+}
+add_filter( 'authenticate', 'bp_registration_options_disable_unapproved', 40, 3 );

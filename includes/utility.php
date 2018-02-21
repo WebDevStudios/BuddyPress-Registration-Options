@@ -36,3 +36,13 @@ function bp_registration_is_private_network() {
 
 	return true;
 }
+
+function bp_registration_is_locked_network() {
+	$locked_network = get_option( 'bprwg_locked_network' );
+
+	if ( empty( $locked_network ) || ! $locked_network ) {
+		return false;
+	}
+
+	return true;
+}
