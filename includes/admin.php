@@ -572,7 +572,7 @@ function bp_registration_options_settings() {
 				</tr>
 			<?php if ( BP_Registration_Emails::bp_emails_available() ) : ?>
 				<tr>
-					<td class=""><?php esc_html_e( 'Emails can be configured ', 'bp-registration-options' ); ?> <a href="<?php echo admin_url( 'edit.php?post_type=' . bp_get_email_post_type() ) ?>">here</a>
+					<td><?php printf( __( 'Emails can be configured <a href="%s">here</a>', 'bp-registration-options' ), admin_url( 'edit.php?post_type=' . bp_get_email_post_type() ) ) ?>
 					</td>
 					<td class="alignright">
 						<input type="submit" id="install_emails" name="install_emails" class="button button-secondary" value="<?php esc_attr_e( 'Install Emails', 'bp-registration-options' ); ?>" />
