@@ -26,7 +26,7 @@ class BP_Registration_Emails {
 	 * Insures that only one instance of BP_Registration_Emails exists in memory at
 	 * any one time. Also prevents needing to define globals all over the place.
 	 *
-	 * @since BP_Registration_Emails (4.3.4)
+	 * @since 4.4.0
 	 *
 	 * @staticvar array $instance
 	 *
@@ -44,7 +44,7 @@ class BP_Registration_Emails {
 	/**
 	 * A dummy constructor to prevent loading more than one instance
 	 *
-	 * @since BP_Registration_Emails (4.3.4)
+	 * @since 4.4.0
 	 */
 	private function __construct() { /* Do nothing here */
 	}
@@ -55,7 +55,7 @@ class BP_Registration_Emails {
 	/**
 	 * Setup the actions
 	 *
-	 * @since BP_Registration_Emails (4.3.4)
+	 * @since 4.4.0
 	 * @access private
 	 *
 	 * @uses remove_action() To remove various actions
@@ -70,7 +70,7 @@ class BP_Registration_Emails {
 	/**
 	 * Return if BP Emails are available
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @return bool
 	 */
@@ -84,7 +84,7 @@ class BP_Registration_Emails {
 	/**
 	 * Get a list of emails
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @return array
 	 */
@@ -128,7 +128,7 @@ class BP_Registration_Emails {
 	/**
 	 * Get a list of email type taxonomy terms.
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @return array
 	 */
@@ -143,6 +143,8 @@ class BP_Registration_Emails {
 
 	/**
 	 * Install BuddyPress Emails
+	 *
+	 * @since 4.4.0
 	 *
 	 * @return void
 	 */
@@ -200,7 +202,7 @@ class BP_Registration_Emails {
 	 *
 	 * checks if new BP Emails are available and calls the legacy implementation otherwise
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for user being moderated.
 	 * @param string $action either 'deny' or 'approve'
@@ -217,7 +219,7 @@ class BP_Registration_Emails {
 	/**
 	 * Send moderation email (legacy)
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for user being moderated.
 	 * @param string $action either 'deny' or 'approve'
@@ -264,7 +266,7 @@ class BP_Registration_Emails {
 	/**
 	 * Send moderation email (BP)
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for user being moderated.
 	 * @param string $action either 'deny' or 'approve'
@@ -289,7 +291,7 @@ class BP_Registration_Emails {
 	 *
 	 * checks if new BP Emails are available and calls the legacy implementation otherwise
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for registered user
 	 *
@@ -305,7 +307,7 @@ class BP_Registration_Emails {
 	/**
 	 * Send an email to the administrator email upon new user registration. (legacy)
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for registered user
 	 *
@@ -331,7 +333,7 @@ class BP_Registration_Emails {
 	/**
 	 * Send an email to the administrator email upon new user registration. (BP)
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param object $user User object for registered user
 	 *
@@ -363,7 +365,7 @@ class BP_Registration_Emails {
 	 *
 	 * checks if new BP Emails are available and calls the legacy implementation otherwise
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param WP_User $user_info  WP_User object for the newly activated user.
 	 *
@@ -380,7 +382,7 @@ class BP_Registration_Emails {
 	 * Send an email to the pending user upon registration. (legacy)
 	 *
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param WP_User $user_info  WP_User object for the newly activated user.
 	 *
@@ -413,7 +415,7 @@ class BP_Registration_Emails {
 	 * Send an email to the pending user upon registration. (BP)
 	 *
 	 *
-	 * @since 4.3.4
+	 * @since 4.4.0
 	 *
 	 * @param WP_User $user  WP_User object for the newly activated user.
 	 *
