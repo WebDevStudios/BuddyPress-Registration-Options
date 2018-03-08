@@ -343,8 +343,9 @@ class BP_Registration_Emails {
 		// add tokens to parse in email
 		$args = array(
 			'tokens' => array(
-				'username' => $user->data->user_login,
+				'username' 	 => $user->data->user_login,
 				'user_email' => $user->data->user_email,
+				'admin.url'	 => admin_url( '/admin.php?page=bp_registration_options_member_requests' )
 			),
 		);
 
