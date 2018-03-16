@@ -35,6 +35,7 @@ add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activat
 function bp_registration_options_bp_core_register_account( $user_id ) {
 
 	$moderate = get_option( 'bprwg_moderate' );
+	$bpr_emails = new BP_Registration_Emails();
 
 	if ( $moderate && $user_id > 0 ) {
 
@@ -56,9 +57,6 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		//$admin_email = apply_filters( 'bprwg_admin_email_addresses', array( get_bloginfo( 'admin_email' ) ) );
 		// Used for BP Notifications.
 		$admins = get_users( 'role=administrator' );
-
-		// Add HTML capabilities temporarily.
-		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
 		// If their IP or email is blocked, don't proceed and exit silently.
 		//$blockedIPs    = get_option( 'bprwg_blocked_ips', array() );
@@ -98,17 +96,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		update_user_meta( $user_id, '_bprwg_ip_address', apply_filters( '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] ) );
 
 		// Admin email.
-		$message = get_option( 'bprwg_admin_pending_message' );
-		$message = str_replace( '[username]', $user->data->user_login, $message );
-		$message = str_replace( '[user_email]', $user->data->user_email, $message );
-
-		bp_registration_options_send_admin_email(
-			array(
-				'user_login' => $user->data->user_login,
-				'user_email' => $user->data->user_email,
-				'message'    => $message,
-			)
-		);
+		$bpr_emails->send_admin_email( $user );
 
 		bp_registration_options_delete_user_count_transient();
 
@@ -790,26 +778,8 @@ add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications'
 function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 
 	$user_info = get_userdata( $user_id );
-	$pending_message = get_option( 'bprwg_user_pending_message' );
-	$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
-	$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
+	$bpr_emails = new BP_Registration_Emails();
 
-	/**
-	 * Filters the message to be sent to user upon activation.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param string  $filtered_message Message to be sent with placeholders changed.
-	 * @param string  $pending_message  Original message before placeholders filtered.
-	 * @param WP_User $user_info        WP_User object for the newly activated user.
-	 */
-	$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
-	bp_registration_options_send_pending_user_email(
-		array(
-			'user_login' => $user_info->data->user_login,
-			'user_email' => $user_info->data->user_email,
-			'message'    => $filtered_message,
-		)
-	);
+	$bpr_emails->send_pending_user_email( $user_info );
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
