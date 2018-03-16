@@ -35,6 +35,7 @@ add_filter( 'bp_before_member_header', 'bp_registration_options_bp_after_activat
 function bp_registration_options_bp_core_register_account( $user_id ) {
 
 	$moderate = get_option( 'bprwg_moderate' );
+	$bpr_emails = new BP_Registration_Emails();
 
 	if ( $moderate && $user_id > 0 ) {
 
@@ -95,7 +96,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		update_user_meta( $user_id, '_bprwg_ip_address', apply_filters( '_bprwg_ip_address', $_SERVER['REMOTE_ADDR'] ) );
 
 		// Admin email.
-		BP_Registration_Emails::instance()->send_admin_email( $user );
+		$bpr_emails->send_admin_email( $user );
 
 		bp_registration_options_delete_user_count_transient();
 
@@ -777,7 +778,8 @@ add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications'
 function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 
 	$user_info = get_userdata( $user_id );
+	$bpr_emails = new BP_Registration_Emails();
 
-	BP_Registration_Emails::instance()->send_pending_user_email( $user_info );
+	$bpr_emails->send_pending_user_email( $user_info );
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );

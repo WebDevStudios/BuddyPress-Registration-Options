@@ -52,6 +52,10 @@ class BP_Registration_Options {
 		require_once( $this->directory_path . 'includes/compatibility.php' );
 		require_once( $this->directory_path . 'includes/emails.php' );
 
+		// add email actions
+		$bpr_emails = new BP_Registration_Emails();
+		$bpr_emails->add_actions();
+
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 	}
 

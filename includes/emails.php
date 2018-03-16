@@ -16,52 +16,22 @@
 class BP_Registration_Emails {
 
 	/**
-	 * @var BP_Registration_Emails
-	 */
-	private static $instance;
-
-	/**
-	 * Main BP_Registration_Emails Instance
-	 *
-	 * Insures that only one instance of BP_Registration_Emails exists in memory at
-	 * any one time. Also prevents needing to define globals all over the place.
+	 * The constructor
 	 *
 	 * @since 4.4.0
-	 *
-	 * @staticvar array $instance
-	 *
-	 * @return BP_Registration_Emails
 	 */
-	public static function instance( ) {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new BP_Registration_Emails;
-			self::$instance->setup_actions();
-		}
-
-		return self::$instance;
+	public function __construct() {
 	}
 
 	/**
-	 * A dummy constructor to prevent loading more than one instance
+	 * Add the actions
 	 *
 	 * @since 4.4.0
-	 */
-	private function __construct() { /* Do nothing here */
-	}
-
-
-
-
-	/**
-	 * Setup the actions
+	 * @access public
 	 *
-	 * @since 4.4.0
-	 * @access private
-	 *
-	 * @uses remove_action() To remove various actions
 	 * @uses add_action() To add various actions
 	 */
-	private function setup_actions() {
+	public function add_actions() {
 
 		add_action( 'bp_core_install_emails', array( $this, 'install_bp_emails' ) );
 
@@ -74,7 +44,7 @@ class BP_Registration_Emails {
 	 *
 	 * @return bool
 	 */
-	public static function bp_emails_available() {
+	public function bp_emails_available() {
 		$bp = buddypress();
 
 		return version_compare( $bp->version, '2.5.0', '>=' );
@@ -88,7 +58,7 @@ class BP_Registration_Emails {
 	 *
 	 * @return array
 	 */
-	function get_email_schema() {
+	protected function get_email_schema() {
 		return array(
 			'account_approved' => array(
 				/* translators: do not remove {} brackets or translate its contents. */
@@ -132,7 +102,7 @@ class BP_Registration_Emails {
 	 *
 	 * @return array
 	 */
-	function get_email_type_schema() {
+	protected function get_email_type_schema() {
 		return array(
 			'account_approved'	=> __( 'The user account has been approved', 'bp-registration-options' ),
 			'account_denied' 	=> __( 'The user account has been denied', 'bp-registration-options' ),
@@ -148,7 +118,7 @@ class BP_Registration_Emails {
 	 *
 	 * @return void
 	 */
-	function install_bp_emails() {
+	public function install_bp_emails() {
 
 		$emails = $this->get_email_schema();
 		$terms  = $this->get_email_type_schema();
@@ -426,5 +396,3 @@ class BP_Registration_Emails {
 	}
 
 }
-
-BP_Registration_Emails::instance();
