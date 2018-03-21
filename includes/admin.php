@@ -17,7 +17,7 @@ function bp_registration_get_pending_user_count() {
 	if ( false === ( $rs = get_transient( 'bpro_user_count' ) ) ) {
 		global $wpdb;
 
-		$sql = "SELECT count( user_id ) AS count FROM " . $wpdb->usermeta . " WHERE meta_key = %s AND meta_value = %s";
+		$sql = "SELECT count( user_id ) AS count FROM {$wpdb->usermeta} WHERE meta_key = %s AND meta_value = %s";
 
 		$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
 
@@ -42,8 +42,8 @@ function bp_registration_get_pending_users( $start_from = 0 ) {
 
 	$sql = "
 		SELECT u.ID AS user_id
-		FROM " . $wpdb->users . " AS u
-		INNER JOIN " . $wpdb->usermeta . " AS um
+		FROM {$wpdb->users} AS u
+		INNER JOIN {$wpdb->usermeta} AS um
 		WHERE u.ID = um.user_id
 		AND um.meta_key = %s
 		AND meta_value = %s
