@@ -193,9 +193,9 @@ function bp_registration_options_form_actions() {
 		$action = sanitize_text_field( $_POST['moderate'] );
 
 		$checked_members = array();
-		$send = false;
-		$subject = '';
-		$message = '';
+		$send            = false;
+		$subject         = '';
+		$default_message = '';
 
 		if ( isset( $_POST['bp_member_check'] ) ) {
 			$checked_members = $_POST['bp_member_check'];
@@ -208,16 +208,18 @@ function bp_registration_options_form_actions() {
 		if ( 'deny' === $action ) {
 			$send = true;
 			$subject = __( 'Membership Denied', 'bp-registration-options' );
-			$message = get_option( 'bprwg_denied_message' );
+			$default_message = get_option( 'bprwg_denied_message' );
 		}
 		if ( 'approve' === $action ) {
 			$send = true;
 			$subject = __( 'Membership Approved', 'bp-registration-options' );
-			$message = get_option( 'bprwg_approved_message' );
+			$default_message = get_option( 'bprwg_approved_message' );
 		}
 
 		foreach ( $checked_members as $user_id ) {
 
+			// Assign to a temp variable to use for multiple moderations.
+			$message = $default_message;
 			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
 			if ( 'deny' == $action || 'ban' == $action ) {
