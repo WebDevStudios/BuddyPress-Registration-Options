@@ -222,7 +222,7 @@ function bp_registration_options_form_actions() {
 			$message = $default_message;
 			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
-			if ( 'deny' == $action || 'ban' == $action ) {
+			if ( 'deny' === $action || 'ban' === $action ) {
 
 				/*
 				 // Add our user to the IP ban option.
