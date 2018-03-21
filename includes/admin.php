@@ -206,13 +206,13 @@ function bp_registration_options_form_actions() {
 		}
 
 		if ( 'deny' === $action ) {
-			$send = true;
-			$subject = __( 'Membership Denied', 'bp-registration-options' );
+			$send            = true;
+			$subject         = __( 'Membership Denied', 'bp-registration-options' );
 			$default_message = get_option( 'bprwg_denied_message' );
 		}
 		if ( 'approve' === $action ) {
-			$send = true;
-			$subject = __( 'Membership Approved', 'bp-registration-options' );
+			$send            = true;
+			$subject         = __( 'Membership Approved', 'bp-registration-options' );
 			$default_message = get_option( 'bprwg_approved_message' );
 		}
 
@@ -288,7 +288,7 @@ function bp_registration_options_form_actions() {
 				$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
 				$mailme = array(
-					'user_email' => $user->data->user_email,
+					'user_email'   => $user->data->user_email,
 					'user_subject' => $subject,
 					'user_message' => $message,
 				);
