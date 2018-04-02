@@ -54,8 +54,17 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		/** This filter is documented in includes/core.php */
 		//$admin_email = apply_filters( 'bprwg_admin_email_addresses', array( get_bloginfo( 'admin_email' ) ) );
-		// Used for BP Notifications.
-		$admins = get_users( 'role=administrator' );
+
+		/**
+		 * Filters the users to set notifications for new members.
+		 *
+		 * Used for BP Notifications.
+		 *
+		 * @since 4.3.4
+		 *
+		 * @param array $value Array of users to set notifications for, for new member signups.
+		 */
+		$admins = apply_filters( 'bprwg_bp_notification_users', get_users( 'role=administrator' ) );
 
 		// Add HTML capabilities temporarily.
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
