@@ -1072,3 +1072,17 @@ function bp_registration_options_ip_data( $user_id ) {
 <?php
 }
 add_action( 'bpro_hook_member_item_additional_data', 'bp_registration_options_ip_data', 10, 1 );
+
+/**
+ * Clean up and remove IP addresses from user meta upon approval.
+ *
+ * Added to help aid in GDPR compliance and really we should not have been storing beyond necessary anyway.
+ *
+ * @since 4.3.4
+ *
+ * @param int $user_id User ID to clean up meta data for.
+ */
+function bpro_clean_user_ip( $user_id = 0 ) {
+	delete_post_meta( $user_id, '_bprwg_ip_address' );
+}
+add_action( 'bpro_hook_approved_user', 'bpro_clean_user_ip' );
