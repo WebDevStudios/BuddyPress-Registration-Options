@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.7.3
-Stable tag: 4.3.2
+Tested up to: 4.9.1
+Stable tag: 4.3.3
 License: GPLv2
 
 Moderate new BuddyPress members and fight BuddyPress spam.
@@ -31,6 +31,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.3 =
+* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
 
 = 4.3.2 =
 * Fixed: Re-hide unimplemented ban button. Hopefully someday.
@@ -109,6 +112,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.3 =
+* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
 
 = 4.3.2 =
 * Fixed: Re-hide unimplemented ban button. Hopefully someday.

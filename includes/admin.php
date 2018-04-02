@@ -282,10 +282,13 @@ function bp_registration_options_form_actions() {
 			// Only send out message if one exists.
 			if ( $send ) {
 
+				$message = str_replace( '[username]', $user->data->user_login, $message );
+				$message = str_replace( '[user_email]', $user->data->user_email, $message );
+
 				$mailme = array(
 					'user_email' => $user->data->user_email,
 					'user_subject' => $subject,
-					'user_message' => str_replace( '[username]', $user->data->user_login, wpautop( $message ) ),
+					'user_message' => $message,
 				);
 
 				/**
