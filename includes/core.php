@@ -765,7 +765,7 @@ function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_item
 		 *
 		 * @param string $value Notification text.
 		 */
-		$text  = apply_filters( 'bprwg_notification_text', __( 'You have a new pending user to moderate.', 'bp-registration-options' ) );
+		$text  = apply_filters( 'bprwg_notification_text', __( 'You have pending users to moderate.', 'bp-registration-options' ) );
 		$link  = admin_url( 'admin.php?page=bp_registration_options_member_requests' );
 
 		$result = array(
