@@ -36,6 +36,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
 * Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
 * Added: Filter for who receives notifications for new users. Props to @cherbst
+* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
 
 = 4.3.3 =
 * Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
@@ -122,6 +123,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
 * Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
 * Added: Filter for who receives notifications for new users. Props to @cherbst
+* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
 
 = 4.3.3 =
 * Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
