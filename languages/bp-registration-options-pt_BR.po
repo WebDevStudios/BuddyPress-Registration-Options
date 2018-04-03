@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 22:40-0600\n"
-"PO-Revision-Date: 2018-01-03 22:40-0600\n"
+"POT-Creation-Date: 2018-04-03 15:19-0500\n"
+"PO-Revision-Date: 2018-04-03 15:19-0500\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Leonardo Antonioli <leo@tobeguarany.com>\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -28,7 +28,7 @@ msgid "Membership Approved"
 msgstr "Conta Aprovada"
 
 # @ bp-registration-options
-#: includes/admin.php:330
+#: includes/admin.php:332
 #, fuzzy, php-format
 msgid "You have %d new member request that needs to be approved or denied."
 msgid_plural ""
@@ -40,32 +40,32 @@ msgstr[1] ""
 "Você tem %s pedido%s de novo membro para aceitar ou rejeitar. Por favor, %s "
 "para resolver"
 
-#: includes/admin.php:339
+#: includes/admin.php:341
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: includes/admin.php:343
+#: includes/admin.php:345
 msgid "click here"
 msgstr "clique aqui"
 
 # @ bp-registration-options
-#: includes/admin.php:376 includes/admin.php:377
+#: includes/admin.php:378 includes/admin.php:379
 msgid "BP Registration"
 msgstr "BP Registration"
 
 # @ bp-registration-options
-#: includes/admin.php:388 includes/admin.php:389
+#: includes/admin.php:390 includes/admin.php:391
 msgid "Member Requests "
 msgstr "Solicitações de Membros"
 
 # @ bp-registration-options
-#: includes/admin.php:429 includes/admin.php:479 includes/core.php:687
+#: includes/admin.php:431 includes/admin.php:481 includes/core.php:698
 msgid "Member Requests"
 msgstr "Solicitações de Membros"
 
 # @ bp-registration-options
-#: includes/admin.php:453
+#: includes/admin.php:455
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -77,7 +77,7 @@ msgstr ""
 "conta for aprovada ou rejeitada."
 
 # @ bp-registration-options
-#: includes/admin.php:460
+#: includes/admin.php:462
 #, fuzzy, php-format
 msgid ""
 "Hi [username], your member account at %s has been approved! You can now "
@@ -87,7 +87,7 @@ msgstr ""
 "e interagir com os demais membros da comunidade... "
 
 # @ bp-registration-options
-#: includes/admin.php:469
+#: includes/admin.php:471
 #, fuzzy, php-format
 msgid ""
 "Hi [username], we regret to inform you that your member account at %s has "
@@ -97,7 +97,7 @@ msgstr ""
 "não foi aprovado..."
 
 # @ bp-registration-options
-#: includes/admin.php:478
+#: includes/admin.php:480
 #, fuzzy, php-format
 msgid ""
 "[username] ( [user_email] ) would like to become a member of your website. "
@@ -106,26 +106,26 @@ msgstr ""
 "%s ( %s ) gostaria de fazer parte da sua intranet. Para aceitar ou rejeitar "
 "esse pedido, acesse <a href=\"%s\">%s</a>."
 
-#: includes/admin.php:487
+#: includes/admin.php:489
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
 
-#: includes/admin.php:914
+#: includes/admin.php:916
 #, php-format
 msgid "%s version %s by %s"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:917 includes/core.php:671
+#: includes/admin.php:919 includes/core.php:682
 msgid "BP Registration Options"
 msgstr "BP Registration Options"
 
-#: includes/admin.php:925
+#: includes/admin.php:927
 msgid "Please Report Bugs"
 msgstr ""
 
-#: includes/admin.php:928
+#: includes/admin.php:930
 msgid "Follow on Twitter:"
 msgstr ""
 
@@ -140,21 +140,21 @@ msgstr ""
 "esse pedido, acesse <a href=\"%s\">%s</a>."
 
 # @ bp-registration-options
-#: includes/core.php:563
+#: includes/core.php:574
 msgid "New Member Request"
 msgstr "Solicitação de Novo Membro"
 
-#: includes/core.php:592
+#: includes/core.php:603
 msgid "Pending Membership"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/core.php:680
+#: includes/core.php:691
 msgid "General Settings"
 msgstr "Configurações Gerais"
 
-#: includes/core.php:759
-msgid "You have a new pending user to moderate."
+#: includes/core.php:770
+msgid "You have pending users to moderate."
 msgstr ""
 
 # @ bp-registration-options
