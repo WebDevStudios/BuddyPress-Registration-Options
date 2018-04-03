@@ -11,13 +11,15 @@
  * @since unknown
  */
 function bp_registration_options_bp_after_activate_content() {
-	$user = get_current_user_id();
-	$moderate = get_option( 'bprwg_moderate' );
+	$user      = get_current_user_id();
+	$user_info = get_userdata( $user );
+	$moderate  = get_option( 'bprwg_moderate' );
 
 	$activate_screen = ( false === strpos( $_SERVER['REQUEST_URI'], 'activate' ) ) ? false : true;
 	if ( $activate_screen || bp_registration_get_moderation_status( $user ) ) {
 		if ( $moderate ) {
 			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
+			$activate_message = str_replace( '[username]', $user_info->data->user_login, $activate_message );
 			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
 		}
 	}
