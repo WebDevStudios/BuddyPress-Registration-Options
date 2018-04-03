@@ -17,7 +17,7 @@ function bp_registration_get_pending_user_count() {
 	if ( false === ( $rs = get_transient( 'bpro_user_count' ) ) ) {
 		global $wpdb;
 
-		$sql = "SELECT count( user_id ) AS count FROM " . $wpdb->usermeta . " WHERE meta_key = %s AND meta_value = %s";
+		$sql = "SELECT count( user_id ) AS count FROM {$wpdb->usermeta} WHERE meta_key = %s AND meta_value = %s";
 
 		$rs = $wpdb->get_col( $wpdb->prepare( $sql, '_bprwg_is_moderated', 'true' ) );
 
@@ -42,8 +42,8 @@ function bp_registration_get_pending_users( $start_from = 0 ) {
 
 	$sql = "
 		SELECT u.ID AS user_id
-		FROM " . $wpdb->users . " AS u
-		INNER JOIN " . $wpdb->usermeta . " AS um
+		FROM {$wpdb->users} AS u
+		INNER JOIN {$wpdb->usermeta} AS um
 		WHERE u.ID = um.user_id
 		AND um.meta_key = %s
 		AND meta_value = %s
@@ -193,9 +193,9 @@ function bp_registration_options_form_actions() {
 		$action = sanitize_text_field( $_POST['moderate'] );
 
 		$checked_members = array();
-		$send = false;
-		$subject = '';
-		$message = '';
+		$send            = false;
+		$subject         = '';
+		$default_message = '';
 
 		if ( isset( $_POST['bp_member_check'] ) ) {
 			$checked_members = $_POST['bp_member_check'];
@@ -206,21 +206,23 @@ function bp_registration_options_form_actions() {
 		}
 
 		if ( 'deny' === $action ) {
-			$send = true;
-			$subject = __( 'Membership Denied', 'bp-registration-options' );
-			$message = get_option( 'bprwg_denied_message' );
+			$send            = true;
+			$subject         = __( 'Membership Denied', 'bp-registration-options' );
+			$default_message = get_option( 'bprwg_denied_message' );
 		}
 		if ( 'approve' === $action ) {
-			$send = true;
-			$subject = __( 'Membership Approved', 'bp-registration-options' );
-			$message = get_option( 'bprwg_approved_message' );
+			$send            = true;
+			$subject         = __( 'Membership Approved', 'bp-registration-options' );
+			$default_message = get_option( 'bprwg_approved_message' );
 		}
 
 		foreach ( $checked_members as $user_id ) {
 
+			// Assign to a temp variable to use for multiple moderations.
+			$message = $default_message;
 			// Grab our userdata object while we still have a user.
 			$user = get_userdata( $user_id );
-			if ( 'deny' == $action || 'ban' == $action ) {
+			if ( 'deny' === $action || 'ban' === $action ) {
 
 				/*
 				 // Add our user to the IP ban option.
@@ -286,7 +288,7 @@ function bp_registration_options_form_actions() {
 				$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
 				$mailme = array(
-					'user_email' => $user->data->user_email,
+					'user_email'   => $user->data->user_email,
 					'user_subject' => $subject,
 					'user_message' => $message,
 				);
@@ -1080,3 +1082,17 @@ function bp_registration_options_ip_data( $user_id ) {
 <?php
 }
 add_action( 'bpro_hook_member_item_additional_data', 'bp_registration_options_ip_data', 10, 1 );
+
+/**
+ * Clean up and remove IP addresses from user meta upon approval.
+ *
+ * Added to help aid in GDPR compliance and really we should not have been storing beyond necessary anyway.
+ *
+ * @since 4.3.4
+ *
+ * @param int $user_id User ID to clean up meta data for.
+ */
+function bpro_clean_user_ip( $user_id = 0 ) {
+	delete_post_meta( $user_id, '_bprwg_ip_address' );
+}
+add_action( 'bpro_hook_approved_user', 'bpro_clean_user_ip' );

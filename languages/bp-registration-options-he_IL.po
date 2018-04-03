@@ -2,268 +2,247 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 22:41-0600\n"
-"PO-Revision-Date: 2018-01-03 22:41-0600\n"
+"POT-Creation-Date: 2018-04-03 15:27-0500\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
-"Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
-"Language: he\n"
+"Language-Team: \n"
+"Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.4\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
-"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
-"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
-"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
-"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Loco-Target-Locale: he_IL\n"
-"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: bp-registration-options.php:64
 msgid "This plugin requires WordPress version 3.0 or higher."
-msgstr "תוסף זה דורש גרסה וורדפרס 3.0 או חדשה יותר."
+msgstr "×ª××¡×£ ×× ×××¨×© ××¨×¡× ×××¨××¤×¨×¡ 3.0 ×× ×××©× ×××ª×¨."
 
 #: includes/admin.php:210
 msgid "Membership Denied"
-msgstr "בקשת חברות נדחתה"
+msgstr "××§×©×ª ×××¨××ª × ×××ª×"
 
 #: includes/admin.php:215
 msgid "Membership Approved"
-msgstr "בקשת חברות מאושרות"
+msgstr "××§×©×ª ×××¨××ª ××××©×¨××ª"
 
-#: includes/admin.php:330
+#: includes/admin.php:342
 #, fuzzy, php-format
 msgid "You have %d new member request that needs to be approved or denied."
-msgid_plural ""
-"You have %d new member requests that needs to be approved or denied."
-msgstr[0] "ישנן %s בקשות חברות באתר %s לאשר או לדחות. נא %s לנקוט בפעולה"
-msgstr[1] "ישנן %s בקשות חברות באתר %s לאשר או לדחות. נא %s לנקוט בפעולה"
+msgid_plural "You have %d new member requests that needs to be approved or denied."
+msgstr[0] "××©× × %s ××§×©××ª ×××¨××ª ×××ª×¨ %s ×××©×¨ ×× ×××××ª. × × %s ×× ×§×× ××¤×¢×××"
+msgstr[1] "××©× × %s ××§×©××ª ×××¨××ª ×××ª×¨ %s ×××©×¨ ×× ×××××ª. × × %s ×× ×§×× ××¤×¢×××"
 
-#: includes/admin.php:339
+#: includes/admin.php:351
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: includes/admin.php:343
+#: includes/admin.php:355
 msgid "click here"
-msgstr "להקליק כאן"
-
-#: includes/admin.php:376 includes/admin.php:377
-msgid "BP Registration"
-msgstr "רישום BP"
+msgstr "×××§×××§ ×××"
 
 #: includes/admin.php:388 includes/admin.php:389
+msgid "BP Registration"
+msgstr "×¨××©×× BP"
+
+#: includes/admin.php:400 includes/admin.php:401
 msgid "Member Requests "
-msgstr "בקשות חברות"
+msgstr "××§×©××ª ×××¨××ª"
 
-#: includes/admin.php:426 includes/admin.php:917 includes/core.php:671
+#. Plugin Name of the plugin/theme
+#: includes/admin.php:438 includes/admin.php:929 includes/core.php:684
 msgid "BP Registration Options"
-msgstr "אופציות הרשמה BP"
+msgstr "×××¤×¦×××ª ××¨×©×× BP"
 
-#: includes/admin.php:428 includes/core.php:680
+#: includes/admin.php:440 includes/core.php:693
 msgid "General Settings"
-msgstr "הגדרות כלליות"
+msgstr "××××¨××ª ××××××ª"
 
-#: includes/admin.php:429 includes/admin.php:479 includes/core.php:687
+#: includes/admin.php:441 includes/admin.php:491 includes/core.php:700
 msgid "Member Requests"
-msgstr "בקשות חברות"
+msgstr "××§×©××ª ×××¨××ª"
 
-#: includes/admin.php:453
+#: includes/admin.php:465
 msgid ""
-"Your membership account is awaiting approval by the site administrator. You "
-"will not be able to fully interact with the social aspects of this website "
-"until your account is approved. Once approved or denied you will receive an "
-"email notice."
+"Your membership account is awaiting approval by the site administrator. You will not be able to fully "
+"interact with the social aspects of this website until your account is approved. Once approved or denied "
+"you will receive an email notice."
 msgstr ""
-"חשבון החברות שלך ממתין לאישור על-ידי מנהל האתר. אתה לא יהיה מסוגל לתקשר "
-"באופן מלא עם המערכות של אתר זה עד שהחשבון שלך לא יאושר. ברגע שיאושר (או לא) "
-"תקבל הודעת דואר אלקטרוני."
+"××©××× ××××¨××ª ×©×× ×××ª×× ××××©××¨ ×¢×-××× ×× ×× ×××ª×¨. ××ª× ×× ×××× ××¡××× ××ª×§×©×¨ ××××¤× ××× ×¢× ×××"
+"¢×¨×××ª ×©× ××ª×¨ ×× ×¢× ×©×××©××× ×©×× ×× ××××©×¨. ××¨××¢ ×©××××©×¨ (×× ××) ×ª×§×× ××××¢×ª ××××¨ "
+"×××§××¨×× ×."
 
-#: includes/admin.php:460
+#: includes/admin.php:472
 #, fuzzy, php-format
 msgid ""
-"Hi [username], your member account at %s has been approved! You can now "
-"login and start interacting with the rest of the community..."
+"Hi [username], your member account at %s has been approved! You can now login and start interacting with "
+"the rest of the community..."
 msgstr ""
-"היי [username], חשבון חברות שלך באתר %s אושר! עכשיו אתה יכול להתחבר ולהתחיל "
-"אינטראקציה עם שאר הקהילה ..."
+"היי [username], חשבון חברות שלך באתר %s אושר! עכשיו אתה יכול להתחבר ולהתחיל אינטראקציה עם שאר הקהילה ..."
 
-#: includes/admin.php:469
+#: includes/admin.php:481
+#, fuzzy, php-format
+msgid "Hi [username], we regret to inform you that your member account at %s has been denied..."
+msgstr "היי [username], אנחנו מצטערים להודיע לך שהרשמתך לחשבון החברות שלך %s נדחתה ..."
+
+#: includes/admin.php:490
 #, fuzzy, php-format
 msgid ""
-"Hi [username], we regret to inform you that your member account at %s has "
-"been denied..."
+"[username] ( [user_email] ) would like to become a member of your website. To accept or reject their "
+"request, please go to %s"
 msgstr ""
-"היי [username], אנחנו מצטערים להודיע לך שהרשמתך לחשבון החברות שלך %s "
-"נדחתה ..."
+"%s ( %s )  ×¨××¦× ×××ª×××¨ ×××ª×¨ ×××× ××¨× × ×©××. ××× ××§×× ×× ×××××ª ××ª ××§×©×ª× × × ××××©×× ×××× ×§ "
+"××× <a href=\"%s\">%s</a>"
 
-#: includes/admin.php:478
-#, fuzzy, php-format
-msgid ""
-"[username] ( [user_email] ) would like to become a member of your website. "
-"To accept or reject their request, please go to %s"
-msgstr ""
-"%s ( %s )  רוצה להתחבר לאתר האינטרנט שלך. כדי לקבל או לדחות את בקשתם נא "
-"להמשיך בלינק הבא <a href=\"%s\">%s</a>"
-
-#: includes/admin.php:487
+#: includes/admin.php:499
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
 
-#: includes/admin.php:514
+#: includes/admin.php:526
 msgid "Moderate New Members"
-msgstr "טיפול בחברים חדשים"
+msgstr "×××¤×× ××××¨×× ×××©××"
 
-#: includes/admin.php:515
+#: includes/admin.php:527
 msgid ""
-"Every new member will have to be approved by an administrator before they "
-"can interact with BuddyPress/bbPress components."
+"Every new member will have to be approved by an administrator before they can interact with BuddyPress/"
+"bbPress components."
 msgstr ""
-"כל חשבון חבר חדש יצטרך להיות מאושר על ידי מנהל מערכת לפני שהם יוכלו לקיים "
-"אינטראקציה עם רכיבי BuddyPress / bbPress."
+"×× ××©××× ×××¨ ×××© ××¦××¨× ×××××ª ××××©×¨ ×¢× ××× ×× ×× ××¢×¨××ª ××¤× × ×©×× ××××× ××§××× ××× ××¨××§×¦×× ×"
+"¢× ×¨×××× BuddyPress / bbPress."
 
-#: includes/admin.php:522
-msgid ""
-"Only registered or approved members can view BuddyPress/bbPress pages "
-"(Private Network)."
-msgstr ""
-"רק חברים רשומים או אשר אושרו יכולים לראות דפי BuddyPress / bbPress (רשת "
-"פרטית)."
+#: includes/admin.php:534
+msgid "Only registered or approved members can view BuddyPress/bbPress pages (Private Network)."
+msgstr "×¨×§ ×××¨×× ×¨×©×××× ×× ××©×¨ ×××©×¨× ×××××× ××¨×××ª ××¤× BuddyPress / bbPress (×¨×©×ª ×¤×¨×××ª)."
 
-#: includes/admin.php:529
-msgid ""
-"Add new user notification to admin user account BuddyPress notification "
-"inbox."
+#: includes/admin.php:541
+msgid "Add new user notification to admin user account BuddyPress notification inbox."
 msgstr ""
 
-#: includes/admin.php:536
+#: includes/admin.php:548
 msgid "Activate & Profile Alert Message:"
-msgstr "הפעל ובדוק הודעת התראה:"
+msgstr "××¤×¢× ×××××§ ××××¢×ª ××ª×¨××:"
 
-#: includes/admin.php:544
+#: includes/admin.php:556
 msgid "Account Approved Email:"
-msgstr "דואר אלקטרוני לחשבון אשר אושר:"
+msgstr "××××¨ ×××§××¨×× × ×××©××× ××©×¨ ×××©×¨:"
 
-#: includes/admin.php:552
+#: includes/admin.php:564
 msgid "Account Denied Email:"
-msgstr "דואר אלקטרוני לחשבון אשר נדחה:"
+msgstr "××××¨ ×××§××¨×× × ×××©××× ××©×¨ × ×××:"
 
-#: includes/admin.php:560
+#: includes/admin.php:572
 msgid "Admin Pending Email Message:"
 msgstr ""
 
-#: includes/admin.php:568
+#: includes/admin.php:580
 msgid "User Pending Email Message:"
 msgstr ""
 
-#: includes/admin.php:580
+#: includes/admin.php:592
 #, fuzzy
 msgid "Short Code Key: [username], [user_email]"
-msgstr "קיצור: [username]"
+msgstr "×§××¦××¨: [username]"
 
-#: includes/admin.php:583
+#: includes/admin.php:595
 msgid "Reset Messages"
-msgstr "הודעות איפוס"
+msgstr "××××¢××ª ×××¤××¡"
 
-#: includes/admin.php:600
+#: includes/admin.php:612
 msgid "Save Options"
-msgstr "שמירת הגדרות"
+msgstr "×©×××¨×ª ××××¨××ª"
 
-#: includes/admin.php:635
+#: includes/admin.php:647
 msgid "Please approve or deny the following new members:"
-msgstr "אנא לאשר או לדחות את החברים החדשים הבאים:"
+msgstr "×× × ×××©×¨ ×× ×××××ª ××ª ××××¨×× ××××©×× ×××××:"
 
-#: includes/admin.php:643 includes/admin.php:737
+#: includes/admin.php:655 includes/admin.php:749
 msgid "Photo"
-msgstr "צילום"
+msgstr "×¦××××"
 
-#: includes/admin.php:644 includes/admin.php:738
+#: includes/admin.php:656 includes/admin.php:750
 msgid "Name"
-msgstr "שם"
+msgstr "×©×"
 
-#: includes/admin.php:645 includes/admin.php:739
+#: includes/admin.php:657 includes/admin.php:751
 msgid "Email"
-msgstr "דוא''ל"
+msgstr "×××''×"
 
-#: includes/admin.php:646 includes/admin.php:740
+#: includes/admin.php:658 includes/admin.php:752
 msgid "Created"
-msgstr "נוצר"
+msgstr "× ××¦×¨"
 
-#: includes/admin.php:647 includes/admin.php:741
+#: includes/admin.php:659 includes/admin.php:753
 msgid "Additional Data"
-msgstr "נתונים נוספים"
+msgstr "× ×ª×× ×× × ××¡×¤××"
 
-#: includes/admin.php:747
+#: includes/admin.php:759
 msgid "Approve"
-msgstr "אשר"
+msgstr "××©×¨"
 
-#: includes/admin.php:748
+#: includes/admin.php:760
 msgid "Deny"
-msgstr "דחה"
+msgstr "×××"
 
-#: includes/admin.php:754
+#: includes/admin.php:766
 msgid "Pagination: "
 msgstr ""
 
-#: includes/admin.php:778
+#: includes/admin.php:790
 msgid "No new members to approve."
-msgstr "אין חברים חדשים לאישור."
+msgstr "××× ×××¨×× ×××©×× ××××©××¨."
 
-#: includes/admin.php:803
+#: includes/admin.php:815
 msgid "The following IP addresses are currently banned."
-msgstr "כתובות IP הבאות כרגע אסרו."
+msgstr "××ª××××ª IP ×××××ª ××¨××¢ ××¡×¨×."
 
-#: includes/admin.php:810 includes/admin.php:836
+#: includes/admin.php:822 includes/admin.php:848
 msgid "IP Address"
-msgstr "כתובת ה - IP"
+msgstr "××ª×××ª × - IP"
 
-#: includes/admin.php:841
+#: includes/admin.php:853
 msgid "The following Email addresses are currently banned."
-msgstr "כתובות דוא\"ל הבאות כרגע אסרו."
+msgstr "××ª××××ª ×××\"× ×××××ª ××¨××¢ ××¡×¨×."
 
-#: includes/admin.php:849 includes/admin.php:876
+#: includes/admin.php:861 includes/admin.php:888
 msgid "Email Address"
-msgstr "כתובת דוא\"ל"
+msgstr "××ª×××ª ×××\"×"
 
-#: includes/admin.php:881
+#: includes/admin.php:893
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
-msgstr "כרגע אין לך כתובות IP או כתובות דואר אלקטרוני חסומות"
+msgstr "××¨××¢ ××× ×× ××ª××××ª IP ×× ××ª××××ª ××××¨ ×××§××¨×× × ××¡××××ª"
 
-#: includes/admin.php:914
+#: includes/admin.php:926
 #, php-format
 msgid "%s version %s by %s"
 msgstr ""
 
-#: includes/admin.php:925
+#: includes/admin.php:937
 msgid "Please Report Bugs"
 msgstr ""
 
-#: includes/admin.php:928
+#: includes/admin.php:940
 msgid "Follow on Twitter:"
 msgstr ""
 
-#: includes/admin.php:994
+#: includes/admin.php:1006
 msgid "Are you sure you want to deny and delete the checked member(s)?"
-msgstr "האם אתה בטוח שאתה רוצה לדחות ולמחוק את החברים שנבדקו?"
+msgstr "××× ××ª× ×××× ×©××ª× ×¨××¦× ×××××ª ××××××§ ××ª ××××¨×× ×©× ×××§×?"
 
-#: includes/admin.php:997
+#: includes/admin.php:1009
 msgid "Are you sure you want to ban and delete the checked member(s)?"
-msgstr "האם אתה בטוח שאתה רוצה לאסור ולמחוק את החברים שנבדקו?"
+msgstr "××× ××ª× ×××× ×©××ª× ×¨××¦× ×××¡××¨ ××××××§ ××ª ××××¨×× ×©× ×××§×?"
 
-#: includes/admin.php:1000
+#: includes/admin.php:1012
 msgid "Are you sure you want to reset to the default messages?"
-msgstr "האם אתה בטוח שאתה רוצה לאפס תוסף זה להודעות ברירת המחדל?"
+msgstr "××× ××ª× ×××× ×©××ª× ×¨××¦× ×××¤×¡ ×ª××¡×£ ×× ×××××¢××ª ××¨××¨×ª ×××××?"
 
-#: includes/admin.php:1056
+#: includes/admin.php:1068
 #, fuzzy, php-format
 msgid "City: %s"
-msgstr "עיר:"
+msgstr "×¢××¨:"
 
-#: includes/admin.php:1060
+#: includes/admin.php:1072
 #, php-format
 msgid "IP: %s"
 msgstr ""
@@ -271,32 +250,52 @@ msgstr ""
 #: includes/compatibility.php:54
 #, php-format
 msgid ""
-"%s ( %s ) would like to become a member of your website. To accept or reject "
-"their request, please go to <a href=\"%s\">%s</a>."
+"%s ( %s ) would like to become a member of your website. To accept or reject their request, please go to "
+"<a href=\"%s\">%s</a>."
 msgstr ""
-"%s ( %s )  רוצה להתחבר לאתר האינטרנט שלך. כדי לקבל או לדחות את בקשתם נא "
-"להמשיך בלינק הבא <a href=\"%s\">%s</a>"
+"%s ( %s )  ×¨××¦× ×××ª×××¨ ×××ª×¨ ×××× ××¨× × ×©××. ××× ××§×× ×× ×××××ª ××ª ××§×©×ª× × × ××××©×× ×××× ×§ "
+"××× <a href=\"%s\">%s</a>"
 
-#: includes/core.php:563
+#: includes/core.php:574
 msgid "New Member Request"
-msgstr "בקשת חברות חדשה"
+msgstr "××§×©×ª ×××¨××ª ×××©×"
 
-#: includes/core.php:592
+#: includes/core.php:605
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:759
-msgid "You have a new pending user to moderate."
+#: includes/core.php:772
+msgid "You have pending users to moderate."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://pluginize.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This BuddyPress extension allows you to enable user moderation for new members, as well as help create a "
+"private network for your users. If moderation is enabled, any new members will be denied access to your "
+"BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be "
+"allowed to edit and configure that much. They will also not be listed in the members lists on the frontend "
+"until approved. Custom messages are available so you can tailor them to the tone of your website and "
+"community. When an admin approves or denies a user, email notifications will be sent to let them know of "
+"the decision."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Pluginize"
 msgstr ""
 
 #~ msgid "Ban"
-#~ msgstr "אסר"
+#~ msgstr "××¡×¨"
 
 #~ msgid "IP:"
 #~ msgstr "IP:"
 
 #~ msgid "BuddyPress Registration Options plugin created by"
-#~ msgstr "תוסף אפשרויות רישום BuddyPress נוצרו על ידי"
+#~ msgstr "×ª××¡×£ ××¤×©×¨××××ª ×¨××©×× BuddyPress × ××¦×¨× ×¢× ×××"
 
 #~ msgid "Follow"
-#~ msgstr "עקוב"
+#~ msgstr "×¢×§××"

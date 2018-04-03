@@ -11,13 +11,15 @@
  * @since unknown
  */
 function bp_registration_options_bp_after_activate_content() {
-	$user = get_current_user_id();
-	$moderate = get_option( 'bprwg_moderate' );
+	$user      = get_current_user_id();
+	$user_info = get_userdata( $user );
+	$moderate  = get_option( 'bprwg_moderate' );
 
 	$activate_screen = ( false === strpos( $_SERVER['REQUEST_URI'], 'activate' ) ) ? false : true;
 	if ( $activate_screen || bp_registration_get_moderation_status( $user ) ) {
 		if ( $moderate ) {
 			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
+			$activate_message = str_replace( '[username]', $user_info->data->user_login, $activate_message );
 			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
 		}
 	}
@@ -54,8 +56,17 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		/** This filter is documented in includes/core.php */
 		//$admin_email = apply_filters( 'bprwg_admin_email_addresses', array( get_bloginfo( 'admin_email' ) ) );
-		// Used for BP Notifications.
-		$admins = get_users( 'role=administrator' );
+
+		/**
+		 * Filters the users to set notifications for new members.
+		 *
+		 * Used for BP Notifications.
+		 *
+		 * @since 4.3.4
+		 *
+		 * @param array $value Array of users to set notifications for, for new member signups.
+		 */
+		$admins = apply_filters( 'bprwg_bp_notification_users', get_users( 'role=administrator' ) );
 
 		// Add HTML capabilities temporarily.
 		add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
@@ -758,7 +769,7 @@ function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_item
 		 *
 		 * @param string $value Notification text.
 		 */
-		$text  = apply_filters( 'bprwg_notification_text', __( 'You have a new pending user to moderate.', 'bp-registration-options' ) );
+		$text  = apply_filters( 'bprwg_notification_text', __( 'You have pending users to moderate.', 'bp-registration-options' ) );
 		$link  = admin_url( 'admin.php?page=bp_registration_options_member_requests' );
 
 		$result = array(

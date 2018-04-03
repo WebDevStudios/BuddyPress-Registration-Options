@@ -1,51 +1,72 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2018-01-03 22:41-0600\n"
-"PO-Revision-Date: 2018-01-03 22:42-0600\n"
+"POT-Creation-Date: 2018-04-03 15:27-0500\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
-"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: ../includes\n"
-"X-Poedit-SearchPath-1: ..\n"
 
-#: ../includes/admin.php:210
+#: bp-registration-options.php:64
+msgid "This plugin requires WordPress version 3.0 or higher."
+msgstr "Dieses Plugin benÃ¶tigt die WordPress Version 3.0 oder hÃ¶her."
+
+#: includes/admin.php:210
 msgid "Membership Denied"
 msgstr ""
 
-#: ../includes/admin.php:215
+#: includes/admin.php:215
 msgid "Membership Approved"
 msgstr ""
 
-#: ../includes/admin.php:339
+#: includes/admin.php:342
+#, fuzzy, php-format
+msgid "You have %d new member request that needs to be approved or denied."
+msgid_plural ""
+"You have %d new member requests that needs to be approved or denied."
+msgstr[0] ""
+"%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden mÃ¼ssen. "
+"Bitte %s hier klicken%s, um damit zu beginnen"
+msgstr[1] ""
+"%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden mÃ¼ssen. "
+"Bitte %s hier klicken%s, um damit zu beginnen"
+
+#: includes/admin.php:351
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: ../includes/admin.php:343
+#: includes/admin.php:355
 msgid "click here"
 msgstr ""
 
-#: ../includes/admin.php:376 ../includes/admin.php:377
+#: includes/admin.php:388 includes/admin.php:389
 msgid "BP Registration"
 msgstr "BP Registrierung"
 
-#: ../includes/admin.php:388 ../includes/admin.php:389
+#: includes/admin.php:400 includes/admin.php:401
 msgid "Member Requests "
 msgstr "Mitgliedschafts-Anfragen"
 
-#: ../includes/admin.php:429 ../includes/admin.php:479 ../includes/core.php:687
+#. Plugin Name of the plugin/theme
+#: includes/admin.php:438 includes/admin.php:929 includes/core.php:684
+msgid "BP Registration Options"
+msgstr "BP Registrierungs-Optionen"
+
+#: includes/admin.php:440 includes/core.php:693
+msgid "General Settings"
+msgstr "Einstellungen"
+
+#: includes/admin.php:441 includes/admin.php:491 includes/core.php:700
 msgid "Member Requests"
 msgstr "Mitgliedschafts-Anfragen"
 
-#: ../includes/admin.php:453
+#: includes/admin.php:465
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -57,7 +78,7 @@ msgstr ""
 "auszunutzen, solange das Konto nicht freigeschaltet worden ist. Einmal "
 "freigeschaltet oder abgeleht werden Sie eine Email-Mitteilung erhalten. "
 
-#: ../includes/admin.php:460
+#: includes/admin.php:472
 #, fuzzy, php-format
 msgid ""
 "Hi [username], your member account at %s has been approved! You can now "
@@ -67,7 +88,7 @@ msgstr ""
 "sich jetzt einloggen und damit beginnen, mit den Mitgliedern der Community "
 "zu kommunizieren…"
 
-#: ../includes/admin.php:469
+#: includes/admin.php:481
 #, fuzzy, php-format
 msgid ""
 "Hi [username], we regret to inform you that your member account at %s has "
@@ -76,136 +97,236 @@ msgstr ""
 "Hallo [username], wir bedauern, Sie informieren zu müssen, dass Ihr Antrag "
 "auf Mitgliedschaft bei %s abgeleht worden ist…"
 
-#: ../includes/admin.php:478
+#: includes/admin.php:490
 #, fuzzy, php-format
 msgid ""
 "[username] ( [user_email] ) would like to become a member of your website. "
 "To accept or reject their request, please go to %s"
 msgstr ""
-"möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
+"mÃ¶chte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
 "dem folgenden Link folgen"
 
-#: ../includes/admin.php:487
+#: includes/admin.php:499
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
 
-#: ../includes/admin.php:914
+#: includes/admin.php:526
+msgid "Moderate New Members"
+msgstr "Neue Mitglieder moderieren"
+
+#: includes/admin.php:527
+#, fuzzy
+msgid ""
+"Every new member will have to be approved by an administrator before they "
+"can interact with BuddyPress/bbPress components."
+msgstr ""
+"Jedes neue Mitglied muss von einem Administrator zugelassen worden sein, "
+"bevor es die Mitgliedschafts-Komponenten nutzen kann."
+
+#: includes/admin.php:534
+#, fuzzy
+msgid ""
+"Only registered or approved members can view BuddyPress/bbPress pages "
+"(Private Network)."
+msgstr ""
+"Nur registrierte und zugelassene Mitglieder kÃ¶nnen Mitglieschaftssteien-"
+"Seiten (privates Netzwerk) sehen."
+
+#: includes/admin.php:541
+msgid ""
+"Add new user notification to admin user account BuddyPress notification "
+"inbox."
+msgstr ""
+
+#: includes/admin.php:548
+msgid "Activate & Profile Alert Message:"
+msgstr "Mitteilung zur Aktivierung und zum Profil:"
+
+#: includes/admin.php:556
+msgid "Account Approved Email:"
+msgstr "Email zur Konto-Freischaltung:"
+
+#: includes/admin.php:564
+msgid "Account Denied Email:"
+msgstr "Email zur Konto-ZurÃ¼ckweisung:"
+
+#: includes/admin.php:572
+msgid "Admin Pending Email Message:"
+msgstr ""
+
+#: includes/admin.php:580
+msgid "User Pending Email Message:"
+msgstr ""
+
+#: includes/admin.php:592
+#, fuzzy
+msgid "Short Code Key: [username], [user_email]"
+msgstr "Short Code Key: [username]"
+
+#: includes/admin.php:595
+msgid "Reset Messages"
+msgstr "ZurÃ¼cksetzen"
+
+#: includes/admin.php:612
+msgid "Save Options"
+msgstr "Einstellungen speichern"
+
+#: includes/admin.php:647
+msgid "Please approve or deny the following new members:"
+msgstr "Bitte die folgenden Member zulassen oder ablehnen:"
+
+#: includes/admin.php:655 includes/admin.php:749
+msgid "Photo"
+msgstr "Foto"
+
+#: includes/admin.php:656 includes/admin.php:750
+msgid "Name"
+msgstr "Name"
+
+#: includes/admin.php:657 includes/admin.php:751
+msgid "Email"
+msgstr "Email"
+
+#: includes/admin.php:658 includes/admin.php:752
+msgid "Created"
+msgstr "Erstellt"
+
+#: includes/admin.php:659 includes/admin.php:753
+msgid "Additional Data"
+msgstr "Zusatzinfos"
+
+#: includes/admin.php:759
+msgid "Approve"
+msgstr "Genehmigen"
+
+#: includes/admin.php:760
+msgid "Deny"
+msgstr "Ablehnen"
+
+#: includes/admin.php:766
+msgid "Pagination: "
+msgstr ""
+
+#: includes/admin.php:790
+msgid "No new members to approve."
+msgstr "Keine neuen Member zur PrÃ¼fung."
+
+#: includes/admin.php:815
+msgid "The following IP addresses are currently banned."
+msgstr ""
+
+#: includes/admin.php:822 includes/admin.php:848
+#, fuzzy
+msgid "IP Address"
+msgstr "E-Mail-Adresse"
+
+#: includes/admin.php:853
+msgid "The following Email addresses are currently banned."
+msgstr ""
+
+#: includes/admin.php:861 includes/admin.php:888
+#, fuzzy
+msgid "Email Address"
+msgstr "E-Mail-Adresse"
+
+#: includes/admin.php:893
+msgid "You have no blocked IP Addresses or Email Addresses at the moment"
+msgstr ""
+
+#: includes/admin.php:926
 #, fuzzy, php-format
 msgid "%s version %s by %s"
 msgstr "%s Version %s von den %s"
 
-#: ../includes/admin.php:917 ../includes/core.php:671
-msgid "BP Registration Options"
-msgstr "BP Registrierungs-Optionen"
-
-#: ../includes/admin.php:925
+#: includes/admin.php:937
 #, fuzzy
 msgid "Please Report Bugs"
 msgstr "Bitte Fehler melden"
 
-#: ../includes/admin.php:928
+#: includes/admin.php:940
 #, fuzzy
 msgid "Follow on Twitter:"
 msgstr "Auf Twitter folgen:"
 
-#: ../includes/compatibility.php:54
+#: includes/admin.php:1006
+msgid "Are you sure you want to deny and delete the checked member(s)?"
+msgstr ""
+"Sind Sie sicher, dass die markierten Member abgelehnt und gelÃ¶scht werden "
+"sollen?"
+
+#: includes/admin.php:1009
+msgid "Are you sure you want to ban and delete the checked member(s)?"
+msgstr ""
+"Sind Sie sicher, dass die markierten Member gebannt und gelÃ¶scht werden "
+"sollen?"
+
+#: includes/admin.php:1012
+msgid "Are you sure you want to reset to the default messages?"
+msgstr ""
+"Sind sie sicher, dass die Standard-Mitteilungen wieder hergestellt werden "
+"sollen?"
+
+#: includes/admin.php:1068
+#, fuzzy, php-format
+#| msgid "City:"
+msgid "City: %s"
+msgstr "Ort:"
+
+#: includes/admin.php:1072
+#, php-format
+msgid "IP: %s"
+msgstr ""
+
+#: includes/compatibility.php:54
 #, fuzzy, php-format
 msgid ""
 "%s ( %s ) would like to become a member of your website. To accept or reject "
 "their request, please go to <a href=\"%s\">%s</a>."
 msgstr ""
-"möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
+"mÃ¶chte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
 "dem folgenden Link folgen"
 
-#: ../includes/core.php:563
+#: includes/core.php:574
 msgid "New Member Request"
 msgstr "Neue Mitgliedschafts-Anfrage"
 
-#: ../includes/core.php:592
+#: includes/core.php:605
 msgid "Pending Membership"
 msgstr ""
 
-#: ../includes/core.php:680
-msgid "General Settings"
-msgstr "Einstellungen"
+#: includes/core.php:772
+msgid "You have pending users to moderate."
+msgstr ""
 
-#: ../includes/core.php:759
-msgid "You have a new pending user to moderate."
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://pluginize.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This BuddyPress extension allows you to enable user moderation for new "
+"members, as well as help create a private network for your users. If "
+"moderation is enabled, any new members will be denied access to your "
+"BuddyPress and bbPress areas on your site, with the exception of their own "
+"user profile. They will be allowed to edit and configure that much. They "
+"will also not be listed in the members lists on the frontend until approved. "
+"Custom messages are available so you can tailor them to the tone of your "
+"website and community. When an admin approves or denies a user, email "
+"notifications will be sent to let them know of the decision."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Pluginize"
 msgstr ""
 
 #, fuzzy
 #~ msgid "Help / Support"
 #~ msgstr "Hilfe/Support"
 
-#~ msgid "This plugin requires WordPress version 3.0 or higher."
-#~ msgstr "Dieses Plugin benötigt die WordPress Version 3.0 oder höher."
-
-#~ msgid "Moderate New Members"
-#~ msgstr "Neue Mitglieder moderieren"
-
-#, fuzzy
-#~ msgid ""
-#~ "Every new member will have to be approved by an administrator before they "
-#~ "can interact with BuddyPress/bbPress components."
-#~ msgstr ""
-#~ "Jedes neue Mitglied muss von einem Administrator zugelassen worden sein, "
-#~ "bevor es die Mitgliedschafts-Komponenten nutzen kann."
-
-#, fuzzy
-#~ msgid ""
-#~ "Only registered or approved members can view BuddyPress/bbPress pages "
-#~ "(Private Network)."
-#~ msgstr ""
-#~ "Nur registrierte und zugelassene Mitglieder können Mitglieschaftssteien-"
-#~ "Seiten (privates Netzwerk) sehen."
-
-#~ msgid "Activate & Profile Alert Message:"
-#~ msgstr "Mitteilung zur Aktivierung und zum Profil:"
-
-#~ msgid "Account Approved Email:"
-#~ msgstr "Email zur Konto-Freischaltung:"
-
-#~ msgid "Account Denied Email:"
-#~ msgstr "Email zur Konto-Zurückweisung:"
-
-#, fuzzy
-#~ msgid "Short Code Key: [username], [user_email]"
-#~ msgstr "Short Code Key: [username]"
-
-#~ msgid "Please approve or deny the following new members:"
-#~ msgstr "Bitte die folgenden Member zulassen oder ablehnen:"
-
-#~ msgid "Photo"
-#~ msgstr "Foto"
-
-#~ msgid "Name"
-#~ msgstr "Name"
-
-#~ msgid "Email"
-#~ msgstr "Email"
-
-#~ msgid "Created"
-#~ msgstr "Erstellt"
-
-#~ msgid "Additional Data"
-#~ msgstr "Zusatzinfos"
-
-#~ msgid "Approve"
-#~ msgstr "Genehmigen"
-
-#~ msgid "Deny"
-#~ msgstr "Ablehnen"
-
 #~ msgid "Ban"
 #~ msgstr "Sperren"
-
-#~ msgid "No new members to approve."
-#~ msgstr "Keine neuen Member zur Prüfung."
-
-#, fuzzy
-#~ msgid "Email Address"
-#~ msgstr "E-Mail-Adresse"
 
 #~ msgid "BuddyPress Registration Options plugin created by"
 #~ msgstr "BuddyPress-Registrierungs-Optionen-Plugin entwickelt von"
@@ -213,40 +334,8 @@ msgstr ""
 #~ msgid "Follow"
 #~ msgstr "Folgen"
 
-#~ msgid "Are you sure you want to deny and delete the checked member(s)?"
-#~ msgstr ""
-#~ "Sind Sie sicher, dass die markierten Member abgelehnt und gelöscht werden "
-#~ "sollen?"
-
-#~ msgid "Are you sure you want to ban and delete the checked member(s)?"
-#~ msgstr ""
-#~ "Sind Sie sicher, dass die markierten Member gebannt und gelöscht werden "
-#~ "sollen?"
-
-#~ msgid "Are you sure you want to reset to the default messages?"
-#~ msgstr ""
-#~ "Sind sie sicher, dass die Standard-Mitteilungen wieder hergestellt werden "
-#~ "sollen?"
-
-#~ msgid "City:"
-#~ msgstr "Ort:"
-
 #~ msgid "IP:"
 #~ msgstr "IP:"
 
-#, fuzzy
-#~ msgid ""
-#~ "You have %s new member request%s that need to be approved or denied. "
-#~ "Please %s to take action"
-#~ msgstr ""
-#~ "%s Neue Mitglieder-Anfrage%s, die angenommen oder abgelehnt werden "
-#~ "müssen. Bitte %s hier klicken%s, um damit zu beginnen"
-
 #~ msgid "bp_registration_options"
 #~ msgstr "bp_registration_options"
-
-#~ msgid "Reset Messages"
-#~ msgstr "Zurücksetzen"
-
-#~ msgid "Save Options"
-#~ msgstr "Einstellungen speichern"

@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.9.1
-Stable tag: 4.3.3
+Tested up to: 4.9.4
+Stable tag: 4.3.4
 License: GPLv2
 
 Moderate new BuddyPress members and fight BuddyPress spam.
@@ -31,6 +31,12 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.4 =
+* Fixed: Default message values not persisting across many users when approving or denying in bulk.
+* Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
+* Added: Filter for who receives notifications for new users. Props to @cherbst
+* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
 
 = 4.3.3 =
 * Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
@@ -112,6 +118,12 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.4 =
+* Fixed: Default message values not persisting across many users when approving or denying in bulk.
+* Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
+* Added: Filter for who receives notifications for new users. Props to @cherbst
+* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
 
 = 4.3.3 =
 * Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
