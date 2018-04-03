@@ -119,6 +119,14 @@ function bp_registration_handle_general_settings( $args = array() ) {
 		delete_option( 'bprwg_privacy_network' );
 	}
 
+	// Handle saving our locked network setting.
+	if ( ! empty( $args['set_locked'] ) ) {
+		$locked_network = sanitize_text_field( $args['set_locked'] );
+		update_option( 'bprwg_locked_network', $locked_network );
+	} else {
+		delete_option( 'bprwg_locked_network' );
+	}
+
 	// Handle saving our BuddyPress notifications setting.
 	if ( ! empty( $args['enable_notifications'] ) ) {
 		$enable_notifications = sanitize_text_field( $args['enable_notifications'] );
@@ -168,6 +176,7 @@ function bp_registration_options_form_actions() {
 			array(
 				'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'],
 				'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
+				'set_locked'            => empty( $_POST['locked_network'] ) ? '' : $_POST['locked_network'],
 				'enable_notifications'  => empty( $_POST['enable_notifications'] ) ? '' : $_POST['enable_notifications'],
 				'activate_message'      => empty( $_POST['activate_message'] ) ? '' : $_POST['activate_message'],
 				'approved_message'      => empty( $_POST['approved_message'] ) ? '' : $_POST['approved_message'],
@@ -452,6 +461,7 @@ function bp_registration_options_settings() {
 	// Check for already saved values.
 	$bp_moderate           = get_option( 'bprwg_moderate' );
 	$privacy_network       = get_option( 'bprwg_privacy_network' );
+	$locked_network        = get_option( 'bprwg_locked_network' );
 	$enable_notifications  = get_option( 'bprwg_enable_notifications' );
 	$activate_message      = get_option( 'bprwg_activate_message' );
 	$approved_message      = get_option( 'bprwg_approved_message' );
@@ -530,6 +540,13 @@ function bp_registration_options_settings() {
 				<input type="checkbox" id="privacy_network" name="privacy_network" value="1" <?php checked( $privacy_network, '1' ); ?>/>
 				<label for="privacy_network">
 					<?php esc_html_e( 'Only registered or approved members can view BuddyPress/bbPress pages (Private Network).', 'bp-registration-options' ); ?>
+				</label>
+			</p>
+
+			<p>
+				<input type="checkbox" id="locked_network" name="locked_network" value="1" <?php checked( $locked_network, '1' ); ?>/>
+				<label for="locked_network">
+					<?php esc_html_e( 'Only registered or approved members can log in (Locked Network).', 'bp-registration-options' ); ?>
 				</label>
 			</p>
 
