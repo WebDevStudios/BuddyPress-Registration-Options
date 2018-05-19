@@ -38,6 +38,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.5 =
+* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
 * Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
@@ -124,6 +127,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.5 =
+* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
 
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
