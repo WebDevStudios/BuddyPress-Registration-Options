@@ -40,6 +40,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.5 =
 * Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
 
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
@@ -130,6 +131,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.5 =
 * Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
 
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
