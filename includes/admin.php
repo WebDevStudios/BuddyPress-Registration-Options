@@ -536,6 +536,15 @@ function bp_registration_options_settings() {
 				</label>
 			</p>
 
+			<?php if ( bp_registration_has_users_with_ips() ) { ?>
+			<p>
+				<input type="checkbox" id="clear_ip_addresses" name="clear_ip_addresses" value="1" />
+				<label for="clear_ip_addresses">
+					<?php esc_html_e( 'GDPR compliance: Check this to remove IP addresses previously saved IP user meta on approved users.', 'bp-registration-options' ); ?>
+				</label>
+			</p>
+			<?php } ?>
+
 			<table>
 				<tr>
 					<td class="alignright">
