@@ -36,3 +36,59 @@ function bp_registration_is_private_network() {
 
 	return true;
 }
+
+
+/**
+ * Queries for all existing approved members that still have an IP address saved as user meta.
+ *
+ * Helper method to help clear up saved personal data for GDPR compliance.
+ *
+ * @since 4.3.5
+ *
+ * @return WP_User_Query User query.
+ */
+function bp_registration_get_user_ip_query() {
+	$args = array(
+		'meta_query' => array(
+			array(
+				'key'     => '_bprwg_ip_address',
+				'compare' => 'exists',
+			),
+			array(
+				'key'   => '_bprwg_is_moderated',
+				'value' => 'false',
+			),
+		),
+		'fields'     => 'ID',
+	);
+
+	return new WP_User_Query( $args );
+}
+
+/**
+ * Checks whether or not we have existing users with saved IP addresses.
+ *
+ * @since 4.3.5
+ *
+ * @return bool
+ */
+function bp_registration_has_users_with_ips() {
+	$users = bp_registration_get_user_ip_query();
+
+	return ( $users->get_total() > 0 );
+}
+
+/**
+ * Iterates over results of found users with IP addresses saved, and removes meta key.
+ *
+ * @since 4.3.5
+ */
+function bp_registration_delete_ip_addresses() {
+	$users = bp_registration_get_user_ip_query();
+
+	if ( $users->get_total() > 0 ) {
+		foreach ( $users->get_results() as $user_id ) {
+			delete_user_meta( $user_id, '_bprwg_ip_address' );
+		}
+	}
+}
