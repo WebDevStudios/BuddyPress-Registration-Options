@@ -18,6 +18,11 @@ This BuddyPress extension allows you to enable user moderation for new members, 
 
 Requires BuddyPress version 1.7 or higher and bbPress 2.0 or higher.
 
+=== General Data Protection Regulation ===
+BuddyPress Registration Options temporarily stores user IP addresses as user meta to help validate and vet pending users. Saved IP values are deleted upon both approval and denial of pending user. No other personal data is recorded.
+
+=== Development ===
+
 Follow along with development on GitHub at [BuddyPress-Registration-Options](https://github.com/WebDevStudios/BuddyPress-Registration-Options)
 
 [Pluginize](https://pluginize.com/?utm_source=buddypress-registration-op&utm_medium=text&utm_campaign=wporg) was launched in 2016 by [WebDevStudios](https://webdevstudios.com/) to promote, support, and house all of their [WordPress products](https://pluginize.com/shop/?utm_source=buddypress-registration-op&utm_medium=text&utm_campaign=wporg). Pluginize is dedicated to [creating products that make your BuddyPress site](https://pluginize.com/product-category/buddypress/) easy to manage, without having to touch a line of code. Pluginize also provides ongoing support and development for WordPress community favorites like [CPTUI](https://wordpress.org/plugins/custom-post-type-ui/), [CMB2](https://wordpress.org/plugins/cmb2/), and more.
