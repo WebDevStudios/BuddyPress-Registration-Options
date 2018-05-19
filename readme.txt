@@ -4,8 +4,9 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.9.4
-Stable tag: 4.3.4
+Tested up to: 4.9.6
+Stable tag: 4.3.5
+Requires PHP: 5.2
 License: GPLv2
 Moderate new BuddyPress members and fight BuddyPress spam.
 
