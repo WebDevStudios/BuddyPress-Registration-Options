@@ -164,6 +164,10 @@ function bp_registration_options_form_actions() {
 
 		check_admin_referer( 'bp_reg_options_check' );
 
+		if ( isset( $_POST['clear_ip_addresses'] ) ) {
+			bp_registration_delete_ip_addresses();
+		}
+
 		bp_registration_handle_general_settings(
 			array(
 				'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'],
@@ -541,6 +545,15 @@ function bp_registration_options_settings() {
 					<?php esc_html_e( 'Add new user notification to admin user account BuddyPress notification inbox.', 'bp-registration-options' ); ?>
 				</label>
 			</p>
+
+			<?php if ( bp_registration_has_users_with_ips() ) { ?>
+			<p>
+				<input type="checkbox" id="clear_ip_addresses" name="clear_ip_addresses" value="1" />
+				<label for="clear_ip_addresses">
+					<?php esc_html_e( 'GDPR compliance: Check this to remove IP addresses previously saved IP user meta on approved users.', 'bp-registration-options' ); ?>
+				</label>
+			</p>
+			<?php } ?>
 
 			<table>
 				<tr>

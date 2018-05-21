@@ -3,8 +3,9 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.9.4
-Stable tag: 4.3.4
+Tested up to: 4.9.6
+Stable tag: 4.3.5
+Requires PHP: 5.2
 License: GPLv2
 
 Moderate new BuddyPress members and fight BuddyPress spam.
@@ -16,6 +17,11 @@ Prevent users and bots from accessing the BuddyPress or bbPress areas of your we
 This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision.
 
 Requires BuddyPress version 1.7 or higher and bbPress 2.0 or higher.
+
+=== General Data Protection Regulation ===
+BuddyPress Registration Options temporarily stores user IP addresses as user meta to help validate and vet pending users. Saved IP values are deleted upon both approval and denial of pending user. No other personal data is recorded.
+
+=== Development ===
 
 Follow along with development on GitHub at [BuddyPress-Registration-Options](https://github.com/WebDevStudios/BuddyPress-Registration-Options)
 
@@ -31,6 +37,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.5 =
+* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
 
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.
@@ -118,6 +128,10 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added bbPress support so you can deny users from accessing forums.
 
 == Upgrade Notice ==
+
+= 4.3.5 =
+* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
 
 = 4.3.4 =
 * Fixed: Default message values not persisting across many users when approving or denying in bulk.

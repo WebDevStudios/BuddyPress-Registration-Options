@@ -2,104 +2,120 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 15:27-0500\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
-"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 2.0.7\n"
 
 # @ bp-registration-options
 #: bp-registration-options.php:64
 msgid "This plugin requires WordPress version 3.0 or higher."
 msgstr "ÐÐ»Ð°Ð³Ð¸Ð½Ñ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼ WordPress Ð²ÐµÑÑÐ¸Ð¸ 3.0 Ð¸Ð»Ð¸ Ð²ÑÑÐµ"
 
-#: includes/admin.php:210
+#: includes/admin.php:214
 msgid "Membership Denied"
 msgstr ""
 
-#: includes/admin.php:215
+#: includes/admin.php:219
 msgid "Membership Approved"
 msgstr ""
 
+# #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
-#: includes/admin.php:342
+#: includes/admin.php:342 includes/admin.php:351 includes/admin.php:336
 #, fuzzy, php-format
 msgid "You have %d new member request that needs to be approved or denied."
 msgid_plural "You have %d new member requests that needs to be approved or denied."
-msgstr[0] "Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ."
-msgstr[1] "Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ."
-msgstr[2] "Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ."
+msgstr[0] ""
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ.\n"
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"У вас %s новых пользовательских запросов%s , которые необходимо разрешить/запретить. Перейдите %s по ссылке%s , чтобы проверить их."
+msgstr[1] ""
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ.\n"
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"У вас %s новых пользовательских запросов%s , которые необходимо разрешить/запретить. Перейдите %s по ссылке%s , чтобы проверить их."
+msgstr[2] ""
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"Ð£ Ð²Ð°Ñ %s Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¸Ñ Ð·Ð°Ð¿ÑÐ¾ÑÐ¾Ð²%s , ÐºÐ¾ÑÐ¾ÑÑÐµ Ð½ÐµÐ¾Ð±ÑÐ¾Ð´Ð¸Ð¼Ð¾ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ/Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ. ÐÐµÑÐµÐ¹Ð´Ð¸ÑÐµ %s Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ%s , ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¸Ñ.\n"
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"У вас %s новых пользовательских запросов%s , которые необходимо разрешить/запретить. Перейдите %s по ссылке%s , чтобы проверить их."
 
-#: includes/admin.php:351
+#: includes/admin.php:345
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: includes/admin.php:355
+#: includes/admin.php:355 includes/admin.php:349
 msgid "click here"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:388 includes/admin.php:389
+#: includes/admin.php:388 includes/admin.php:389 includes/admin.php:382 includes/admin.php:383
 msgid "BP Registration"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:400 includes/admin.php:401
+#: includes/admin.php:400 includes/admin.php:401 includes/admin.php:394 includes/admin.php:395
 msgid "Member Requests "
 msgstr "ÐÐ°Ð¿ÑÐ¾ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹ "
 
-# #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
-#. Plugin Name of the plugin/theme
-#: includes/admin.php:438 includes/admin.php:929 includes/core.php:684
+#: includes/admin.php:932 includes/core.php:692
 msgid "BP Registration Options"
 msgstr ""
+"ÐÐ°Ð¶Ð´ÑÐ¹ Ð½Ð¾Ð²ÑÐ¹ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±ÑÑÑ Ð¿ÑÐ¾Ð²ÐµÑÐµÐ½ Ð¸ Ð¾Ð´Ð¾Ð±ÑÐµÐ½ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑÑÐ°ÑÐ¾ÑÐ¾Ð¼ Ð¿ÐµÑÐµÐ´ ÑÐµÐ¼, ÐºÐ°Ðº Ð¿Ð¾Ð»ÑÑÐ¸ÑÑ Ð´Ð¾ÑÑÑÐ¿ Ðº ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½ÑÐ�"
+"�Ð¼ BuddyPress."
 
 # @ bp-registration-options
-#: includes/admin.php:440 includes/core.php:693
+#: includes/admin.php:440 includes/core.php:693 includes/core.php:701
+#, fuzzy
 msgid "General Settings"
-msgstr "ÐÑÐ½Ð¾Ð²Ð½ÑÐµ Ð½Ð°ÑÑÑÐ¾Ð¹ÐºÐ¸"
+msgstr ""
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"ÐÑÐ½Ð¾Ð²Ð½ÑÐµ Ð½Ð°ÑÑÑÐ¾Ð¹ÐºÐ¸\n"
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"Основные настройки"
 
 # @ bp-registration-options
-#: includes/admin.php:441 includes/admin.php:491 includes/core.php:700
+#: includes/admin.php:441 includes/admin.php:491 includes/core.php:700 includes/admin.php:435 includes/admin.php:485 includes/core.php:708
 msgid "Member Requests"
 msgstr "ÐÐ°Ð¿ÑÐ¾ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹"
 
 # @ bp-registration-options
-#: includes/admin.php:465
-msgid ""
-"Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once "
-"approved or denied you will receive an email notice."
+#: includes/admin.php:465 includes/admin.php:459
+msgid "Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice."
 msgstr ""
-"ÐÐ°ÑÐ° ÑÑÐµÑÐ½Ð°Ñ Ð·Ð°Ð¿Ð¸ÑÑ Ð¾Ð¶Ð¸Ð´Ð°ÐµÑ Ð¿ÑÐ¾Ð²ÐµÑÐºÐ¸ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑÑÐ°ÑÐ¾ÑÐ¾Ð¼ ÑÐ°Ð¹ÑÐ°. ÐÑ Ð½Ðµ ÑÐ¼Ð¾Ð¶ÐµÑÐµ Ð²Ð¾ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÑÑÑ Ð²ÑÐµÐ¼Ð¸ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑÑÐ¼Ð¸ ÑÑÐ¾Ð³Ð¾ ÑÐ°Ð¹ÑÐ° "
-"Ð´Ð¾ ÑÐµÑ Ð¿Ð¾Ñ, Ð¿Ð¾ÐºÐ° Ð²Ð°Ñ Ð°ÐºÐºÐ°ÑÐ½Ñ Ð½Ðµ Ð±ÑÐ´ÐµÑ Ð¿ÑÐ¾Ð²ÐµÑÐµÐ½. ÐÐ¾ÑÐ»Ðµ Ð¿ÑÐ¾Ð²ÐµÑÐºÐ¸ Ð¸ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸ÑÐµÐ»ÑÐ½Ð¾Ð³Ð¾/Ð¾ÑÑÐ¸ÑÐ°ÑÐµÐ»ÑÐ½Ð¾Ð³Ð¾ ÑÐµÑÐµÐ½Ð¸Ñ Ð²Ñ Ð¿Ð¾Ð»ÑÑÐ¸ÑÐµ ÑÐ²ÐµÐ"
-"´Ð¾Ð¼Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾ÑÑÐµ."
+"ÐÐ°ÑÐ° ÑÑÐµÑÐ½Ð°Ñ Ð·Ð°Ð¿Ð¸ÑÑ Ð¾Ð¶Ð¸Ð´Ð°ÐµÑ Ð¿ÑÐ¾Ð²ÐµÑÐºÐ¸ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑÑÐ°ÑÐ¾ÑÐ¾Ð¼ ÑÐ°Ð¹ÑÐ°. ÐÑ Ð½Ðµ ÑÐ¼Ð¾Ð¶ÐµÑÐµ Ð²Ð¾ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÑÑÑ Ð²ÑÐµÐ¼Ð¸ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑÑÐ¼Ð¸ ÑÑÐ¾Ð³Ð¾ ÑÐ�"
+"�Ð¹ÑÐ° Ð´Ð¾ ÑÐµÑ Ð¿Ð¾Ñ, Ð¿Ð¾ÐºÐ° Ð²Ð°Ñ Ð°ÐºÐºÐ°ÑÐ½Ñ Ð½Ðµ Ð±ÑÐ´ÐµÑ Ð¿ÑÐ¾Ð²ÐµÑÐµÐ½. ÐÐ¾ÑÐ»Ðµ Ð¿ÑÐ¾Ð²ÐµÑÐºÐ¸ Ð¸ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸ÑÐµÐ»ÑÐ½Ð¾Ð³Ð¾/Ð¾ÑÑÐ¸ÑÐ°ÑÐµÐ»ÑÐ½Ð¾Ð³Ð¾ ÑÐµÑÐµÐ½Ð¸Ñ Ð²Ñ Ð¿Ð¾Ð»ÑÑÐ¸ÑÐµ ÑÐ²ÐµÐ�"
+"�Ð¾Ð¼Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾ÑÑÐµ."
 
 # @ bp-registration-options
-#: includes/admin.php:472
+#: includes/admin.php:472 includes/admin.php:466
 #, fuzzy, php-format
 msgid "Hi [username], your member account at %s has been approved! You can now login and start interacting with the rest of the community..."
 msgstr "Приветствую, [username]. Ваш новый аккаунт на сайте %s был одобрен! Теперь вы можете авторизоваться на сайте и общаться со всеми ..."
 
 # @ bp-registration-options
-#: includes/admin.php:481
+#: includes/admin.php:481 includes/admin.php:475
 #, fuzzy, php-format
 msgid "Hi [username], we regret to inform you that your member account at %s has been denied..."
 msgstr "Приветствую, [username]. С прескорбием сообщаю вам, что ваш аккаунт на сайте %s был отклонен..."
 
 # @ bp-registration-options
-#: includes/admin.php:490
+#: includes/admin.php:490 includes/admin.php:484
 #, fuzzy, php-format
 msgid "[username] ( [user_email] ) would like to become a member of your website. To accept or reject their request, please go to %s"
 msgstr "ÑÐ¾ÑÐµÑ ÑÑÐ°ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¼ Ð½Ð° ÑÐ°Ð¹ÑÐµ, ÑÑÐ¾Ð±Ñ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ Ð¸Ð»Ð¸ Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ ÑÑÐ¾Ñ Ð·Ð°Ð¿ÑÐ¾Ñ â Ð¿ÑÐ¾Ð¹Ð´Ð¸ÑÐµ Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ: "
 
-#: includes/admin.php:499
+#: includes/admin.php:499 includes/admin.php:493
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
@@ -109,13 +125,12 @@ msgstr ""
 msgid "Moderate New Members"
 msgstr "ÐÑÐ¾Ð²ÐµÑÑÑÑ Ð²ÑÐµÑ Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹"
 
+# #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
-#: includes/admin.php:527
-#, fuzzy
-msgid "Every new member will have to be approved by an administrator before they can interact with BuddyPress/bbPress components."
+#: includes/admin.php:527 includes/admin.php:929 includes/admin.php:926
+#, php-format
+msgid "%s version %s by %s"
 msgstr ""
-"ÐÐ°Ð¶Ð´ÑÐ¹ Ð½Ð¾Ð²ÑÐ¹ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±ÑÑÑ Ð¿ÑÐ¾Ð²ÐµÑÐµÐ½ Ð¸ Ð¾Ð´Ð¾Ð±ÑÐµÐ½ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑÑÐ°ÑÐ¾ÑÐ¾Ð¼ Ð¿ÐµÑÐµÐ´ ÑÐµÐ¼, ÐºÐ°Ðº Ð¿Ð¾Ð»ÑÑÐ¸ÑÑ Ð´Ð¾ÑÑÑÐ¿ Ðº ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½ÑÐ°Ð¼ "
-"BuddyPress."
 
 # @ bp-registration-options
 #: includes/admin.php:534
@@ -123,8 +138,12 @@ msgstr ""
 msgid "Only registered or approved members can view BuddyPress/bbPress pages (Private Network)."
 msgstr "Ð¢Ð¾Ð»ÑÐºÐ¾ Ð·Ð°ÑÐµÐ³Ð¸ÑÑÑÐ¸ÑÐ¾Ð²Ð°Ð½Ð½ÑÐµ Ð¸ Ð¾Ð´Ð¾Ð±ÑÐµÐ½Ð½ÑÐµ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ð¸ Ð¼Ð¾Ð³ÑÑ Ð²Ð¸Ð´ÐµÑÑ ÑÑÑÐ°Ð½Ð¸ÑÑ BuddyPress (ÐÐ°ÐºÑÑÑÐ°Ñ ÑÐµÑÑ)."
 
-#: includes/admin.php:541
-msgid "Add new user notification to admin user account BuddyPress notification inbox."
+#: includes/admin.php:541 includes/admin.php:940 includes/admin.php:937
+msgid "Please Report Bugs"
+msgstr ""
+
+#: includes/admin.php:943 includes/admin.php:940
+msgid "Follow on Twitter:"
 msgstr ""
 
 # @ bp-registration-options
@@ -142,8 +161,23 @@ msgstr "ÐÐºÐºÐ°ÑÐ½Ñ Ð¾Ð´Ð¾Ð±ÑÐµÐ½ (ÑÐ¾Ð¾�
 msgid "Account Denied Email:"
 msgstr "ÐÐºÐºÐ°ÑÐ½Ñ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸ÑÐ¾Ð²Ð°Ð½ (ÑÐ¾Ð¾Ð±ÑÐµÐ½Ð¸Ðµ Ð¿Ð¾ email):"
 
-#: includes/admin.php:572
-msgid "Admin Pending Email Message:"
+# #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
+# @ bp-registration-options
+#: includes/admin.php:572 includes/core.php:584 includes/core.php:574
+#, fuzzy
+msgid "New Member Request"
+msgstr ""
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"Заявка от нового пользователя\n"
+"#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
+"ÐÐ°ÑÐ²ÐºÐ° Ð¾Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ"
+
+#: includes/core.php:613 includes/core.php:605
+msgid "Pending Membership"
+msgstr ""
+
+#: includes/core.php:780 includes/core.php:772
+msgid "You have pending users to moderate."
 msgstr ""
 
 #: includes/admin.php:580
@@ -234,19 +268,6 @@ msgstr ""
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 
-#: includes/admin.php:926
-#, php-format
-msgid "%s version %s by %s"
-msgstr ""
-
-#: includes/admin.php:937
-msgid "Please Report Bugs"
-msgstr ""
-
-#: includes/admin.php:940
-msgid "Follow on Twitter:"
-msgstr ""
-
 # @ bp-registration-options
 #: includes/admin.php:1006
 msgid "Are you sure you want to deny and delete the checked member(s)?"
@@ -280,19 +301,6 @@ msgstr ""
 msgid "%s ( %s ) would like to become a member of your website. To accept or reject their request, please go to <a href=\"%s\">%s</a>."
 msgstr "ÑÐ¾ÑÐµÑ ÑÑÐ°ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¼ Ð½Ð° ÑÐ°Ð¹ÑÐµ, ÑÑÐ¾Ð±Ñ ÑÐ°Ð·ÑÐµÑÐ¸ÑÑ Ð¸Ð»Ð¸ Ð·Ð°Ð¿ÑÐµÑÐ¸ÑÑ ÑÑÐ¾Ñ Ð·Ð°Ð¿ÑÐ¾Ñ â Ð¿ÑÐ¾Ð¹Ð´Ð¸ÑÐµ Ð¿Ð¾ ÑÑÑÐ»ÐºÐµ: "
 
-# @ bp-registration-options
-#: includes/core.php:574
-msgid "New Member Request"
-msgstr "ÐÐ°ÑÐ²ÐºÐ° Ð¾Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ"
-
-#: includes/core.php:605
-msgid "Pending Membership"
-msgstr ""
-
-#: includes/core.php:772
-msgid "You have pending users to moderate."
-msgstr ""
-
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "https://pluginize.com"
@@ -300,10 +308,9 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be "
-"denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be "
-"listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a "
-"user, email notifications will be sent to let them know of the decision."
+"This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user "
+"profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email "
+"notifications will be sent to let them know of the decision."
 msgstr ""
 
 #. Author of the plugin/theme
