@@ -1071,6 +1071,7 @@ function bp_registration_options_ip_data( $user_id ) {
 					esc_html__( 'City: %s', 'bp-registration-options' ),
 					esc_html( $data->city )
 				);
+				echo '<br/>';
 				printf(
 					esc_html__( 'IP: %s', 'bp-registration-options' ),
 					esc_html( $data->ip )
