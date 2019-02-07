@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-21 09:10-0500\n"
-"PO-Revision-Date: 2018-05-21 09:10-0500\n"
+"POT-Creation-Date: 2019-02-06 22:22-0600\n"
+"PO-Revision-Date: 2019-02-06 22:22-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
 "__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
@@ -269,7 +269,7 @@ msgstr "האם אתה בטוח שאתה רוצה לאפס תוסף זה להוד
 msgid "City: %s"
 msgstr "עיר:"
 
-#: includes/admin.php:1075
+#: includes/admin.php:1076
 #, php-format
 msgid "IP: %s"
 msgstr ""
