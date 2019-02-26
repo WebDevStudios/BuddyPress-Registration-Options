@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 5.0.3
-Stable tag: 4.3.6
+Tested up to: 5.1.0
+Stable tag: 4.3.7
 Requires PHP: 5.2
 License: GPLv2
 
@@ -37,6 +37,11 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.7 =
+* Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
+* Fixed: Remove duplicate status setting upon uster registration.
+* Fixed: Prevent PHP notices for user notification content on frontend.
 
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
@@ -81,21 +86,13 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Upgrade Notice ==
 
+= 4.3.7 =
+* Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
+* Fixed: Remove duplicate status setting upon uster registration.
+* Fixed: Prevent PHP notices for user notification content on frontend.
+
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
-
-= 4.3.5 =
-* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
-* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
-
-= 4.3.4 =
-* Fixed: Default message values not persisting across many users when approving or denying in bulk.
-* Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
-* Added: Filter for who receives notifications for new users. Props to @cherbst
-* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
-
-= 4.3.3 =
-* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
 
 = 4.3.5 =
 * Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.

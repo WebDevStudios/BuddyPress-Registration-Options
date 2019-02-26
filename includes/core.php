@@ -15,6 +15,10 @@ function bp_registration_options_bp_after_activate_content() {
 	$user_info = get_userdata( $user );
 	$moderate  = get_option( 'bprwg_moderate' );
 
+	if ( ! $user_info instanceof WP_User ) {
+		return;
+	}
+
 	$activate_screen = ( false === strpos( $_SERVER['REQUEST_URI'], 'activate' ) ) ? false : true;
 	if ( $activate_screen || bp_registration_get_moderation_status( $user ) ) {
 		if ( $moderate ) {
@@ -49,8 +53,6 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			return;
 		}
 		*/
-
-		bp_registration_set_moderation_status( $user_id );
 
 		$user = get_userdata( $user_id );
 
@@ -166,7 +168,17 @@ function bp_registration_hide_pending_members( $args ) {
 	}
 
 	if ( $ids ) {
-		$args->query_vars['exclude'] = $ids;
+		if ( empty( $args->query_vars['exclude'] ) ) {
+			$args->query_vars['exclude'] = $ids;
+		}
+		if ( is_array( $args->query_vars['exclude'] ) ) {
+			$args->query_vars['exclude'] = array_merge( $ids, $args->query_vars['exclude'] );
+		}
+		if ( is_string( $args->query_vars['exclude'] ) ) {
+			$other_ids                   = explode( ',', $args->query_vars['exclude'] );
+			$new_ids                     = array_merge( $ids, $other_ids );
+			$args->query_vars['exclude'] = implode( ',', $new_ids );
+		}
 	}
 
 	return $args;
