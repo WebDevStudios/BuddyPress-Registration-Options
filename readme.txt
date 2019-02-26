@@ -40,6 +40,8 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
+* Fixed: Remove duplicate status setting upon uster registration.
+* Fixed: Prevent PHP notices for user notification content on frontend.
 
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
@@ -86,6 +88,8 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
+* Fixed: Remove duplicate status setting upon uster registration.
+* Fixed: Prevent PHP notices for user notification content on frontend.
 
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
