@@ -15,6 +15,10 @@ function bp_registration_options_bp_after_activate_content() {
 	$user_info = get_userdata( $user );
 	$moderate  = get_option( 'bprwg_moderate' );
 
+	if ( ! $user_info instanceof WP_User ) {
+		return;
+	}
+
 	$activate_screen = ( false === strpos( $_SERVER['REQUEST_URI'], 'activate' ) ) ? false : true;
 	if ( $activate_screen || bp_registration_get_moderation_status( $user ) ) {
 		if ( $moderate ) {
