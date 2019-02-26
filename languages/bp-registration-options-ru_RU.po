@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 21:05-0600\n"
+"POT-Creation-Date: 2019-02-25 21:49-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
@@ -70,14 +70,14 @@ msgstr "ÐÐ°Ð¿ÑÐ¾ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ�
 
 # @ bp-registration-options
 #. Plugin Name of the plugin/theme
-#: includes/admin.php:442 includes/admin.php:942 includes/core.php:694
+#: includes/admin.php:442 includes/admin.php:942 includes/core.php:706
 msgid "BP Registration Options"
 msgstr ""
 "ÐÐ°Ð¶Ð´ÑÐ¹ Ð½Ð¾Ð²ÑÐ¹ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±ÑÑÑ Ð¿ÑÐ¾Ð²ÐµÑÐµÐ½ Ð¸ Ð¾Ð´Ð¾Ð±ÑÐµÐ½ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑÑÐ°ÑÐ¾ÑÐ¾Ð¼ Ð¿ÐµÑÐµÐ´ ÑÐµÐ¼, ÐºÐ°Ðº Ð¿Ð¾Ð»ÑÑÐ¸ÑÑ Ð´Ð¾ÑÑÑÐ¿ Ðº ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½ÑÐ�"
 "�Ð¼ BuddyPress."
 
 # @ bp-registration-options
-#: includes/admin.php:444 includes/core.php:703
+#: includes/admin.php:444 includes/core.php:715
 #, fuzzy
 msgid "General Settings"
 msgstr ""
@@ -87,7 +87,7 @@ msgstr ""
 "Основные настройки"
 
 # @ bp-registration-options
-#: includes/admin.php:445 includes/admin.php:495 includes/core.php:710
+#: includes/admin.php:445 includes/admin.php:495 includes/core.php:722
 msgid "Member Requests"
 msgstr "ÐÐ°Ð¿ÑÐ¾ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹"
 
@@ -302,7 +302,7 @@ msgstr "ÑÐ¾ÑÐµÑ ÑÑÐ°ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð
 
 # #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
-#: includes/core.php:584
+#: includes/core.php:596
 #, fuzzy
 msgid "New Member Request"
 msgstr ""
@@ -311,11 +311,11 @@ msgstr ""
 "#-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#\n"
 "ÐÐ°ÑÐ²ÐºÐ° Ð¾Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»Ñ"
 
-#: includes/core.php:615
+#: includes/core.php:627
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:782
+#: includes/core.php:794
 msgid "You have pending users to moderate."
 msgstr ""
 

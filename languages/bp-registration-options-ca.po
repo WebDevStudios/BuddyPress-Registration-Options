@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2019-02-25 21:05-0600\n"
+"POT-Creation-Date: 2019-02-25 21:49-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
@@ -59,15 +59,15 @@ msgid "Member Requests "
 msgstr "Sol·licituts d'afiliació"
 
 #. Plugin Name of the plugin/theme
-#: includes/admin.php:442 includes/admin.php:942 includes/core.php:694
+#: includes/admin.php:442 includes/admin.php:942 includes/core.php:706
 msgid "BP Registration Options"
 msgstr "BP Registration Options"
 
-#: includes/admin.php:444 includes/core.php:703
+#: includes/admin.php:444 includes/core.php:715
 msgid "General Settings"
 msgstr "Paràmetres generals"
 
-#: includes/admin.php:445 includes/admin.php:495 includes/core.php:710
+#: includes/admin.php:445 includes/admin.php:495 includes/core.php:722
 msgid "Member Requests"
 msgstr "Sol·licituts d'afiliació"
 
@@ -295,15 +295,15 @@ msgstr ""
 "acceptar o rebutjar la seva sol·licitud d'afiliació, si us plau aneu a <a "
 "href=\"%s\">%s</a>."
 
-#: includes/core.php:584
+#: includes/core.php:596
 msgid "New Member Request"
 msgstr "Nova sol·licitud d'afiliació"
 
-#: includes/core.php:615
+#: includes/core.php:627
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:782
+#: includes/core.php:794
 msgid "You have pending users to moderate."
 msgstr ""
 
