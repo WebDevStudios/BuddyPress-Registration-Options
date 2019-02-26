@@ -38,6 +38,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.7 =
+* Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
+
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
 
@@ -80,6 +83,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.3.7 =
+* Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
 
 = 4.3.6 =
 * Fixed: GeoIP lookup resource change.
