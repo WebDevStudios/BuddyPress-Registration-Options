@@ -166,7 +166,17 @@ function bp_registration_hide_pending_members( $args ) {
 	}
 
 	if ( $ids ) {
-		$args->query_vars['exclude'] = $ids;
+		if ( empty( $args->query_vars['exclude'] ) ) {
+			$args->query_vars['exclude'] = $ids;
+		}
+		if ( is_array( $args->query_vars['exclude'] ) ) {
+			$args->query_vars['exclude'] = array_merge( $ids, $args->query_vars['exclude'] );
+		}
+		if ( is_string( $args->query_vars['exclude'] ) ) {
+			$other_ids                   = explode( ',', $args->query_vars['exclude'] );
+			$new_ids                     = array_merge( $ids, $other_ids );
+			$args->query_vars['exclude'] = implode( ',', $new_ids );
+		}
 	}
 
 	return $args;
