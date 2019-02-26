@@ -50,8 +50,6 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 		}
 		*/
 
-		bp_registration_set_moderation_status( $user_id );
-
 		$user = get_userdata( $user_id );
 
 		/** This filter is documented in includes/core.php */
