@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP Registration Options\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 22:22-0600\n"
-"PO-Revision-Date: 2019-02-06 22:22-0600\n"
+"POT-Creation-Date: 2019-02-25 21:43-0600\n"
+"PO-Revision-Date: 2019-02-25 21:43-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language: he\n"
@@ -59,15 +59,15 @@ msgstr "רישום BP"
 msgid "Member Requests "
 msgstr "בקשות חברות"
 
-#: includes/admin.php:432 includes/admin.php:932 includes/core.php:692
+#: includes/admin.php:432 includes/admin.php:932 includes/core.php:704
 msgid "BP Registration Options"
 msgstr "אופציות הרשמה BP"
 
-#: includes/admin.php:434 includes/core.php:701
+#: includes/admin.php:434 includes/core.php:713
 msgid "General Settings"
 msgstr "הגדרות כלליות"
 
-#: includes/admin.php:435 includes/admin.php:485 includes/core.php:708
+#: includes/admin.php:435 includes/admin.php:485 includes/core.php:720
 msgid "Member Requests"
 msgstr "בקשות חברות"
 
@@ -283,15 +283,15 @@ msgstr ""
 "%s ( %s )  רוצה להתחבר לאתר האינטרנט שלך. כדי לקבל או לדחות את בקשתם נא "
 "להמשיך בלינק הבא <a href=\"%s\">%s</a>"
 
-#: includes/core.php:584
+#: includes/core.php:596
 msgid "New Member Request"
 msgstr "בקשת חברות חדשה"
 
-#: includes/core.php:613
+#: includes/core.php:625
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:780
+#: includes/core.php:792
 msgid "You have pending users to moderate."
 msgstr ""
 

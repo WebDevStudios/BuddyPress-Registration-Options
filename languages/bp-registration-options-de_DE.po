@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Registration Options\n"
-"POT-Creation-Date: 2019-02-06 22:22-0600\n"
-"PO-Revision-Date: 2019-02-06 22:22-0600\n"
+"POT-Creation-Date: 2019-02-25 21:43-0600\n"
+"PO-Revision-Date: 2019-02-25 21:43-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -41,7 +41,7 @@ msgstr "BP Registrierung"
 msgid "Member Requests "
 msgstr "Mitgliedschafts-Anfragen"
 
-#: ../includes/admin.php:435 ../includes/admin.php:485 ../includes/core.php:708
+#: ../includes/admin.php:435 ../includes/admin.php:485 ../includes/core.php:720
 msgid "Member Requests"
 msgstr "Mitgliedschafts-Anfragen"
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "%s version %s by %s"
 msgstr "%s Version %s von den %s"
 
-#: ../includes/admin.php:932 ../includes/core.php:692
+#: ../includes/admin.php:932 ../includes/core.php:704
 msgid "BP Registration Options"
 msgstr "BP Registrierungs-Optionen"
 
@@ -118,19 +118,19 @@ msgstr ""
 "möchte ein Member werden; um die Anfrage anzunehmen oder abzulehnen, bitte "
 "dem folgenden Link folgen"
 
-#: ../includes/core.php:584
+#: ../includes/core.php:596
 msgid "New Member Request"
 msgstr "Neue Mitgliedschafts-Anfrage"
 
-#: ../includes/core.php:613
+#: ../includes/core.php:625
 msgid "Pending Membership"
 msgstr ""
 
-#: ../includes/core.php:701
+#: ../includes/core.php:713
 msgid "General Settings"
 msgstr "Einstellungen"
 
-#: ../includes/core.php:780
+#: ../includes/core.php:792
 msgid "You have pending users to moderate."
 msgstr ""
 

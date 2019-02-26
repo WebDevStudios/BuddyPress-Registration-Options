@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 22:22-0600\n"
-"PO-Revision-Date: 2019-02-06 22:22-0600\n"
+"POT-Creation-Date: 2019-02-25 21:43-0600\n"
+"PO-Revision-Date: 2019-02-25 21:43-0600\n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -64,7 +64,7 @@ msgid "Member Requests "
 msgstr "Запросы пользователей "
 
 # @ bp-registration-options
-#: includes/admin.php:435 includes/admin.php:485 includes/core.php:708
+#: includes/admin.php:435 includes/admin.php:485 includes/core.php:720
 msgid "Member Requests"
 msgstr "Запросы пользователей"
 
@@ -122,7 +122,7 @@ msgid "%s version %s by %s"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/admin.php:932 includes/core.php:692
+#: includes/admin.php:932 includes/core.php:704
 msgid "BP Registration Options"
 msgstr ""
 
@@ -145,20 +145,20 @@ msgstr ""
 "запрос — пройдите по ссылке: "
 
 # @ bp-registration-options
-#: includes/core.php:584
+#: includes/core.php:596
 msgid "New Member Request"
 msgstr "Заявка от нового пользователя"
 
-#: includes/core.php:613
+#: includes/core.php:625
 msgid "Pending Membership"
 msgstr ""
 
 # @ bp-registration-options
-#: includes/core.php:701
+#: includes/core.php:713
 msgid "General Settings"
 msgstr "Основные настройки"
 
-#: includes/core.php:780
+#: includes/core.php:792
 msgid "You have pending users to moderate."
 msgstr ""
 
