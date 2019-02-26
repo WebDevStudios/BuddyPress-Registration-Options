@@ -1068,7 +1068,7 @@ add_action( 'deleted_user', 'bp_registration_options_delete_user_count_transient
  */
 function bp_registration_options_ip_data( $user_id ) {
 	$userip = trim( get_user_meta( $user_id, '_bprwg_ip_address', true ) );
-	$response = wp_remote_get( 'https://freegeoip.net/json/' . $userip );
+	$response = wp_remote_get( 'https://freegeoip.app/json/' . $userip );
 
 	if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
 
@@ -1081,6 +1081,7 @@ function bp_registration_options_ip_data( $user_id ) {
 					esc_html__( 'City: %s', 'bp-registration-options' ),
 					esc_html( $data->city )
 				);
+				echo '<br/>';
 				printf(
 					esc_html__( 'IP: %s', 'bp-registration-options' ),
 					esc_html( $data->ip )

@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 4.9.6
-Stable tag: 4.3.5
+Tested up to: 5.0.3
+Stable tag: 4.3.6
 Requires PHP: 5.2
 License: GPLv2
 
@@ -37,6 +37,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.6 =
+* Fixed: GeoIP lookup resource change.
 
 = 4.3.5 =
 * Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
@@ -76,58 +79,23 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Internationalization issues with singular/plural "members" admin notice.
 * Updated: Internationalization strings for default messages.
 
-= 4.2.12 =
-* Switch Geolocation provider to one still actively maintained.
-
-= 4.2.11 =
-* Fix issue with 404 errors in pending user list.
-
-= 4.2.10 =
-* WordPress 4.4 compatibility bump. No other code changes made.
-
-= 4.2.9 =
-* Add Hebrew translation.
-
-= 4.2.8 =
-* Rework loader file to better work with translating the plugin.
-
-= 4.2.7 =
-* Fixed issue with widget listing prevention overwriting other potential existing values.
-* Update copy in readme and plugin headings.
-
-= 4.2.6 =
-* Preventive measures for potential XSS security issues with add_query_arg()
-* Early attempts to prevent ajax refresh appropriately.
-
-= 4.2.5 =
-* Added more hooks to remove UI elements for moderated members.
-* Fixed logic bug that was returning too early in UI hiding if "private network" wasn't checked.
-* Fixed missing message for new users due to changes in BuddyPress registration URLs.
-* Added support for BuddyPress Like and BuddyPress Send Invites plugins.
-* Added transient clearing for pending member count upon user deletion.
-* Known issue: UI elements returning in ajax-refreshed tabs
-
-= 4.2.4 =
-* Remove filter on total user count added in 4.2.3.
-
-= 4.2.3 =
-* Deny access to Compose submenu item for moderated members.
-* Subtract moderated member count from total user count.
-
-= 4.2.2 =
-* Changed hooks for when setting "moderated" status. Hoping this one catches all incoming, spam or human.
-* Removed some checks that were producing unintended positives for bbPress.
-
-= 4.2.1 =
-* Fix with moderation coming through inaccurately. Sorry about that everyone.
-* Clear pending count transient on new user registration.
-* Attempt to prevent duplicate users from showing in pending list.
-
-= 4.2.0 =
-* Rewrote most aspects of plugin, with focus on preventing access to the community areas.
-* Added bbPress support so you can deny users from accessing forums.
-
 == Upgrade Notice ==
+
+= 4.3.6 =
+* Fixed: GeoIP lookup resource change.
+
+= 4.3.5 =
+* Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
+* Fixed: Addressed issue regarding notifications sent out when a new user registers. 4.3.4 introduced a filter to customize who gets notified, but the filter needed to be added in some more places.
+
+= 4.3.4 =
+* Fixed: Default message values not persisting across many users when approving or denying in bulk.
+* Added: IP Address removal from user meta after approved. Addresses possible issues with GDPR compliance. Denied users do not have saved data after denied.
+* Added: Filter for who receives notifications for new users. Props to @cherbst
+* Added: Parse "[username]" shortcode for the Activate/Profile message text. Props richardfoley on WordPress.org
+
+= 4.3.3 =
+* Fixed: support for [user_email] shortcode parsing in the approved/denied custom messages.
 
 = 4.3.5 =
 * Added: Setting tool to help aid with more GDPR compliance. Setting queries for all previously-approved users that still have IP address user meta data saved, and removes that meta data. Should not need to be used again once all IP meta is removed.
@@ -166,57 +134,6 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Fixed: Prevention of working in non-main site sites for Multisite.
 * Fixed: Internationalization issues with singular/plural "members" admin notice.
 * Updated: Internationalization strings for default messages.
-
-= 4.2.12 =
-* Switch Geolocation provider to one still actively maintained.
-
-= 4.2.11 =
-* Fix issue with 404 errors in pending user list.
-
-= 4.2.10 =
-* WordPress 4.4 compatibility bump. No other code changes made.
-
-= 4.2.9 =
-* Add Hebrew translation.
-
-= 4.2.8 =
-* Rework loader file to better work with translating the plugin.
-
-= 4.2.7 =
-* Fixed issue with widget listing prevention overwriting other potential existing values.
-* Update copy in readme and plugin headings.
-
-= 4.2.6 =
-* Preventive measures for potential XSS security issues with add_query_arg()
-* Early attempts to prevent ajax refresh appropriately.
-
-= 4.2.5 =
-* Added more hooks to remove UI elements for moderated members.
-* Fixed logic bug that was returning too early in UI hiding if "private network" wasn't checked.
-* Fixed missing message for new users due to changes in BuddyPress registration URLs.
-* Added support for BuddyPress Like and BuddyPress Send Invites plugins.
-* Added transient clearing for pending member count upon user deletion.
-* Known issue: UI elements returning in ajax-refreshed tabs
-
-= 4.2.4 =
-* Remove filter on total user count added in 4.2.3. Filter was only displaying active users, not ALL members.
-
-= 4.2.3 =
-* Deny access to Compose submenu item for moderated members.
-* Subtract moderated member count from total user count.
-
-= 4.2.2 =
-* Changed hooks for when setting "moderated" status. Hoping this one catches all incoming, spam or human.
-* Removed some checks that were producing unintended positives for bbPress.
-
-= 4.2.1 =
-* Fix with moderation coming through inaccurately. Sorry about that everyone.
-* Clear pending count transient on new user registration.
-* Attempt to prevent duplicate users from showing in pending list.
-
-= 4.2.0 =
-* Rewrote most aspects of plugin, with focus on preventing access to the community areas.
-* Added bbPress support so you can deny users from accessing forums.
 
 == Installation ==
 
