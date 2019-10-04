@@ -58,11 +58,6 @@ class BP_Registration_Options {
 	 * Activation hook for the plugin.
 	 */
 	public function activate() {
-		// Verify user is running WP 3.0 or newer.
-		if ( version_compare( get_bloginfo( 'version' ), '3.5', '<' ) ) {
-			deactivate_plugins( plugin_basename( __FILE__ ) );
-			wp_die( esc_html__( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
-		}
 		flush_rewrite_rules();
 	}
 
