@@ -8,7 +8,7 @@ function bp_registration_is_current_user_pending( $user_id = 0 ) {
 		$user_id = get_current_user_id();
 	}
 
-	$pending_users = bp_registration_get_pending_users();
+	$pending_users    = bp_registration_get_pending_users();
 	$pending_user_ids = wp_list_pluck( $pending_users, 'user_id' );
 
 	if ( in_array( $user_id, $pending_user_ids ) ) {
@@ -48,19 +48,19 @@ function bp_registration_is_private_network() {
  * @return WP_User_Query User query.
  */
 function bp_registration_get_user_ip_query() {
-	$args = array(
-		'meta_query' => array(
-			array(
+	$args = [
+		'meta_query' => [
+			[
 				'key'     => '_bprwg_ip_address',
 				'compare' => 'exists',
-			),
-			array(
+			],
+			[
 				'key'   => '_bprwg_is_moderated',
 				'value' => 'false',
-			),
-		),
+			],
+		],
 		'fields'     => 'ID',
-	);
+	];
 
 	return new WP_User_Query( $args );
 }

@@ -39,19 +39,19 @@ class BP_Registration_Options {
 	 */
 	public function __construct() {
 		// Define plugin constants.
-		$this->version = BP_REGISTRATION_OPTIONS_VERSION;
-		$this->basename = plugin_basename( __FILE__ );
+		$this->version        = BP_REGISTRATION_OPTIONS_VERSION;
+		$this->basename       = plugin_basename( __FILE__ );
 		$this->directory_path = plugin_dir_path( __FILE__ );
 
-		register_activation_hook( __FILE__, array( &$this, 'activate' ) );
-		register_deactivation_hook( __FILE__, array( &$this, 'deactivate' ) );
+		register_activation_hook( __FILE__, [ &$this, 'activate' ] );
+		register_deactivation_hook( __FILE__, [ &$this, 'deactivate' ] );
 
-		require_once( $this->directory_path . 'includes/utility.php' );
-		require_once( $this->directory_path . 'includes/admin.php' );
-		require_once( $this->directory_path . 'includes/core.php' );
-		require_once( $this->directory_path . 'includes/compatibility.php' );
+		require_once $this->directory_path . 'includes/utility.php';
+		require_once $this->directory_path . 'includes/admin.php';
+		require_once $this->directory_path . 'includes/core.php';
+		require_once $this->directory_path . 'includes/compatibility.php';
 
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'init', [ $this, 'load_textdomain' ] );
 	}
 
 	/**
@@ -59,10 +59,10 @@ class BP_Registration_Options {
 	 */
 	public function activate() {
 		// Verify user is running WP 3.0 or newer.
-	    if ( version_compare( get_bloginfo( 'version' ), '3.5', '<' ) ) {
-	        deactivate_plugins( plugin_basename( __FILE__ ) );
-	        wp_die( esc_html__( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
-	    }
+		if ( version_compare( get_bloginfo( 'version' ), '3.5', '<' ) ) {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+			wp_die( esc_html__( 'This plugin requires WordPress version 3.0 or higher.', 'bp-registration-options' ) );
+		}
 		flush_rewrite_rules();
 	}
 
