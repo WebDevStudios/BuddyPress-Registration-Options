@@ -322,7 +322,7 @@ function bp_registration_options_form_actions() {
 		/**
 		 * Fires after the moderation actions are completed.
 		 *
-		 * @since 1.4.0
+		 * @since 4.4.0
 		 *
 		 * @param string $action          Action taken. May be approve or deny.
 		 * @param array  $checked_members Array of members that were acted on.
