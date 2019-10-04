@@ -37,7 +37,7 @@ class BP_Registration_Options {
 	/**
 	 * Piece it all together
 	 */
-	function __construct() {
+	public function __construct() {
 		// Define plugin constants.
 		$this->version = BP_REGISTRATION_OPTIONS_VERSION;
 		$this->basename = plugin_basename( __FILE__ );
@@ -57,7 +57,7 @@ class BP_Registration_Options {
 	/**
 	 * Activation hook for the plugin.
 	 */
-	function activate() {
+	public function activate() {
 		// Verify user is running WP 3.0 or newer.
 	    if ( version_compare( get_bloginfo( 'version' ), '3.5', '<' ) ) {
 	        deactivate_plugins( plugin_basename( __FILE__ ) );
@@ -69,14 +69,14 @@ class BP_Registration_Options {
 	/**
 	 * Deactivation hook for the plugin.
 	 */
-	function deactivate() {
+	public function deactivate() {
 		flush_rewrite_rules();
 	}
 
 	/**
 	 * Load our textdomain
 	 */
-	function load_textdomain() {
-		load_plugin_textdomain( 'bp-registration-options', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	public function load_textdomain() {
+		load_plugin_textdomain( 'bp-registration-options', false, basename( __DIR__ ) . '/languages/' );
 	}
 }

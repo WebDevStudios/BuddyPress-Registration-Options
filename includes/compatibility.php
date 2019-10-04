@@ -36,7 +36,7 @@ class BP_Registration_Compatibility {
 	 *
 	 * @param array $fbuser Array hoding Facebook user data.
 	 */
-	function wp_fb_autoconnect_compat( $fbuser ) {
+	public function wp_fb_autoconnect_compat( $fbuser ) {
 
 		$id = $fbuser['WP_ID'];
 
@@ -65,7 +65,7 @@ class BP_Registration_Compatibility {
 	 * Adds compatibility support for BuddyPress Like.
 	 * https://wordpress.org/plugins/buddypress-like/
 	 */
-	function buddypress_like() {
+	public function buddypress_like() {
 
 		$user = get_current_user_id();
 		$moderate = (bool) get_option( 'bprwg_moderate' );
@@ -93,7 +93,7 @@ class BP_Registration_Compatibility {
 	 * Adds compatibility support for BuddyPress Invite Anyone.
 	 * https://wordpress.org/plugins/invite-anyone/
 	 */
-	function buddypress_send_invites() {
+	public function buddypress_send_invites() {
 
 		$user = get_current_user_id();
 		$moderate = (bool) get_option( 'bprwg_moderate' );
