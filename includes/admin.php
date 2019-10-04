@@ -3,6 +3,8 @@
  * Admin Settings for BP Registration Options.
  *
  * @package BP-Registration-Options
+ *
+ * phpcs:disable WebDevStudios.All.RequireAuthor -- Don't require author tag in docblocks.
  */
 
 /**
@@ -26,7 +28,7 @@ function bp_registration_get_pending_user_count() {
 		}
 	}
 
-	return ( $rs ) ? $rs[0] : '0';
+	return $rs ? $rs[0] : '0';
 }
 
 /**
@@ -61,7 +63,7 @@ function bp_registration_get_pending_users( $start_from = 0 ) {
 	 */
 	$results = apply_filters( 'bpro_hook_get_pending_users', $results );
 
-	return ( ! empty( $results ) ) ? $results : array();
+	return ( ! empty( $results ) ) ? $results : [];
 }
 
 /**
@@ -92,7 +94,7 @@ function bp_registration_handle_reset_messages() {
  *
  * @param array $args Array of inputs to save.
  */
-function bp_registration_handle_general_settings( $args = array() ) {
+function bp_registration_handle_general_settings( $args = [] ) {
 
 	/**
 	 * Fires before we've saved our options
@@ -169,7 +171,7 @@ function bp_registration_options_form_actions() {
 		}
 
 		bp_registration_handle_general_settings(
-			array(
+			[
 				'set_moderate'          => empty( $_POST['bp_moderate'] ) ? '' : $_POST['bp_moderate'],
 				'set_private'           => empty( $_POST['privacy_network'] ) ? '' : $_POST['privacy_network'],
 				'enable_notifications'  => empty( $_POST['enable_notifications'] ) ? '' : $_POST['enable_notifications'],
@@ -178,7 +180,7 @@ function bp_registration_options_form_actions() {
 				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
 				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message'],
 				'user_pending_message'  => empty( $_POST['user_pending_message'] ) ? '' : $_POST['user_pending_message'],
-			)
+			]
 		);
 	}
 
@@ -196,7 +198,7 @@ function bp_registration_options_form_actions() {
 
 		$action = sanitize_text_field( $_POST['moderate'] );
 
-		$checked_members = array();
+		$checked_members = [];
 		$send            = false;
 		$subject         = '';
 		$default_message = '';
@@ -206,7 +208,7 @@ function bp_registration_options_form_actions() {
 		}
 
 		if ( ! is_array( $checked_members ) ) {
-			$checked_members = array( $checked_members );
+			$checked_members = [ $checked_members ];
 		}
 
 		if ( 'deny' === $action ) {
@@ -232,8 +234,8 @@ function bp_registration_options_form_actions() {
 				 // Add our user to the IP ban option.
 				 if ( 'Ban' == $action ) {
 
-					$blockedIPs = get_option( 'bprwg_blocked_ips', array() );
-					$blockedemails = get_option( 'bprwg_blocked_emails', array() );
+					$blockedIPs = get_option( 'bprwg_blocked_ips', [] );
+					$blockedemails = get_option( 'bprwg_blocked_emails', [] );
 					$blockedIPs[] = get_user_meta( $user_id, 'bprwg_ip_address', true);
 					$blockedemails[] = $user->data->user_email;
 					$successIP = update_option( 'bprwg_blocked_ips', $blockedIPs );
@@ -291,11 +293,11 @@ function bp_registration_options_form_actions() {
 				$message = str_replace( '[username]', $user->data->user_login, $message );
 				$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
-				$mailme = array(
+				$mailme = [
 					'user_email'   => $user->data->user_email,
 					'user_subject' => $subject,
 					'user_message' => $message,
-				);
+				];
 
 				/**
 				 * Filters the email arguments before mailing.
@@ -1109,7 +1111,7 @@ add_action( 'bpro_hook_approved_user', 'bpro_clean_user_ip' );
  * @param array $columns Array of all current custom columns to show.
  * @return array $columns Amended column list.
  */
-function bp_registration_options_set_custom_edit_columns( $columns = array() ) {
+function bp_registration_options_set_custom_edit_columns( $columns = [] ) {
 	$columns['bpro_pending'] = esc_html__( 'Pending approval', 'bp-registration-options' );
 	return $columns;
 }
