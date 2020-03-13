@@ -637,7 +637,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
  * @since 4.2.3
  */
 function bp_registration_options_remove_compose_message() {
-	if ( true === bp_registration_get_moderation_status( get_current_user_id() ) ) {
+	if ( function_exists( 'bp_core_remove_subnav_item' ) && true === bp_registration_get_moderation_status( get_current_user_id() ) ) {
 		bp_core_remove_subnav_item( 'messages', 'compose' );
 	}
 }
@@ -690,6 +690,10 @@ add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderat
  */
 function bp_registration_options_admin_bar_add() {
 	global $wp_admin_bar, $bp;
+
+	if ( ! function_exists( 'bp_use_wp_admin_bar' ) ) {
+		return false;
+	}
 
 	if ( ! bp_use_wp_admin_bar() || defined( 'DOING_AJAX' ) ) {
 		return false;
