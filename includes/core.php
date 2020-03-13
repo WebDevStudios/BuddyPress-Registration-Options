@@ -125,16 +125,18 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 
 		bp_registration_options_delete_user_count_transient();
 
-		// Set admin notification for new member.
-		$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
-		if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
-			foreach ( $admins as $admin ) {
-				bp_notifications_add_notification( array(
-					'user_id'          => $admin->ID,
-					'component_name'   => 'bp_registration_options',
-					'component_action' => 'bp_registration_options',
-					'allow_duplicate'  => true,
-				) );
+		if ( function_exists( 'bp_is_active' ) ) {
+			// Set admin notification for new member.
+			$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
+			if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
+				foreach ( $admins as $admin ) {
+					bp_notifications_add_notification( array(
+						'user_id'          => $admin->ID,
+						'component_name'   => 'bp_registration_options',
+						'component_action' => 'bp_registration_options',
+						'allow_duplicate'  => true,
+					) );
+				}
 			}
 		}
 	}
@@ -248,7 +250,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	if ( ! empty( $_POST['object'] ) ) {
 		$object = sanitize_title( $_POST['object'] );
 
-		if ( bp_is_active( $object ) ) {
+		if ( function_exists( 'bp_is_active' ) && bp_is_active( $object ) ) {
 			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
 		}
 	} else {
@@ -635,7 +637,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
  * @since 4.2.3
  */
 function bp_registration_options_remove_compose_message() {
-	if ( true === bp_registration_get_moderation_status( get_current_user_id() ) ) {
+	if ( function_exists( 'bp_core_remove_subnav_item' ) && true === bp_registration_get_moderation_status( get_current_user_id() ) ) {
 		bp_core_remove_subnav_item( 'messages', 'compose' );
 	}
 }
@@ -688,6 +690,10 @@ add_filter( 'bp_get_total_member_count', 'bp_registration_options_remove_moderat
  */
 function bp_registration_options_admin_bar_add() {
 	global $wp_admin_bar, $bp;
+
+	if ( ! function_exists( 'bp_use_wp_admin_bar' ) ) {
+		return false;
+	}
 
 	if ( ! bp_use_wp_admin_bar() || defined( 'DOING_AJAX' ) ) {
 		return false;
@@ -749,6 +755,10 @@ add_action( 'bp_activity_before_save', 'bp_registration_options_prevent_activity
  * @param int $user_id ID of the approved user.
  */
 function bp_registration_options_display_activity_posting( $user_id ) {
+	if ( ! function_exists( 'bp_is_active' ) ) {
+		return;
+	}
+
 	if ( bp_is_active( 'activity' ) ) {
 		bp_activity_add( array(
 			'user_id'   => $user_id,

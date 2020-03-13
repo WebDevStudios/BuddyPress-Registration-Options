@@ -270,8 +270,11 @@ function bp_registration_options_form_actions() {
 			} elseif ( 'approve' === $action ) {
 				// Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
-				// Mark as not spam for BuddyPress Core.
-				bp_core_process_spammer_status( $user_id, 'ham' );
+
+				if ( function_exist( 'bp_core_process_spammer_status' ) ) {
+					// Mark as not spam for BuddyPress Core.
+					bp_core_process_spammer_status( $user_id, 'ham' );
+				}
 
 				/**
 				 * Fires after a user has been marked as approved.

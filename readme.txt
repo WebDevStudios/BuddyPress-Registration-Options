@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
-Tested up to: 5.1.0
-Stable tag: 4.3.7
+Tested up to: 5.4.0
+Stable tag: 4.3.8
 Requires PHP: 5.2
 License: GPLv2
 
@@ -37,6 +37,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.8 - 2020-03-13 =
+* Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
 
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
@@ -85,6 +88,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.3.8 - 2020-03-13 =
+* Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
 
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
