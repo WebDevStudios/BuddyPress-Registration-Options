@@ -38,6 +38,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.3.8 - 2020-03-13 =
+* Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
+
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
 * Fixed: Remove duplicate status setting upon uster registration.
@@ -85,6 +88,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.3.8 - 2020-03-13 =
+* Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
 
 = 4.3.7 =
 * Fixed: Prevent overwriting of existing user IDs to exclude, if any are already set.
