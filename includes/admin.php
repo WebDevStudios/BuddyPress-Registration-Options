@@ -271,7 +271,7 @@ function bp_registration_options_form_actions() {
 				// Mark as not spam for BuddyPress Registration Options.
 				bp_registration_set_moderation_status( $user_id, 'false' );
 
-				if ( function_exist( 'bp_core_process_spammer_status' ) ) {
+				if ( function_exists( 'bp_core_process_spammer_status' ) ) {
 					// Mark as not spam for BuddyPress Core.
 					bp_core_process_spammer_status( $user_id, 'ham' );
 				}

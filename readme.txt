@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 3.5
 Tested up to: 5.4.0
-Stable tag: 4.3.8
+Stable tag: 4.3.9
 Requires PHP: 5.2
 License: GPLv2
 
@@ -37,6 +37,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.3.9 - 2020-03-14 =
+* Fixed: Fatal error from a function typo.
 
 = 4.3.8 - 2020-03-13 =
 * Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
@@ -88,6 +91,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.3.9 - 2020-03-14 =
+* Fixed: Fatal error from a function typo.
 
 = 4.3.8 - 2020-03-13 =
 * Updated: Extra protection for users who may be using bbPress only with no BuddyPress.
