@@ -1,0 +1,258 @@
+# Translation of Plugins - BuddyPress Registration Options - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - BuddyPress Registration Options - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-03-26 17:41-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2.3\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - BuddyPress Registration Options - Stable (latest release)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#: includes/admin.php:556
+msgid "GDPR compliance: Check this to remove IP addresses previously saved IP user meta on approved users."
+msgstr "GDPR совместимость (отметьте для удаления IP-адресов ранее сохраненных в метаданных для одобренных пользователей)."
+
+#. Author of the plugin
+msgid "Pluginize"
+msgstr "Pluginize"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://pluginize.com"
+msgstr "https://pluginize.com"
+
+#: includes/core.php:804
+msgid "You have pending users to moderate."
+msgstr "У вас есть ожидающие одобрения регистрации пользователи."
+
+#: includes/core.php:629
+msgid "Pending Membership"
+msgstr "Ожидает одобрения регистрации"
+
+#: includes/admin.php:956
+msgid "Follow on Twitter:"
+msgstr "Подписаться в Twitter:"
+
+#: includes/admin.php:953
+msgid "Please Report Bugs"
+msgstr "Пожалуйста, сообщайте об ошибках"
+
+#: includes/admin.php:942
+msgid "%s version %s by %s"
+msgstr "%s версия %s от %s"
+
+#: includes/admin.php:782
+msgid "Pagination: "
+msgstr "Постраничная навигация:"
+
+#: includes/admin.php:608
+msgid "Short Code Key: [username], [user_email]"
+msgstr "Вы можете использовать шорткоды: [username], [user_email]"
+
+#: includes/admin.php:596
+msgid "User Pending Email Message:"
+msgstr "Сообщение ожидающему одобрения пользователю:"
+
+#: includes/admin.php:588
+msgid "Admin Pending Email Message:"
+msgstr "Сообщение администратору об ожидающих пользователях:"
+
+#: includes/admin.php:548
+msgid "Add new user notification to admin user account BuddyPress notification inbox."
+msgstr "Добавить уведомление о новых пользователях во входящие уведомления администратора BuddyPress."
+
+#: includes/admin.php:506
+msgid "Hi [username], your account at %s is currently pending approval."
+msgstr "Привет, [username], ваша учетная запись на %s ожидает одобрения."
+
+#: includes/admin.php:497
+msgid "[username] ( [user_email] ) would like to become a member of your website. To accept or reject their request, please go to %s"
+msgstr "[username] ( [user_email] ) хочет зарегистрироваться на вашем сайте, для одобрения или отклонения этого запроса перейдите на %s."
+
+#. translators: placeholder will have linked "click here" that goes to requests
+#. page.
+#: includes/admin.php:358
+msgid "Please %s to take action"
+msgstr "Пожалуйста, %s для совершения действия."
+
+#: includes/admin.php:348
+msgid "You have %d new member request that needs to be approved or denied."
+msgid_plural "You have %d new member requests that needs to be approved or denied."
+msgstr[0] "У вас %d новый запрос регистрации пользователей для одобрения или отклонения."
+msgstr[1] "У вас %d новых запроса регистрации пользователей для одобрения или отклонения."
+msgstr[2] "У вас %d новых запросов регистрации пользователей для одобрения или отклонения."
+
+#: includes/admin.php:1089
+msgid "IP: %s"
+msgstr "IP: %s"
+
+#: includes/admin.php:1084
+msgid "City: %s"
+msgstr "Город: %s"
+
+#. Description of the plugin
+msgid "This BuddyPress extension allows you to enable user moderation for new members, as well as help create a private network for your users. If moderation is enabled, any new members will be denied access to your BuddyPress and bbPress areas on your site, with the exception of their own user profile. They will be allowed to edit and configure that much. They will also not be listed in the members lists on the frontend until approved. Custom messages are available so you can tailor them to the tone of your website and community. When an admin approves or denies a user, email notifications will be sent to let them know of the decision."
+msgstr "Это расширение BuddyPress позволяет вам включать модерацию регистрации пользователей, а также помогает создавать частные сети для ваших пользователей. Если модерация включена, всем новым участникам будет отказано в доступе к областям BuddyPress и bbPress на вашем сайте, за исключением их собственного профиля пользователя. Им будет разрешено редактировать и настраивать только его. Они также не будут перечислены в списках участников на веб-интерфейсе, пока не будут утверждены. Пользовательские сообщения настраиваются, так, что вы можете адаптировать их для вашего сайта и сообщества. Когда администратор одобряет или отклоняет пользователя, по электронной почте будут отправляться уведомления, чтобы сообщить им о решении."
+
+#: includes/core.php:598
+msgid "New Member Request"
+msgstr "Заявка от нового пользователя"
+
+#: includes/compatibility.php:54
+msgid "%s ( %s ) would like to become a member of your website. To accept or reject their request, please go to <a href=\"%s\">%s</a>."
+msgstr "%s (%s) хочет зарегистрироваться на вашем сайте, для одобрения или отклонения этого запроса перейдите на <a href=\"%s\">%s</a>."
+
+#: includes/admin.php:1028
+msgid "Are you sure you want to reset to the default messages?"
+msgstr "Уверены. что хотите сбросить сообщение на по умолчанию?"
+
+#: includes/admin.php:1025
+msgid "Are you sure you want to ban and delete the checked member(s)?"
+msgstr "Вы уверены, что хотите забанить и удалить выбранного(ых) пользователя(ей)?"
+
+#: includes/admin.php:1022
+msgid "Are you sure you want to deny and delete the checked member(s)?"
+msgstr "Вы уверены, что хотите запретить и удалить выбранного(ых) пользователя(ей)?"
+
+#: includes/admin.php:909
+msgid "You have no blocked IP Addresses or Email Addresses at the moment"
+msgstr "У вас на данный момент нет заблокированных IP или email адресов."
+
+#: includes/admin.php:877 includes/admin.php:904
+msgid "Email Address"
+msgstr "E-mail"
+
+#: includes/admin.php:869
+msgid "The following Email addresses are currently banned."
+msgstr "Эти адреса эл.почты в настоящее время запрещены."
+
+#: includes/admin.php:838 includes/admin.php:864
+msgid "IP Address"
+msgstr "IP-адрес"
+
+#: includes/admin.php:831
+msgid "The following IP addresses are currently banned."
+msgstr "Эти IP-адреса в настоящее время запрещены."
+
+#: includes/admin.php:806
+msgid "No new members to approve."
+msgstr "Нет пользователей для проверки."
+
+#: includes/admin.php:776
+msgid "Deny"
+msgstr "Отвергнуть"
+
+#: includes/admin.php:775
+msgid "Approve"
+msgstr "Подтвердить"
+
+#: includes/admin.php:675 includes/admin.php:769
+msgid "Additional Data"
+msgstr "Доп. информация"
+
+#: includes/admin.php:674 includes/admin.php:768
+msgid "Created"
+msgstr "Создан"
+
+#: includes/admin.php:673 includes/admin.php:767
+msgid "Email"
+msgstr "Эл. почта"
+
+#: includes/admin.php:672 includes/admin.php:766
+msgid "Name"
+msgstr "Наименование"
+
+#: includes/admin.php:671 includes/admin.php:765
+msgid "Photo"
+msgstr "Фотография"
+
+#: includes/admin.php:663
+msgid "Please approve or deny the following new members:"
+msgstr "Разрешите или запретите доступ следующим новым пользователям:"
+
+#: includes/admin.php:628
+msgid "Save Options"
+msgstr "Параметры сохранения"
+
+#: includes/admin.php:611
+msgid "Reset Messages"
+msgstr "Сбросить сообщения"
+
+#: includes/admin.php:580
+msgid "Account Denied Email:"
+msgstr "Аккаунт заблокирован (сообщение по email):"
+
+#: includes/admin.php:572
+msgid "Account Approved Email:"
+msgstr "Аккаунт одобрен (сообщение по email):"
+
+#: includes/admin.php:564
+msgid "Activate & Profile Alert Message:"
+msgstr "Предупредительное сообщение <br> о правилах активации аккаунта:"
+
+#: includes/admin.php:541
+msgid "Only registered or approved members can view BuddyPress/bbPress pages (Private Network)."
+msgstr "Только зарегистрированные или одобренные участники могут просматривать страницы BuddyPress/bbPress pages (частная сеть)."
+
+#: includes/admin.php:534
+msgid "Every new member will have to be approved by an administrator before they can interact with BuddyPress/bbPress components."
+msgstr "Каждый новый пользователь должен быть одобрен администратором, перед тем как они смогут использовать BuddyPress/bbPress компоненты."
+
+#: includes/admin.php:533
+msgid "Moderate New Members"
+msgstr "Проверять всех новых пользователей"
+
+#: includes/admin.php:488
+msgid "Hi [username], we regret to inform you that your member account at %s has been denied..."
+msgstr "Приветствую, [username]. С сожалением сообщаю вам, что ваш аккаунт на сайте %s был отклонен..."
+
+#: includes/admin.php:479
+msgid "Hi [username], your member account at %s has been approved! You can now login and start interacting with the rest of the community..."
+msgstr "Приветствую, [username]. Ваш новый аккаунт на сайте %s был одобрен! Теперь вы можете авторизоваться на сайте и общаться со всеми ..."
+
+#: includes/admin.php:472
+msgid "Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice."
+msgstr "Ваша учетная запись ожидает проверки администратором сайта. Вы не сможете воспользоваться всеми возможностями этого сайта до тех пор, пока ваш аккаунт не будет проверен. После проверки и положительного/отрицательного решения вы получите уведомление по почте."
+
+#: includes/admin.php:448 includes/admin.php:498 includes/core.php:728
+msgid "Member Requests"
+msgstr "Запросы пользователей"
+
+#: includes/admin.php:447 includes/core.php:721
+msgid "General Settings"
+msgstr "Общие Настройки"
+
+#. Plugin Name of the plugin
+#: includes/admin.php:445 includes/admin.php:945 includes/core.php:712
+msgid "BP Registration Options"
+msgstr "Настройки регистрации BP"
+
+#: includes/admin.php:407 includes/admin.php:408
+msgid "Member Requests "
+msgstr "Запросы пользователей "
+
+#: includes/admin.php:395 includes/admin.php:396
+msgid "BP Registration"
+msgstr "Регистрация BP"
+
+#: includes/admin.php:362
+msgid "click here"
+msgstr "нажмите здесь"
+
+#: includes/admin.php:219
+msgid "Membership Approved"
+msgstr "Членство одобрено"
+
+#: includes/admin.php:214
+msgid "Membership Denied"
+msgstr "Членство отклонено"
+
+#: bp-registration-options.php:64
+msgid "This plugin requires WordPress version 3.0 or higher."
+msgstr "Плагину необходим WordPress версии 3.0 или выше"
