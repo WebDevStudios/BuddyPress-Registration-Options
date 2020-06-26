@@ -57,6 +57,7 @@ function bp_registration_options_compat_init() {
  * Checks if we should init our settings and code.
  *
  * @since 4.2.8
+ * @since 4.4.0 Added BuddyBoss checking.
  *
  * @param object|string $bp  BuddyPress instance, if available.
  * @param object|string $bbp bbPress instance, if available.
@@ -64,12 +65,15 @@ function bp_registration_options_compat_init() {
  * @return bool
  */
 function bp_registration_should_init( $bp = '', $bbp = '' ) {
-	if (
-	    ( is_object( $bp ) && version_compare( $bp->version, '1.7.0', '>=' ) ) ||
-	    ( is_object( $bbp ) && version_compare( $bbp->version, '2.0.0', '>=' ) )
-	   ) {
-		return true;
+
+	$should_init = ( is_object( $bp ) && version_compare( $bp->version, '1.7.0', '>=' ) ) ||
+	               ( is_object( $bbp ) && version_compare( $bbp->version, '2.0.0', '>=' ) );
+
+	if ( defined( 'BP_PLATFORM_VERSION' ) ) {
+		$should_init = version_compare( BP_PLATFORM_VERSION, '1.3.5', '>=' );
 	}
 
-	return false;
+	$should_init = (bool) apply_filters( 'bprwg_should_init', $should_init );
+
+	return $should_init;
 }
