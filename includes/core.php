@@ -24,7 +24,7 @@ function bp_registration_options_bp_after_activate_content() {
 		if ( $moderate ) {
 			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
 			$activate_message = str_replace( '[username]', $user_info->data->user_login, $activate_message );
-			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
+			echo '<div id="message" class="error bpro-error bpro-not-approved"><p>' . $activate_message . '</p></div>';
 		}
 	}
 }
