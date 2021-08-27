@@ -129,13 +129,15 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			// Set admin notification for new member.
 			$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
 			if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
-				foreach ( $admins as $admin ) {
-					bp_notifications_add_notification( array(
-						'user_id'          => $admin->ID,
-						'component_name'   => 'bp_registration_options',
-						'component_action' => 'bp_registration_options',
-						'allow_duplicate'  => true,
-					) );
+				if ( is_array( $admins ) && ! empty( $admins ) ) {
+					foreach ( $admins as $admin ) {
+						bp_notifications_add_notification( array(
+							'user_id'          => $admin->ID,
+							'component_name'   => 'bp_registration_options',
+							'component_action' => 'bp_registration_options',
+							'allow_duplicate'  => true,
+						) );
+					}
 				}
 			}
 		}
@@ -575,7 +577,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$admin_notifications = apply_filters( 'bprwg_bp_notification_users', get_users( 'role=administrator' ) );
 
 	// Check for filtered users to notify, append to $admin_email, and remove duplicates.
-	if ( ! empty( $admin_notifications ) ) {
+	if ( is_array( $admin_notifications ) && ! empty( $admin_notifications ) ) {
 		foreach ( $admin_notifications as $admin ) {
 			$admin_email[] = $admin->user_email;
 		}
