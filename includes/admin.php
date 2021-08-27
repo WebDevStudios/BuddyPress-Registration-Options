@@ -390,21 +390,33 @@ function bp_registration_options_plugin_menu() {
 	 */
 	$minimum_cap = apply_filters( 'bp_registration_filter_minimum_caps', $capability );
 
+	/* translators: %s: number of notifications */
+	$notifications = sprintf( _n( '%s notification', '%s notifications', $member_requests, 'wordpress-seo' ), number_format_i18n( $member_requests ) );
+
+	$counter = sprintf( '<span class="update-plugins count-%1$d"><span class="plugin-count" aria-hidden="true">%1$d</span><span class="screen-reader-text">%2$s</span></span>', $member_requests, $notifications );
+
 	add_menu_page(
 		__( 'BP Registration', 'bp-registration-options' ),
-		__( 'BP Registration', 'bp-registration-options' ),
+		__( 'BP Registration', 'bp-registration-options' ) . $counter,
 		$minimum_cap,
 		'bp_registration_options',
 		'bp_registration_options_settings',
 		'dashicons-groups'
 	);
 
-	$count = '<span class="update-plugins count-' . $member_requests . '"><span class="plugin-count">' . $member_requests . '</span></span>';
+	add_submenu_page(
+		'bp_registration_options',
+		__( 'BP Registration ', 'bp-registration-options' ),
+		__( 'BP Registration ', 'bp-registration-options' ),
+		$minimum_cap,
+		'bp_registration_options',
+		'bp_registration_options_settings'
+	);
 
 	add_submenu_page(
 		'bp_registration_options',
 		__( 'Member Requests ', 'bp-registration-options' ) . $member_requests,
-		__( 'Member Requests ', 'bp-registration-options' ) . $count,
+		__( 'Member Requests ', 'bp-registration-options' ) . $counter,
 		$minimum_cap,
 		'bp_registration_options_member_requests',
 		'bp_registration_options_member_requests'
