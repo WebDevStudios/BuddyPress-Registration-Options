@@ -78,6 +78,7 @@ function bp_registration_handle_reset_messages() {
 	delete_option( 'bprwg_denied_message' );
 	delete_option( 'bprwg_admin_pending_message' );
 	delete_option( 'bprwg_user_pending_message' );
+	delete_option( 'bprwg_admins_to_email' );
 
 	/**
 	 * Fires after we've deleted our four message options
@@ -127,6 +128,14 @@ function bp_registration_handle_general_settings( $args = [] ) {
 		update_option( 'bprwg_enable_notifications', $enable_notifications );
 	} else {
 		delete_option( 'bprwg_enable_notifications' );
+	}
+
+	// Handle saving our BuddyPress admins to email setting.
+	if ( ! empty( $args['admins_to_email'] ) ) {
+		$admins_to_email = sanitize_text_field( $args['admins_to_email'] );
+		update_option( 'bprwg_admins_to_email', $admins_to_email );
+	} else {
+		delete_option( 'bprwg_admins_to_email' );
 	}
 
 	$activate_message = wp_kses( $args['activate_message'], wp_kses_allowed_html( 'post' ) );
@@ -180,6 +189,7 @@ function bp_registration_options_form_actions() {
 				'denied_message'        => empty( $_POST['denied_message'] ) ? '' : $_POST['denied_message'],
 				'admin_pending_message' => empty( $_POST['admin_pending_message'] ) ? '' : $_POST['admin_pending_message'],
 				'user_pending_message'  => empty( $_POST['user_pending_message'] ) ? '' : $_POST['user_pending_message'],
+				'admins_to_email'       => empty( $_POST['admins_to_email'] ) ? '' : $_POST['admins_to_email'],
 			]
 		);
 	}
@@ -478,6 +488,7 @@ function bp_registration_options_settings() {
 	$denied_message        = get_option( 'bprwg_denied_message' );
 	$admin_pending_message = get_option( 'bprwg_admin_pending_message' );
 	$user_pending_message  = get_option( 'bprwg_user_pending_message' );
+	$admins_to_email       = get_option( 'bprwg_admins_to_email' );
 
 	if ( ! $activate_message ) {
 		$activate_message = __( 'Your membership account is awaiting approval by the site administrator. You will not be able to fully interact with the social aspects of this website until your account is approved. Once approved or denied you will receive an email notice.', 'bp-registration-options' );
@@ -569,56 +580,65 @@ function bp_registration_options_settings() {
 			</p>
 			<?php } ?>
 
-			<table>
+			<table class="form-table" role="presentation">
 				<tr>
-					<td class="alignright">
-						<label for="activate_message"><?php esc_html_e( 'Activate & Profile Alert Message:', 'bp-registration-options' ); ?></label>
-					</td>
+					<th scope="row" class="">
+						<label for="activate_message"><?php esc_html_e( 'Activate & Profile Alert Message', 'bp-registration-options' ); ?></label>
+					</th>
 					<td>
-						<textarea id="activate_message" name="activate_message"><?php echo stripslashes( $activate_message ); ?></textarea>
+						<textarea rows="5" class="large-text" id="activate_message" name="activate_message"><?php echo stripslashes( $activate_message ); ?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td class="alignright">
-						<label for="approved_message"><?php esc_html_e( 'Account Approved Email:', 'bp-registration-options' ); ?></label>
-					</td>
+					<th scope="row" class="">
+						<label for="approved_message"><?php esc_html_e( 'Account Approved Email', 'bp-registration-options' ); ?></label>
+					</th>
 					<td>
-						<textarea id="approved_message" name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
+						<textarea rows="5" class="large-text" id="approved_message" name="approved_message"><?php echo stripslashes( $approved_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td class="alignright">
-						<label for="denied_message"><?php esc_html_e( 'Account Denied Email:', 'bp-registration-options' ); ?></label>
-					</td>
+					<th scope="row" class="">
+						<label for="denied_message"><?php esc_html_e( 'Account Denied Email', 'bp-registration-options' ); ?></label>
+					</th>
 					<td>
-						<textarea id="denied_message" name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
+						<textarea rows="5" class="large-text" id="denied_message" name="denied_message"><?php echo stripslashes( $denied_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td class="alignright">
-						<label for="admin_pending_message"><?php esc_html_e( 'Admin Pending Email Message:', 'bp-registration-options' ); ?></label>
-					</td>
+					<th scope="row" class="">
+						<label for="admin_pending_message"><?php esc_html_e( 'Admin Pending Email Message', 'bp-registration-options' ); ?></label>
+					</th>
 					<td>
-						<textarea id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
+						<textarea rows="5" class="large-text" id="admin_pending_message" name="admin_pending_message"><?php echo stripslashes( $admin_pending_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td class="alignright">
-						<label for="user_pending_message"><?php esc_html_e( 'User Pending Email Message:', 'bp-registration-options' ); ?></label>
-					</td>
+					<th scope="row" class="">
+						<label for="user_pending_message"><?php esc_html_e( 'User Pending Email Message', 'bp-registration-options' ); ?></label>
+					</th>
 					<td>
-						<textarea id="user_pending_message" name="user_pending_message"><?php echo stripslashes( $user_pending_message );?></textarea>
+						<textarea rows="5" class="large-text" id="user_pending_message" name="user_pending_message"><?php echo stripslashes( $user_pending_message );?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td></td>
-					<td class="alignright">
-						<table width="100%">
+					<th scope="row" class="">
+						<label for="admins_to_email"><?php esc_html_e( 'WP admin user email(s) to receive notifications', 'bp-registration-options' ); ?></label>
+					</th>
+					<td>
+						<input type="text" class="regular-text" id="admins_to_email" name="admins_to_email" value="<?php echo esc_attr( $admins_to_email ); ?>" aria-describedby="tagline-admins_to_email" />
+						<p class="description" id="tagline-admins_to_email"><?php esc_html_e( 'If you only want specific administrators to be notified. Please separate email adddresses with a comma.', 'bp-registration-options' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td class="">
+						<table>
 							<tr>
 								<td>
 									<?php esc_html_e( 'Short Code Key: [username], [user_email]', 'bp-registration-options' ); ?>
 								</td>
-								<td class="alignright">
+								<td>
 									<input type="submit" id="reset_messages" name="reset_messages" class="button button-secondary" value="<?php esc_attr_e( 'Reset Messages', 'bp-registration-options' ); ?>" />
 								</td>
 							</tr>
@@ -628,15 +648,15 @@ function bp_registration_options_settings() {
 			</table>
 
 			<?php
-
 			/**
 			 * Fires after the general settings form output, inside the form tag.
 			 *
 			 * @since 4.2.0
 			 */
-			do_action( 'bpro_hook_after_general_settings_form' ); ?>
+			do_action( 'bpro_hook_after_general_settings_form' );
+			?>
 
-			<button class="button button-primary" name="save_general" value="save_general"><?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?></button>
+			<p class="submit"><button class="button button-primary" name="save_general" value="save_general"><?php esc_attr_e( 'Save Options', 'bp-registration-options' ); ?></button></p>
 		</form>
 	</div>
 
@@ -1011,7 +1031,7 @@ add_action( 'admin_enqueue_scripts', 'bp_registration_options_stylesheet' );
  */
 function bp_registration_options_js() {
 	?>
-	<script language="javascript">
+	<script>
 		(function($) {
 			//Handle our checkboxes
 			var checkboxes = $('.bpro_checkbox');
