@@ -852,3 +852,33 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 	);
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
+
+function bpro_admin_notice_override( $default_admins ) {
+
+	$new_admins_string = get_option( 'bprwg_admins_to_email', '' );
+
+	if ( empty( $new_admins_string ) ) {
+		return $default_admins;
+	}
+
+	$new_admins = [];
+	$new_admins_parts = explode( ',', $new_admins_string );
+
+	foreach ( $new_admins_parts as $user_email ) {
+		$user = get_user_by( 'email', $user_email );
+		if ( false !== $user ) {
+			$new_admins[] = $user;
+		}
+	}
+
+	if ( ! empty( $new_admins ) ) {
+		// Returning empty array because very plausible that users will expect the saved
+		// option to be the ONLY emails used, and we have `bprwg_bp_notification_users`
+		// set up to merge with the admin_email value.
+		add_filter( 'bprwg_admin_email_addresses', '__return_empty_array' );
+		return $new_admins;
+	}
+
+	return $default_admins;
+}
+add_filter( 'bprwg_bp_notification_users', 'bpro_admin_notice_override' );
