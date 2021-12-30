@@ -886,3 +886,17 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 	);
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
+
+function bp_registration_prevent_messaging_unapproved_members( $recipients, $orig_post = '' ) {
+	foreach( $recipients as $key => $recipient ) {
+		$user = get_user_by( 'login', $recipient );
+		if ( $user instanceof WP_User ) {
+			if ( bp_registration_get_moderation_status( $user->ID ) ) {
+				unset( $recipients[ $key ] );
+			}
+		}
+	}
+
+	return $recipients;
+}
+add_filter( 'bp_messages_recipients', 'bp_registration_prevent_messaging_unapproved_members', 10, 2 );
