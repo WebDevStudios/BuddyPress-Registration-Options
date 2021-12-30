@@ -142,3 +142,31 @@ class BP_Registration_Compatibility {
 		return $caps;
 	}
 }
+
+function bp_registration_remove_bp_better_messages() {
+	$moderate = (bool) get_option( 'bprwg_moderate' );
+	if ( empty( $moderate ) || ! $moderate ) {
+		return;
+	}
+	$current_user = get_current_user_id();
+
+	if ( ! bp_registration_get_moderation_status( $current_user ) ) {
+		return;
+	}
+
+	remove_action( 'bp_template_content', array( BP_Better_Messages_Tab(), 'content' ), 20 );
+	remove_filter( 'the_content', array( BP_Better_Messages_Hooks(), 'chat_page' ), 12 );
+
+	// Grab all the available shortcodes and "null" them out for moderated users only.
+	global $shortcode_tags;
+	$bp_better_messages = array_filter( $shortcode_tags, function ( $shortcode_value, $shortcode_key ) {
+		return 0 === strpos( $shortcode_key, 'bp_better' );
+	}, ARRAY_FILTER_USE_BOTH );
+
+	foreach( $bp_better_messages as $tag => $shortcode ) {
+		// Unregister and then re-register with a different callback.
+		remove_shortcode( $tag );
+		add_shortcode( $tag, '__return_empty_string' );
+	}
+}
+add_action( 'wp_head', 'bp_registration_remove_bp_better_messages' );
