@@ -195,12 +195,12 @@ add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members
  */
 function bp_registration_hide_ui() {
 
-	$user = get_current_user_id();
 	$moderate = (bool) get_option( 'bprwg_moderate' );
-
 	if ( empty( $moderate ) || ! $moderate ) {
 		return;
 	}
+
+	$user  = get_current_user_id();
 	$count = bp_registration_get_pending_user_count();
 	if ( absint( $count ) ) {
 		add_filter( 'bp_before_has_members_parse_args', 'bp_registration_hide_widget_members' );
