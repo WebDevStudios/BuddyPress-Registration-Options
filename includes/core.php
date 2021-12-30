@@ -247,6 +247,30 @@ function bp_registration_hide_ui() {
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
+function bp_registration_hide_ui_for_approved_users() {
+
+	$moderate = (bool) get_option( 'bprwg_moderate' );
+
+	if ( empty( $moderate ) || ! $moderate ) {
+		return;
+	}
+
+	$current_user   = get_current_user_id();
+	$displayed_user = bp_displayed_user_id();
+
+
+	if ( ! bp_registration_get_moderation_status( $displayed_user ) ) {
+		return;
+	}
+
+	// Hide friend buttons.
+	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
+	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
+	add_filter( 'bp_get_send_message_button', '__return_false' );
+	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
+}
+add_action( 'bp_ready', 'bp_registration_hide_ui_for_approved_users' );
+
 if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	// Test for BP Component object.
 	if ( ! empty( $_POST['object'] ) ) {
@@ -254,10 +278,12 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
 		if ( function_exists( 'bp_is_active' ) && bp_is_active( $object ) ) {
 			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
+			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui_for_approved_users', 1 );
 		}
 	} else {
 		// Some AJAX requests still come through the 'init' action.
 		bp_registration_hide_ui();
+		bp_registration_hide_ui_for_approved_users();
 	}
 }
 
