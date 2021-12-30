@@ -498,7 +498,7 @@ function bp_registration_buddypress_allowed_areas() {
 	if ( function_exists( 'bp_is_my_profile' ) ) {
 		global $bp;
 
-		if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
+		if ( bp_is_my_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
 			$allowed = true;
 		}
 	}
