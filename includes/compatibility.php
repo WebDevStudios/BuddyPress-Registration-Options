@@ -144,6 +144,10 @@ class BP_Registration_Compatibility {
 }
 
 function bp_registration_remove_bp_better_messages() {
+	if ( ! class_exists( 'BP_Better_Messages' ) ) {
+		return;
+	}
+
 	$moderate = (bool) get_option( 'bprwg_moderate' );
 	if ( empty( $moderate ) || ! $moderate ) {
 		return;
