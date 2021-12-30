@@ -66,7 +66,7 @@ function bp_registration_options_compat_init() {
  */
 function bp_registration_should_init( $bp = '', $bbp = '' ) {
 
-	$should_init = ( is_object( $bp ) && version_compare( $bp->version, '1.7.0', '>=' ) ) ||
+	$should_init = ( is_object( $bp ) && version_compare( $bp->version, '2.5.0', '>=' ) ) ||
 	               ( is_object( $bbp ) && version_compare( $bbp->version, '2.0.0', '>=' ) );
 
 	if ( defined( 'BP_PLATFORM_VERSION' ) ) {
