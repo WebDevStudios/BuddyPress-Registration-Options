@@ -38,6 +38,17 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.4.0 - TBD =
+* Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
+* Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
+* Added: action hook at end of `bp_registration_options_form_actions`
+* Added: Notification bubble to top level admin menu item.
+* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen
+* Fixed: Remov friend action buttons on profiles of non-approved members, when an approved member is viewing. Approved members should not be able to prematurely interact yet.
+* Fixed: Prevent access to approved members if non-approved user directly accesses profile URL.
+* Fixed: Prevent ability to message pending members if username is typed in directly in recipient field.
+* Fixed: touched up potential PHP errors around non-existent functions.
+
 = 4.3.10 - 2021-08-16 =
 * Fixed: error with usermeta table in multisite.
 
@@ -94,6 +105,17 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.4.0 - TBD =
+* Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
+* Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
+* Added: action hook at end of `bp_registration_options_form_actions`
+* Added: Notification bubble to top level admin menu item.
+* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen
+* Fixed: Remov friend action buttons on profiles of non-approved members, when an approved member is viewing. Approved members should not be able to prematurely interact yet.
+* Fixed: Prevent access to approved members if non-approved user directly accesses profile URL.
+* Fixed: Prevent ability to message pending members if username is typed in directly in recipient field.
+* Fixed: touched up potential PHP errors around non-existent functions.
 
 = 4.3.10 - 2021-08-16 =
 * Fixed: error with usermeta table in multisite.
