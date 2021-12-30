@@ -294,6 +294,7 @@ function bp_registration_options_form_actions() {
 				$message = str_replace( '[username]', $user->data->user_login, $message );
 				$message = str_replace( '[user_email]', $user->data->user_email, $message );
 
+				$message = bp_registration_process_email_message( $message, false, $action . '_user', $user_id );
 				$mailme = array(
 					'user_email'   => $user->data->user_email,
 					'user_subject' => $subject,

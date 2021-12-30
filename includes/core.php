@@ -119,6 +119,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
+				'user_id'    => $user_id,
 				'message'    => $message,
 			)
 		);
@@ -586,6 +587,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'user_login' => '',
 		'user_email' => '',
+		'user_id'    => '',
 		'message'    => '',
 	) );
 
@@ -617,7 +619,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	 * @param string $value User login name.
 	 * @param string $value User email address.
 	 */
-	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', wpautop( $args['message'] ), $args['user_login'], $args['user_email'] );
+	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', bp_registration_process_email_message( $args['message'], true, 'admin_notification', $args['user_id'] ), $args['user_login'], $args['user_email'] );
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
@@ -638,6 +640,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'user_login' => '',
 		'user_email' => '',
+		'user_id'    => '',
 		'message'    => '',
 	) );
 
@@ -652,7 +655,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
-	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), wpautop( $args['message'] ) );
+	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), bp_registration_process_email_message( $args['message'], true, 'user_pending', $args['user_id']  ) );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }
@@ -877,6 +880,7 @@ function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 		array(
 			'user_login' => $user_info->data->user_login,
 			'user_email' => $user_info->data->user_email,
+			'user_id'    => $user_id,
 			'message'    => $filtered_message,
 		)
 	);
