@@ -1199,3 +1199,4 @@ function bp_registration_options_make_pending_status_sortable( $sortable_columns
 	return $sortable_columns;
 }
 add_filter( 'manage_users_sortable_columns', 'bp_registration_options_make_pending_status_sortable' );
+
