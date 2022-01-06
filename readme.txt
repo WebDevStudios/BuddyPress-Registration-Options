@@ -43,7 +43,8 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
 * Added: action hook at end of `bp_registration_options_form_actions`
 * Added: Notification bubble to top level admin menu item.
-* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen
+* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen.
+* Added: Prevent notifying users of pending status if moderation is not enabled. Props KirkJohnson
 * Fixed: Remov friend action buttons on profiles of non-approved members, when an approved member is viewing. Approved members should not be able to prematurely interact yet.
 * Fixed: Prevent access to approved members if non-approved user directly accesses profile URL.
 * Fixed: Prevent ability to message pending members if username is typed in directly in recipient field.
@@ -111,7 +112,8 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
 * Added: action hook at end of `bp_registration_options_form_actions`
 * Added: Notification bubble to top level admin menu item.
-* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen
+* Added: "Pending Approval" sortable column to `/wp-admin/users.php` screen.
+* Added: Prevent notifying users of pending status if moderation is not enabled. Props KirkJohnson
 * Fixed: Remov friend action buttons on profiles of non-approved members, when an approved member is viewing. Approved members should not be able to prematurely interact yet.
 * Fixed: Prevent access to approved members if non-approved user directly accesses profile URL.
 * Fixed: Prevent ability to message pending members if username is typed in directly in recipient field.
