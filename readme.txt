@@ -38,7 +38,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
-= 4.4.0 - TBD =
+= 4.4.0 - 2022-01-05 =
 * Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
 * Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
 * Added: action hook at end of `bp_registration_options_form_actions`
@@ -108,7 +108,7 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Upgrade Notice ==
 
-= 4.4.0 - TBD =
+= 4.4.0 - 2022-01-05 =
 * Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
 * Added: baseline support for BuddyBoss in regards to admin menus being added for administrators.
 * Added: action hook at end of `bp_registration_options_form_actions`
