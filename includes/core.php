@@ -861,29 +861,33 @@ add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications'
  */
 function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 
-	$user_info = get_userdata( $user_id );
-	$pending_message = get_option( 'bprwg_user_pending_message' );
-	$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
-	$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
+	$moderate = get_option( 'bprwg_moderate' );
 
-	/**
-	 * Filters the message to be sent to user upon activation.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param string  $filtered_message Message to be sent with placeholders changed.
-	 * @param string  $pending_message  Original message before placeholders filtered.
-	 * @param WP_User $user_info        WP_User object for the newly activated user.
-	 */
-	$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
-	bp_registration_options_send_pending_user_email(
-		array(
-			'user_login' => $user_info->data->user_login,
-			'user_email' => $user_info->data->user_email,
-			'user_id'    => $user_id,
-			'message'    => $filtered_message,
-		)
-	);
+	if ( $moderate ) {
+		$user_info        = get_userdata( $user_id );
+		$pending_message  = get_option( 'bprwg_user_pending_message' );
+		$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
+		$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
+
+		/**
+		 * Filters the message to be sent to user upon activation.
+		 *
+		 * @param string  $filtered_message Message to be sent with placeholders changed.
+		 * @param string  $pending_message  Original message before placeholders filtered.
+		 * @param WP_User $user_info        WP_User object for the newly activated user.
+		 *
+		 * @since 4.3.0
+		 */
+		$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
+		bp_registration_options_send_pending_user_email(
+			array(
+				'user_login' => $user_info->data->user_login,
+				'user_email' => $user_info->data->user_email,
+				'user_id'    => $user_id,
+				'message'    => $filtered_message,
+			)
+		);
+	}
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
 
