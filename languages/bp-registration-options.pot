@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: BP Registration Options\n"
-"POT-Creation-Date: 2020-03-13 12:09-0500\n"
+"POT-Creation-Date: 2022-01-05 20:10-0600\n"
 "PO-Revision-Date: 2019-02-25 21:05-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: loader.php\n"
@@ -21,10 +21,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: bp-registration-options.php:64
-msgid "This plugin requires WordPress version 3.0 or higher."
-msgstr ""
-
 #: includes/admin.php:214
 msgid "Membership Denied"
 msgstr ""
@@ -33,7 +29,7 @@ msgstr ""
 msgid "Membership Approved"
 msgstr ""
 
-#: includes/admin.php:349
+#: includes/admin.php:350
 #, php-format
 msgid "You have %d new member request that needs to be approved or denied."
 msgid_plural ""
@@ -42,37 +38,49 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: placeholder will have linked "click here" that goes to requests page.
-#: includes/admin.php:358
+#: includes/admin.php:359
 #, php-format
 msgid "Please %s to take action"
 msgstr ""
 
-#: includes/admin.php:362
+#: includes/admin.php:363
 msgid "click here"
 msgstr ""
 
-#: includes/admin.php:395 includes/admin.php:396
+#. translators: %s: number of notifications
+#: includes/admin.php:396
+#, php-format
+msgid "%s notification"
+msgid_plural "%s notifications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin.php:401 includes/admin.php:402
 msgid "BP Registration"
 msgstr ""
 
-#: includes/admin.php:407 includes/admin.php:408
+#: includes/admin.php:411 includes/admin.php:412
+msgid "BP Registration "
+msgstr ""
+
+#: includes/admin.php:420 includes/admin.php:421
 msgid "Member Requests "
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: includes/admin.php:445 includes/admin.php:945 includes/core.php:712
+#: includes/admin.php:458 includes/admin.php:958 includes/core.php:741
 msgid "BP Registration Options"
 msgstr ""
 
-#: includes/admin.php:447 includes/core.php:721
+#: includes/admin.php:460 includes/core.php:750
 msgid "General Settings"
 msgstr ""
 
-#: includes/admin.php:448 includes/admin.php:498 includes/core.php:728
+#: includes/admin.php:461 includes/admin.php:511 includes/core.php:757
 msgid "Member Requests"
 msgstr ""
 
-#: includes/admin.php:472
+#: includes/admin.php:485
 msgid ""
 "Your membership account is awaiting approval by the site administrator. You "
 "will not be able to fully interact with the social aspects of this website "
@@ -80,185 +88,197 @@ msgid ""
 "email notice."
 msgstr ""
 
-#: includes/admin.php:479
+#: includes/admin.php:492
 #, php-format
 msgid ""
 "Hi [username], your member account at %s has been approved! You can now "
 "login and start interacting with the rest of the community..."
 msgstr ""
 
-#: includes/admin.php:488
+#: includes/admin.php:501
 #, php-format
 msgid ""
 "Hi [username], we regret to inform you that your member account at %s has "
 "been denied..."
 msgstr ""
 
-#: includes/admin.php:497
+#: includes/admin.php:510
 #, php-format
 msgid ""
 "[username] ( [user_email] ) would like to become a member of your website. "
 "To accept or reject their request, please go to %s"
 msgstr ""
 
-#: includes/admin.php:506
+#: includes/admin.php:519
 #, php-format
 msgid "Hi [username], your account at %s is currently pending approval."
 msgstr ""
 
-#: includes/admin.php:533
+#: includes/admin.php:546
 msgid "Moderate New Members"
 msgstr ""
 
-#: includes/admin.php:534
+#: includes/admin.php:547
 msgid ""
 "Every new member will have to be approved by an administrator before they "
 "can interact with BuddyPress/bbPress components."
 msgstr ""
 
-#: includes/admin.php:541
+#: includes/admin.php:554
 msgid ""
 "Only registered or approved members can view BuddyPress/bbPress pages "
 "(Private Network)."
 msgstr ""
 
-#: includes/admin.php:548
+#: includes/admin.php:561
 msgid ""
 "Add new user notification to admin user account BuddyPress notification "
 "inbox."
 msgstr ""
 
-#: includes/admin.php:556
+#: includes/admin.php:569
 msgid ""
 "GDPR compliance: Check this to remove IP addresses previously saved IP user "
 "meta on approved users."
 msgstr ""
 
-#: includes/admin.php:564
+#: includes/admin.php:577
 msgid "Activate & Profile Alert Message:"
 msgstr ""
 
-#: includes/admin.php:572
+#: includes/admin.php:585
 msgid "Account Approved Email:"
 msgstr ""
 
-#: includes/admin.php:580
+#: includes/admin.php:593
 msgid "Account Denied Email:"
 msgstr ""
 
-#: includes/admin.php:588
+#: includes/admin.php:601
 msgid "Admin Pending Email Message:"
 msgstr ""
 
-#: includes/admin.php:596
+#: includes/admin.php:609
 msgid "User Pending Email Message:"
 msgstr ""
 
-#: includes/admin.php:608
+#: includes/admin.php:621
 msgid "Short Code Key: [username], [user_email]"
 msgstr ""
 
-#: includes/admin.php:611
+#: includes/admin.php:624
 msgid "Reset Messages"
 msgstr ""
 
-#: includes/admin.php:628
+#: includes/admin.php:641
 msgid "Save Options"
 msgstr ""
 
-#: includes/admin.php:663
+#: includes/admin.php:676
 msgid "Please approve or deny the following new members:"
 msgstr ""
 
-#: includes/admin.php:671 includes/admin.php:765
+#: includes/admin.php:684 includes/admin.php:778
 msgid "Photo"
 msgstr ""
 
-#: includes/admin.php:672 includes/admin.php:766
+#: includes/admin.php:685 includes/admin.php:779
 msgid "Name"
 msgstr ""
 
-#: includes/admin.php:673 includes/admin.php:767
+#: includes/admin.php:686 includes/admin.php:780
 msgid "Email"
 msgstr ""
 
-#: includes/admin.php:674 includes/admin.php:768
+#: includes/admin.php:687 includes/admin.php:781
 msgid "Created"
 msgstr ""
 
-#: includes/admin.php:675 includes/admin.php:769
+#: includes/admin.php:688 includes/admin.php:782
 msgid "Additional Data"
 msgstr ""
 
-#: includes/admin.php:775
+#: includes/admin.php:788
 msgid "Approve"
 msgstr ""
 
-#: includes/admin.php:776
+#: includes/admin.php:789
 msgid "Deny"
 msgstr ""
 
-#: includes/admin.php:782
+#: includes/admin.php:795
 msgid "Pagination: "
 msgstr ""
 
-#: includes/admin.php:806
+#: includes/admin.php:819
 msgid "No new members to approve."
 msgstr ""
 
-#: includes/admin.php:831
+#: includes/admin.php:844
 msgid "The following IP addresses are currently banned."
 msgstr ""
 
-#: includes/admin.php:838 includes/admin.php:864
+#: includes/admin.php:851 includes/admin.php:877
 msgid "IP Address"
 msgstr ""
 
-#: includes/admin.php:869
+#: includes/admin.php:882
 msgid "The following Email addresses are currently banned."
 msgstr ""
 
-#: includes/admin.php:877 includes/admin.php:904
+#: includes/admin.php:890 includes/admin.php:917
 msgid "Email Address"
 msgstr ""
 
-#: includes/admin.php:909
+#: includes/admin.php:922
 msgid "You have no blocked IP Addresses or Email Addresses at the moment"
 msgstr ""
 
-#: includes/admin.php:942
+#: includes/admin.php:955
 #, php-format
 msgid "%s version %s by %s"
 msgstr ""
 
-#: includes/admin.php:953
+#: includes/admin.php:966
 msgid "Please Report Bugs"
 msgstr ""
 
-#: includes/admin.php:956
+#: includes/admin.php:969
 msgid "Follow on Twitter:"
 msgstr ""
 
-#: includes/admin.php:1022
+#: includes/admin.php:1035
 msgid "Are you sure you want to deny and delete the checked member(s)?"
 msgstr ""
 
-#: includes/admin.php:1025
+#: includes/admin.php:1038
 msgid "Are you sure you want to ban and delete the checked member(s)?"
 msgstr ""
 
-#: includes/admin.php:1028
+#: includes/admin.php:1041
 msgid "Are you sure you want to reset to the default messages?"
 msgstr ""
 
-#: includes/admin.php:1084
+#: includes/admin.php:1097
 #, php-format
 msgid "City: %s"
 msgstr ""
 
-#: includes/admin.php:1089
+#: includes/admin.php:1102
 #, php-format
 msgid "IP: %s"
+msgstr ""
+
+#: includes/admin.php:1140
+msgid "Pending approval"
+msgstr ""
+
+#: includes/admin.php:1161
+msgid "Yes"
+msgstr ""
+
+#: includes/admin.php:1162
+msgid "No"
 msgstr ""
 
 #: includes/compatibility.php:54
@@ -268,15 +288,15 @@ msgid ""
 "their request, please go to <a href=\"%s\">%s</a>."
 msgstr ""
 
-#: includes/core.php:598
+#: includes/core.php:626
 msgid "New Member Request"
 msgstr ""
 
-#: includes/core.php:629
+#: includes/core.php:658
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:804
+#: includes/core.php:833
 msgid "You have pending users to moderate."
 msgstr ""
 
