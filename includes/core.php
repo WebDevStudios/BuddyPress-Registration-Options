@@ -119,6 +119,7 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			array(
 				'user_login' => $user->data->user_login,
 				'user_email' => $user->data->user_email,
+				'user_id'    => $user_id,
 				'message'    => $message,
 			)
 		);
@@ -195,12 +196,12 @@ add_action( 'bp_pre_user_query_construct', 'bp_registration_hide_pending_members
  */
 function bp_registration_hide_ui() {
 
-	$user = get_current_user_id();
 	$moderate = (bool) get_option( 'bprwg_moderate' );
-
 	if ( empty( $moderate ) || ! $moderate ) {
 		return;
 	}
+
+	$user  = get_current_user_id();
 	$count = bp_registration_get_pending_user_count();
 	if ( absint( $count ) ) {
 		add_filter( 'bp_before_has_members_parse_args', 'bp_registration_hide_widget_members' );
@@ -245,6 +246,30 @@ function bp_registration_hide_ui() {
 }
 add_action( 'bp_ready', 'bp_registration_hide_ui' );
 
+function bp_registration_hide_ui_for_approved_users() {
+
+	$moderate = (bool) get_option( 'bprwg_moderate' );
+
+	if ( empty( $moderate ) || ! $moderate ) {
+		return;
+	}
+
+	$current_user   = get_current_user_id();
+	$displayed_user = bp_displayed_user_id();
+
+
+	if ( ! bp_registration_get_moderation_status( $displayed_user ) ) {
+		return;
+	}
+
+	// Hide friend buttons.
+	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
+	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
+	add_filter( 'bp_get_send_message_button', '__return_false' );
+	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
+}
+add_action( 'bp_ready', 'bp_registration_hide_ui_for_approved_users' );
+
 if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	// Test for BP Component object.
 	if ( ! empty( $_POST['object'] ) ) {
@@ -252,10 +277,12 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
 		if ( function_exists( 'bp_is_active' ) && bp_is_active( $object ) ) {
 			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui', 1 );
+			add_filter( 'wp_ajax_' . $object . '_filter', 'bp_registration_hide_ui_for_approved_users', 1 );
 		}
 	} else {
 		// Some AJAX requests still come through the 'init' action.
 		bp_registration_hide_ui();
+		bp_registration_hide_ui_for_approved_users();
 	}
 }
 
@@ -496,7 +523,7 @@ function bp_registration_buddypress_allowed_areas() {
 	if ( function_exists( 'bp_is_my_profile' ) ) {
 		global $bp;
 
-		if ( bp_is_my_profile() || bp_is_user_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
+		if ( bp_is_my_profile() || bp_is_user_profile_edit() || 'register' === $bp->current_component || 'activate' === $bp->current_component ) {
 			$allowed = true;
 		}
 	}
@@ -560,6 +587,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'user_login' => '',
 		'user_email' => '',
+		'user_id'    => '',
 		'message'    => '',
 	) );
 
@@ -591,7 +619,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	 * @param string $value User login name.
 	 * @param string $value User email address.
 	 */
-	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', wpautop( $args['message'] ), $args['user_login'], $args['user_email'] );
+	$mod_email = apply_filters( 'bprwg_new_member_request_admin_email_message', bp_registration_process_email_message( $args['message'], true, 'admin_notification', $args['user_id'] ), $args['user_login'], $args['user_email'] );
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
@@ -612,6 +640,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'user_login' => '',
 		'user_email' => '',
+		'user_id'    => '',
 		'message'    => '',
 	) );
 
@@ -626,7 +655,7 @@ function bp_registration_options_send_pending_user_email( $args = array() ) {
 
 	add_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 
-	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), wpautop( $args['message'] ) );
+	wp_mail( $args['user_email'], __( 'Pending Membership', 'bp-registration-options' ), bp_registration_process_email_message( $args['message'], true, 'user_pending', $args['user_id']  ) );
 
 	remove_filter( 'wp_mail_content_type', 'bp_registration_options_set_content_type' );
 }
@@ -832,27 +861,46 @@ add_filter( 'bp_notifications_get_notifications_for_user', 'bprwg_notifications'
  */
 function bp_registration_options_notify_pending_user( $user_id, $key, $user ) {
 
-	$user_info = get_userdata( $user_id );
-	$pending_message = get_option( 'bprwg_user_pending_message' );
-	$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
-	$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
+	$moderate = get_option( 'bprwg_moderate' );
 
-	/**
-	 * Filters the message to be sent to user upon activation.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param string  $filtered_message Message to be sent with placeholders changed.
-	 * @param string  $pending_message  Original message before placeholders filtered.
-	 * @param WP_User $user_info        WP_User object for the newly activated user.
-	 */
-	$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
-	bp_registration_options_send_pending_user_email(
-		array(
-			'user_login' => $user_info->data->user_login,
-			'user_email' => $user_info->data->user_email,
-			'message'    => $filtered_message,
-		)
-	);
+	if ( $moderate ) {
+		$user_info        = get_userdata( $user_id );
+		$pending_message  = get_option( 'bprwg_user_pending_message' );
+		$filtered_message = str_replace( '[username]', $user_info->data->user_login, $pending_message );
+		$filtered_message = str_replace( '[user_email]', $user_info->data->user_email, $filtered_message );
+
+		/**
+		 * Filters the message to be sent to user upon activation.
+		 *
+		 * @param string  $filtered_message Message to be sent with placeholders changed.
+		 * @param string  $pending_message  Original message before placeholders filtered.
+		 * @param WP_User $user_info        WP_User object for the newly activated user.
+		 *
+		 * @since 4.3.0
+		 */
+		$filtered_message = apply_filters( 'bprwg_pending_user_activation_email_message', $filtered_message, $pending_message, $user_info );
+		bp_registration_options_send_pending_user_email(
+			array(
+				'user_login' => $user_info->data->user_login,
+				'user_email' => $user_info->data->user_email,
+				'user_id'    => $user_id,
+				'message'    => $filtered_message,
+			)
+		);
+	}
 }
 add_action( 'bp_core_activated_user', 'bp_registration_options_notify_pending_user', 10, 3 );
+
+function bp_registration_prevent_messaging_unapproved_members( $recipients, $orig_post = '' ) {
+	foreach( $recipients as $key => $recipient ) {
+		$user = get_user_by( 'login', $recipient );
+		if ( $user instanceof WP_User ) {
+			if ( bp_registration_get_moderation_status( $user->ID ) ) {
+				unset( $recipients[ $key ] );
+			}
+		}
+	}
+
+	return $recipients;
+}
+add_filter( 'bp_messages_recipients', 'bp_registration_prevent_messaging_unapproved_members', 10, 2 );

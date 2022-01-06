@@ -92,3 +92,11 @@ function bp_registration_delete_ip_addresses() {
 		}
 	}
 }
+
+function bp_registration_process_email_message( $message, $do_process, $message_type = '', $moderated_user_id = 0 ) {
+	if ( false === apply_filters( 'bprwg_do_wpautop', $do_process, $message_type, $moderated_user_id ) ) {
+		return $message;
+	}
+
+	return wpautop( $message );
+}
