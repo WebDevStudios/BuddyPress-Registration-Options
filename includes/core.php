@@ -254,6 +254,10 @@ function bp_registration_hide_ui_for_approved_users() {
 		return;
 	}
 
+	if ( ! function_exists( 'bp_displayed_user_id' ) ) {
+		return;
+	}
+
 	$current_user   = get_current_user_id();
 	$displayed_user = bp_displayed_user_id();
 
