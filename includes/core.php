@@ -825,7 +825,7 @@ function bp_registration_options_get_registered_components( $component_names = a
 add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
 
 
-function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string', $component_action_name, $component_name ) {
+function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string', $component_action_name = '', $component_name = '' ) {
 
 	if ( 'bp_registration_options' === $component_action_name ) {
 
