@@ -24,7 +24,7 @@ function bp_registration_options_bp_after_activate_content() {
 		if ( $moderate ) {
 			$activate_message = stripslashes( get_option( 'bprwg_activate_message' ) );
 			$activate_message = str_replace( '[username]', $user_info->data->user_login, $activate_message );
-			echo '<div id="message" class="error"><p>' . $activate_message . '</p></div>';
+			echo '<div id="message" class="error bpro-error bpro-not-approved"><p>' . $activate_message . '</p></div>';
 		}
 	}
 }
@@ -130,13 +130,15 @@ function bp_registration_options_bp_core_register_account( $user_id ) {
 			// Set admin notification for new member.
 			$enable_notifications = (bool) get_option( 'bprwg_enable_notifications' );
 			if ( bp_is_active( 'notifications' ) && $enable_notifications ) {
-				foreach ( $admins as $admin ) {
-					bp_notifications_add_notification( array(
-						'user_id'          => $admin->ID,
-						'component_name'   => 'bp_registration_options',
-						'component_action' => 'bp_registration_options',
-						'allow_duplicate'  => true,
-					) );
+				if ( is_array( $admins ) && ! empty( $admins ) ) {
+					foreach ( $admins as $admin ) {
+						bp_notifications_add_notification( array(
+							'user_id'          => $admin->ID,
+							'component_name'   => 'bp_registration_options',
+							'component_action' => 'bp_registration_options',
+							'allow_duplicate'  => true,
+						) );
+					}
 				}
 			}
 		}
@@ -163,7 +165,7 @@ function bp_registration_hide_pending_members( $args ) {
 
 	$ids = array();
 
-	$sql = "SELECT user_id FROM `{$wpdb->usermeta}` WHERE meta_key = '_bprwg_is_moderated' AND meta_value = %s";
+	$sql = "SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '_bprwg_is_moderated' AND meta_value = %s";
 	$rs = $wpdb->get_results( $wpdb->prepare( $sql, 'true' ), ARRAY_N );
 	// Grab the actual IDs.
 	foreach ( $rs as $key => $value ) {
@@ -251,6 +253,10 @@ function bp_registration_hide_ui_for_approved_users() {
 	$moderate = (bool) get_option( 'bprwg_moderate' );
 
 	if ( empty( $moderate ) || ! $moderate ) {
+		return;
+	}
+
+	if ( ! function_exists( 'bp_displayed_user_id' ) ) {
 		return;
 	}
 
@@ -603,7 +609,7 @@ function bp_registration_options_send_admin_email( $args = array() ) {
 	$admin_notifications = apply_filters( 'bprwg_bp_notification_users', get_users( 'role=administrator' ) );
 
 	// Check for filtered users to notify, append to $admin_email, and remove duplicates.
-	if ( ! empty( $admin_notifications ) ) {
+	if ( is_array( $admin_notifications ) && ! empty( $admin_notifications ) ) {
 		foreach ( $admin_notifications as $admin ) {
 			$admin_email[] = $admin->user_email;
 		}
@@ -819,7 +825,7 @@ function bp_registration_options_get_registered_components( $component_names = a
 add_filter( 'bp_notifications_get_registered_components', 'bp_registration_options_get_registered_components' );
 
 
-function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string', $component_action_name, $component_name ) {
+function bprwg_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string', $component_action_name = '', $component_name = '' ) {
 
 	if ( 'bp_registration_options' === $component_action_name ) {
 
@@ -904,3 +910,17 @@ function bp_registration_prevent_messaging_unapproved_members( $recipients, $ori
 	return $recipients;
 }
 add_filter( 'bp_messages_recipients', 'bp_registration_prevent_messaging_unapproved_members', 10, 2 );
+
+function bpro_nouveau_friend_button_hide( $args ) {
+	$moderated = bp_registration_get_moderation_status( get_current_user_id() );
+	if ( function_exists( 'bp_displayed_user_id' ) ) {
+		$displayed_moderated = bp_registration_get_moderation_status( bp_displayed_user_id() );
+	}
+
+	if ( $moderated || $displayed_moderated ) {
+		if ( 'friends' === bp_nouveau()->members->button_args['component'] ) {
+			bp_nouveau()->members->button_args = [];
+		}
+	}
+}
+add_filter( 'bp_get_add_friend_button', 'bpro_nouveau_friend_button_hide', 101, 1 );

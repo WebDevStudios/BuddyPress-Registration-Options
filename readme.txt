@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 5.2
 Tested up to: 5.8.2
-Stable tag: 4.4.0
+Stable tag: 4.4.1
 Requires PHP: 5.6
 License: GPLv2
 
@@ -37,6 +37,14 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.4.1 - 2022-01-28 =
+* Fixed: missed custom CSS classes on frontend message markup.
+* Fixed: Friends buttons in member listings revisions and on individual profiles.
+* Fixed: Prevent fatal errors from undefined functions
+* Fixed: Function parameter ordering between required and optional values.
+* Fixed: consistent user/usermeta table references
+* Fixed: confirm we have arrays before using in foreach loops.
 
 = 4.4.0 - 2022-01-05 =
 * Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
@@ -107,6 +115,14 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.4.1 - 2022-01-28 =
+* Fixed: missed custom CSS classes on frontend message markup.
+* Fixed: Friends buttons in member listings revisions and on individual profiles.
+* Fixed: Prevent fatal errors from undefined functions
+* Fixed: Function parameter ordering between required and optional values.
+* Fixed: consistent user/usermeta table references
+* Fixed: confirm we have arrays before using in foreach loops.
 
 = 4.4.0 - 2022-01-05 =
 * Added: Filter to toggle whether or not to apply wpautop() on email messages. Current states remain as is.
