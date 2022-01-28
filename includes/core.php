@@ -217,6 +217,7 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bp_activity_can_favorite', '__return_false' );
 	// Hide friend buttons.
+	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_message_button', '__return_false' );
 	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
