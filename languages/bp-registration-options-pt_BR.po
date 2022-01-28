@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP-Registration-Options v4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-05 20:10-0600\n"
+"POT-Creation-Date: 2022-01-28 14:44-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
 "Language-Team: \n"
@@ -75,17 +75,17 @@ msgstr "Solicitações de Membros"
 # #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
 #. Plugin Name of the plugin/theme
-#: includes/admin.php:458 includes/admin.php:958 includes/core.php:741
+#: includes/admin.php:458 includes/admin.php:958 includes/core.php:747
 msgid "BP Registration Options"
 msgstr "BP Registration Options"
 
 # @ bp-registration-options
-#: includes/admin.php:460 includes/core.php:750
+#: includes/admin.php:460 includes/core.php:756
 msgid "General Settings"
 msgstr "Configurações Gerais"
 
 # @ bp-registration-options
-#: includes/admin.php:461 includes/admin.php:511 includes/core.php:757
+#: includes/admin.php:461 includes/admin.php:511 includes/core.php:763
 msgid "Member Requests"
 msgstr "Solicitações de Membros"
 
@@ -345,15 +345,15 @@ msgstr ""
 
 # #-#-#-#-#  catalog.po (BP-Registration-Options v4.1.2)  #-#-#-#-#
 # @ bp-registration-options
-#: includes/core.php:626
+#: includes/core.php:632
 msgid "New Member Request"
 msgstr "Solicitação de Novo Membro"
 
-#: includes/core.php:658
+#: includes/core.php:664
 msgid "Pending Membership"
 msgstr ""
 
-#: includes/core.php:833
+#: includes/core.php:839
 msgid "You have pending users to moderate."
 msgstr ""
 
