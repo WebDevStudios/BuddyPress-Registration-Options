@@ -217,7 +217,6 @@ function bp_registration_hide_ui() {
 
 	add_filter( 'bp_activity_can_favorite', '__return_false' );
 	// Hide friend buttons.
-	add_filter( 'bp_get_add_friend_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_public_message_button', '__return_empty_array' );
 	add_filter( 'bp_get_send_message_button', '__return_false' );
 	add_filter( 'bp_get_send_message_button_args', '__return_empty_array' );
@@ -910,3 +909,17 @@ function bp_registration_prevent_messaging_unapproved_members( $recipients, $ori
 	return $recipients;
 }
 add_filter( 'bp_messages_recipients', 'bp_registration_prevent_messaging_unapproved_members', 10, 2 );
+
+function bpro_nouveau_friend_button_hide( $args ) {
+	$moderated = bp_registration_get_moderation_status( get_current_user_id() );
+	if ( function_exists( 'bp_displayed_user_id' ) ) {
+		$displayed_moderated = bp_registration_get_moderation_status( bp_displayed_user_id() );
+	}
+
+	if ( $moderated || $displayed_moderated ) {
+		if ( 'friends' === bp_nouveau()->members->button_args['component'] ) {
+			bp_nouveau()->members->button_args = [];
+		}
+	}
+}
+add_filter( 'bp_get_add_friend_button', 'bpro_nouveau_friend_button_hide', 101, 1 );
