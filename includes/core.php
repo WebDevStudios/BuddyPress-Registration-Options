@@ -912,6 +912,10 @@ function bp_registration_prevent_messaging_unapproved_members( $recipients, $ori
 add_filter( 'bp_messages_recipients', 'bp_registration_prevent_messaging_unapproved_members', 10, 2 );
 
 function bpro_nouveau_friend_button_hide( $args ) {
+
+	if ( ! function_exists('bp_nouveau') ) {
+		return $args;
+	}
 	$moderated = bp_registration_get_moderation_status( get_current_user_id() );
 	if ( function_exists( 'bp_displayed_user_id' ) ) {
 		$displayed_moderated = bp_registration_get_moderation_status( bp_displayed_user_id() );
