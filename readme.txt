@@ -38,6 +38,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 
 == Changelog ==
 
+= 4.4.2 - 2022-07-19 =
+* Fixed: Prevent fatal errors with `bp_nouveau` function.
+
 = 4.4.1 - 2022-01-28 =
 * Fixed: missed custom CSS classes on frontend message markup.
 * Fixed: Friends buttons in member listings revisions and on individual profiles.
@@ -115,6 +118,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.4.2 - 2022-07-19 =
+* Fixed: Prevent fatal errors with `bp_nouveau` function.
 
 = 4.4.1 - 2022-01-28 =
 * Fixed: missed custom CSS classes on frontend message markup.
