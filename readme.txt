@@ -3,8 +3,8 @@ Contributors: webdevstudios, pluginize, tw2113, Messenlehner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 5.2
-Tested up to: 5.8.2
-Stable tag: 4.4.1
+Tested up to: 6.0.1
+Stable tag: 4.4.2
 Requires PHP: 5.6
 License: GPLv2
 
@@ -37,6 +37,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 6. Approve, deny or ban new members:
 
 == Changelog ==
+
+= 4.4.2 - 2022-07-19 =
+* Fixed: Prevent fatal errors with `bp_nouveau` function.
 
 = 4.4.1 - 2022-01-28 =
 * Fixed: missed custom CSS classes on frontend message markup.
@@ -115,6 +118,9 @@ Follow along with development on GitHub at [BuddyPress-Registration-Options](htt
 * Updated: Internationalization strings for default messages.
 
 == Upgrade Notice ==
+
+= 4.4.2 - 2022-07-19 =
+* Fixed: Prevent fatal errors with `bp_nouveau` function.
 
 = 4.4.1 - 2022-01-28 =
 * Fixed: missed custom CSS classes on frontend message markup.
