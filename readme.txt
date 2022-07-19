@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, plugin, admin, moderation, registration, groups, blogs, new members, buddypress private network, buddypress spam
 Requires at least: 5.2
 Tested up to: 5.8.2
-Stable tag: 4.4.1
+Stable tag: 4.4.2
 Requires PHP: 5.6
 License: GPLv2
 
